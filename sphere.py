@@ -1,6 +1,5 @@
 # A Sphere, brought to you by PharaohCola13
 
-
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
 from matplotlib import cm
@@ -56,6 +55,9 @@ def animate(i):
     # azimuth angle : 0 deg to 360 deg
     # elev = i * n --> rotates object about the xy-plane with a magnitude of n
     # azim = i * n --> rotates object around the z axis with a magnitude of n
+    # For top view elev = 90
+    # For side view elev = 0
+
     ax.view_init(elev=0, azim=i*4)
     return s,
 

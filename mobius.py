@@ -36,6 +36,11 @@ ax.set_facecolor('black')
 plt.axis('off')
 plt.axis('equal')
 
+# Axis Limits
+ax.set_xlim(-1, 1)
+ax.set_ylim(-1, 1)
+ax.set_zlim(-1, 1)
+
 
 # Mobius Band
 mb = ax.plot_trisurf(x, y, z, triangles=tri.triangles, cmap='rainbow'
@@ -44,13 +49,8 @@ mb = ax.plot_trisurf(x, y, z, triangles=tri.triangles, cmap='rainbow'
 mb.set_linewidth(0.0)
 mb.set_edgecolor('w')
 mb.set_alpha(0.5)
-# Axis Limits
-ax.set_xlim(-1, 1)
-ax.set_ylim(-1, 1)
-ax.set_zlim(-1, 1)
 
 # Defintions for animations
-
 def init():
     return mb,
 
@@ -58,6 +58,8 @@ def animate(i):
     # azimuth angle : 0 deg to 360 deg
     # elev = i * n --> rotates object about the xy-plane with a magnitude of n
     # azim = i * n --> rotates object around the z axis with a magnitude of n
+    # For top view elev = 90
+    # For side view elev = 0
 
     ax.view_init(elev=50, azim= 4 * i)
     return mb,

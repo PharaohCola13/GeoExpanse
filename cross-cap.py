@@ -45,6 +45,8 @@ plt.axis('equal')
 cc = ax.plot_surface(x,y,z, rstride=1, cstride=1)
 
 cc.set_alpha(0.5)
+cc.set_edgecolor('w')
+cc.set_linewidth(0.1)
 
 # Definitions for animation
 def init():
@@ -54,14 +56,17 @@ def animate(i):
     # azimuth angle : 0 deg to 360 deg
     # elev = i * n --> rotates object about the xy-plane with a magnitude of n
     # azim = i * n --> rotates object around the z axis with a magnitude of n
+    # For top view elev = 90
+    # For side view elev = 0
+
     ax.view_init(elev=0, azim=i*10)
     return cc,
 
 # Animate
 ani = FuncAnimation(fig, animate, init_func=init,
                     frames=36, interval=1, blit=False, repeat=True)
-# Saving to Cross-Cap.mp4
 
+# Saving to Cross-Cap.mp4
 #Writer = writers['ffmpeg']
 #writer = Writer(fps=15, bitrate=1800)
 

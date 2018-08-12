@@ -49,26 +49,27 @@ fig = plt.figure(figsize=(8,8))
 ax = p3.Axes3D(fig)
 ax.set_facecolor('black')
 
-plt.axis("off")
+plt.axis('off')
 plt.axis('equal')
-
-# Surface Plot
-ln = ax.plot_surface(x, y, z, rstride=1, cstride=1, cmap='rainbow',
-                     antialiased=False)
-
-ln.set_linewidth(0.0)
-ln.set_edgecolor('w')
-ln.set_alpha(0.5)
 
 # Axis Limits
 ax.set_xlim(-5, 5)
 ax.set_ylim(-5, 5)
 ax.set_zlim(0,10)
 
+# Surface Plot
+kb = ax.plot_surface(x, y, z, rstride=1, cstride=1, cmap='rainbow',
+                     antialiased=False)
+
+kb.set_linewidth(0.0)
+kb.set_edgecolor('w')
+kb.set_alpha(0.5)
+
+
 # Definitions for animations
 
 def init():
-    return ln,
+    return kb,
 
 def animate(i):
     # azimuth angle : 0 deg to 360 deg
@@ -77,8 +78,8 @@ def animate(i):
     # For top view elev = 90
     # For side view elev = 0
 
-    ax.view_init(elev=90, azim=i*10)
-    return ln,
+    ax.view_init(elev=0, azim=i*10)
+    return kb,
 
 # Smooth tranisition azim=i*10, frames=36, interval=1
 
@@ -91,6 +92,6 @@ ani = FuncAnimation(fig, animate, init_func=init,
 #Writer = writers['ffmpeg']
 #writer = Writer(fps=15, bitrate=1800)
 
-#ani.save('klein_rainbow.mp4', writer=writer)
+#ani.save('klein.mp4', writer=writer)
 
 plt.show()
