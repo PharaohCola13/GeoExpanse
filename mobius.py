@@ -68,7 +68,7 @@ ani = FuncAnimation(fig, animate, init_func=init,
 #Writer = writers['ffmpeg']
 #writer = Writer(fps=15, bitrate=1800)
 
-#ani.save('mobius_rainbow.mp4', writer=writer)
+ani.save('mobius_rainbow.mp4', writer=writer)
 
 
 plt.show()
