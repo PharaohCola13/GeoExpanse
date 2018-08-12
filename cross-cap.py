@@ -1,3 +1,5 @@
+# A Cross-Cap, brought to you by PharaohCola13
+
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
 from matplotlib import cm

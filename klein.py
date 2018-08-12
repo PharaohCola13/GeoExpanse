@@ -1,3 +1,5 @@
+# A Klein Bottle, brought to you by PharaohCola13
+
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
 from matplotlib import cm
@@ -67,6 +69,8 @@ ax.set_xlim(-5, 5)
 ax.set_ylim(-5, 5)
 ax.set_zlim(0,10)
 
+# Definitions for animations
+
 def init():
     return ln,
 
@@ -74,12 +78,14 @@ def animate(i):
     # azimuth angle : 0 deg to 360 deg
     # elev = i * n --> rotates object about the xy-plane with a magnitude of n
     # azim = i * n --> rotates object around the z axis with a magnitude of n
+
     ax.view_init(elev=0, azim=i*4)
     return ln,
 
 # Animate
-# ani = FuncAnimation(fig, animate, init_func=init,
-             #       frames=100, interval=20, blit=False, repeat=True)
+ani = FuncAnimation(fig, animate, init_func=init,
+                    frames=100, interval=20, blit=False, repeat=True)
+
 # Saving to klein.mp4
 
 #Writer = writers['ffmpeg']
