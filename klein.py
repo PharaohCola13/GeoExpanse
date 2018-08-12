@@ -81,12 +81,14 @@ def animate(i):
     # For top view elev = 90
     # For side view elev = 0
 
-    ax.view_init(elev=90, azim=i*4)
+    ax.view_init(elev=90, azim=i*10)
     return ln,
+
+# Smooth tranisition azim=i*10, frames=36, interval=1
 
 # Animate
 ani = FuncAnimation(fig, animate, init_func=init,
-                    frames=100, interval=10, blit=False, repeat=True)
+                    frames=36, interval=1, blit=False, repeat=True)
 
 # Saving to klein.mp4
 
