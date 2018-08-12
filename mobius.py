@@ -30,7 +30,6 @@ tri = Triangulation(np.ravel(w), np.ravel(theta))
 # Figure Properties
 fig = plt.figure(figsize=(8,8))
 
-# Axis Properties
 ax = p3.Axes3D(fig)
 ax.set_facecolor('black')
 
@@ -39,14 +38,12 @@ plt.axis('equal')
 
 
 # Mobius Band
-mb = ax.plot_trisurf(x, y, z, triangles=tri.triangles
+mb = ax.plot_trisurf(x, y, z, triangles=tri.triangles, cmap='rainbow'
 )
 
 mb.set_linewidth(0.0)
 mb.set_edgecolor('w')
 mb.set_alpha(0.5)
-mb.set_cmap('rainbow')
-
 # Axis Limits
 ax.set_xlim(-1, 1)
 ax.set_ylim(-1, 1)

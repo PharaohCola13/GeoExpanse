@@ -10,7 +10,6 @@ from matplotlib.animation import writers
 
 
 # Klein Bottle x,y,z Components
-
 def x_(u, v):
     x = -2 + 2 * cos(v) - cos(u)
     x[v < 3 * pi] = -2 + (2 + cos(u[v < 3 * pi])) * cos(v[v < 3 * pi])
@@ -45,10 +44,8 @@ y = y_(u, v)
 z = z_(u, v)
 
 # Figure Properties
-
 fig = plt.figure(figsize=(8,8))
 
-# Axes Properties
 ax = p3.Axes3D(fig)
 ax.set_facecolor('black')
 
@@ -62,7 +59,6 @@ ln = ax.plot_surface(x, y, z, rstride=1, cstride=1, cmap='rainbow',
 ln.set_linewidth(0.0)
 ln.set_edgecolor('w')
 ln.set_alpha(0.5)
-
 
 # Axis Limits
 ax.set_xlim(-5, 5)
