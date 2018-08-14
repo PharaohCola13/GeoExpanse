@@ -87,13 +87,14 @@ outer_region.set_linewidth(1)
 outer_region.set_alpha(0.2)
 outer_region.set_facecolor('blue')
 
-# Inside Cube 
+# Inside Cube
 inside_cube = Poly3DCollection(verts_inner)
 
 inside_cube.set_edgecolor('white')
 inside_cube.set_linewidth(1)
 inside_cube.set_alpha(0.5)
 inside_cube.set_facecolor('purple')
+
 
 # Plot Surfaces
 o = ax.add_collection3d(outer_region)
@@ -115,14 +116,14 @@ def animate(i):
 
 # Animate
 ani = FuncAnimation(fig, animate, init_func=init,
-                   frames=110, interval=1, blit=False, repeat=True)
+                   frames=88, interval=1, blit=False, repeat=True)
 
-# Saving to Cube.mp4
+#Saving to Tesseract.mp4
 
-# Writer = writers['ffmpeg']
-# writer = Writer(fps=15, bitrate=1800)
+Writer = writers['ffmpeg']
+writer = Writer(fps=15, bitrate=1800)
 
-# ani.save('Cube.mp4', writer=writer)
+ani.save('Tesseract.mp4', writer=writer)
 
 
 plt.show()
