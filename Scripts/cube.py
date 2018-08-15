@@ -10,22 +10,21 @@ from matplotlib.animation import FuncAnimation
 from matplotlib.animation import writers
 
 points = np.array([[-1, -1, -1],
-                  [1, -1, -1 ],
-                  [1, 1, -1],
-                  [-1, 1, -1],
-                  [-1, -1, 1],
-                  [1, -1, 1 ],
-                  [1, 1, 1],
-                  [-1, 1, 1]])
+                   [1, -1, -1 ],
+                   [1, 1, -1],
+                   [-1, 1, -1],
+                   [-1, -1, 1],
+                   [1, -1, 1 ],
+                   [1, 1, 1],
+                   [-1, 1, 1]])
 
 # Scaling Matricies
 P = [[2, 0, 0],
-	 [0, 2, 0],
-	 [0, 0, 2]]
+     [0, 2, 0],
+     [0, 0, 2]]
 
 
 Z = np.zeros((8,3))
-
 
 for i in range(8): 
 	Z[i,:] = np.dot(points[i,:],P)
@@ -69,7 +68,6 @@ cube.set_facecolor('blue')
 # Plot Surfaces
 ax.add_collection3d(cube)
 
-
 # Defintions for animations
 def init():
     return cube,
@@ -94,6 +92,5 @@ ani = FuncAnimation(fig, animate, init_func=init,
 # writer = Writer(fps=15, bitrate=1800)
 
 # ani.save('Cube.mp4', writer=writer)
-
 
 plt.show()
