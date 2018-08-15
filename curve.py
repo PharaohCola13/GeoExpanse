@@ -1,4 +1,4 @@
-# A Dodecahedron, brought to you by PharaohCola13
+# A Curve, brought to you by PharaohCola13
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
@@ -44,16 +44,16 @@ plt.axis('equal')
 ax.set_zlim(-10,10)
 
 # Surface Plot
-ho = ax.plot_surface(x, y, z)
+curve = ax.plot_surface(x, y, z)
 
-ho.set_alpha(1)
-ho.set_edgecolor('w')
-ho.set_linewidth(1)
-ho.set_facecolor('deepskyblue')
+curve.set_alpha(1)
+curve.set_edgecolor('w')
+curve.set_linewidth(1)
+curve.set_facecolor('deepskyblue')
 
 # Definitions for animation
 def init():
-	return ho,
+	return curve,
 
 def animate(i):
     # azimuth angle : 0 deg to 360 deg
@@ -63,16 +63,16 @@ def animate(i):
     # For side view elev = 0
 
    		ax.view_init(elev=90, azim=i*10)
-		return ho,
-# 29
+		return curve,
+
 # Animate
 ani = FuncAnimation(fig, animate, init_func=init,
                    frames=100, interval=1, blit=False, repeat=True)
-# Saving to Cross-Cap.mp4
+# Saving to Curve.mp4
 
 #Writer = writers['ffmpeg']
 #writer = Writer(fps=15, bitrate=1800)
 
-#ani.save('Cross-Cap.mp4', writer=writer)
+#ani.save('Curve.mp4', writer=writer)
 
 plt.show()
