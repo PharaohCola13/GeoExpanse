@@ -10,25 +10,24 @@ from matplotlib.animation import FuncAnimation
 from matplotlib.animation import writers
 
 points = np.array([[-1, -1, -1],
-                  [1, -1, -1 ],
-                  [1, 1, -1],
-                  [-1, 1, -1],
-                  [-1, -1, 1],
-                  [1, -1, 1 ],
-                  [1, 1, 1],
-                  [-1, 1, 1]])
+                   [1, -1, -1 ],
+                   [1, 1, -1],
+                   [-1, 1, -1],
+                   [-1, -1, 1],
+                   [1, -1, 1 ],
+                   [1, 1, 1],
+                   [-1, 1, 1]])
 
 # Scaling Matricies
 P = [[2, 0, 0],
-	 [0, 2, 0],
-	 [0, 0, 2]]
+     [0, 2, 0],
+     [0, 0, 2]]
 
 Q = [[1, 0, 0],
-	 [0, 1, 0],
-	 [0, 0, 1]]
+     [0, 1, 0],
+     [0, 0, 1]]
 
 Z = np.zeros((8,3))
-
 V = np.zeros((8,3))
 
 for i in range(8): 
@@ -50,34 +49,32 @@ ax.set_xlim(-4,4)
 ax.set_ylim(-4,4)
 ax.set_zlim(-4,4)
 
-# Radius
+# Interval
 r = [-1,1]
 
 X, Y = np.meshgrid(r, r)
 
 # Outer Region Configuration
 verts_outer = [[Z[0],V[0], V[1], Z[1]],
-	[Z[1],V[1],V[5],Z[5]], 
-	[Z[0],V[0],V[4],Z[4]], 
-	[Z[4],V[4],V[5],Z[5]], 
-	[Z[5],V[5],V[6],Z[6]],
-	[Z[1],V[1],V[2],Z[2]], 
-	[Z[2],V[2],V[6],Z[6]],
-	[Z[2],V[2],V[3],Z[3]],
-	[Z[6],V[6],V[7],Z[7]],
-	[Z[7],V[7],V[3],Z[3]],
-	[Z[0],V[0],V[3],Z[3]],
-	[Z[4],V[4],V[7],Z[7]]
-]
+	       [Z[1],V[1],V[5],Z[5]], 
+	       [Z[0],V[0],V[4],Z[4]], 
+	       [Z[4],V[4],V[5],Z[5]], 
+	       [Z[5],V[5],V[6],Z[6]],
+	       [Z[1],V[1],V[2],Z[2]], 
+	       [Z[2],V[2],V[6],Z[6]],
+	       [Z[2],V[2],V[3],Z[3]],
+	       [Z[6],V[6],V[7],Z[7]],
+	       [Z[7],V[7],V[3],Z[3]],
+	       [Z[0],V[0],V[3],Z[3]],
+	       [Z[4],V[4],V[7],Z[7]]]
 
 # Inner Cube Configuration
 verts_inner = [[V[0],V[1],V[2],V[3]],
-				[V[4],V[5],V[6],V[7]],
-				[V[0],V[4],V[5],V[1]],
-				[V[1],V[5],V[6],V[2]],
-				[V[2],V[6],V[7],V[3]],
-				[V[3],V[7],V[4],V[0]]
-]
+	       [V[4],V[5],V[6],V[7]],
+	       [V[0],V[4],V[5],V[1]],
+	       [V[1],V[5],V[6],V[2]],
+	       [V[2],V[6],V[7],V[3]],
+	       [V[3],V[7],V[4],V[0]]]
 
 # Outside Region
 outer_region = Poly3DCollection(verts_outer)
@@ -119,11 +116,9 @@ ani = FuncAnimation(fig, animate, init_func=init,
                    frames=88, interval=1, blit=False, repeat=True)
 
 #Saving to Tesseract.mp4
+#Writer = writers['ffmpeg']
+#writer = Writer(fps=15, bitrate=1800)
 
-Writer = writers['ffmpeg']
-writer = Writer(fps=15, bitrate=1800)
-
-ani.save('Tesseract.mp4', writer=writer)
-
+#ani.save('Tesseract.mp4', writer=writer)
 
 plt.show()
