@@ -42,41 +42,39 @@ plt.axis('equal')
 # ax.set_ylim(-5,5)
 ax.set_zlim(-5,5)
 
-
 # Surface plot
 k = ax.plot_surface(x, y, z, rstride=10, cstride=10, cmap='cool'
 )
-
 
 k.set_linewidth(0.0)
 k.set_edgecolor('w')
 k.set_alpha(0.5)
 
 # Defintions for animations
-# def init():
- #   return k,
+def init():
+   return k,
 
-# def animate(i):
+def animate(i):
     # azimuth angle : 0 deg to 360 deg
     # elev = i * n --> rotates object about the xy-plane with a magnitude of n
     # azim = i * n --> rotates object around the z axis with a magnitude of n
     # For top view elev = 90
     # For side view elev = 0
 
-#    ax.view_init(elev=50, azim= 2 * i)
-#    return k,
+    ax.view_init(elev=50, azim= 2 * i)
+    return k,
 
 # Smooth transition elev = 50, frames = 180, interval = 1
 
 # Animate
-# ani = FuncAnimation(fig, animate, init_func=init,
-#                     frames=180, interval=1, blit=False, repeat=True)
+ani = FuncAnimation(fig, animate, init_func=init,
+                     frames=180, interval=1, blit=False, repeat=True)
 
-# Saving to mobius.mp4
+# Saving to Knot.mp4
 
 # Writer = writers['ffmpeg']
 # writer = Writer(fps=15, bitrate=1800)
 
-# ani.save('mobius.mp4', writer=writer)
+# ani.save('Knot.mp4', writer=writer)
 
 plt.show()
