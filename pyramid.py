@@ -20,10 +20,13 @@ def y_(u,v):
 def z_(u,v):
     z = u
     return z
-
+# Number of sides on the base
 s = 3
 
+# Height
 h = 1
+
+# Radius
 r = 1
 
 u = linspace(0, h, 10)
@@ -68,12 +71,12 @@ def animate(i):
 # Animate
 ani = FuncAnimation(fig, animate, init_func=init,
                     frames=100, interval=20, blit=False, repeat=True)
-# Saving to pyramid.mp4
+# Saving to Pyramid.mp4
 
 #Writer = writers['ffmpeg']
 #writer = Writer(fps=15, bitrate=1800)
 
-#ani.save('pyramid.mp4', writer=writer)
+#ani.save('Pyramid.mp4', writer=writer)
 
 
 plt.show()
