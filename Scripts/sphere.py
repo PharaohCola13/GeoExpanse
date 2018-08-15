@@ -64,11 +64,11 @@ def animate(i):
 # Animate
 ani = FuncAnimation(fig, animate, init_func=init,
                     frames=100, interval=20, blit=False, repeat=True)
-# Saving to Cross-Cap.mp4
+# Saving to Sphere.mp4
 
 #Writer = writers['ffmpeg']
 #writer = Writer(fps=15, bitrate=1800)
 
-#ani.save('Cross-Cap.mp4', writer=writer)
+#ani.save('Sphere.mp4', writer=writer)
 
 plt.show()
