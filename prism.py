@@ -1,3 +1,5 @@
+# A Prism, brought to you by PharaohCola13
+
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
 from matplotlib import cm
@@ -28,7 +30,6 @@ s = 7
 
 u = linspace(0, h, 100)
 v = linspace(0, 2 * pi, s + 1)
-
 
 u, v = np.meshgrid(u, v)
 
