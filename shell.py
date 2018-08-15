@@ -1,4 +1,4 @@
-# A Dodecahedron, brought to you by PharaohCola13
+# A Shell, brought to you by PharaohCola13
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
@@ -44,16 +44,16 @@ plt.axis('equal')
 #ax.set_zlim(-1,1)
 
 # Surface Plot
-ho = ax.plot_surface(x, y, z)
+shell = ax.plot_surface(x, y, z)
 
-ho.set_alpha(1)
-ho.set_edgecolor('w')
-ho.set_linewidth(1)
-ho.set_facecolor('deepskyblue')
+shell.set_alpha(1)
+shell.set_edgecolor('w')
+shell.set_linewidth(1)
+shell.set_facecolor('deepskyblue')
 
 # Definitions for animation
 def init():
-	return ho,
+	return shell,
 
 def animate(i):
     # azimuth angle : 0 deg to 360 deg
@@ -63,16 +63,17 @@ def animate(i):
     # For side view elev = 0
 
    		ax.view_init(elev=i, azim=i*4)
-		return ho,
-# 29
+		return shell,
+	
 # Animate
 #ani = FuncAnimation(fig, animate, init_func=init,
 #                   frames=100, interval=20, blit=False, repeat=True)
-# Saving to Cross-Cap.mp4
+
+# Saving to Shell.mp4
 
 #Writer = writers['ffmpeg']
 #writer = Writer(fps=15, bitrate=1800)
 
-#ani.save('Cross-Cap.mp4', writer=writer)
+#ani.save('Shell.mp4', writer=writer)
 
 plt.show()
