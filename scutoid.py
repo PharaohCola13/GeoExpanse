@@ -5,45 +5,45 @@ import matplotlib.pyplot as plt
 from matplotlib import cm
 import numpy as np
 from numpy import pi, linspace, cos, sin
-from mpl_toolkits.mplot3d.art3d import Poly3DCollection, Line3DCollection
+from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from matplotlib.animation import FuncAnimation
 from matplotlib.animation import writers
 
 
-hexa = np.array([[0,0,1],
-				 [0.5, 0.866, 1],
-				 [1.5, 0.866, 1],
-				 [2.0, 0, 1],
-				 [1.5, -0.866, 1],
-				 [0.5, -0.866, 1]])
+hexa = np.array([[-2,0,1],
+				 [-1.5, 0.866, 1],
+				 [-0.5, 0.866, 1],
+				 [0.0, 0, 1],
+				 [-0.5, -0.866, 1],
+				 [-1.5, -0.866, 1]])
 
-penta = np.array([[0,0,0],
-				  [0.5,0.866,0],
-				  [1.5, 0.866,0],
-				  [2.0, 0, 0],
-				  [1, -0.866, 0]])
+penta = np.array([[-2,0,0],
+				  [-1.5,0.866,0],
+				  [-0.5, 0.866,0],
+				  [0.0, 0, 0],
+				  [-1, -0.866, 0]])
 
-cent = np.array([[0.5, -0.866, 1],
-				 [1, -0.866, 0.5],
-				 [1.5, -0.866, 1]])
+cent = np.array([[-1.5, -0.866, 1],
+				 [-1, -1.266, 0.5],
+				 [-0.5, -0.866, 1]])
 
 
-ahexa = np.array([[2,0,0],
-				 [1, -0.866, 0],
-				 [1.25, -1.866, 0],
-				 [2.25, -2.166, 0],
-				 [3.05, -1.466, 0],
-				 [3, -0.434, 0]])
+ahexa = np.array([[0,0,0],
+				 [-1, -0.866, 0],
+				 [-0.75, -1.866, 0],
+				 [0.25, -2.166, 0],
+				 [1.05, -1.466, 0],
+				 [1, -0.434, 0]])
 
-apenta = np.array([[2.0,0,1],
-				  [3, -0.434,1],
-				  [3.05, -1.466, 1],
-				  [2, -1.7, 1],
-					[1.5,-0.866,1]])
+apenta = np.array([[0.0,0,1],
+				  [1, -0.434,1],
+				  [1.05, -1.466, 1],
+				  [0, -1.7, 1],
+					[-0.5,-0.866,1]])
 
-acent = np.array([[1, -0.866, 0],
-				 [1.125, -1.4, 0.5],
-				 [1.25, -1.866, 0]])
+acent = np.array([[-1, -0.866, 0],
+				 [-1, -1.266, 0.5],
+				 [-0.75, -1.866, 0]])
 
 
 N = [[1,0,0],
@@ -89,21 +89,21 @@ ax = p3.Axes3D(fig)
 ax.set_facecolor('black')
 
 plt.axis('off')
-#plt.axis('equal')
+plt.axis('equal')
  
-ax.set_xlim(-1,4)
-ax.set_ylim(-1,4)
+ax.set_xlim(-2,2)
+ax.set_ylim(-2,2)
 ax.set_zlim(0,1)
 
-r = [-0.866, 0.866]
+r = [-2, 2]
 
 X,Y = np.meshgrid(r,r)
 
-verts_hex = [[M[0], M[1], M[2], M[3], M[4], M[5]]]
+top_hex = [[M[0], M[1], M[2], M[3], M[4], M[5]]]
 
-verts_pent = [[P[0], P[1], P[2], P[3], P[4]]]
+bottom_pent = [[P[0], P[1], P[2], P[3], P[4]]]
 
-verts_sides = [[P[0], M[0], M[1], P[1]],
+sides = [[P[0], M[0], M[1], P[1]],
 				 [P[1], M[1], M[2], P[2]],
 				 [P[2], M[2], M[3], P[3]],
 				 [P[3], P[4], Q[1], Q[2], M[4], M[3]],
@@ -115,88 +115,119 @@ verts_cent = [[Q[0], Q[1], Q[2]]]
 
 ##
 
-verts_ahex = [[aM[0], aM[1], aM[2], aM[3], aM[4], aM[5]]]
+bottom_hex = [[aM[0], aM[1], aM[2], aM[3], aM[4], aM[5]]]
 
-verts_apent = [[aP[0], aP[1], aP[2], aP[3], aP[4]]]
+top_pent = [[aP[1], aP[2], aP[3], aP[4], aP[0]]]
 
-verts_asides = [[aP[0], aM[0], aM[5], aP[1]],
-				[aP[1], aM[5], aM[4], aP[2]] 
+alt_sides = [[aP[0], aM[0], aM[5], aP[1]],
+				[aP[1], aM[5], aM[4], aP[2]],
+				[aP[2], aM[4], aM[3], aP[3]],
+				[aP[3], aM[3], aQ[2], aQ[1], aP[4]] 
 
 ]
 
-verts_acent = [[aQ[0], aQ[1], aQ[2]]]
+verts_acent = [[aQ[0], aQ[1], aQ[2], aQ[0]]]
 
 
 
-scu_hex = Poly3DCollection(verts_hex)
+scu_top_hex = Poly3DCollection(top_hex)
 
-scu_hex.set_edgecolor('blue')
-scu_hex.set_facecolor('white')
-scu_hex.set_linewidth(1)
-scu_hex.set_alpha(1)
+scu_top_hex.set_edgecolor('black')
+scu_top_hex.set_facecolor('green')
+scu_top_hex.set_linewidth(2)
+scu_top_hex.set_alpha(1)
 
 
-scu_pent = Poly3DCollection(verts_pent)
+scu_bottom_pent = Poly3DCollection(bottom_pent)
 
-scu_pent.set_edgecolor('blue')
-scu_pent.set_facecolor('white')
-scu_pent.set_linewidth(1)
-scu_pent.set_alpha(1)
+scu_bottom_pent.set_edgecolor('black')
+scu_bottom_pent.set_facecolor('green')
+scu_bottom_pent.set_linewidth(2)
+scu_bottom_pent.set_alpha(1)
 
-scu_sides = Poly3DCollection(verts_sides)
+scu_sides = Poly3DCollection(sides)
 
-scu_sides.set_edgecolor('blue')
-scu_sides.set_linewidth(1)
-scu_sides.set_facecolor('white')
+scu_sides.set_edgecolor('black')
+scu_sides.set_linewidth(2)
+scu_sides.set_facecolor('green')
 scu_sides.set_alpha(1)
 
 scu_cent = Poly3DCollection(verts_cent)
 
-scu_cent.set_edgecolor('blue')
-scu_cent.set_linewidth(1)
-scu_cent.set_facecolor('white')
+scu_cent.set_edgecolor('black')
+scu_cent.set_linewidth(2)
+scu_cent.set_facecolor('green')
 scu_cent.set_alpha(1)
 
 ##
 
-scu_ahex = Poly3DCollection(verts_ahex)
+scu_bottom_hex = Poly3DCollection(bottom_hex)
 
-scu_ahex.set_edgecolor('blue')
-scu_ahex.set_facecolor('white')
-scu_ahex.set_linewidth(1)
-scu_ahex.set_alpha(1)
+scu_bottom_hex.set_edgecolor('black')
+scu_bottom_hex.set_facecolor('yellow')
+scu_bottom_hex.set_linewidth(2)
+scu_bottom_hex.set_alpha(1)
 
 
-scu_apent = Poly3DCollection(verts_apent)
+scu_top_pent = Poly3DCollection(top_pent)
 
-scu_apent.set_edgecolor('blue')
-scu_apent.set_facecolor('white')
-scu_apent.set_linewidth(1)
-scu_apent.set_alpha(1)
+scu_top_pent.set_edgecolor('black')
+scu_top_pent.set_facecolor('yellow')
+scu_top_pent.set_linewidth(2)
+scu_top_pent.set_alpha(1)
 
-scu_asides = Poly3DCollection(verts_asides)
+scu_alt_sides = Poly3DCollection(alt_sides)
 
-scu_asides.set_edgecolor('blue')
-scu_asides.set_linewidth(1)
-scu_asides.set_facecolor('white')
-scu_asides.set_alpha(1)
+scu_alt_sides.set_edgecolor('black')
+scu_alt_sides.set_linewidth(2)
+scu_alt_sides.set_facecolor('yellow')
+scu_alt_sides.set_alpha(1)
 
 scu_acent = Poly3DCollection(verts_acent)
 
-scu_acent.set_edgecolor('blue')
-scu_acent.set_linewidth(1)
-scu_acent.set_facecolor('white')
+scu_acent.set_edgecolor('black')
+scu_acent.set_linewidth(2)
+scu_acent.set_facecolor('yellow')
 scu_acent.set_alpha(1)
 
-ax.add_collection(scu_hex)
-ax.add_collection(scu_pent)
-ax.add_collection(scu_sides)
-ax.add_collection(scu_cent)
+sth = ax.add_collection(scu_top_hex)
+sbp = ax.add_collection(scu_bottom_pent)
+ss = ax.add_collection(scu_sides)
+sc = ax.add_collection(scu_cent)
 
-ax.add_collection(scu_ahex)
-ax.add_collection(scu_apent)
-ax.add_collection(scu_asides)
-ax.add_collection(scu_acent)
+##
+
+sbh = ax.add_collection(scu_bottom_hex)
+stp = ax.add_collection(scu_top_pent)
+sas = ax.add_collection(scu_alt_sides)
+sa = ax.add_collection(scu_acent)
+
+# Defintions for animations
+def init():
+    return sth,
+
+def animate(i):
+    # azimuth angle : 0 deg to 360 deg
+    # elev = i * n --> rotates object about the xy-plane with a magnitude of n
+    # azim = i * n --> rotates object around the z axis with a magnitude of n
+    # For top view elev = 90
+    # For side view elev = 0
+
+    ax.view_init(elev=14, azim=-147)
+    return sth,
+
+# Animate
+ani = FuncAnimation(fig, animate, init_func=init,
+                   frames=88, interval=1, blit=False, repeat=True)
+
+#Saving to Tesseract.mp4
+
+#Writer = writers['ffmpeg']
+#writer = Writer(fps=15, bitrate=1800)
+
+#ani.save('Tesseract.mp4', writer=writer)
+
+
 
 
 plt.show()
