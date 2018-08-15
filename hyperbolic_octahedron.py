@@ -1,4 +1,4 @@
-# A Dodecahedron, brought to you by PharaohCola13
+# A Hyperbolic Octahedron, brought to you by PharaohCola13
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
@@ -62,18 +62,20 @@ def animate(i):
     # azim = i * n --> rotates object around the z axis with a magnitude of n
     # For top view elev = 90
     # For side view elev = 0
+    # Optimal Viewing angle: elev = 29
 
    		ax.view_init(elev=i, azim=i*4)
 		return ho,
-# 29
+	
 # Animate
 ani = FuncAnimation(fig, animate, init_func=init,
                    frames=100, interval=20, blit=False, repeat=True)
-# Saving to Cross-Cap.mp4
+
+# Saving to Hyperbolic-Octahedron.mp4
 
 #Writer = writers['ffmpeg']
 #writer = Writer(fps=15, bitrate=1800)
 
-#ani.save('Cross-Cap.mp4', writer=writer)
+#ani.save('Hyperbolic-Octohedron.mp4', writer=writer)
 
 plt.show()
