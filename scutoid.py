@@ -17,11 +17,11 @@ hex_top = np.array([[-2,0,1],
 		    [-0.5, -0.866, 1],
 		    [-1.5, -0.866, 1]])
 
-pent_bottom = np.array([[-2,0,0],
-			[-1.5,0.866,0],
-			[-0.5, 0.866,0],
-			[0.0, 0, 0],
-			[-1, -0.866, 0]])
+pent_bottom = np.array([[-2,0,0.5],
+			[-1.5,0.866,0.5],
+			[-0.5, 0.866,0.5],
+			[0.0, 0, 0.5],
+			[-1, -0.866, 0.5]])
 
 cent = np.array([[-1.5, -0.866, 1],
 		 [-1, -1.266, 0.5],
@@ -104,9 +104,9 @@ top_hex = [[M[0], M[1], M[2], M[3], M[4], M[5]]]
 
 bottom_pent = [[P[0], P[1], P[2], P[3], P[4]]]
 
-sides = [[P[0], M[0], M[1], P[1]],
-	 [P[1], M[1], M[2], P[2]],
-	 [P[2], M[2], M[3], P[3]],
+sides = [#[P[0], M[0], M[1], P[1]],
+#	 [P[1], M[1], M[2], P[2]],
+#	 [P[2], M[2], M[3], P[3]],
 	 [P[3], P[4], Q[1], Q[2], M[4], M[3]],
 	 [P[4], Q[1], Q[0], M[5], M[0], P[0]]
 ]
@@ -194,10 +194,10 @@ sc = ax.add_collection(scu_cent)
 
 # Surface Plot (Scutoid with Pentagon on top)
 
-sbh = ax.add_collection(scu_bottom_hex)
-stp = ax.add_collection(scu_top_pent)
-sas = ax.add_collection(scu_alt_sides)
-sa = ax.add_collection(scu_acent)
+#sbh = ax.add_collection(scu_bottom_hex)
+#stp = ax.add_collection(scu_top_pent)
+#sas = ax.add_collection(scu_alt_sides)
+#sa = ax.add_collection(scu_acent)
 
 # Defintions for animations
 def init():
@@ -214,8 +214,8 @@ def animate(i):
     return sth,
 
 # Animate
-ani = FuncAnimation(fig, animate, init_func=init,
-                   frames=88, interval=1, blit=False, repeat=True)
+#ani = FuncAnimation(fig, animate, init_func=init,
+#                   frames=88, interval=1, blit=False, repeat=True)
 
 #Saving to Scutoid.mp4
 
