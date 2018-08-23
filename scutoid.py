@@ -10,22 +10,22 @@ from matplotlib.animation import FuncAnimation
 from matplotlib.animation import writers
 
 
-hex_top = np.array([[-2,0,1],
-		    [-1.5, 0.866, 1],
-		    [-0.5, 0.866, 1],
-		    [0.0, 0, 1],
-		    [-0.5, -0.866, 1],
-		    [-1.5, -0.866, 1]])
+hex_top = np.array([[cos(pi/3),sin(pi/3),1],
+		    [cos(2*pi/3),sin(2*pi/3), 1],
+		    [cos(pi), sin(pi), 1],
+		    [cos(4*pi/3), sin(4*pi/3), 1],
+		    [cos(5*pi/3), sin(5*pi/3), 1],
+		    [cos(2*pi), sin(2*pi), 1]])
 
-pent_bottom = np.array([[-2,0,0],
-			[-1.5,0.866,0],
-			[-0.5, 0.866,0],
-			[0.0, 0, 0],
-			[-1, -0.866, 0]])
+pent_bottom = np.array([[0,1,0],
+			[-sin(2*pi/5),cos(2*pi/5),0],
+			[-sin(pi/5),-cos(pi/5),0],
+			[sin(pi/5),-cos(pi/5), 0],
+			[sin(2*pi/5),cos(2*pi/5), 0]])
 
-cent = np.array([[-1.5, -0.866, 1],
-		 [-1, -1.266, 0.5],
-		 [-0.5, -0.866, 1]])
+cent = np.array([[0.5, 0.866, 1],
+		 [0, 1, 0.5],
+		 [-0.5, 0.866, 1]])
 
 
 hex_bottom = np.array([[0,0,0],
@@ -83,15 +83,15 @@ for i in range(3):
 	T[i,:] = np.dot(cent_alt[i,:],L)
 	
 # Figure Properties
-fig = plt.figure(figsize=(8,8))
+fig = plt.figure(figsize=(10,10))
 ax = p3.Axes3D(fig)
 ax.set_facecolor('black')
 
 plt.axis('off')
 plt.axis('equal')
  
-ax.set_xlim(-2,2)
-ax.set_ylim(-2,2)
+ax.set_xlim(-1.5,1.5)
+ax.set_ylim(-1.5,1.5)
 ax.set_zlim(0,1)
 
 # Radius
@@ -104,11 +104,11 @@ top_hex = [[M[0], M[1], M[2], M[3], M[4], M[5]]]
 
 bottom_pent = [[P[0], P[1], P[2], P[3], P[4]]]
 
-sides = [#[P[0], M[0], M[1], P[1]],
-#	 [P[1], M[1], M[2], P[2]],
-#	 [P[2], M[2], M[3], P[3]],
-	 [P[3], P[4], Q[1], Q[2], M[4], M[3]],
-	 [P[4], Q[1], Q[0], M[5], M[0], P[0]]
+sides = [[P[1], M[2], M[3], P[2]],
+		 [P[2], M[3], M[4], P[3]],
+		 [P[3], M[4], M[5], P[4]],
+	 	 [P[4], P[0], Q[1], Q[0], M[0], M[5]],
+	 	 [P[0], Q[1], M[1], M[2], P[1]]
 ]
 
 verts_cent = [[Q[0], Q[1], Q[2]]]
@@ -210,12 +210,12 @@ def animate(i):
     # For top view elev = 90
     # For side view elev = 0
 
-    ax.view_init(elev=14, azim=-147)
+    ax.view_init(elev=0, azim=i)
     return sth,
 
 # Animate
 #ani = FuncAnimation(fig, animate, init_func=init,
-#                   frames=88, interval=1, blit=False, repeat=True)
+#                   frames=450, interval=10, blit=False, repeat=True)
 
 #Saving to Scutoid.mp4
 
