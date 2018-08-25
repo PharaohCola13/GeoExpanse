@@ -1,5 +1,6 @@
 # A Scutoid, brought to you by PharaohCola13
 
+import pylab
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
 from matplotlib import cm
@@ -8,6 +9,28 @@ from numpy import pi, linspace, cos, sin
 from mpl_toolkits.mplot3d.art3d import Poly3DCollection
 from matplotlib.animation import FuncAnimation
 from matplotlib.animation import writers
+from matplotlib.text import Annotation
+from mpl_toolkits.mplot3d.proj3d import proj_transform
+
+
+class Annotation3D(Annotation):
+    '''Annotate the point xyz with text s'''
+
+    def __init__(self, s, xyz, *args, **kwargs):
+        Annotation.__init__(self,s, xy=(0,0), *args, **kwargs)
+        self._verts3d = xyz
+
+    def draw(self, renderer):
+        xs3d, ys3d, zs3d = self._verts3d
+        xs, ys, zs = proj_transform(xs3d, ys3d, zs3d, renderer.M)
+        self.xy=(xs,ys)
+        Annotation.draw(self, renderer)
+
+def annotate3D(ax, s, *args, **kwargs):
+    '''add anotation text s to to Axes3d ax'''
+
+    tag = Annotation3D(s, *args, **kwargs)
+    ax.add_artist(tag)
 
 
 hex_top = np.array([[cos(pi/3),sin(pi/3),1],
@@ -85,7 +108,7 @@ for i in range(3):
 # Figure Properties
 fig = plt.figure(figsize=(10,10))
 ax = p3.Axes3D(fig)
-ax.set_facecolor('black')
+ax.set_facecolor('white')
 
 plt.axis('off')
 plt.axis('equal')
@@ -98,6 +121,8 @@ ax.set_zlim(0,1)
 r = [-2, 2]
 
 X,Y = np.meshgrid(r,r)
+Z   = np.meshgrid(-1,1)
+
 
 # Edges for the Scutoid with a Hexagon on top
 top_hex = [[M[0], M[1], M[2], M[3], M[4], M[5]]]
@@ -223,5 +248,12 @@ def animate(i):
 #writer = Writer(fps=15, bitrate=1800)
 
 #ani.save('Scutoid.mp4', writer=writer)
+
+xyzn = zip(X, Y, Z)
+
+# add vertices annotation.
+for j, xyz_ in enumerate(xyzn):
+    annotate3D(ax, s=str(j), xyz=xyz_, fontsize=10, xytext=(-3,3),
+               textcoords='offset points', ha='right',va='bottom')
 
 plt.show()
