@@ -32,16 +32,16 @@ def annotate3D(ax, s, *args, **kwargs):
     ax.add_artist(tag)
 
 
-X_hex = [0.5,   -0.5,  -1.5,     -2.5,     -3.5,     -4.5]
-Y_hex = [0.866, 0.866, 0.866, 0.866, 0.866, 0.866]
+X_hex = [0.5,   -0.5,  -1.5,     -2.5,     ]
+Y_hex = [0.866, 0.866, 0.866, 0.866]
 
 X_pent = [0]
 
 
-Z = [0,     0,     0,      0,     0,    0]
+Z = [0,     0,     0,      0]
 
 
-edges_hex = [(0,1), (1,2), (2,3), (3,4), (4,5), (5,0)]
+edges_hex = [(0,1), (1,2), (2,3)]
 
 xy_hex = list(zip(X_hex, Y_hex, Z))
 segments_hex = [(xy_hex[s], xy_hex[t]) for s, t in edges_hex]
