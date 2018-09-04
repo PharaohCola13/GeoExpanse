@@ -95,5 +95,5 @@ while option == 0:
 
 	#ani.save('Klein-Bottle.mp4', writer=writer)
 
-	plt.show()
+	plt.show() # Shows Figure
 	option = input('Run again? (0) Yes, (1) No\n>> ')
