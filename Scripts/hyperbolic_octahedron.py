@@ -2,80 +2,88 @@
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
-from matplotlib import cm
-import numpy as np
-from numpy import pi, linspace, cos, sin
-from mpl_toolkits.mplot3d.art3d import Poly3DCollection, Line3DCollection
-from matplotlib.animation import FuncAnimation
-from matplotlib.animation import writers
 
+from mpl_toolkits.mplot3d.art3d import *
+from matplotlib.animation import *
+from matplotlib import *
+from numpy import *
 
-def x_(u,v):
-	x = (cos(u) * cos(v)) * (cos(u) * cos(v)) * (cos(u) * cos(v))
-	return x
+option = input('Run? (0) Yes, (1) No\n>> ')
 
-def y_(u,v):
-	y = (sin(u) * cos(v)) * (sin(u) * cos(v)) * (sin(u) * cos(v))
-	return y
+while option == 0:
+# Definition of x
+	def x_(u,v):
+		x = (cos(u) * cos(v))**3
+		return x
 
-def z_(u,v):
-	z = sin(v) * sin(v) * sin(v)
-	return z
+# Definition of y
+	def y_(u,v):
+		y = (sin(u) * cos(v))**3
+		return y
 
-u = linspace(-pi/2, pi/2, 25)
-v = linspace(-pi, pi, 25)
+# Definition of z
+	def z_(u,v):
+		z = sin(v)**3
+		return z
 
-u, v = np.meshgrid(u, v)
+# Value of the angles
+	u = linspace(-pi/2, pi/2, 25)
+	v = linspace(-pi, pi, 25)
 
-x = x_(u,v)
-y = y_(u,v)
-z = z_(u,v)
+	u, v = meshgrid(u, v)
+
+# Symbolic representation
+	x = x_(u,v)
+	y = y_(u,v)
+	z = z_(u,v)
 
 # Figure Properties
-fig = plt.figure(figsize=(8,8))
+	fig = plt.figure(figsize=(8,8))
 
-ax = p3.Axes3D(fig)
-ax.set_facecolor('black')
+	ax = p3.Axes3D(fig)
+	ax.set_facecolor('black') # Figure background turns black
 
-plt.axis('off')
-plt.axis('equal')
+# Axis Properties
+	plt.axis('off') # Turns off the axis grid
+	plt.axis('equal')
 
-ax.set_xlim(-1,1)
-ax.set_ylim(-1,1)
-ax.set_zlim(-1,1)
+# Axis Limits
+	ax.set_xlim(-1,1)
+	ax.set_ylim(-1,1)
+	ax.set_zlim(-1,1)
 
 # Surface Plot
-ho = ax.plot_surface(x, y, z)
+	hyper_octa = ax.plot_surface(x, y, z)
 
-ho.set_alpha(1)
-ho.set_edgecolor('w')
-ho.set_linewidth(1)
-ho.set_facecolor('deepskyblue')
+	hyper_octa.set_alpha(1) # Transparency of figure
+	hyper_octa.set_edgecolor('w') # Edge color of the lines on the figure
+	hyper_octa.set_linewidth(1) # Line width of the edges
+	hyper_octa.set_facecolor('deepskyblue') # General color of the figure
 
 # Definitions for animation
-def init():
-	return ho,
+	def init():
+		return hyper_octa,
 
-def animate(i):
-    # azimuth angle : 0 deg to 360 deg
-    # elev = i * n --> rotates object about the xy-plane with a magnitude of n
-    # azim = i * n --> rotates object around the z axis with a magnitude of n
-    # For top view elev = 90
-    # For side view elev = 0
-    # Optimal Viewing angle: elev = 29
+	def animate(i):
+# azimuth angle : 0 deg to 360 deg
+# elev = i * n --> rotates object about the xy-plane with a magnitude of n
+# azim = i * n --> rotates object around the z axis with a magnitude of n
+# For top view elev = 90
+# For side view elev = 0
 
-   		ax.view_init(elev=i, azim=i*4)
-		return ho,
-	
+   		ax.view_init(elev=29, azim=i*4)
+		return hyper_octa,
+
 # Animate
-ani = FuncAnimation(fig, animate, init_func=init,
+	ani = FuncAnimation(fig, animate, init_func=init,
                    frames=100, interval=20, blit=False, repeat=True)
 
-# Saving to Hyperbolic-Octahedron.mp4
+# Saving to Hyperbolic_Octahedron.mp4
 
-#Writer = writers['ffmpeg']
-#writer = Writer(fps=15, bitrate=1800)
+	# Writer = writers['ffmpeg']
+	# writer = Writer(fps=15, bitrate=1800)
 
-#ani.save('Hyperbolic-Octohedron.mp4', writer=writer)
-
-plt.show()
+	# ani.save('Hyperbolic_Octahedron.mp4', writer=writer)
+	
+	plt.show()
+	option = input('Run again? (0) Yes, (1) No\n>> ')
