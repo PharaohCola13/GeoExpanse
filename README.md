@@ -5,7 +5,7 @@ Models of Geometric Figures
 Relies heavily on matplotlib modules and mpl_toolkits modules.
 
 I am still working on documentation for the models. 
-<div class="current-begin"> </div>
+<div class="current-begin"> 
 ## Current Models
 - [Cressant](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/cressant.py)
 - [Cross Cap](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/cross-cap.py)
@@ -31,15 +31,18 @@ I am still working on documentation for the models.
   - [Wolfram](http://mathworld.wolfram.com/Tesseract.html)
 - [Torus Family](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/torus.py)
   - [Wolfram](http://mathworld.wolfram.com/Torus.html)
-<div class="current-end"></div>
+</div>
 
-article .current-begin ~ {
-	width: 50%;
-	clear: both;
-	}
+<div class="current-end">
 ## Models in Development
 - [Trefoil Knot](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/knot.py)
 - [A curve](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/curve.py)
 - [Pseudosphere](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/pseudosphere.py)
 - [Scutoid](https://github.com/PharaohCola13/geometric-models/tree/master/Scutoid%20Research)
 - [A currently unnamed shape](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/interesting.py)
+</div>
+
+article .current-begin ~ {
+	width: 50%;
+	clear: both;
+	}
