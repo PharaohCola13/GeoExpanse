@@ -23,7 +23,7 @@ while option == 0:
     	              [ 1, 	 1,  1],
     	              [-1, 	 1,	 1]
 					  ])
-
+ 
 # Scaling Matricies
 # 200%
 	P = [
