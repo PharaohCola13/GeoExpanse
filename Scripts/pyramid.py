@@ -1,82 +1,101 @@
-# A Pyramid, brought to you by PharaohCola13
+# A Family of Pyramids, brought to you by PharaohCola13
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
-from matplotlib import cm
-import numpy as np
-from numpy import pi, linspace, cos, sin, inf, log10
-from mpl_toolkits.mplot3d.art3d import Poly3DCollection, Line3DCollection
-from matplotlib.animation import FuncAnimation
-from matplotlib.animation import writers
 
-def x_(u,v):
-    x = ((h - u) / h) * r * cos(v)
-    return x
+from mpl_toolkits.mplot3d.art3d import *
+from matplotlib.animation import *
+from matplotlib import *
+from numpy import *
 
-def y_(u,v):
-    y = ((h - u)/h) * r * sin(v)
-    return y
+option = input('Run? (0) Yes, (1) No\n>> ')
 
-def z_(u,v):
-    z = u
-    return z
-# Number of sides on the base
-s = 3
+while option == 0:
+# Definition of x
+	def x_(u,v):
+	    x = ((h - u) / h) * r * cos(v)
+	    return x
+
+# Definition of y
+	def y_(u,v):
+	    y = ((h - u)/h) * r * sin(v)
+	    return y
+
+# Definition of z
+	def z_(u,v):
+	    z = u
+	    return z
 
 # Height
-h = 1
+	height = input('What will the height be?\n>> ')
+	h = height
 
 # Radius
-r = 1
+	radius = input('What will the radius be?\n>> ')
+	r = radius
 
-u = linspace(0, h, 10)
-v = linspace(0, 2 * pi, s+1)
+# Number of edges on the base
+	sides = input('How many sides on the base of the prims?\n>> ')
+	s = sides
 
-u, v = np.meshgrid(u, v)
+# Value of the angles
+	u = linspace(0, h, 100)
+	v = linspace(0, 2 * pi, s + 1)
 
-x = x_(u,v)
-y = y_(u,v)
-z = z_(u,v)
+	u, v = meshgrid(u, v)
+
+# Symbolic representation
+	x = x_(u,v)
+	y = y_(u,v)
+	z = z_(u,v)
 
 # Figure Properties
-fig = plt.figure(figsize=(8,8))
+	fig = plt.figure(figsize=(8,8))
 
-ax = p3.Axes3D(fig)
-ax.set_facecolor('black')
+	ax = p3.Axes3D(fig)
+	ax.set_facecolor('black') # Figure background turns black
 
-plt.axis('off')
-plt.axis('equal')
+# Axis Properties
+	plt.axis('off') # Turns off the axis grid
+	plt.axis('equal')
+
+# Axis Limits
+	ax.set_xlim(-1 * r,r)
+	ax.set_ylim(-1 * r,r)
+	ax.set_zlim(0,h)
 
 # Surface Plot
-pyramid = ax.plot_surface(x,y,z, cmap='rainbow')
+	pyramid = ax.plot_surface(x,y,z)
 
-pyramid.set_alpha(0.5)
-pyramid.set_edgecolor('w')
-pyramid.set_linewidth(0)
+	pyramid.set_alpha(1) # Transparency of figure
+	pyramid.set_edgecolor('w') # Edge color of the lines on the figure
+	pyramid.set_linewidth(1) # Line width of the edges
+	pyramid.set_facecolor('deepskyblue') # General color of the figure
 
 # Definitions for animation
-def init():
-    return pyramid,
+	def init():
+	    return pyramid,
 
-def animate(i):
-    # azimuth angle : 0 deg to 360 deg
-    # elev = i * n --> rotates object about the xy-plane with a magnitude of n
-    # azim = i * n --> rotates object around the z axis with a magnitude of n
-    # For top view elev = 90
-    # For side view elev = 0
+	def animate(i):
+# azimuth angle : 0 deg to 360 deg
+# elev = i * n --> rotates object about the xy-plane with a magnitude of n
+# azim = i * n --> rotates object around the z axis with a magnitude of n
+# For top view elev = 90
+# For side view elev = 0
 
-    ax.view_init(elev=i, azim=i*4)
-    return pyramid,
+	    ax.view_init(elev=i, azim=i*4)
+	    return pyramid,
 
 # Animate
-ani = FuncAnimation(fig, animate, init_func=init,
-                    frames=100, interval=20, blit=False, repeat=True)
-# Saving to Pyramid.mp4
+	ani = FuncAnimation(fig, animate, init_func=init,
+	                    frames=100, interval=20, blit=False, repeat=True)
+# Saving to s-Pyramid.mp4
 
-#Writer = writers['ffmpeg']
-#writer = Writer(fps=15, bitrate=1800)
+	# Writer = writers['ffmpeg']
+	# writer = Writer(fps=15, bitrate=1800)
 
-#ani.save('Pyramid.mp4', writer=writer)
+	# name = '%s-Pyramid' % s
+	# ani.save('%s.mp4' % name, writer=writer)
 
-
-plt.show()
+	plt.show()
+	option = input('Run again? (0) Yes, (1) No\n>> ')
