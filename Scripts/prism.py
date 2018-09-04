@@ -91,11 +91,11 @@ while option == 0:
                     frames=100, interval=20, blit=False, repeat=True)
 # Saving to Prism.mp4
 
-	Writer = writers['ffmpeg']
-	writer = Writer(fps=15, bitrate=1800)
+	# Writer = writers['ffmpeg']
+	# writer = Writer(fps=15, bitrate=1800)
 
-	name = '%s-Prism' % s
-	ani.save('%s.mp4' % name, writer=writer)
+	# name = '%s-Prism' % s
+	# ani.save('%s.mp4' % name, writer=writer)
 
 	plt.show()
 	option = input('Run again? (0) Yes, (1) No\n>> ')
