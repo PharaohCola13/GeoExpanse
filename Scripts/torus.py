@@ -102,5 +102,5 @@ while option == 0:
 	
 	# ani.save('%s.mp4' % name, writer=writer)
 	
-	plt.show()
+	plt.show() # Shows Figure
 	option = input('Run again? (0) Yes, (1) No\n>> ')
