@@ -1,11 +1,12 @@
 # Geometric Models
 Models of Geometric Figures
- (Work in Progress)
+(Work in Progress)
  
 Relies heavily on matplotlib modules and mpl_toolkits modules.
+
 I am still working on documentation for the models. 
 
-Current Models
+## Current Models
 - [Cressant](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/cressant.py)
 - [Cross Cap](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/cross-cap.py)
   - [Wolfram](http://mathworld.wolfram.com/Cross-Cap.html)
@@ -31,9 +32,9 @@ Current Models
 - [Torus Family](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/torus.py)
   - [Wolfram](http://mathworld.wolfram.com/Torus.html)
 
-Models in Development
-- Trefoil Knot
-- A curve
-- Pseudosphere
-- Scutoid
-
+## Models in Development
+- [Trefoil Knot](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/knot.py)
+- [A curve](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/curve.py)
+- [Pseudosphere](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/pseudosphere.py)
+- [Scutoid](https://github.com/PharaohCola13/geometric-models/tree/master/Scutoid%20Research)
+- [A currently unnamed shape](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/interesting.py)
