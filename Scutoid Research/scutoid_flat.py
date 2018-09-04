@@ -32,19 +32,29 @@ def annotate3D(ax, s, *args, **kwargs):
     ax.add_artist(tag)
 
 
-X_hex = [0.5,   -0.5,  -1.5,     -2.5,     ]
-Y_hex = [0.866, 0.866, 0.866, 0.866]
+X_hex = [0.0, 1.0, 2.0, 3.0, 4.0, 4.9935]
+Y_hex = [2.5, 2.5, 2.5, 2.5, 2.5, 2.3781]
 
-X_pent = [0]
+X_pent = [0, 1, 2, 3, 3.9925, 4.9855]
+Y_pent = [0, 0, 0, 0, -0.121, -0.24]
 
+X_edge = [0.0, 0.0, 1.0, 1.0, 2.0, 2.0, 3.0, 3.0, 4.0, 4.43137, 3.99245, 4.9935]
+Y_edge = [0.0, 2.5, 0.0, 2.5, 0.0, 2.5, 0.0, 2.5, 0.0, 0.47921, 2.37813, -0.24]
 
-Z = [0,     0,     0,      0]
+Z = [0,0,0,0,0,0,0,0,0,0,0,0,0]
 
-
-edges_hex = [(0,1), (1,2), (2,3)]
+edges_hex  = [(0,1), (1,2), (2,3), (3,4), (4,5)]
+edges_pent = [(0,1), (1,2), (2,3), (3,4), (4,5)]
+edges_edge = [(0,1), (2,3), (4,5), (6,7),(8,9),(9,10), (9,11)]
 
 xy_hex = list(zip(X_hex, Y_hex, Z))
 segments_hex = [(xy_hex[s], xy_hex[t]) for s, t in edges_hex]
+
+xy_pent = list(zip(X_pent, Y_pent, Z))
+segments_pent = [(xy_pent[s], xy_pent[t]) for s, t in edges_pent]
+
+xy_edge = list(zip(X_edge, Y_edge, Z))
+segments_edge = [(xy_edge[s], xy_edge[t]) for s, t in edges_edge]
 
 
 # Produces the Figure space
@@ -58,8 +68,8 @@ plt.axis('off')
 plt.axis('equal')
 
 # Axis Limits
-ax.set_xlim(-4,4)
-ax.set_ylim(-4,4)
+ax.set_xlim(0,5)
+ax.set_ylim(0,5)
 #ax.set_zlim(0,1)
 
 ax.scatter(X_hex, Y_hex,
@@ -71,8 +81,23 @@ edge_hex = Line3DCollection(segments_hex)
 edge_hex.set_linewidth(1.0)
 edge_hex.set_color('black')
 
-ax.add_collection3d((edge_hex))
+ax.scatter(X_pent, Y_pent,
+           marker   =   'o',
+           s        =   64,
+           c        =   'red'
+           )
+edge_pent = Line3DCollection(segments_pent)
+edge_pent.set_linewidth(1.0)
+edge_pent.set_color('black')
 
+edge_edge = Line3DCollection(segments_edge)
+edge_edge.set_linewidth(1.0)
+edge_edge.set_color('black')
+
+
+ax.add_collection3d((edge_hex))
+ax.add_collection3d((edge_pent))
+ax.add_collection3d((edge_edge))
 
 # Turns off plt.show()'s GUI coordinate display
 ax.format_coord = lambda x, y: ""
