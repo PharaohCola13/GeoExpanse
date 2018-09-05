@@ -6,15 +6,17 @@ I am still working on documentation for the models.
 ## Table of Contents
 - [Setup](#setup)
 - [Executing the scripts](#executing-the-scripts)
-- [Current Models](#curent-models)
-- [In Development](#in-development)
+- [Current Models](#current-models)
+- [Models in Development](#models in-development)
 - [Future Works](#future-works)
 - [Contact](#contact)
 
 ## Setup
-To begin, there are some packages that are required for all of the models:
+To begin, these scripts should run on both Python 2 and 
+Python 3 versions. There are some packages that are required for all of the models:
 
-matplotlib,numpy
+- matplotlib
+- numpy
 
 The latest version of these packages can be installed by
 ```
