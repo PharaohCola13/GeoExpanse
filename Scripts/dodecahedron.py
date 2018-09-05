@@ -9,7 +9,7 @@ from matplotlib import *
 from numpy import *
 
 
-option = input('Run? (0) Yes, (1) No\n>> ')
+option = int(input('Run? (0) Yes, (1) No\n>> '))
 
 while option == 0:
 
@@ -67,7 +67,7 @@ while option == 0:
 	ax.set_zlim(-4, 4)
 
 # Radius
-	radius = input('What is the radius?\n>> ')
+	radius = float(input('What is the radius?\n>> '))
 	r = radius
 	r = [-1 * r,r]
 
@@ -129,4 +129,4 @@ while option == 0:
 	# ani.save('Dodecahedron.mp4', writer=writer)
 
 	plt.show() # Shows Figure
-	option = input('Run again? (0) Yes, (1) No\n>> ')
+	option = int(input('Run again? (0) Yes, (1) No\n>> '))

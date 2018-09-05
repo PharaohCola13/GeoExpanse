@@ -8,13 +8,13 @@ from matplotlib.animation import *
 from matplotlib import *
 from numpy import *
 
-option = input('Run? (0) Yes, (1) No\n>> ')
+option = int(input('Run? (0) Yes, (1) No\n>> '))
 
 while option == 0:
 # Definition of x
 	def x_(u,v):
-    		x = cos(u) * sin(2 * v)
-		return x
+			x = cos(u) * sin(2 * v)
+			return x
 
 # Definition of y
 	def y_(u,v):
@@ -31,7 +31,7 @@ while option == 0:
 	u = linspace(0, 2 * pi, 28)
 	v = linspace(0, pi/2, 28)
 
-	u, v = np.meshgrid(u, v)
+	u, v = meshgrid(u, v)
 
 # Symbolic Representation
 	x = x_(u, v)
@@ -86,4 +86,4 @@ while option == 0:
 	# ani.save('Cross-Cap.mp4', writer=writer)
 
 	plt.show() # Shows Figure
-	option = input('Run again? (0) Yes, (1) No\n>> ')
+	option = int(input('Run again? (0) Yes, (1) No\n>> '))

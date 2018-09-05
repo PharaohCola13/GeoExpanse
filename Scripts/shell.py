@@ -8,7 +8,7 @@ from matplotlib.animation import *
 from matplotlib import *
 from numpy import *
 
-option = input('Run? (0) Yes, (1) No\n>> ')
+option = int(input('Run? (0) Yes, (1) No\n>> '))
 
 while option == 0:
 # Definition of x
@@ -30,7 +30,7 @@ while option == 0:
 	u = linspace(0, pi, 25)
 	v = linspace(-pi/4, 5 * pi/2, 25)
 
-	u, v = np.meshgrid(u, v)
+	u, v = meshgrid(u, v)
 
 # Symbolic representation
 	x = x_(u,v)
@@ -71,7 +71,7 @@ while option == 0:
 # For top view elev = 90
 # For side view elev = 0
 
-	   		ax.view_init(elev=i, azim=i*4)
+			ax.view_init(elev=i, azim=i*4)
 			return shell,
 	
 # Animate
@@ -86,4 +86,4 @@ while option == 0:
 	# ani.save('Shell.mp4', writer=writer)
 
 	plt.show()
-	option = input('Run again? (0) Yes, (1) No\n>> ')
+	option = int(input('Run again? (0) Yes, (1) No\n>> '))

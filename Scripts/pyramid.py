@@ -8,7 +8,7 @@ from matplotlib.animation import *
 from matplotlib import *
 from numpy import *
 
-option = input('Run? (0) Yes, (1) No\n>> ')
+option = int(input('Run? (0) Yes, (1) No\n>> '))
 
 while option == 0:
 # Definition of x
@@ -27,15 +27,15 @@ while option == 0:
 	    return z
 
 # Height
-	height = input('What will the height be?\n>> ')
+	height = float(input('What will the height be?\n>> '))
 	h = height
 
 # Radius
-	radius = input('What will the radius be?\n>> ')
+	radius = float(input('What will the radius be?\n>> '))
 	r = radius
 
 # Number of edges on the base
-	sides = input('How many sides on the base of the prims?\n>> ')
+	sides = int(input('How many sides on the base of the prims?\n>> '))
 	s = sides
 
 # Value of the angles
@@ -94,8 +94,8 @@ while option == 0:
 	# Writer = writers['ffmpeg']
 	# writer = Writer(fps=15, bitrate=1800)
 
-	# name = '%s-Pyramid' % s
+	# name = '%s-Pyramid' % int(s)
 	# ani.save('%s.mp4' % name, writer=writer)
 
 	plt.show() # Shows Figure
-	option = input('Run again? (0) Yes, (1) No\n>> ')
+	option = int(input('Run again? (0) Yes, (1) No\n>> '))

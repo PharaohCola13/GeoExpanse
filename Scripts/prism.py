@@ -1,4 +1,4 @@
-# A Family of Prims, brought to you by PharaohCola13
+# A Family of Prisms, brought to you by PharaohCola13
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
@@ -8,7 +8,7 @@ from matplotlib.animation import *
 from matplotlib import *
 from numpy import *
 
-option = input('Run? (0) Yes, (1) No\n>> ')
+option = int(input('Run? (0) Yes, (1) No\n>> '))
 
 while option == 0:
 # Definition of x
@@ -27,15 +27,15 @@ while option == 0:
 		return z
 
 # Height
-	height = input('What will the height be?\n>> ')
+	height = float(input('What will the height be?\n>> '))
 	h = height
 
 # Radius
-	radius = input('What will the radius be?\n>> ')
+	radius = float(input('What will the radius be?\n>> '))
 	r = radius
 
 # Number of edges on the base
-	sides = input('How many sides on the base of the prims?\n>> ')
+	sides = float(input('How many sides on the base of the prims?\n>> '))
 	s = sides
 
 # Value of the angles
@@ -91,11 +91,11 @@ while option == 0:
                     frames=100, interval=20, blit=False, repeat=True)
 # Saving to Prism.mp4
 
-	# Writer = writers['ffmpeg']
-	# writer = Writer(fps=15, bitrate=1800)
+	#Writer = writers['ffmpeg']
+	#writer = Writer(fps=15, bitrate=1800)
 
-	# name = '%s-Prism' % s
-	# ani.save('%s.mp4' % name, writer=writer)
+	#name = '%s-Prism' % int(s)
+	#ani.save('%s.mp4' % name, writer=writer)
 
 	plt.show() # Shows Figure
-	option = input('Run again? (0) Yes, (1) No\n>> ')
+	option = int(input('Run again? (0) Yes, (1) No\n>> '))

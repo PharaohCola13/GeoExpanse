@@ -8,21 +8,21 @@ from matplotlib.animation import *
 from matplotlib import *
 from numpy import *
 
-option = input('Run? (0) Yes, (1) No\n>> ')
+option = int(input('Run? (0) Yes, (1) No\n>> '))
 
 while option == 0:
 
 # Points on the object
-	points = np.array([
-					  [-1,	-1,	-1],
-    	              [ 1, 	-1, -1],
-    	              [ 1, 	 1, -1],
-    	              [-1,	 1, -1],
-    	              [-1, 	-1,  1],
-    	              [ 1, 	-1,  1],
-    	              [ 1, 	 1,  1],
-    	              [-1, 	 1,	 1]
-					  ])
+	points = array([
+				   [-1,	-1,	-1],
+    	           [ 1,	-1, -1],
+    	           [ 1,	 1, -1],
+    	           [-1,	 1, -1],
+    	           [-1 	-1,  1],
+    	           [ 1,	-1,  1],
+    	           [ 1,  1,  1],
+    	           [-1,	 1,	 1]
+				   ])
  
 # Scaling Matricies
 # 200%
@@ -39,15 +39,15 @@ while option == 0:
 		[0, 0, 1]
 		]
 
-	Z = np.zeros((8,3))
+	Z = zeros((8,3))
 	
-	V = np.zeros((8,3))
-
-	for i in range(8): 
-		Z[i,:] = np.dot(points[i,:],P)
+	V = zeros((8,3))
 
 	for i in range(8):
-		V[i,:] = np.dot(points[i,:],Q)
+		Z[i,:] = dot(points[i,:],P)
+
+	for i in range(8):
+		V[i,:] = dot(points[i,:],Q)
 
 # Figure Properties
 	fig = plt.figure(figsize=(8,8))
@@ -63,7 +63,7 @@ while option == 0:
 	ax.set_zlim(-4,4)
 
 # Radius
-	radius = input('What is the radius?\n>> ')
+	radius = float(input('What is the radius?\n>> '))
 	r = radius
 	r = [-1 * r,r]
 
@@ -144,4 +144,4 @@ while option == 0:
 
 	
 	plt.show() # Shows Figure
-	option = input('Run again? (0) Yes, (1) No\n>> ')
+	option = int(input('Run again? (0) Yes, (1) No\n>> '))

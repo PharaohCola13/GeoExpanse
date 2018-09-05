@@ -8,7 +8,7 @@ from matplotlib.animation import *
 from matplotlib import *
 from numpy import *
 
-option = input('Run? (0) Yes, (1) No\n>> ')
+option = int(input('Run? (0) Yes, (1) No\n>> '))
 
 while option == 0:
 # Definition of x
@@ -27,7 +27,7 @@ while option == 0:
     		return z
 
 # Number of edges on the base
-	sides = input('How many sides?\n>> ')
+	sides = int(input('How many sides?\n>> '))
 	s = sides
 
 # Values of the angles
@@ -75,7 +75,7 @@ while option == 0:
 # For top view elev = 90
 # For side view elev = 0
 
-	   		ax.view_init(elev=i, azim=i*4)
+			ax.view_init(elev=i, azim=i*4)
 			return sphere,
 
 # Animate
@@ -87,8 +87,8 @@ while option == 0:
 	#Writer = writers['ffmpeg']
 	#writer = Writer(fps=15, bitrate=1800)
 	
-	#name = '%s-Sphere' % s
+	#name = '%s-Sphere' % int(s)
 	#ani.save('%s.mp4' % name, writer=writer)
 
 	plt.show()
-	option = input('Run again? (0) Yes, (1) No\n>> ')
+	option = int(input('Run again? (0) Yes, (1) No\n>> '))

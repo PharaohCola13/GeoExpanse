@@ -8,7 +8,7 @@ from matplotlib.animation import *
 from matplotlib import *
 from numpy import *
 
-option = input('Run? (0) Yes, (1) No\n>> ')
+option = int(input('Run? (0) Yes, (1) No\n>> '))
 
 while option == 0:
 # Definition of x
@@ -71,7 +71,7 @@ while option == 0:
 # For top view elev = 90
 # For side view elev = 0
 
-   		ax.view_init(elev=29, azim=90)
+		ax.view_init(elev=29, azim=90)
 		return cressant,
 
 # Animate
@@ -86,4 +86,4 @@ while option == 0:
 	#ani.save('Cressant.mp4', writer=writer)
 
 	plt.show() # Shows Figure
-	option = input('Run again? (0) Yes, (1) No\n>> ')
+	option = int(input('Run again? (0) Yes, (1) No\n>> '))

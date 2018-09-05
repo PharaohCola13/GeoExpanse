@@ -8,7 +8,7 @@ from matplotlib.animation import *
 from matplotlib import *
 from numpy import *
 
-option = input('Run? (0) Yes, (1) No\n>> ')
+option = int(input('Run? (0) Yes, (1) No\n>> '))
 
 while option == 0:
 # Definition of x
@@ -27,11 +27,11 @@ while option == 0:
     		return z
 
 # Radius 
-	radius = input('What is the radius?\n>> ')
+	radius = float(input('What is the radius?\n>> '))
 	c = radius
 	
 # Radius of the tube
-	radius_tube = input('What is the radius of the tube?\n>> ')
+	radius_tube = float(input('What is the radius of the tube?\n>> '))
 	a = radius_tube
 
 # Values of the angles
