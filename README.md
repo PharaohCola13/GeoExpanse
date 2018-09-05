@@ -7,7 +7,7 @@ I am still working on documentation for the models.
 - [Setup](#setup)
 - [Executing the scripts](#executing-the-scripts)
 - [Current Models](#current-models)
-- [Models in Development](#models in-development)
+- [Models in Development](#models-in-development)
 - [Future Works](#future-works)
 - [Contact](#contact)
 
