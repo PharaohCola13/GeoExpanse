@@ -6,15 +6,12 @@ I am still working on documentation for the models.
 ## Table of Contents
 - [Setup](#setup)
 - [Executing the scripts](#executing-the-scripts)
-<<<<<<< HEAD
 - [Current models](#current-models)
 - [Models in development](#models-in-development)
 - [Future works](#future-works)
-=======
 - [Current Models](#current-models)
 - [Models in Development](#models-in-development)
 - [Future Works](#future-works)
->>>>>>> e367188eb060f3270e49eb10ab888f29016da7ef
 - [Contact](#contact)
 
 ## Setup
