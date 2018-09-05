@@ -2,12 +2,11 @@
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
-from matplotlib import cm
-import numpy as np
-from numpy import pi, linspace, cos, sin, tan, log1p
-from mpl_toolkits.mplot3d.art3d import Poly3DCollection, Line3DCollection
-from matplotlib.animation import FuncAnimation
-from matplotlib.animation import writers
+from matplotlib import *
+from numpy import *
+from mpl_toolkits.mplot3d.art3d import *
+from matplotlib.animation import *
+
 
 def x_(u,v):
 	x = cos(u) * sin(v)
@@ -24,7 +23,7 @@ def z_(u,v):
 u = linspace(0.001, 2 * pi, 25)
 v = linspace(0, 2 * pi, 25)
 
-u, v = np.meshgrid(u, v)
+u, v = meshgrid(u, v)
 
 x = x_(u,v)
 y = y_(u,v)
@@ -39,17 +38,13 @@ ax.set_facecolor('black')
 plt.axis('off')
 plt.axis('equal')
 
-#ax.set_xlim(-1,1)
-#ax.set_ylim(-1,1)
-#ax.set_zlim(-1,1)
-
 # Surface Plot
 interest = ax.plot_surface(x, y, z)
 
-interest.set_alpha(0.25)
+interest.set_alpha(0.5)
 interest.set_edgecolor('w')
 interest.set_linewidth(0.5)
-interest.set_facecolor('fuchsia')
+interest.set_facecolor('deepskyblue')
 
 # Definitions for animation
 def init():
@@ -62,18 +57,18 @@ def animate(i):
 #     # For top view elev = 90
 #     # For side view elev = 0
 #
-    ax.view_init(elev=10, azim=i*4)
-    return interest
+    ax.view_init(elev=i*10, azim=i*10)
+    return interest,
 
 # Animate
-#ani = FuncAnimation(fig, animate, init_func=init,
-#                  frames=200, interval=50, blit=False, repeat=True)
+ani = FuncAnimation(fig, animate, init_func=init,
+                  frames=100, interval=1, repeat=True)
 
 # Saving to Interesting.mp4
-
-#Writer = writers['ffmpeg']
-#writer = Writer(fps=25, bitrate=1800)
-
-#ani.save('Interesting.mp4', writer=writer)
+#
+# Writer = writers['ffmpeg']
+# writer = Writer(fps=25, bitrate=1800)
+#
+# ani.save('Interesting.mp4', writer=writer)
 
 plt.show()

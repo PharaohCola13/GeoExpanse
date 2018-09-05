@@ -1,6 +1,4 @@
-#{u, Sin[v]*(u^3+2u^2-2u+2)/5, Cos[v]*(u^3+2u^2-2u+2)/5}
-
-# A Gaberial's Horn, brought to you by PharaohCola13
+# A Gabriel's Horn, brought to you by PharaohCola13
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
@@ -86,12 +84,12 @@ while option == 0:
     #ani = FuncAnimation(fig, animate, init_func=init,
      #                   frames=100, interval=20, blit=False, repeat=True)
 
-    # Saving to Gaberial's-Horn.mp4
+    # Saving to Gabriel's-Horn.mp4
 
     # Writer = writers['ffmpeg']
     # writer = Writer(fps=15, bitrate=1800)
 
-    # ani.save('Gaberial's-Horn.mp4', writer=writer)
+    # ani.save('Gabriel's-Horn.mp4', writer=writer)
 
     plt.show()  # Shows Figure
     option = int(input('Run again? (0) Yes, (1) No\n>> '))

@@ -6,9 +6,9 @@ I am still working on documentation for the models.
 ## Table of Contents
 - [Setup](#setup)
 - [Executing the scripts](#executing-the-scripts)
-- [Current Models](#current-models)
-- [Models in Development](#models in-development)
-- [Future Works](#future-works)
+- [Current models](#current-models)
+- [Models in development](#models-in-development)
+- [Future works](#future-works)
 - [Contact](#contact)
 
 ## Setup
@@ -46,6 +46,7 @@ integer.*
 A )
 
 B )
+[Boy's Surface](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/boys_surface.py)
 
 C )
 [Cressant](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/cressant.py) | 
@@ -57,12 +58,12 @@ D )
 
 E )
 
-F )
+F ) 
+[Funnel](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/funnel.py)
 
 G )
 
 H )
-[Hyperbolic Octahedron](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/hyperbolic_octahedron.py)
 
 I )
 
@@ -79,18 +80,22 @@ M )
 N )
 
 O )
+[Octahedron (Hyperbolic)](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/hyperbolic_octahedron.py)
 
 P )
 [Prism Family](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/prism.py) |
-[Pyramid Family](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/pyramid.py)
+[Pyramid Family](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/pyramid.py) |
+[Paraboloid (Hyperbolic)](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/hyperbolic_paraboloid.py)
 
 Q )
 
 R )
+[Rose Spiral](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/rose_spiral.py)
 
 S )
 [Shell](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/shell.py) |
-[Sphere Family](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/sphere.py)
+[Sphere Family](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/sphere.py) |
+[Steiner's Surface](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/steiner_surface.py)
 
 T )
 [Tesseract](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/tesseract.py) |
@@ -115,7 +120,11 @@ Z )
 [Pseudosphere](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/pseudosphere.py) |
 [Scutoid](https://github.com/PharaohCola13/geometric-models/tree/master/Scutoid%20Research) |
 [A currently unnamed shape](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/interesting.py) |
-
+[Vase](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/vase.py) |
+[Cylinder (Hyperbolic)](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/hyperbolic_cylinder.py) |
+[Dini's Surface](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/dini_surface.py) |
+[Gabriel's Horn](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/gabriel_horn.py) |
+[Breather's Surface](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/breather_surface.py)
 
 ## Future Works
 I intend to have models of a great variety of geometric and topological objects.

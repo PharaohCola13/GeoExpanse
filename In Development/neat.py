@@ -63,7 +63,7 @@ def animate(i):
     # For top view elev = 90
     # For side view elev = 0
 
-    ax.view_init(elev=0, azim= 4 * i)
+    ax.view_init(elev=0, azim= 40 * i)
     return N,
 
 # Animate
