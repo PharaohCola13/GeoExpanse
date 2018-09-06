@@ -74,6 +74,7 @@ G )
 H )
 
 I )
+[Icosahedron](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Platonic%20Solids/icosahedron.py)
 
 J )
 
@@ -89,6 +90,7 @@ M )
 N )
 
 O )
+[Octahedron](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Platonic%20Solids/octahedron.py) |
 [Octahedron (Hyperbolic)](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Hyperbolic/hyperbolic_octahedron.py) |
 [One Sheet Hyperboloid / Wormhole](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Hyperbolic/one_sheet_hyperboloid.py)
 
