@@ -62,12 +62,12 @@ def animate(i):
     # For top view elev = 90
     # For side view elev = 0
 
-   		ax.view_init(elev=90, azim=i*10)
+		ax.view_init(elev=90, azim=i*10)
 		return curve,
 
 # Animate
-ani = FuncAnimation(fig, animate, init_func=init,
-                   frames=100, interval=1, blit=False, repeat=True)
+#ani = FuncAnimation(fig, animate, init_func=init,
+#                   frames=100, interval=1, blit=False, repeat=True)
 # Saving to Curve.mp4
 
 #Writer = writers['ffmpeg']

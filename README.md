@@ -6,15 +6,12 @@ I am still working on documentation for the models.
 ## Table of Contents
 - [Setup](#setup)
 - [Executing the scripts](#executing-the-scripts)
-<<<<<<< HEAD
 - [Current models](#current-models)
 - [Models in development](#models-in-development)
 - [Future works](#future-works)
-=======
 - [Current Models](#current-models)
 - [Models in Development](#models-in-development)
 - [Future Works](#future-works)
->>>>>>> e367188eb060f3270e49eb10ab888f29016da7ef
 - [Contact](#contact)
 
 ## Setup
@@ -48,11 +45,15 @@ value is desired, use decimal notation.
 *Note: If prompted for the number of sides for an object, a decimal value will be converted into an
 integer.*
 
+Some of the scripts will prompt you for a color, the acceptable colors 
+are available [here](https://matplotlib.org/examples/color/named_colors.html).
+
 ## Current Models
 A )
 
 B )
-[Boy's Surface](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/boys_surface.py)
+[Boy's Surface](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/boys_surface.py) |
+[Breather Surface](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/breather_surface.py)
 
 C )
 [Cressant](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/cressant.py) | 
@@ -76,7 +77,8 @@ I )
 J )
 
 K )
-[Klein Bottle](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/klein.py)
+[Klein Bottle](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/klein.py) | 
+[Kuen Surface](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/kuen_surface.py)
 
 L )
 

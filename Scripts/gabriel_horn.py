@@ -1,6 +1,4 @@
-#{u, Sin[v]*(u^3+2u^2-2u+2)/5, Cos[v]*(u^3+2u^2-2u+2)/5}
-
-# A Vase, brought to you by PharaohCola13
+# A Gabriel's Horn, brought to you by PharaohCola13
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
@@ -20,17 +18,21 @@ while option == 0:
 
     # Definition of y
     def y_(u, v):
-        y = sin(v) * (u**3 + 2* u**2 - (2 * u + 2))/5
+        y = (a * cos(v)) / u
         return y
 
 
     # Definition of z
     def z_(u, v):
-        z = cos(v) * (u**3 + 2 * u**2 - (2 * u +2))/5
+        z = (a * sin(v)) /u
         return z
 
+    a = float(input('What is the radius of the object?\n>> ')) # changes radius of the entire thing
+
+    h = float(input('What is the magnitude of the height of the object?\n>> '))
+
     # Value of the angles
-    u = linspace(0, 1, 25)
+    u = linspace(1, h, 25)
     v = linspace(0, 2 * pi, 25)
 
     u, v = meshgrid(u, v)
@@ -51,22 +53,22 @@ while option == 0:
     plt.axis('equal')
 
     # Axis Limits
-    ax.set_xlim(-5, 5)
-    ax.set_ylim(-5, 5)
-    ax.set_zlim(-5, 5)
+    ax.set_xlim(-4, 4)
+    ax.set_ylim(-4, 4)
+    ax.set_zlim(-4, 4)
 
     # Surface Plot
-    vase = ax.plot_surface(x, y, z)
+    horn = ax.plot_surface(x, y, z)
 
-    vase.set_alpha(1)  # Transparency of figure
-    vase.set_edgecolor('w')  # Edge color of the lines on the figure
-    vase.set_linewidth(1)  # Line width of the edges
-    vase.set_facecolor('deepskyblue')  # General color of the figure
+    horn.set_alpha(1)  # Transparency of figure
+    horn.set_edgecolor('w')  # Edge color of the lines on the figure
+    horn.set_linewidth(1)  # Line width of the edges
+    horn.set_facecolor('deepskyblue')  # General color of the figure
 
 
     # Definitions for animation
     def init():
-        return vase,
+        return horn,
 
 
     def animate(i):
@@ -77,19 +79,19 @@ while option == 0:
         # For side view elev = 0
 
         ax.view_init(elev=29, azim=i * 4)
-        return vase,
+        return horn,
 
 
     # Animate
     #ani = FuncAnimation(fig, animate, init_func=init,
      #                   frames=100, interval=20, blit=False, repeat=True)
 
-    # Saving to Vase.mp4
+    # Saving to Gabriel's-Horn.mp4
 
     # Writer = writers['ffmpeg']
     # writer = Writer(fps=15, bitrate=1800)
 
-    # ani.save('Vase.mp4', writer=writer)
+    # ani.save('Gabriel's-Horn.mp4', writer=writer)
 
     plt.show()  # Shows Figure
     option = int(input('Run again? (0) Yes, (1) No\n>> '))

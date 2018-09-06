@@ -1,4 +1,4 @@
-# A Boy's Surface, brought to you by PharaohCola13
+# Breather's Surface, brought to you by PharaohCola13
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
@@ -8,30 +8,33 @@ from matplotlib.animation import *
 from matplotlib import *
 from numpy import *
 
-name = "Boy's-Surface"
+name = "Breather's-Surface"
 
 option = int(input('Run? (0) Yes, (1) No\n>> '))
 
 while option == 0:
 # Definition of x
     def x_(u, v):
-        x = (cos(u) * ((1/3)*sqrt(2)*cos(u)*cos(2*v) + (2/3) * sin(u) * cos(v))) / (1 - sqrt(2)*sin(u) * cos(u)*sin(3 * v))
+        x = (-u + (2. * w * cosh(b*u) * sinh(b*u) / (b * ((w * cosh(b * u))**2 + (b * sin(w * v))**2))))
         return x
 
 # Definition of y
     def y_(u, v):
-        y = (cos(u) * ((1/3)*sqrt(2)*cos(u)*sin(2*v) - (2/3) * sin(u) * sin(v))) / (1 - sqrt(2)*sin(u) * cos(u)*sin(3 * v))
+        y = (2. * w * cosh(b * u) * (-1 * (w * cos(v) * cos(w * v)) - sin(v) * sin(w * v)) / (b * ((w * cosh(b * u))**2 + (b * sin(w * v))**2)))
         return y
 
 
 # Definition of z
     def z_(u, v):
-        z = cos(u)**2 / (1 - sqrt(2) * sin(u) * cos(u) * sin(3 * v)) - 1
+        z = (2. * w * cosh(b * u) * (-(w * sin(v) * cos(w * v)) + cos(v) * sin(w * v))) / (b * ((w * cosh(b * u))**2 + (b * sin(w * v))**2))
         return z
 
+    b = 0.4
+    r = 1. - b**2
+    w = sqrt(r)
 # Value of the angles
-    u = linspace(0, pi, 75)
-    v = linspace(0, pi, 75)
+    u = linspace(-13.2,  13.2, 75)
+    v = linspace(-37.4, 37.4, 75)
 
     u, v = meshgrid(u, v)
 
@@ -51,25 +54,26 @@ while option == 0:
     plt.axis('equal')
 
 # Axis Limits
-    ax.set_xlim(-1, 1)
-    ax.set_ylim(-1, 1)
-    ax.set_zlim(-1, 1)
+    ax.set_xlim(-10, 10)
+    ax.set_ylim(-10, 10)
+    ax.set_zlim(-10, 10)
 
 # Surface Plot
     color = str(input('What color is the figure?\n>> '))
     alpha = float(input('How transparent is the figure? (0 to 1)\n>> '))
-    boys_surf = ax.plot_surface(x, y, z)
 
-    boys_surf.set_alpha(alpha)  # Transparency of figure
-    boys_surf.set_edgecolor('w')  # Edge color of the lines on the figure
-    boys_surf.set_linewidth(0.25)  # Line width of the edges
-    boys_surf.set_facecolor(color)  # General color of the figure
+    breath_surf = ax.plot_surface(x, y, z)
+
+    breath_surf.set_alpha(alpha)  # Transparency of figure
+    breath_surf.set_edgecolor('w')  # Edge color of the lines on the figure
+    breath_surf.set_linewidth(0.5)  # Line width of the edges
+    breath_surf.set_facecolor(color)  # General color of the figure
 
     rotate = int(input('Rotate the figure? (0) Yes, (1) No.\n>> '))
     if rotate == 0:
 # Definitions for animation
         def init():
-            return boys_surf,
+            return breath_surf,
 
 
         def animate(i):
@@ -80,7 +84,7 @@ while option == 0:
 # For side view elev = 0
 
             ax.view_init(elev=-90, azim=i * 4)
-            return boys_surf,
+            return breath_surf,
 
 
 # Animate
@@ -89,7 +93,7 @@ while option == 0:
 
         save = int(input('Save the animation? (0) Yes, (1) No.\n>> '))
         if save == 0:
-# Saving to Boy's-Surface.mp4
+# Saving to Breather's-Surface.mp4
 
             Writer = writers['ffmpeg']
             writer = Writer(fps=15, bitrate=1800)

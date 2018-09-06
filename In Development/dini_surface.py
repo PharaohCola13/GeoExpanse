@@ -1,5 +1,3 @@
-#{u, Sin[v]*(u^3+2u^2-2u+2)/5, Cos[v]*(u^3+2u^2-2u+2)/5}
-
 # A Dini's Surface, brought to you by PharaohCola13
 
 import mpl_toolkits.mplot3d.axes3d as p3
@@ -15,25 +13,26 @@ option = int(input('Run? (0) Yes, (1) No\n>> '))
 while option == 0:
     # Definition of x
     def x_(u, v):
-        x = a * (cos(u) * sin(v))
+        x = a * cos(u) * sin(v)
         return x
 
     # Definition of y
     def y_(u, v):
-        y = a * (sin(u) * sin(v))
+        y = a * sin(u) * sin(v)
         return y
 
 
     # Definition of z
     def z_(u, v):
-        z = -1 * (a * (cos(v) + log1p(tan(0.5 * v))) + b * u)
+        z = -1 * (a * (cos(v) + log1p(tan(v/2))) + (b * u))
         return z
 
-    a = 1 # changes width of tube
-    b = 0.2 # changes height of tube
+    a = 1 # Radius
+    b = 0.6 # Height
+
     # Value of the angles
-    u = linspace(0, 4 * pi, 25)
-    v = linspace(0, 2, 25)
+    u = linspace(0, 3 * pi, 50)
+    v = linspace(0, pi, 50)
 
     u, v = meshgrid(u, v)
 
@@ -55,14 +54,14 @@ while option == 0:
     # Axis Limits
     ax.set_xlim(-2, 2)
     ax.set_ylim(-2, 2)
-    ax.set_zlim(-4, 0)
+    ax.set_zlim(-2 * pi, 2 * pi)
 
     # Surface Plot
     dini = ax.plot_surface(x, y, z)
 
     dini.set_alpha(1)  # Transparency of figure
     dini.set_edgecolor('w')  # Edge color of the lines on the figure
-    dini.set_linewidth(1)  # Line width of the edges
+    dini.set_linewidth(0.5)  # Line width of the edges
     dini.set_facecolor('deepskyblue')  # General color of the figure
 
 

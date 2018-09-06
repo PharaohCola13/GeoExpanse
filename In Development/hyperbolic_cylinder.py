@@ -28,14 +28,14 @@ while option == 0:
         z = v
         return z
 
-# ?
-    a = 1
-# ?
-    b = 0.1
+# Magnitude of the x-direction
+    a = float(input('What is the magnitude in the x direction?\n>> '))
+# Magnitude of the y-direction
+    b = float(input('What is the magnitude in the y direction?\n>> '))
 
     # Value of the angles
-    u = linspace(-pi/2, pi/2, 25)
-    v = linspace(-pi/2, pi/2, 25)
+    u = linspace(-pi, pi, 25)
+    v = linspace(-pi, pi, 25)
 
     u, v = meshgrid(u, v)
 
@@ -55,8 +55,8 @@ while option == 0:
     plt.axis('equal')
 
     # Axis Limits
-    ax.set_xlim(-2 * a, 2 * a)
-    ax.set_ylim(-2 * b, 2 * b)
+    ax.set_xlim(-50 * a, 50 * a)
+    ax.set_ylim(-50 * b, 50 * b)
     ax.set_zlim(-10, 10)
 
     # Surface Plot

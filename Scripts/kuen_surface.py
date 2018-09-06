@@ -1,4 +1,8 @@
-# A Gabriel's Horn, brought to you by PharaohCola13
+# {2*Cosh[v]*(Cos[u] + u*Sin[u]),
+# 2*Cosh[v]*(-u*Cos[u] + Sin[u]),
+# v - (2*Sinh[v]*Cosh[v])} / (Cosh[v]^2 + u^2)
+
+# A Kuen Surface, brought to you by PharaohCola13
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
@@ -13,25 +17,23 @@ option = int(input('Run? (0) Yes, (1) No\n>> '))
 while option == 0:
     # Definition of x
     def x_(u, v):
-        x = u
+        x = 2 * cosh(v) * (cos(u) + u* sin(u)) / (cosh(v)**2 + u**2)
         return x
 
     # Definition of y
     def y_(u, v):
-        y = (a * cos(v)) / u
+        y = 2 * cosh(v) * (-u * cos(u) + sin(u)) / (cosh(v)**2 + u**2)
         return y
 
 
     # Definition of z
     def z_(u, v):
-        z = (a * sin(v)) /u
+        z = v - (2 * sinh(v) * cosh(v)) / (cosh(v)**2 + u**2)
         return z
 
-    a = 1 # changes width of tube
-
     # Value of the angles
-    u = linspace(0.9, 2 * pi, 25)
-    v = linspace(1, 2 * pi, 25)
+    u = linspace(-4, 4, 50)
+    v = linspace(-3.75, 3.75, 50)
 
     u, v = meshgrid(u, v)
 
@@ -51,22 +53,22 @@ while option == 0:
     plt.axis('equal')
 
     # Axis Limits
-    ax.set_xlim(-4, 4)
-    ax.set_ylim(-4, 4)
-    ax.set_zlim(-4, 4)
+    ax.set_xlim(-2, 2)
+    ax.set_ylim(-2, 2)
+    ax.set_zlim(-2, 2)
 
     # Surface Plot
-    horn = ax.plot_surface(x, y, z)
+    kuen = ax.plot_surface(x, y, z)
 
-    horn.set_alpha(1)  # Transparency of figure
-    horn.set_edgecolor('w')  # Edge color of the lines on the figure
-    horn.set_linewidth(1)  # Line width of the edges
-    horn.set_facecolor('deepskyblue')  # General color of the figure
+    kuen.set_alpha(1)  # Transparency of figure
+    kuen.set_edgecolor('w')  # Edge color of the lines on the figure
+    kuen.set_linewidth(0.5)  # Line width of the edges
+    kuen.set_facecolor('deepskyblue')  # General color of the figure
 
 
     # Definitions for animation
     def init():
-        return horn,
+        return kuen,
 
 
     def animate(i):
@@ -77,19 +79,19 @@ while option == 0:
         # For side view elev = 0
 
         ax.view_init(elev=29, azim=i * 4)
-        return horn,
+        return kuen,
 
 
     # Animate
     #ani = FuncAnimation(fig, animate, init_func=init,
      #                   frames=100, interval=20, blit=False, repeat=True)
 
-    # Saving to Gabriel's-Horn.mp4
+    # Saving to Kuen-Surface.mp4
 
     # Writer = writers['ffmpeg']
     # writer = Writer(fps=15, bitrate=1800)
 
-    # ani.save('Gabriel's-Horn.mp4', writer=writer)
+    # ani.save('Kuen-Surface.mp4', writer=writer)
 
     plt.show()  # Shows Figure
     option = int(input('Run again? (0) Yes, (1) No\n>> '))
