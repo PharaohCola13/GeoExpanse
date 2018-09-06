@@ -69,6 +69,7 @@ F )
 [Funnel](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/funnel.py)
 
 G )
+[Gabriel's Horn](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/gabriel_horn.py)
 
 H )
 
@@ -88,7 +89,8 @@ M )
 N )
 
 O )
-[Octahedron (Hyperbolic)](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/hyperbolic_octahedron.py)
+[Octahedron (Hyperbolic)](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/hyperbolic_octahedron.py) |
+[One Sheet Hyperboloid / Wormhole](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/one_sheet_hyperboloid.py)
 
 P )
 [Prism Family](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/prism.py) |
@@ -124,15 +126,13 @@ Z )
 ## Models in Development
 
 [Trefoil Knot](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/knot.py) |
-[A Curve](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/curve.py) |
+[Spiral](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/spiral.py) |
 [Pseudosphere](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/pseudosphere.py) |
 [Scutoid](https://github.com/PharaohCola13/geometric-models/tree/master/Scutoid%20Research) |
 [A currently unnamed shape](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/interesting.py) |
 [Vase](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/vase.py) |
 [Cylinder (Hyperbolic)](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/hyperbolic_cylinder.py) |
 [Dini's Surface](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/dini_surface.py) |
-[Gabriel's Horn](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/gabriel_horn.py) |
-[Breather's Surface](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/breather_surface.py)
 
 ## Future Works
 I intend to have models of a great variety of geometric and topological objects.
