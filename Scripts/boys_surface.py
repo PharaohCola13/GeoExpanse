@@ -6,7 +6,9 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 from matplotlib import *
+from fractions import *
 from numpy import *
+
 
 name = "Boy's-Surface"
 
@@ -15,12 +17,12 @@ option = int(input('Run? (0) Yes, (1) No\n>> '))
 while option == 0:
 # Definition of x
     def x_(u, v):
-        x = (cos(u) * ((1/3)*sqrt(2)*cos(u)*cos(2*v) + (2/3) * sin(u) * cos(v))) / (1 - sqrt(2)*sin(u) * cos(u)*sin(3 * v))
+        x = (cos(u) * (Fraction(1,3) * sqrt(2) * cos(u) * cos(2 * v) + Fraction(2,3) * sin(u) * cos(v))) / (1 - sqrt(2) * sin(u) * cos(u) * sin(3 * v))
         return x
 
 # Definition of y
     def y_(u, v):
-        y = (cos(u) * ((1/3)*sqrt(2)*cos(u)*sin(2*v) - (2/3) * sin(u) * sin(v))) / (1 - sqrt(2)*sin(u) * cos(u)*sin(3 * v))
+        y = (cos(u) * (Fraction(1,3) * sqrt(2) * cos(u) * sin(2 * v) - Fraction(2,3) * sin(u) * sin(v))) / (1 - sqrt(2) * sin(u) * cos(u) * sin(3 * v))
         return y
 
 
@@ -56,7 +58,7 @@ while option == 0:
     ax.set_zlim(-1, 1)
 
 # Surface Plot
-    color = str(input('What color is the figure?\n>> '))
+    color = str(raw_input('What color is the figure?\n>> '))
     alpha = float(input('How transparent is the figure? (0 to 1)\n>> '))
     boys_surf = ax.plot_surface(x, y, z)
 
