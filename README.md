@@ -125,14 +125,13 @@ Z )
 
 ## Models in Development
 
-| [Trefoil Knot](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/knot.py) | 
-[Spiral](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/spiral.py) |
+[Trefoil Knot](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/knot.py) | [Spiral](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/spiral.py) | 
 [Pseudosphere](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/pseudosphere.py) |
 [Scutoid](https://github.com/PharaohCola13/geometric-models/tree/master/Scutoid%20Research) |
 [A currently unnamed shape](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/interesting.py) |
 [Vase](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/vase.py) |
 [Cylinder (Hyperbolic)](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/hyperbolic_cylinder.py) |
-[Dini's Surface](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/dini_surface.py) |
+[Dini's Surface](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/dini_surface.py) 
 
 ## Future Works
 I intend to have models of a great variety of geometric and topological objects.
