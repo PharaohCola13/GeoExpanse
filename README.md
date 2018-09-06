@@ -125,7 +125,7 @@ Z )
 
 ## Models in Development
 
-[Trefoil Knot](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/knot.py) |
+| [Trefoil Knot](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/knot.py) | 
 [Spiral](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/spiral.py) |
 [Pseudosphere](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/pseudosphere.py) |
 [Scutoid](https://github.com/PharaohCola13/geometric-models/tree/master/Scutoid%20Research) |
