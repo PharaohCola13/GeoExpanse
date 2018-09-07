@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 echo -n "Force: "
 read force
@@ -7,7 +7,7 @@ echo -n  "Repository: "
 read Repo
 
 if [ "${force}" = "push" ]; then
-    echo -v $(git status)
+    echo $(git status)
 	echo -n "Files to add: "
 	read add
 
@@ -37,7 +37,7 @@ if [ "${force}" = "push" ]; then
         echo "A force has been applied to ${Repo}."
 
     elif [[ -z ${readme} ]]; then
-        echo ""
+        echo "There was an attempt to do something, but it failed."
     fi
 
 elif [ "${force}" = "pull" ]; then
@@ -52,3 +52,4 @@ elif [ -z "${force}" ] && [ -z "${Repo}" ]; then
     echo "Zero Newtons of force applied."
 
 fi
+

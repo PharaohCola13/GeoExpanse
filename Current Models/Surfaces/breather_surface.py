@@ -59,7 +59,7 @@ while option == 0:
     ax.set_zlim(-10, 10)
 
 # Surface Plot
-    color = str(input('What color is the figure?\n>> '))
+    color = str(raw_input('What color is the figure?\n>> '))
     alpha = float(input('How transparent is the figure? (0 to 1)\n>> '))
 
     breath_surf = ax.plot_surface(x, y, z)
@@ -83,7 +83,7 @@ while option == 0:
 # For top view elev = 90
 # For side view elev = 0
 
-            ax.view_init(elev=-90, azim=i * 4)
+            ax.view_init(elev=i*4, azim=i * 4)
             return breath_surf,
 
 
