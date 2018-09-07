@@ -20,3 +20,14 @@ elif [ "${shape}" = "pyramid" ]; then
    
 elif [ "${shape}" = "boy's surface" ]; then
    echo $(./Current Models/Surfaces/boys_surface.py)
+
+elif [ "${shape}" = "torus" ]; then
+   echo $(./Current Models/Topological/torus.py)
+
+elif [ "${shape}" = "klein bottle" ]; then
+   echo $(./Current Models/Topological/klein.py)
+
+elif [ "${shape}" = "kuen surface" ]; then
+   echo $(./Current Models/Surfaces/kuen_surface.py)
+
+elif [ "${shape}" = 
