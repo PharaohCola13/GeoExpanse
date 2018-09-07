@@ -52,64 +52,66 @@ are available [here](https://matplotlib.org/examples/color/named_colors.html).
 A )
 
 B )
-[Boy's Surface](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/boys_surface.py) |
-[Breather Surface](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/breather_surface.py)
+[Boy's Surface](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Surfaces/boys_surface.py) |
+[Breather Surface](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Surfaces/breather_surface.py)
 
 C )
-[Cressant](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/cressant.py) | 
-[Cross Cap](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/cross-cap.py) |
-[Cube](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/cube.py) 
+[Cressant](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Misc./cressant.py) | 
+[Cross Cap](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Topological/cross-cap.py) |
+[Cube](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Platonic%20Solids/cube.py) 
 
 D )
-[Dodecahedron](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/dodecahedron.py) 
+[Dodecahedron](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Platonic%20Solids/dodecahedron.py) 
 
 E )
 
 F ) 
-[Funnel](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/funnel.py)
+[Funnel](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Misc./funnel.py)
 
 G )
-[Gabriel's Horn](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/gabriel_horn.py)
+[Gabriel's Horn](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Misc./gabriel_horn.py)
 
 H )
 
 I )
+[Icosahedron](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Platonic%20Solids/icosahedron.py)
 
 J )
 
 K )
-[Klein Bottle](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/klein.py) | 
-[Kuen Surface](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/kuen_surface.py)
+[Klein Bottle](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Topological/klein.py) | 
+[Kuen Surface](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Surfaces/kuen_surface.py)
 
 L )
 
 M )
-[Mobius Strip](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/mobius.py)
+[Mobius Strip](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Topological/mobius.py)
 
 N )
 
 O )
-[Octahedron (Hyperbolic)](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/hyperbolic_octahedron.py) |
-[One Sheet Hyperboloid / Wormhole](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/one_sheet_hyperboloid.py)
+[Octahedron](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Platonic%20Solids/octahedron.py) |
+[Octahedron (Hyperbolic)](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Hyperbolic/hyperbolic_octahedron.py) |
+[One Sheet Hyperboloid / Wormhole](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Hyperbolic/one_sheet_hyperboloid.py)
 
 P )
-[Prism Family](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/prism.py) |
-[Pyramid Family](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/pyramid.py) |
-[Paraboloid (Hyperbolic)](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/hyperbolic_paraboloid.py)
+[Prism Family](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/prism.py) |
+[Pyramid Family](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/pyramid.py) |
+[Paraboloid (Hyperbolic)](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Hyperbolic/hyperbolic_paraboloid.py)
 
 Q )
 
 R )
-[Rose Spiral](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/rose_spiral.py)
+[Rose Spiral](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Misc./rose_spiral.py)
 
 S )
-[Shell](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/shell.py) |
-[Sphere Family](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/sphere.py) |
-[Steiner's Surface](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/steiner_surface.py)
+[Shell](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Misc./shell.py) |
+[Sphere Family](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/sphere.py) |
+[Steiner's Surface](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Surfaces/steiner_surface.py)
 
 T )
-[Tesseract](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/tesseract.py) |
-[Torus Family](https://github.com/PharaohCola13/geometric-models/blob/master/Scripts/torus.py)
+[Tesseract](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Misc./tesseract.py) |
+[Torus Family](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Topological/torus.py)
 
 U )
 
