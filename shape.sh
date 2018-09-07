@@ -5,29 +5,11 @@ read shape
 
 echo "Rendering a ${shape}."
 
-if [ "${shape}" = "cube" ]; then
+#if [ -n "${shape}" ]; then
+dirPath = $(find ./ -name "${shape}*.py")
 
-   echo $(./Platonic Solids/cube.py)
-   
-elif [ "${shape}" = "sphere" ]; then
-   echo $(./sphere.py)
-   
-elif [ "${shape}" = "prism" ]; then
-   echo $(./prism.py)
-
-elif [ "${shape}" = "pyramid" ]; then 
-   echo $(./pyramid.py)
-   
-elif [ "${shape}" = "boy's surface" ]; then
-   echo $(./Current Models/Surfaces/boys_surface.py)
-
-elif [ "${shape}" = "torus" ]; then
-   echo $(./Current Models/Topological/torus.py)
-
-elif [ "${shape}" = "klein bottle" ]; then
-   echo $(./Current Models/Topological/klein.py)
-
-elif [ "${shape}" = "kuen surface" ]; then
-   echo $(./Current Models/Surfaces/kuen_surface.py)
-
-elif [ "${shape}" = 
+python "${dirPath}" "$@"
+	
+#elif [ -z "${shape}" ]; then
+#	echo "Welp"
+#fi 
