@@ -26,12 +26,15 @@ if [ "${force}" = "push" ]; then
 		echo $(git commit -m 'Update README.md')
 		echo "README.md has been committing."
 
+		echo $(git push ${Repo} master)
+		echo "A force has been applied to ${Repo}"
+
 	elif [[ "${readme}" = "no" ]]; then
 		echo $(git commit -m "Update")
 		echo "Files are committed."
 
-    echo $(git push ${Repo} master)
-    echo "Force has been applied to ${Repo}."
+        echo $(git push ${Repo} master)
+        echo "A force has been applied to ${Repo}."
 
     fi
 
