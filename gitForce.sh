@@ -37,7 +37,7 @@ if [ "${force}" = "push" ]; then
         echo "A force has been applied to ${Repo}."
 
     elif [[ -z ${readme} ]]; then
-        echo ""
+        echo "There was an attempt to do something, but it failed."
     fi
 
 elif [ "${force}" = "pull" ]; then
