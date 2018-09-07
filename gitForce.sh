@@ -6,11 +6,8 @@ read force
 echo -n  "Repository: "
 read Repo
 
-echo -n "Project Name: "
-read proj
-
 if [ "${force}" = "push" ]; then
-	echo -n "Exclusively pushing a README.md? "
+	echo -n "Exclusively pushing a README.md or _config.yml? "
     read readme
 
 	if [[ ${readme} = "yes" ]]; then
@@ -19,9 +16,9 @@ if [ "${force}" = "push" ]; then
 	    read add
 
 	    echo $(git add ${add})
-        echo $(cp -rp ~/PycharmProjects/Research/${proj}/README.md ~/PycharmProjects/Research/${proj}/_include)
+        echo $(cp -rp $(pwd)/README.md $(pwd)/_include)
 
-        echo $(cp -rp ~/PycharmProjects/Research/${proj}/_config.yml ~/PycharmProjects/Research/${proj}/_include)
+        echo $(cp -rp $(pwd)/_config.yml $(pwd)/_include)
 
 		echo $(git commit -m 'Update README.md')
 		echo "README.md has been committing."
@@ -36,11 +33,17 @@ if [ "${force}" = "push" ]; then
         echo $(git push ${Repo} master)
         echo "A force has been applied to ${Repo}."
 
+    elif [[ -z ${readme} ]]; then
+        echo ""
     fi
 
 elif [ "${force}" = "pull" ]; then
 	echo $(git pull ${Repo} master)
 	echo "Force has been applied to local repository."
+
+elif [ "${force}" = "fetch" ]; then
+    echo $(git fetch ${Repo} master)
+    echo "The frisbee has been caught."
 
 elif [ -z "${force}" ] && [ -z "${Repo}" ]; then
     echo "Zero Newtons of force applied."
