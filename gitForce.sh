@@ -7,18 +7,21 @@ echo -n  "Repository: "
 read Repo
 
 if [ "${force}" = "push" ]; then
-	echo -n "Exclusively pushing a README.md or _config.yml? "
+    echo $(git status)
+	echo -n "Files to add: "
+	read add
+
+	echo $(git add ${add})
+
+	echo -n "Exclusively pushing a README.md or _config.yml? [y/n] "
     read readme
 
-	if [[ ${readme} = "yes" ]]; then
-	    echo $(git status)
-	    echo -n "Files to add: "
-	    read add
-
-	    echo $(git add ${add})
+	if [[ ${readme} = "y" ]]; then
         echo $(cp -rp $(pwd)/README.md $(pwd)/_include)
+        echo "README.md has been updated in _include/"
 
         echo $(cp -rp $(pwd)/_config.yml $(pwd)/_include)
+        echo "_config.yml has been updated in _include/"
 
 		echo $(git commit -m 'Update README.md')
 		echo "README.md has been committing."
@@ -26,7 +29,7 @@ if [ "${force}" = "push" ]; then
 		echo $(git push ${Repo} master)
 		echo "A force has been applied to ${Repo}"
 
-	elif [[ "${readme}" = "no" ]]; then
+	elif [[ "${readme}" = "n" ]]; then
 		echo $(git commit -m "Update")
 		echo "Files are committed."
 
