@@ -2,17 +2,25 @@
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
-
-from mpl_toolkits.mplot3d.art3d import *
-from matplotlib.animation import *
 from matplotlib import *
+
+import argparse
 from numpy import *
+from mpl_toolkits.mplot3d.art3d import *
+from matplotlib.animation import * 
 
+name = "Icosahedron"
 
-option = int(input('Run? (0) Yes, (1) No\n>> '))
+parser = argparse.ArgumentParser()
+parser.add_argument("-Y", "--run", help="Runs program", action="store_true")
+parser.add_argument("-c", "--color", help="Defines Color", action="store")
+parser.add_argument("-a", "--alpha", help="Defines Transparency", action="store", type=float)
+parser.add_argument("-r", "--rotate", help="Rotates Figure", action="store_true")
+parser.add_argument("-s", "--save", help="Saves Figure as mp4", action="store_true")
 
-while option == 0:
+args = parser.parse_args(args=None if sys.argv[1:] else ['--help'])
 
+if args.run:
 # Points on the object
 	p = (1 + sqrt(5))/2
 	points = array([
@@ -93,38 +101,37 @@ while option == 0:
 
 	icosa.set_edgecolor('white')
 	icosa.set_linewidth(1)
-	icosa.set_alpha(0.3)
-	icosa.set_facecolor('deepskyblue')
+	icosa.set_alpha(args.alpha)
+	icosa.set_facecolor(args.color)
 
 	icosahedron = ax.add_collection3d(icosa)
 
-
+	if args.rotate:
 # Defintions for animations
-	def init():
-	    return icosahedron,
+		def init():
+		    return icosahedron,
 
-	def animate(i):
+		def animate(i):
 # azimuth angle : 0 deg to 360 deg
 # elev = i * n --> rotates object about the xy-plane with a magnitude of n
 # azim = i * n --> rotates object around the z axis with a magnitude of n
 # For top view elev = 90
 # For side view elev = 0
 
-	    ax.view_init(elev=0, azim= 4 * i)
-	    return icosahedron,
+		    ax.view_init(elev=0, azim= 4 * i)
+		    return icosahedron,
 
 # Smooth-ish transition @ elev=90+i, azim=4 * 1, .., frames=550
 
 # Animate
-	#ani = FuncAnimation(fig, animate, init_func=init,
-	#                   frames=550, interval=2, blit=False, repeat=True)
-
+		ani = FuncAnimation(fig, animate, init_func=init,
+		                   frames=550, interval=2, blit=False, repeat=True)
+		if args.save:
 #Saving to Icosahedron.mp4
 
-	# Writer = writers['ffmpeg']
-	# writer = Writer(fps=15, bitrate=1800)
+			Writer = writers['ffmpeg']
+			writer = Writer(fps=15, bitrate=1800)
 
-	# ani.save('Icosahedron.mp4', writer=writer)
+			ani.save('Icosahedron.mp4', writer=writer)
 
-	plt.show() # Shows Figure
-	option = int(input('Run again? (0) Yes, (1) No\n>> '))
+plt.show()
