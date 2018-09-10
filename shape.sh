@@ -1,15 +1,15 @@
 #!/usr/bin
 
-echo -n "Object: "
-read shape
+read -p "Object: " shape
 
-echo "Rendering a ${shape}."
 
-#if [ -n "${shape}" ]; then
-dirPath = $(find ./ -name "${shape}*.py")
+if [ -n "${shape}" ]; then
+	echo "Rendering a ${shape}."
 
-python "${dirPath}" "$@"
-	
-#elif [ -z "${shape}" ]; then
-#	echo "Welp"
-#fi 
+	place=$(find ./ -name "${shape}*")
+	echo $(python ${place} $@)
+
+elif [ -z "${shape}" ]; then
+	echo "Welp"
+
+fi
