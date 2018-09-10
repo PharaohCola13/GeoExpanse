@@ -2,16 +2,26 @@
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
-
-from mpl_toolkits.mplot3d.art3d import *
-from matplotlib.animation import *
 from matplotlib import *
+
+import argparse
 from numpy import *
+from mpl_toolkits.mplot3d.art3d import *
+from matplotlib.animation import * 
+
+name = "Octahedron"
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-Y", "--run", help="Runs program", action="store_true")
+parser.add_argument("-c", "--color", help="Defines Color", action="store")
+parser.add_argument("-a", "--alpha", help="Defines Transparency", action="store", type=float)
+parser.add_argument("-r", "--rotate", help="Rotates Figure", action="store_true")
+parser.add_argument("-s", "--save", help="Saves Figure as mp4", action="store_true")
+
+args = parser.parse_args(args=None if sys.argv[1:] else ['--help'])
 
 
-option = int(input('Run? (0) Yes, (1) No\n>> '))
-
-while option == 0:
+if args.run:
 
 # Points on the object
 	points = array([
@@ -110,5 +120,3 @@ while option == 0:
 	# ani.save('Octahedron.mp4', writer=writer)
 
 	plt.show() # Shows Figure
-	option = int(input('Run again? (0) Yes, (1) No\n>> '))
-
