@@ -2,19 +2,28 @@
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
-
-from mpl_toolkits.mplot3d.art3d import *
-from matplotlib.animation import *
 from matplotlib import *
-from fractions import *
+
+import argparse
 from numpy import *
+from mpl_toolkits.mplot3d.art3d import *
+from matplotlib.animation import * 
 
 
-name = "Boy's-Surface"
+parser = argparse.ArgumentParser()
+parser.add_argument("-Y", "--run", help="Runs program", action="store_true")
+parser.add_argument("-c", "--color", help="Defines Color", action="store")
+parser.add_argument("-a", "--alpha", help="Defines Transparency", action="store", type=float)
+parser.add_argument("-r", "--rotate", help="Rotates Figure", action="store_true")
+parser.add_argument("-s", "--save", help="Saves Figure as mp4", action="store_true")
 
-option = int(input('Run? (0) Yes, (1) No\n>> '))
+args = parser.parse_args(args=None if sys.argv[1:] else ['--help'])
 
-while option == 0:
+print(args)
+
+name = "Boy's Surface"
+
+if args.run:
 # Definition of x
     def x_(u, v):
         x = (cos(u) * (Fraction(1,3) * sqrt(2) * cos(u) * cos(2 * v) + Fraction(2,3) * sin(u) * cos(v))) / (1 - sqrt(2) * sin(u) * cos(u) * sin(3 * v))
@@ -58,17 +67,15 @@ while option == 0:
     ax.set_zlim(-1, 1)
 
 # Surface Plot
-    color = str(raw_input('What color is the figure?\n>> '))
-    alpha = float(input('How transparent is the figure? (0 to 1)\n>> '))
     boys_surf = ax.plot_surface(x, y, z)
 
-    boys_surf.set_alpha(alpha)  # Transparency of figure
+    boys_surf.set_alpha(args.alpha)  # Transparency of figure
     boys_surf.set_edgecolor('w')  # Edge color of the lines on the figure
     boys_surf.set_linewidth(0.25)  # Line width of the edges
-    boys_surf.set_facecolor(color)  # General color of the figure
+    boys_surf.set_facecolor(args.color)  # General color of the figure
 
-    rotate = int(input('Rotate the figure? (0) Yes, (1) No.\n>> '))
-    if rotate == 0:
+    
+    if args.rotate:
 # Definitions for animation
         def init():
             return boys_surf,
@@ -89,19 +96,11 @@ while option == 0:
         ani = FuncAnimation(fig, animate, init_func=init,
                            frames=100, interval=20, blit=False, repeat=True)
 
-        save = int(input('Save the animation? (0) Yes, (1) No.\n>> '))
-        if save == 0:
+        if args.save:
 # Saving to Boy's-Surface.mp4
 
             Writer = writers['ffmpeg']
             writer = Writer(fps=15, bitrate=1800)
 
             ani.save('../Samples/%s.mp4' % name, writer=writer)
-            plt.show() # Shows Figure
-
-        elif save == 1:
-            plt.show() # Shows Figure
-
-    elif rotate == 1:
-        plt.show()  # Shows Figure
-    option = int(input('Run again? (0) Yes, (1) No\n>> '))
+plt.show() # Shows Figure
