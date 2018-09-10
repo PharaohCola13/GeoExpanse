@@ -2,17 +2,24 @@
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
-
-from mpl_toolkits.mplot3d.art3d import *
-from matplotlib.animation import *
 from matplotlib import *
+
+import argparse
 from numpy import *
+from mpl_toolkits.mplot3d.art3d import *
+from matplotlib.animation import * 
 
 
-option = int(input('Run? (0) Yes, (1) No\n>> '))
+parser = argparse.ArgumentParser()
+parser.add_argument("-Y", "--run", help="Runs program", action="store_true")
+parser.add_argument("-c", "--color", help="Defines Color", action="store")
+parser.add_argument("-a", "--alpha", help="Defines Transparency", action="store", type=float)
+parser.add_argument("-r", "--rotate", help="Rotates Figure", action="store_true")
+parser.add_argument("-s", "--save", help="Saves Figure as mp4", action="store_true")
 
-while option == 0:
+args = parser.parse_args(args=None if sys.argv[1:] else ['--help'])
 
+if args.run:
 # Points on the object
 	p = (1 + sqrt(5))/2
 	points = array([
@@ -100,14 +107,14 @@ while option == 0:
 			
 					[p,			-p**2, 		-p**3],		#61				
 					[0, 		0, 			-2*p**2],	#62					
-				   ])
+	])
 
 # Scaling Matricies
 # 100%
 	P = [
 		[1, 0, 0],
-	    [0, 1, 0],
-	    [0, 0, 1]
+		[0, 1, 0],
+		[0, 0, 1]
 		]
 
 	J = zeros((63,3))
@@ -192,22 +199,22 @@ while option == 0:
 
 			
 			[J[38], J[53], J[54]],  [J[54], J[61], J[60]],	[J[54], J[60], J[62]], 		
-			]
+	]
 
 # Surface plot
 	hedron120 = Poly3DCollection(verts)
-
-	hedron120.set_edgecolor('blue')
-	hedron120.set_linewidth(2)
-	hedron120.set_alpha(0.3)
-	hedron120.set_facecolor('skyblue')
+	
+	hedron120.set_edgecolor('w')
+	hedron120.set_linewidth(1)
+	hedron120.set_alpha(args.alpha)
+	hedron120.set_facecolor(args.color)
 
 	hedron = ax.add_collection3d(hedron120)
 
-
+	if args.rotate:
 # Defintions for animations
-	def init():
-	    return hedron,
+		def init():
+		    return hedron,
 
 	def animate(i):
 # azimuth angle : 0 deg to 360 deg
@@ -216,21 +223,22 @@ while option == 0:
 # For top view elev = 90
 # For side view elev = 0
 
-	    ax.view_init(elev=0, azim= 4 * i)
-	    return hedron,
+		ax.view_init(elev=0, azim= 4 * i)
+		return hedron,
 
 # Smooth-ish transition @ elev=90+i, azim=4 * 1, .., frames=550
 
 # Animate
-	#ani = FuncAnimation(fig, animate, init_func=init,
-	#                   frames=550, interval=2, blit=False, repeat=True)
+	ani = FuncAnimation(fig, animate, init_func=init,
+	                   frames=550, interval=2, blit=False, repeat=True)
 
+	if args.save:
 #Saving to 120-Polyhedron.mp4
 
-	# Writer = writers['ffmpeg']
-	# writer = Writer(fps=15, bitrate=1800)
+		Writer = writers['ffmpeg']
+		writer = Writer(fps=15, bitrate=1800)
 
-	# ani.save('120-Polyhedron.mp4', writer=writer)
+		ani.save('120-Polyhedron.mp4', writer=writer)
 
-	plt.show() # Shows Figure
-	option = int(input('Run again? (0) Yes, (1) No\n>> '))
+plt.show() # Shows Figure
+	
