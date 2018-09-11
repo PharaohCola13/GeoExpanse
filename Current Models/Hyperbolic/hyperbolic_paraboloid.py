@@ -1,16 +1,10 @@
 # A Hyperbolic Paraboliod, brought to you by PharaohCola13
 
-import mpl_toolkits.mplot3d.axes3d as p3
-import matplotlib.pyplot as plt
+import sys
+sys.path.insert(0,'./parse.py')
+from  parse import *
 
-from mpl_toolkits.mplot3d.art3d import *
-from matplotlib.animation import *
-from matplotlib import *
-from numpy import *
-
-option = int(input('Run? (0) Yes, (1) No\n>> '))
-
-while option == 0:
+if args.run:
     # Definition of x
     def x_(u, v):
         x = u
@@ -57,38 +51,38 @@ while option == 0:
     # Surface Plot
     hyper_para = ax.plot_surface(x, y, z)
 
-    hyper_para.set_alpha(1)  # Transparency of figure
+    hyper_para.set_alpha(args.alpha)  # Transparency of figure
     hyper_para.set_edgecolor('w')  # Edge color of the lines on the figure
     hyper_para.set_linewidth(1)  # Line width of the edges
-    hyper_para.set_facecolor('deepskyblue')  # General color of the figure
+    hyper_para.set_facecolor(args.color)  # General color of the figure
 
-
-    # Definitions for animation
-    def init():
-        return hyper_para,
+    if args.rotate:
+# Definitions for animation
+        def init():
+            return hyper_para,
 
 
     def animate(i):
-        # azimuth angle : 0 deg to 360 deg
-        # elev = i * n --> rotates object about the xy-plane with a magnitude of n
-        # azim = i * n --> rotates object around the z axis with a magnitude of n
-        # For top view elev = 90
-        # For side view elev = 0
+# azimuth angle : 0 deg to 360 deg
+# elev = i * n --> rotates object about the xy-plane with a magnitude of n
+# azim = i * n --> rotates object around the z axis with a magnitude of n
+# For top view elev = 90
+# For side view elev = 0
 
         ax.view_init(elev=29, azim=i * 4)
         return hyper_para,
 
 
-    # Animate
-    #ani = FuncAnimation(fig, animate, init_func=init,
-     #                   frames=100, interval=20, blit=False, repeat=True)
+# Animate
+        ani = FuncAnimation(fig, animate, init_func=init,
+                        frames=100, interval=20, blit=False, repeat=True)
 
-    # Saving to Hyperbolic_Paraboliod.mp4
+        if args.save:
+# Saving to Hyperbolic_Paraboliod.mp4
 
-    # Writer = writers['ffmpeg']
-    # writer = Writer(fps=15, bitrate=1800)
+            Writer = writers['ffmpeg']
+            writer = Writer(fps=15, bitrate=1800)
 
-    # ani.save('Hyperbolic_Paraboliod.mp4', writer=writer)
+            ani.save('Hyperbolic_Paraboliod.mp4', writer=writer)
 
-    plt.show()  # Shows Figure
-    option = int(input('Run again? (0) Yes, (1) No\n>> '))
+plt.show()  # Shows Figure

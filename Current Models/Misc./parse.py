@@ -14,8 +14,10 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-Y", "--run", help="Runs program", action="store_true")
 parser.add_argument("-c", "--color", help="Defines Color", action="store")
 parser.add_argument("-a", "--alpha", help="Defines Transparency", action="store", type=float)
-parser.add_argument("-r", "--rotate", help="Rotates Figure", action="store_true")
+parser.add_argument("-R", "--rotate", help="Rotates Figure", action="store_true")
 parser.add_argument("-s", "--save", help="Saves Figure as mp4", action="store_true")
+parser.add_argument("-r", "--radius", help="Defines the radius", action="store", type=float)
+parser.add_argument("-he", "--height", help="Defines the height", action="store", type=float)
 
 args = parser.parse_args(args=None if sys.argv[1:] else ['--help'])
 

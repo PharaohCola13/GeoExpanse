@@ -1,16 +1,12 @@
 # A Pair of Cressants, brought to you by PharaohCola13
 
-import mpl_toolkits.mplot3d.axes3d as p3
-import matplotlib.pyplot as plt
+import sys
+sys.path.insert(0,'../')
+from parse import *
 
-from mpl_toolkits.mplot3d.art3d import *
-from matplotlib.animation import *
-from matplotlib import *
-from numpy import *
+name = "Cressant"
 
-option = int(input('Run? (0) Yes, (1) No\n>> '))
-
-while option == 0:
+if args.run:
 # Definition of x
 	def x_(u,v):
 		x = (2 + sin(2 * pi * v) * sin(2 * pi * u)) * sin(3 * pi * v)
@@ -55,35 +51,35 @@ while option == 0:
 # Surface Plot
 	cressant = ax.plot_surface(x, y, z)
 
-	cressant.set_alpha(1) # Transparency of figure
+	cressant.set_alpha(args.alpha) # Transparency of figure
 	cressant.set_edgecolor('w') # Edge color of the lines on the figure
 	cressant.set_linewidth(0.5) # Line width of the edges
-	cressant.set_facecolor('deepskyblue') # General color of the figure
+	cressant.set_facecolor(args.color) # General color of the figure
 
+	if args.rotate:
 # Definitions for animation
-	def init():
-		return cressant,
+		def init():
+			return cressant,
 
-	def animate(i):
+		def animate(i):
 # azimuth angle : 0 deg to 360 deg
 # elev = i * n --> rotates object about the xy-plane with a magnitude of n
 # azim = i * n --> rotates object around the z axis with a magnitude of n
 # For top view elev = 90
 # For side view elev = 0
 
-		ax.view_init(elev=29, azim=90)
-		return cressant,
+			ax.view_init(elev=29, azim=90)
+			return cressant,
 
 # Animate
-	ani = FuncAnimation(fig, animate, init_func=init,
-                   frames=100, interval=1, blit=False, repeat=True)
-
+			ani = FuncAnimation(fig, animate, init_func=init,
+            	       frames=100, interval=1, blit=False, repeat=True)
+		if args.save:
 # Saving to Cressant.mp4
 
-	#Writer = writers['ffmpeg']
-	#writer = Writer(fps=15, bitrate=1800)
+			Writer = writers['ffmpeg']
+			writer = Writer(fps=15, bitrate=1800)
 
-	#ani.save('Cressant.mp4', writer=writer)
+			ani.save('Cressant.mp4', writer=writer)
 
-	plt.show() # Shows Figure
-	option = int(input('Run again? (0) Yes, (1) No\n>> '))
+plt.show() # Shows Figure

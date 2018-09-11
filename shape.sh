@@ -7,7 +7,7 @@ if [ -n "${shape}" ]; then
 	echo "Rendering a ${shape}."
 
 	place=$(find ./ -name "${shape}*")
-	echo $(python ${place} $@)
+	echo $(python "${place}" $@)
 
 elif [ -z "${shape}" ]; then
 	echo "Welp"

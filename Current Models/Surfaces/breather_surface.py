@@ -1,18 +1,12 @@
 # Breather's Surface, brought to you by PharaohCola13
 
-import mpl_toolkits.mplot3d.axes3d as p3
-import matplotlib.pyplot as plt
-
-from mpl_toolkits.mplot3d.art3d import *
-from matplotlib.animation import *
-from matplotlib import *
-from numpy import *
+import sys
+sys.path.insert(0,'./parse.py')
+from  parse import *
 
 name = "Breather's-Surface"
 
-option = int(input('Run? (0) Yes, (1) No\n>> '))
-
-while option == 0:
+if args.run:
 # Definition of x
     def x_(u, v):
         x = (-u + (2. * w * cosh(b*u) * sinh(b*u) / (b * ((w * cosh(b * u))**2 + (b * sin(w * v))**2))))
@@ -59,18 +53,14 @@ while option == 0:
     ax.set_zlim(-10, 10)
 
 # Surface Plot
-    color = str(raw_input('What color is the figure?\n>> '))
-    alpha = float(input('How transparent is the figure? (0 to 1)\n>> '))
-
     breath_surf = ax.plot_surface(x, y, z)
 
-    breath_surf.set_alpha(alpha)  # Transparency of figure
+    breath_surf.set_alpha(args.alpha)  # Transparency of figure
     breath_surf.set_edgecolor('w')  # Edge color of the lines on the figure
     breath_surf.set_linewidth(0.5)  # Line width of the edges
-    breath_surf.set_facecolor(color)  # General color of the figure
+    breath_surf.set_facecolor(args.color)  # General color of the figure
 
-    rotate = int(input('Rotate the figure? (0) Yes, (1) No.\n>> '))
-    if rotate == 0:
+    if args.rotate:
 # Definitions for animation
         def init():
             return breath_surf,
@@ -91,19 +81,12 @@ while option == 0:
         ani = FuncAnimation(fig, animate, init_func=init,
                            frames=100, interval=20, blit=False, repeat=True)
 
-        save = int(input('Save the animation? (0) Yes, (1) No.\n>> '))
-        if save == 0:
+        if args.save:
 # Saving to Breather's-Surface.mp4
 
             Writer = writers['ffmpeg']
             writer = Writer(fps=15, bitrate=1800)
 
             ani.save('../Samples/%s.mp4' % name, writer=writer)
-            plt.show() # Shows Figure
 
-        elif save == 1:
-            plt.show() # Shows Figure
-
-    elif rotate == 1:
-        plt.show()  # Shows Figure
-    option = int(input('Run again? (0) Yes, (1) No\n>> '))
+plt.show()  # Shows Figure

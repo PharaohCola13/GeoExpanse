@@ -1,16 +1,12 @@
 # A Gabriel's Horn, brought to you by PharaohCola13
 
-import mpl_toolkits.mplot3d.axes3d as p3
-import matplotlib.pyplot as plt
+import sys
+sys.path.insert(0,'../')
+from parse import *
 
-from mpl_toolkits.mplot3d.art3d import *
-from matplotlib.animation import *
-from matplotlib import *
-from numpy import *
+name = "Gabriel's-Horn"
 
-option = int(input('Run? (0) Yes, (1) No\n>> '))
-
-while option == 0:
+if args.run:
     # Definition of x
     def x_(u, v):
         x = u
@@ -27,9 +23,9 @@ while option == 0:
         z = (a * sin(v)) /u
         return z
 
-    a = float(input('What is the radius of the object?\n>> ')) # changes radius of the entire thing
+    a = args.radius # changes radius of the entire thing
 
-    h = float(input('What is the magnitude of the height of the object?\n>> '))
+    h = args.height
 
     # Value of the angles
     u = linspace(1, h, 25)
@@ -60,38 +56,37 @@ while option == 0:
     # Surface Plot
     horn = ax.plot_surface(x, y, z)
 
-    horn.set_alpha(1)  # Transparency of figure
+    horn.set_alpha(args.alpha)  # Transparency of figure
     horn.set_edgecolor('w')  # Edge color of the lines on the figure
     horn.set_linewidth(1)  # Line width of the edges
-    horn.set_facecolor('deepskyblue')  # General color of the figure
+    horn.set_facecolor(args.color)  # General color of the figure
+
+    if args.rotate:
+# Definitions for animation
+        def init():
+            return horn,
 
 
-    # Definitions for animation
-    def init():
-        return horn,
+        def animate(i):
+# azimuth angle : 0 deg to 360 deg
+# elev = i * n --> rotates object about the xy-plane with a magnitude of n
+# azim = i * n --> rotates object around the z axis with a magnitude of n
+# For top view elev = 90
+# For side view elev = 0
+
+            ax.view_init(elev=29, azim=i * 4)
+            return horn,
 
 
-    def animate(i):
-        # azimuth angle : 0 deg to 360 deg
-        # elev = i * n --> rotates object about the xy-plane with a magnitude of n
-        # azim = i * n --> rotates object around the z axis with a magnitude of n
-        # For top view elev = 90
-        # For side view elev = 0
+# Animate
+            ani = FuncAnimation(fig, animate, init_func=init,
+                        frames=100, interval=20, blit=False, repeat=True)
+        if args.save:
+# Saving to Gabriel's-Horn.mp4
 
-        ax.view_init(elev=29, azim=i * 4)
-        return horn,
+            Writer = writers['ffmpeg']
+            writer = Writer(fps=15, bitrate=1800)
 
+            ani.save('%s' % name, writer=writer)
 
-    # Animate
-    #ani = FuncAnimation(fig, animate, init_func=init,
-     #                   frames=100, interval=20, blit=False, repeat=True)
-
-    # Saving to Gabriel's-Horn.mp4
-
-    # Writer = writers['ffmpeg']
-    # writer = Writer(fps=15, bitrate=1800)
-
-    # ani.save('Gabriel's-Horn.mp4', writer=writer)
-
-    plt.show()  # Shows Figure
-    option = int(input('Run again? (0) Yes, (1) No\n>> '))
+plt.show()  # Shows Figure
