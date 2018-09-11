@@ -23,7 +23,9 @@ side = Tkinter.StringVar()
 color = Tkinter.StringVar()
 #color.set('gold')
 
-row_counter =0
+alpha = Tkinter.StringVar()
+
+row_counter = 0
 sh_text = Tkinter.Label(frame, text='Shape:')
 sh_text.grid(row=row_counter, column=0)
 
@@ -42,10 +44,16 @@ c_text.grid(row=2, column=0)
 c_entry = Tkinter.Entry(frame, width=8, textvariable=color)
 c_entry.grid(row=2, column=1)
 
-scroll_elev = Tkinter.Scale(root, from_=0, to=100)
+a_text = Tkinter.Label(frame, text='Transparency:')
+a_text.grid(row=3, column=0)
+
+a_entry = Tkinter.Entry(frame, width=8, textvariable=alpha)
+a_entry.grid(row=3, column=1)
+
+scroll_elev = Tkinter.Scale(root, from_=0, to=1300)
 scroll_elev.pack(side='right')
 
-scroll_azim = Tkinter.Scale(root, from_=0, to=100)
+scroll_azim = Tkinter.Scale(root, from_=0, to=1300)
 scroll_azim.pack(side='left')
 
 # Figure Properties
@@ -61,10 +69,11 @@ plt.axis('equal')
 
 def make_plot(event=None):
 
-	global color, fig, ax, scroll_elev, scroll_azim
+	global color, fig, ax, scroll_elev, scroll_azim, alpha
 
 	#si = int(side.get())
 	c = str(color.get())
+	a = float(alpha.get())
 
 # Points on the object
 	p = (1 + sqrt(5))/2
@@ -244,7 +253,7 @@ def make_plot(event=None):
 
 	hedron120.set_edgecolor('royalblue')	
 	hedron120.set_linewidth(1)
-	hedron120.set_alpha(0.6)
+	hedron120.set_alpha(a)
 	hedron120.set_facecolor(c)
 
 	hedron = ax.add_collection3d(hedron120)
