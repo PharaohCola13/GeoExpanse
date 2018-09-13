@@ -17,8 +17,9 @@ root = tk.Tk()
 
 fig = plt.figure(figsize=(8,8))
 
-
 root.title("Geometric Models")
+
+root.geometry("1050x965")
 # Vars
 
 grid_axis = tk.StringVar()
@@ -105,7 +106,7 @@ ec_entry.insert(13, 'coral')
 ec_entry.insert(14, 'deepskyblue')
 ec_entry.grid(row=0, column=2, sticky='nw', pady=50)
 
-tk.Button(root, text="Quit", command=quit).grid(row=5, column=1, columnspan=2, sticky='nsew')
+tk.Button(root, text="Quit", command=quit).grid(row=5, column=1, rowspan=2, columnspan=2, sticky='nsew')
 
 class Geometry(tk.Frame):
 	global fig, scroll_elev, scroll_azim, c_entry, ec_entry, a_entry, ew_entry
@@ -123,7 +124,7 @@ class Geometry(tk.Frame):
 		canvas.draw()
 
 		self.plotbutton=tk.Button(root, text="Render", command=lambda: self.plot(canvas,ax))
-		self.plotbutton.grid(row=1,column=0, sticky="nsew")
+		self.plotbutton.grid(row=3, column=1, rowspan=2, columnspan=2, sticky="nsew")
 
 	def plot(self,canvas,ax):	
 		global fig, scroll_azim, scroll_elev, c_entry, ec_entry, a_entry, grid_axis, ew_entry
