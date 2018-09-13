@@ -12,6 +12,7 @@ import ttk            # python 2.7
 import sys
 
 import interesting
+import polyhedron
 
 root = tk.Tk()
 
@@ -123,7 +124,7 @@ class Geometry(tk.Frame):
 		canvas.get_tk_widget().grid(row=0,column=0)
 		canvas.draw()
 
-		self.plotbutton=tk.Button(root, text="Render", command=lambda: self.plot(canvas,ax))
+		self.plotbutton=tk.Button(root, text="Render", command=lambda: self.test(canvas,ax))
 		self.plotbutton.grid(row=3, column=1, rowspan=2, columnspan=2, sticky="nsew")
 
 	def plot(self,canvas,ax):	
@@ -181,15 +182,16 @@ class Geometry(tk.Frame):
 	def test(self, canvas, ax):
 		global fig, scroll_azim, scroll_elev, c_entry, ec_entry, a_entry,grid_axis
 		
-		ax.clear()
+		#ax.clear()
 		edge_c 		= ec_entry.get(ec_entry.curselection()[0]) 
 		color 		= c_entry.get(c_entry.curselection()[0])
 		rot_azim 	= scroll_azim.get()
 		rot_elev 	= scroll_elev.get()
 		alpha		= a_entry.get()
 		grid 		= grid_axis.get()
+		edge_w		= ew_entry.get()
 		
-		interesting.shape(fig, alpha, color, edge_c, rot_elev, rot_azim, grid)
+		polyhedron.shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid)
 
 		def animate(i):
 	#     # azimuth angle : 0 deg to 360 deg
