@@ -8,12 +8,7 @@ from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 from numpy import *
 
-def shape(c, ec, ew,a): #scroll_elev, scroll_azim):
-
-	#si = int(side.get())
-#	c = c_entry.get(c_entry.curselection()[0])
-	#edge_color = ec_entry.get(ec_entry.curselection()[0])
-	#a = a_entry.get()
+def shape(fig, alpha, color, edge_c, rot_elev, rot_azim, grid):
 
 # Points on the object
 	p = (1 + sqrt(5))/2
@@ -116,14 +111,12 @@ def shape(c, ec, ew,a): #scroll_elev, scroll_azim):
 
 	for i in range(63):
 		J[i,:] = dot(points[i,:],P)
-	fig = plt.figure(figsize=(10, 10))
 
 	ax = p3.Axes3D(fig)
-	ax.set_facecolor('black')  # Figure background turns black
+	#ax.set_facecolor('black')
 
-	ax.set_xlim(-5, 5)
-	ax.set_ylim(-5, 5)
-	ax.set_zlim(-5, 5)
+	plt.axis(grid)
+	#plt.axis('equal')
 
 # Radius
 	r = [-1 ,1]
@@ -189,43 +182,26 @@ def shape(c, ec, ew,a): #scroll_elev, scroll_azim):
 			[J[38], J[53], J[54]],  [J[54], J[61], J[60]],	[J[54], J[60], J[62]], 		
 	]
 
-	shape = Poly3DCollection(verts)
+	hedron = Poly3DCollection(verts)
 
-	shape.set_edgecolor(ec)
-	shape.set_linewidth(ew)
-	shape.set_alpha(a)
-	shape.set_facecolor(c)
+	hedron.set_edgecolor(edge_c)
+	hedron.set_linewidth(edge_w)
+	hedron.set_alpha(alpha)
+	hedron.set_facecolor(color)
 
-	hedron = ax.add_collection3d(shape)
-
-
-	def init():
-		return hedron,
-
+	hedron = ax.add_collection3d(hedron)
 
 	def animate(i):
-		# azimuth angle : 0 deg to 360 deg
-		# elev = i * n --> rotates object about the xy-plane with a magnitude of n
-		# azim = i * n --> rotates object around the z axis with a magnitude of n
-		# For top view elev = 90
-		# For side view elev = 0
-
-		#ax.view_init(elev=(scroll_elev * i), azim=(scroll_azim * i))
+	#     # azimuth angle : 0 deg to 360 deg
+	#     # elev = i * n --> rotates object about the xy-plane with a magnitude of n
+	#     # azim = i * n --> rotates object around the z axis with a magnitude of n
+	#     # For top view elev = 90
+	#     # For side view elev = 0
+	#
+		ax.view_init(elev=(rot_elev * i), azim= (rot_azim * i))
 		return hedron,
 
 
-	# Smooth-ish transition @ elev=90+i, azim=4 * 1, .., frames=550
 
-	# Animate
-	ani = FuncAnimation(fig, animate, init_func=init,
-						frames=550, interval=2, blit=False, repeat=True)
-
-# if args.save:
-# #Saving to 120-Polyhedron.mp4
-#
-# 		Writer = writers['ffmpeg']
-# 		writer = Writer(fps=15, bitrate=1800)
-#
-# 		ani.save('120-Polyhedron.mp4', writer=writer)
-
-	plt.show()  # Shows Figure
+	ani = FuncAnimation(fig, animate,
+             frames=550, interval=2, blit=False, repeat=True)
