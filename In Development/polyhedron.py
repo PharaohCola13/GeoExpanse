@@ -8,7 +8,7 @@ from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 from numpy import *
 
-def shape(c, ec, ew,a, scroll_elev, scroll_azim):
+def shape(c, ec, ew,a): #scroll_elev, scroll_azim):
 
 	#si = int(side.get())
 #	c = c_entry.get(c_entry.curselection()[0])
@@ -116,20 +116,15 @@ def shape(c, ec, ew,a, scroll_elev, scroll_azim):
 
 	for i in range(63):
 		J[i,:] = dot(points[i,:],P)
-
-	# Figure Properties
-	fig = plt.figure(figsize=(8, 8))
+	fig = plt.figure(figsize=(10, 10))
 
 	ax = p3.Axes3D(fig)
-	ax.set_facecolor('black')
+	ax.set_facecolor('black')  # Figure background turns black
 
-	#plt.axis(axis_grid)
-#	plt.axis('equal')
-
-	# Axis Limits
-	ax.set_xlim(-5,5)
-	ax.set_ylim(-5,5)
+	ax.set_xlim(-5, 5)
+	ax.set_ylim(-5, 5)
 	ax.set_zlim(-5, 5)
+
 # Radius
 	r = [-1 ,1]
 
@@ -215,7 +210,7 @@ def shape(c, ec, ew,a, scroll_elev, scroll_azim):
 		# For top view elev = 90
 		# For side view elev = 0
 
-		ax.view_init(elev=(scroll_elev * i), azim=(scroll_azim * i))
+		#ax.view_init(elev=(scroll_elev * i), azim=(scroll_azim * i))
 		return hedron,
 
 

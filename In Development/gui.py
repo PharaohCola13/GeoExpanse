@@ -25,8 +25,13 @@ top_frame = Tkinter.Frame(root).grid(row=0, pady=15)
 right_frame = Tkinter.Frame(root).grid(column=2, padx=10)
 
 alpha = Tkinter.StringVar()
+alpha.set(0.3)
+
+def sel():
+    selection = plt.axis(str(grid_axis.get()))
 
 grid_axis = Tkinter.StringVar()
+grid_axis.set('off')
 
 scrollbar_c = Tkinter.Scrollbar(root)
 scrollbar_c.grid(rows=3, column=5)
@@ -73,10 +78,10 @@ ec_entry.grid(row=2, column=2, sticky="ns")
 
 scrollbar_ec.config(command=ec_entry.yview)
 
-grid_on = Tkinter.Radiobutton(root, text="Grid On", variable=grid_axis, value='on', command=grid_axis.get())
-grid_on.grid(row=0, column=4)
+grid_on = Tkinter.Radiobutton(root, text="On", variable=grid_axis, value='on', command=sel)
+grid_on.grid(row=0, column=3)
 
-grid_off = Tkinter.Radiobutton(root, text='Grid Off', variable=grid_axis, value='off', command=grid_axis.get())
+grid_off = Tkinter.Radiobutton(root, text='Off', variable=grid_axis, value='off', command=sel)
 grid_off.grid(row=0, column=2)
 
 a_entry_label = Tkinter.Label(top_frame, text="Transparency").grid(row=0, column=0)
@@ -95,22 +100,37 @@ ew_entry.grid(row=2, column=7)
 #h_entry = Tkinter.Entry(root, textvariable=height, width=3)
 #h_entry.grid(row=2, column=7)
 
+
+def rot(i):
+    selection = ax.view_init(elev=int(scroll_elev) * i, azim=int(scroll_azim) * i)
+
+
 Tkinter.Label(root, text="XY-rotation").grid(row=1, column=1, pady=10)
-scroll_elev = Tkinter.Scale(root, from_=-50, to=50, width=40)
+scroll_elev = Tkinter.Scale(root, from_=-50, to=50, width=40, command=rot)
 scroll_elev.grid(row=2, column=1, sticky="nsew")
 
 Tkinter.Label(root, text="Z-rotation").grid(row=1, column=0, pady=10)
-scroll_azim = Tkinter.Scale(root, from_=-50, to=50, width=40)
+scroll_azim = Tkinter.Scale(root, from_=-50, to=50, width=40, command=rot)
 scroll_azim.grid(row=2, column=0, sticky="nsew")
 
-def make_shape(event=None):
-    shape(c_entry.get(c_entry.curselection()),
-           ec_entry.get(ec_entry.curselection()),
+
+# Figure Properties
+fig = plt.figure(figsize=(10, 10))
+
+ax = p3.Axes3D(fig)
+ax.set_facecolor('black')  # Figure background turns black
+
+ax.set_xlim(-5, 5)
+ax.set_ylim(-5, 5)
+ax.set_zlim(-5, 5)
+
+def make_shape():
+    shape(c_entry.get(c_entry.curselection()[0]),
+           ec_entry.get(ec_entry.curselection()[0]),
            ew_entry.get(),
            a_entry.get(),
-           scroll_elev.get(),
-           scroll_azim.get(),
-           #grid_axis.get()
+           #scroll_elev.get(),
+           #scroll_azim.get(),
           )
 
 MakePlot = Tkinter.Button(root, command=make_shape, text="Render")
