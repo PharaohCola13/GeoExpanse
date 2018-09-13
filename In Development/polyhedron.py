@@ -8,7 +8,7 @@ from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 from numpy import *
 
-def shape(fig, alpha, color, edge_c, rot_elev, rot_azim, grid):
+def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid):
 
 # Points on the object
 	p = (1 + sqrt(5))/2
@@ -113,11 +113,14 @@ def shape(fig, alpha, color, edge_c, rot_elev, rot_azim, grid):
 		J[i,:] = dot(points[i,:],P)
 
 	ax = p3.Axes3D(fig)
-	#ax.set_facecolor('black')
+	ax.set_facecolor('black')
 
 	plt.axis(grid)
 	#plt.axis('equal')
-
+	
+	ax.set_xlim(-10,10)
+	ax.set_ylim(-10,10)
+	ax.set_zlim(-10,10)
 # Radius
 	r = [-1 ,1]
 
@@ -205,3 +208,5 @@ def shape(fig, alpha, color, edge_c, rot_elev, rot_azim, grid):
 
 	ani = FuncAnimation(fig, animate,
              frames=550, interval=2, blit=False, repeat=True)
+
+	plt.draw()
