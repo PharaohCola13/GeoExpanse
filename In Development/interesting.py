@@ -7,68 +7,53 @@ from numpy import *
 from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 
+def shape(fig, alpha, color, edge_c, rot_elev, rot_azim, grid):
+	def x_(u,v):
+		x = cos(u) * sin(v)
+		return x
 
-def x_(u,v):
-	x = cos(u) * sin(v)
-	return x
+	def y_(u,v):
+		y = sin(u) * sin(v)
+		return y
 
-def y_(u,v):
-	y = sin(u) * sin(v)
-	return y
+	def z_(u,v):
+		z = cos(v) + log1p(tan(2 + v)**2)
+		return z
 
-def z_(u,v):
-	z = cos(v) + log1p(tan(2+v)**2)
-	return z
+	u = linspace(0.001, 2 * pi, 25)
+	v = linspace(0, 2 * pi, 25)
 
-u = linspace(0.001, 2 * pi, 25)
-v = linspace(0, 2 * pi, 25)
+	u, v = meshgrid(u, v)
 
-u, v = meshgrid(u, v)
+	x = x_(u,v)
+	y = y_(u,v)
+	z = z_(u,v)
 
-x = x_(u,v)
-y = y_(u,v)
-z = z_(u,v)
+	# Figure Properties
+	#fig = plt.figure(figsize=(8,8))
 
-# Figure Properties
-fig = plt.figure(figsize=(8,8))
+	ax = p3.Axes3D(fig)
+	ax.set_facecolor('black')
 
-ax = p3.Axes3D(fig)
-ax.set_facecolor('black')
+	plt.axis(grid)
+	#plt.axis('equal')
 
-plt.axis('off')
-plt.axis('equal')
+	# Surface Plot
+	interest = ax.plot_surface(x, y, z)
 
-# Surface Plot
-interest = ax.plot_surface(x, y, z)
+	interest.set_alpha(alpha)
+	interest.set_edgecolor(edge_c)
+	interest.set_linewidth(0.5)
+	interest.set_facecolor(color)
 
-interest.set_alpha(0.5)
-interest.set_edgecolor('w')
-interest.set_linewidth(0.5)
-interest.set_facecolor('deepskyblue')
-
-# Definitions for animation
-def init():
- 	return interest,
-#
-def animate(i):
+	#def animate(i):
 #     # azimuth angle : 0 deg to 360 deg
 #     # elev = i * n --> rotates object about the xy-plane with a magnitude of n
 #     # azim = i * n --> rotates object around the z axis with a magnitude of n
 #     # For top view elev = 90
 #     # For side view elev = 0
 #
-    ax.view_init(elev=i*10, azim=i*10)
-    return interest,
+	#	ax.view_init(elev=(rot_elev * i), azim=(rot_azim * i))
 
-# Animate
-ani = FuncAnimation(fig, animate, init_func=init,
-                  frames=100, interval=1, repeat=True)
-
-# Saving to Interesting.mp4
-#
-# Writer = writers['ffmpeg']
-# writer = Writer(fps=25, bitrate=1800)
-#
-# ani.save('Interesting.mp4', writer=writer)
-
-plt.show()
+	#ani = FuncAnimation(fig, animate,
+     #  	 frames=550, interval=2, blit=False, repeat=True)
