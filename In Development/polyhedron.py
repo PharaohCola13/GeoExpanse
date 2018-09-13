@@ -1,25 +1,20 @@
 # A 120-Polyhedron, brought to you by PharaohCola13
+import matplotlib
+from matplotlib import *
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
-from matplotlib import *
-
-import argparse
-from numpy import *
 from mpl_toolkits.mplot3d.art3d import *
-from matplotlib.animation import * 
+from matplotlib.animation import *
+from numpy import *
 
+def shape(c, ec, ew,a, scroll_elev, scroll_azim):
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-Y", "--run", help="Runs program", action="store_true")
-parser.add_argument("-c", "--color", help="Defines Color", action="store")
-parser.add_argument("-a", "--alpha", help="Defines Transparency", action="store", type=float)
-parser.add_argument("-r", "--rotate", help="Rotates Figure", action="store_true")
-parser.add_argument("-s", "--save", help="Saves Figure as mp4", action="store_true")
+	#si = int(side.get())
+#	c = c_entry.get(c_entry.curselection()[0])
+	#edge_color = ec_entry.get(ec_entry.curselection()[0])
+	#a = a_entry.get()
 
-args = parser.parse_args(args=None if sys.argv[1:] else ['--help'])
-
-if args.run:
 # Points on the object
 	p = (1 + sqrt(5))/2
 	points = array([
@@ -122,21 +117,19 @@ if args.run:
 	for i in range(63):
 		J[i,:] = dot(points[i,:],P)
 
-# Figure Properties
-	fig = plt.figure(figsize=(8,8))
+	# Figure Properties
+	fig = plt.figure(figsize=(8, 8))
 
 	ax = p3.Axes3D(fig)
-	ax.set_facecolor('black') # Figure background turns black
-	
-# Axis Properties
-	plt.axis('off') # Turns off the axis grid
-	plt.axis('equal')
+	ax.set_facecolor('black')
 
-# Axis Limits
-	ax.set_xlim(-10, 10)
-	ax.set_ylim(-10, 10)
-	ax.set_zlim(-10, 10)
+	#plt.axis(axis_grid)
+#	plt.axis('equal')
 
+	# Axis Limits
+	ax.set_xlim(-5,5)
+	ax.set_ylim(-5,5)
+	ax.set_zlim(-5, 5)
 # Radius
 	r = [-1 ,1]
 
@@ -201,44 +194,43 @@ if args.run:
 			[J[38], J[53], J[54]],  [J[54], J[61], J[60]],	[J[54], J[60], J[62]], 		
 	]
 
-# Surface plot
-	hedron120 = Poly3DCollection(verts)
-	
-	hedron120.set_edgecolor('w')
-	hedron120.set_linewidth(1)
-	hedron120.set_alpha(args.alpha)
-	hedron120.set_facecolor(args.color)
+	shape = Poly3DCollection(verts)
 
-	hedron = ax.add_collection3d(hedron120)
+	shape.set_edgecolor(ec)
+	shape.set_linewidth(ew)
+	shape.set_alpha(a)
+	shape.set_facecolor(c)
 
-	if args.rotate:
-# Defintions for animations
-		def init():
-		    return hedron,
+	hedron = ax.add_collection3d(shape)
 
-	def animate(i):
-# azimuth angle : 0 deg to 360 deg
-# elev = i * n --> rotates object about the xy-plane with a magnitude of n
-# azim = i * n --> rotates object around the z axis with a magnitude of n
-# For top view elev = 90
-# For side view elev = 0
 
-		ax.view_init(elev=0, azim= 4 * i)
+	def init():
 		return hedron,
 
-# Smooth-ish transition @ elev=90+i, azim=4 * 1, .., frames=550
 
-# Animate
+	def animate(i):
+		# azimuth angle : 0 deg to 360 deg
+		# elev = i * n --> rotates object about the xy-plane with a magnitude of n
+		# azim = i * n --> rotates object around the z axis with a magnitude of n
+		# For top view elev = 90
+		# For side view elev = 0
+
+		ax.view_init(elev=(scroll_elev * i), azim=(scroll_azim * i))
+		return hedron,
+
+
+	# Smooth-ish transition @ elev=90+i, azim=4 * 1, .., frames=550
+
+	# Animate
 	ani = FuncAnimation(fig, animate, init_func=init,
-	                   frames=550, interval=2, blit=False, repeat=True)
+						frames=550, interval=2, blit=False, repeat=True)
 
-	if args.save:
-#Saving to 120-Polyhedron.mp4
+# if args.save:
+# #Saving to 120-Polyhedron.mp4
+#
+# 		Writer = writers['ffmpeg']
+# 		writer = Writer(fps=15, bitrate=1800)
+#
+# 		ani.save('120-Polyhedron.mp4', writer=writer)
 
-		Writer = writers['ffmpeg']
-		writer = Writer(fps=15, bitrate=1800)
-
-		ani.save('120-Polyhedron.mp4', writer=writer)
-
-plt.show() # Shows Figure
-	
+	plt.show()  # Shows Figure
