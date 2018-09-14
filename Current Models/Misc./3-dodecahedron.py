@@ -153,12 +153,12 @@ if args.run:
 
 	dodeca_50.set_edgecolor('slateblue')
 	dodeca_50.set_linewidth(2)
-	dodeca_50.set_alpha(0.3)
-	dodeca_50.set_facecolor('royalblue')
+	dodeca_50.set_alpha(args.alpha)
+	dodeca_50.set_facecolor(args.color)
 
 	hedron_50 = ax.add_collection3d(dodeca_50)
 
-	if args.save:
+	if args.rotate:
 # Defintions for animations
 		def init():
 			return hedron,
