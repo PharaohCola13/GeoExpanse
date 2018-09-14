@@ -1,12 +1,15 @@
 # A Cube, brought to you by PharaohCola13
 
-import sys
-sys.path.insert(0,'./parse.py')
-from  parse import *
+import mpl_toolkits.mplot3d.axes3d as p3
+import matplotlib.pyplot as plt
+from matplotlib import *
+from numpy import *
+from mpl_toolkits.mplot3d.art3d import *
+from matplotlib.animation import *
 
 name = "Cube"
 
-if args.run:
+def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
 	points = array([[-1, -1, -1],
 	               [1, -1, -1 ],
 	               [1, 1, -1],
@@ -28,12 +31,10 @@ if args.run:
 		Z[i,:] = dot(points[i,:],P)
 
 # Figure Properties
-	fig = plt.figure(figsize=(8,8))
-
 	ax = p3.Axes3D(fig)
 	ax.set_facecolor('black')
 	
-	plt.axis('off')
+	plt.axis(grid)
 	plt.axis('equal')
 	
 	ax.set_xlim(-4,4)
@@ -58,19 +59,15 @@ if args.run:
 # Cube Properties
 	cube = Poly3DCollection(verts_cube)
 
-	cube.set_edgecolor('white')
-	cube.set_linewidth(1)
-	cube.set_alpha(args.alpha)
-	cube.set_facecolor(args.color)
+	cube.set_edgecolor(edge_c)
+	cube.set_linewidth(edge_w)
+	cube.set_alpha(alpha)
+	cube.set_facecolor(color)
 
 # Plot Surfaces
 	ax.add_collection3d(cube)
 	
-	if args.rotate:
 # Defintions for animations
-		def init():
-		    return cube,
-
 		def animate(i):
 # azimuth angle : 0 deg to 360 deg
 # elev = i * n --> rotates object about the xy-plane with a magnitude of n
@@ -82,14 +79,5 @@ if args.run:
 		    return cube,
 
 # Animate
-		ani = FuncAnimation(fig, animate, init_func=init,
+		ani = FuncAnimation(fig, animate,
 	    	              frames=110, interval=1, blit=False, repeat=True)
-		if args.save:
-# Saving to Cube.mp4
-
-			Writer = writers['ffmpeg']
-			writer = Writer(fps=15, bitrate=1800)
-
-			 ani.save('../Samples/%s.mp4' % name, writer=writer)
-
-	plt.show()
