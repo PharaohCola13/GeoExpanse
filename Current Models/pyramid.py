@@ -64,28 +64,3 @@ def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
 	pyramid.set_edgecolor(edge_c) # Edge color of the lines on the figure
 	pyramid.set_linewidth(edge_w) # Line width of the edges
 	pyramid.set_facecolor(color) # General color of the figure
-
-# Definitions for animation
-	def init():
-	    return pyramid,
-
-	def animate(i):
-# azimuth angle : 0 deg to 360 deg
-# elev = i * n --> rotates object about the xy-plane with a magnitude of n
-# azim = i * n --> rotates object around the z axis with a magnitude of n
-# For top view elev = 90
-# For side view elev = 0
-
-	    ax.view_init(elev=i, azim=i*4)
-	    return pyramid,
-
-# Animate
-	ani = FuncAnimation(fig, animate, init_func=init,
-	                    frames=100, interval=20, blit=False, repeat=True)
-# Saving to s-Pyramid.mp4
-
-	# Writer = writers['ffmpeg']
-	# writer = Writer(fps=15, bitrate=1800)
-
-	# name = '%s-Pyramid' % int(s)
-	# ani.save('%s.mp4' % name, writer=writer)
