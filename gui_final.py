@@ -7,17 +7,74 @@ import mpl_toolkits.mplot3d.axes3d as p3
 from matplotlib.animation import *
 from numpy import *
 from matplotlib.figure import Figure
-import tkinter as tk  # python 2.7
+import Tkinter as tk  # python 2.7
 #import ttk            # python 2.7
 #import sys
-import interesting
-import polyhedron
+#import interesting
+
+sys.path.insert(0, './In Development/')
+
+sys.path.insert(0, './Current Models/')
+sys.path.insert(0, './Current Models/Hyperbolic')
+sys.path.insert(0, './Current Models/Misc.')
+sys.path.insert(0, './Current Models/Platonic Solids')
+sys.path.insert(0, './Current Models/Surfaces')
+sys.path.insert(0, './Current Models/Topological')
+
+sys.path.insert(0, './Scutoid Research/')
+
+## Current Models
+import prism 			 	 as pris
+import pyramid				 as pyra
+import sphere				 as sphe 
+
+# Hyperbolic
+import hyperbolic_octahedron as hyoc
+import hyperbolic_paraboloid as hypa
+import one_sheet_hyperboloid as oshy
+
+# Misc.
+import three_dodecahedron	 as tdod
+import cressant				 as cres
+import funnel				 as funn
+import gabriel_horn			 as horn
+import rose_spiral			 as rose
+import shell				 as shel
+import tesseract			 as tess
+
+# Surfaces
+#import boys_surface			 as boys
+#import breather_surface		 as brea
+#import kuen_surface			 as kuen
+#import steiner_surface		 as stei
+
+# Platonic Surfaces
+import cube					 as cube 
+import dodecahedron			 as dode
+import icosahedron			 as icos
+import octahedron			 as octa
+
+# Topological
+#import cross_cap			 as cros
+#import klein				 as klei
+#import mobius				 as mobi
+#import torus				 as toru
+
+## In Development
+import interesting			 as rile
+import polyhedron			 as poly
+#import hyperbolic_cylinder	 as hycl
+#import dini_surface			 as disu
+#import knot					 as knot
+#import neat					 as neat
+#import spiral				 as spir
+#import testing				 as test
+#import vase					 as vase
+
 
 root = tk.Tk()
 
 fig = plt.figure(figsize=(8,8))
-
-root.title("Geometric Models")
 
 #root.geometry("1050x965")
 # Vars
@@ -59,13 +116,20 @@ a_entry_label 	= tk.Label(root, text="Transparency").grid(row=0, column=1, stick
 a_entry 		= tk.Scale(root, from_=0, to=1, resolution=0.1, orient=tk.HORIZONTAL)
 a_entry.grid(row=0, column=2, sticky='nw', pady=250)
 
+
+si_entry_label 	= tk.Label(root, text="Sides").grid(row=0, column=1, sticky='nw', pady=465)
+si_entry 		= tk.Scale(root, from_=1, to=1000, resolution=1, orient=tk.HORIZONTAL)
+si_entry.grid(row=0, column=2, sticky='nw', pady=450)
+
+
 # Shape name
 
-# color_entry_label 	= tk.Label(root, text="Alt color").grid(row=0, column=1, sticky='nw', pady=465)
-# color_entry 		= tk.Entry(root, textvariable=shape, width=10)
-# color_entry.grid(row=0, column=2, sticky='nw', pady=450)
+#shape_name_label 	= tk.Label(root, text="Shape").grid(row=0, column=1, sticky='nw', pady=465)
+#shape_name 		= tk.Entry(root, textvariable=shape, width=10)
+#shape_name.grid(row=0, column=2, sticky='nw', pady=450)
 #
-# colorset = color_entry.get()
+
+#shapeobj = shape_name.get()
 
 # Edge Width
 
@@ -133,9 +197,11 @@ class Geometry(tk.Frame):
 		self.plotbutton.grid(row=3, column=1, rowspan=2, columnspan=2, sticky="nsew")
 
 	def plot(self,canvas,ax):	
-		global fig, scroll_azim, scroll_elev, c_entry, ec_entry, a_entry, grid_axis, ew_entry
+		global fig, scroll_azim, scroll_elev, c_entry, ec_entry, ew_entry, a_entry, grid_axis
 		
 		ax.clear()
+		name 		= "Unknown Object"	
+		root.title("Geometric Models ({})".format(name))	
 		edge_c 		= ec_entry.get(ec_entry.curselection()[0]) 
 		color 		= c_entry.get(c_entry.curselection()[0])
 		rot_azim 	= scroll_azim.get()
@@ -185,8 +251,8 @@ class Geometry(tk.Frame):
 		canvas.draw()
 
 	def test(self, canvas, ax):
-		global fig, scroll_azim, scroll_elev, c_entry, ec_entry, a_entry,grid_axis
-		
+		global fig, scroll_azim, scroll_elev, c_entry, ec_entry, a_entry, grid_axis, si_entry
+
 		#ax.clear()
 		edge_c 		= ec_entry.get(ec_entry.curselection()[0]) 
 		color 		= c_entry.get(c_entry.curselection()[0])
@@ -195,22 +261,23 @@ class Geometry(tk.Frame):
 		alpha		= a_entry.get()
 		grid 		= grid_axis.get()
 		edge_w		= ew_entry.get()
+		sides		= si_entry.get()
 		
-		interesting.shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid)
+		sphe.shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides)
 
-		def animate(i):
+	#	def animate(i):
 	#     # azimuth angle : 0 deg to 360 deg
 	#     # elev = i * n --> rotates object about the xy-plane with a magnitude of n
 	#     # azim = i * n --> rotates object around the z axis with a magnitude of n
 	#     # For top view elev = 90
 	#     # For side view elev = 0
 	#
-			ax.view_init(elev=(rot_elev * i), azim=(rot_azim * i))
+	#		ax.view_init(elev=(rot_elev * i), azim=(rot_azim * i))
 
-		ani = FuncAnimation(fig, animate,
-		   	 frames=550, interval=2, blit=False, repeat=True)
+	#	ani = FuncAnimation(fig, animate,
+	#	   	 frames=1000000, interval=1000, blit=False, repeat=True)
+		#root.title("Geometric Models ({})".format(name))
 		canvas.draw()
-
 
 
 geo=Geometry(master=root)
