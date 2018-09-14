@@ -2,16 +2,14 @@
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
-
-from mpl_toolkits.mplot3d.art3d import *
-from matplotlib.animation import *
 from matplotlib import *
 from numpy import *
+from mpl_toolkits.mplot3d.art3d import *
+from matplotlib.animation import *
 
+name = "Dodecahedron"
 
-option = int(input('Run? (0) Yes, (1) No\n>> '))
-
-while option == 0:
+def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
 
 # Points on the object
 	points = array([
@@ -52,13 +50,11 @@ while option == 0:
 		Z[i,:] = dot(points[i,:],P)
 
 # Figure Properties
-	fig = plt.figure(figsize=(8,8))
-
 	ax = p3.Axes3D(fig)
 	ax.set_facecolor('black') # Figure background turns black
 	
 # Axis Properties
-	plt.axis('off') # Turns off the axis grid
+	plt.axis(grid) # Turns off the axis grid
 	plt.axis('equal')
 
 # Axis Limits
@@ -67,8 +63,7 @@ while option == 0:
 	ax.set_zlim(-4, 4)
 
 # Radius
-	radius = float(input('What is the radius?\n>> '))
-	r = radius
+	r = 1
 	r = [-1 * r,r]
 
 # Definition of x and y
@@ -93,18 +88,15 @@ while option == 0:
 # Surface plot
 	dodeca = Poly3DCollection(verts)
 
-	dodeca.set_edgecolor('aqua')
-	dodeca.set_linewidth(2)
-	dodeca.set_alpha(0.1)
-	dodeca.set_facecolor('skyblue')
+	dodeca.set_edgecolor(edge_c)
+	dodeca.set_linewidth(edge_w)
+	dodeca.set_alpha(alpha)
+	dodeca.set_facecolor(color)
 
 	dodecahedron = ax.add_collection3d(dodeca)
 
 
 # Defintions for animations
-	def init():
-	    return dodecahedron,
-
 	def animate(i):
 # azimuth angle : 0 deg to 360 deg
 # elev = i * n --> rotates object about the xy-plane with a magnitude of n
@@ -118,15 +110,5 @@ while option == 0:
 # Smooth-ish transition @ elev=90+i, azim=4 * 1, .., frames=550
 
 # Animate
-	ani = FuncAnimation(fig, animate, init_func=init,
+	ani = FuncAnimation(fig, animate,
 	                   frames=550, interval=2, blit=False, repeat=True)
-
-#Saving to Dodecahedron.mp4
-
-	# Writer = writers['ffmpeg']
-	# writer = Writer(fps=15, bitrate=1800)
-
-	# ani.save('Dodecahedron.mp4', writer=writer)
-
-	plt.show() # Shows Figure
-	option = int(input('Run again? (0) Yes, (1) No\n>> '))
