@@ -7,10 +7,9 @@ import mpl_toolkits.mplot3d.axes3d as p3
 from matplotlib.animation import *
 from numpy import *
 from matplotlib.figure import Figure
-import Tkinter as tk  # python 2.7
-import ttk            # python 2.7
-import sys
-
+import tkinter as tk  # python 2.7
+#import ttk            # python 2.7
+#import sys
 import interesting
 import polyhedron
 
@@ -20,11 +19,12 @@ fig = plt.figure(figsize=(8,8))
 
 root.title("Geometric Models")
 
-root.geometry("1050x965")
+#root.geometry("1050x965")
 # Vars
 
 grid_axis = tk.StringVar()
 
+shape = tk.StringVar()
 # Functions
 
 def axi():
@@ -59,6 +59,14 @@ a_entry_label 	= tk.Label(root, text="Transparency").grid(row=0, column=1, stick
 a_entry 		= tk.Scale(root, from_=0, to=1, resolution=0.1, orient=tk.HORIZONTAL)
 a_entry.grid(row=0, column=2, sticky='nw', pady=250)
 
+# Shape name
+
+# color_entry_label 	= tk.Label(root, text="Alt color").grid(row=0, column=1, sticky='nw', pady=465)
+# color_entry 		= tk.Entry(root, textvariable=shape, width=10)
+# color_entry.grid(row=0, column=2, sticky='nw', pady=450)
+#
+# colorset = color_entry.get()
+
 # Edge Width
 
 ew_entry_label 	= tk.Label(root, text="Edge Width").grid(row=0, column=1, sticky='nw', pady=350)
@@ -70,20 +78,19 @@ ew_entry.grid(row=0, column=2, sticky='nw', pady=335)
 c_entry_label 	= tk.Label(root, text="Face Color").grid(row=0, column=1, sticky='nw', pady=30, padx=20)
 
 c_entry = tk.Listbox(root, exportselection=0, width=15) 
-c_entry.insert(1, 'gold')
-c_entry.insert(2, 'teal')
-c_entry.insert(3, 'white')
-c_entry.insert(4, 'red')
+c_entry.insert(1, 'red')
+c_entry.insert(2, 'orange')
+c_entry.insert(3, 'yellow')
+c_entry.insert(4, 'green')
 c_entry.insert(5, 'blue')
-c_entry.insert(6, 'fuchsia')
-c_entry.insert(7, 'green')
-c_entry.insert(8, 'lime')
-c_entry.insert(9, 'paleturquoise')
-c_entry.insert(10, 'orange')
-c_entry.insert(11, 'lightgray')
-c_entry.insert(12, 'black')
-c_entry.insert(13, 'coral')
-c_entry.insert(14, 'deepskyblue')
+c_entry.insert(6, 'purple')
+c_entry.insert(7, 'gold')
+c_entry.insert(8, 'fuchsia')
+c_entry.insert(9, 'turquoise')
+c_entry.insert(10, 'silver')
+c_entry.insert(11, 'black')
+c_entry.insert(12, 'white')
+#c_entry.insert(13, colorset)
 
 c_entry.grid(row=0, column=1, sticky='n', pady=50)
 
@@ -91,20 +98,18 @@ c_entry.grid(row=0, column=1, sticky='n', pady=50)
 
 tk.Label(root, text="Edge Color").grid(row=0, column=2, sticky='nw', pady=30, padx=20)
 ec_entry = tk.Listbox(root, exportselection=0, width=15)
-ec_entry.insert(1, 'gold')
-ec_entry.insert(2, 'teal')
-ec_entry.insert(3, 'white')
-ec_entry.insert(4, 'red')
+ec_entry.insert(1, 'red')
+ec_entry.insert(2, 'orange')
+ec_entry.insert(3, 'yellow')
+ec_entry.insert(4, 'green')
 ec_entry.insert(5, 'blue')
-ec_entry.insert(6, 'fuchsia')
-ec_entry.insert(7, 'green')
-ec_entry.insert(8, 'lime')
-ec_entry.insert(9, 'paleturquoise')
-ec_entry.insert(10, 'orange')
-ec_entry.insert(11, 'lightgray')
-ec_entry.insert(12, 'black')
-ec_entry.insert(13, 'coral')
-ec_entry.insert(14, 'deepskyblue')
+ec_entry.insert(6, 'purple')
+ec_entry.insert(7, 'gold')
+ec_entry.insert(8, 'fuchsia')
+ec_entry.insert(9, 'turquoise')
+ec_entry.insert(10, 'silver')
+ec_entry.insert(11, 'black')
+ec_entry.insert(12, 'white')
 ec_entry.grid(row=0, column=2, sticky='nw', pady=50)
 
 tk.Button(root, text="Quit", command=quit).grid(row=5, column=1, rowspan=2, columnspan=2, sticky='nsew')
@@ -191,7 +196,7 @@ class Geometry(tk.Frame):
 		grid 		= grid_axis.get()
 		edge_w		= ew_entry.get()
 		
-		polyhedron.shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid)
+		interesting.shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid)
 
 		def animate(i):
 	#     # azimuth angle : 0 deg to 360 deg

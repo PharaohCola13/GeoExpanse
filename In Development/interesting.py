@@ -7,7 +7,7 @@ from numpy import *
 from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 
-def shape(fig, alpha, color, edge_c, rot_elev, rot_azim, grid):
+def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid):
 	def x_(u,v):
 		x = cos(u) * sin(v)
 		return x
@@ -43,17 +43,5 @@ def shape(fig, alpha, color, edge_c, rot_elev, rot_azim, grid):
 
 	interest.set_alpha(alpha)
 	interest.set_edgecolor(edge_c)
-	interest.set_linewidth(0.5)
+	interest.set_linewidth(edge_w)
 	interest.set_facecolor(color)
-
-	#def animate(i):
-#     # azimuth angle : 0 deg to 360 deg
-#     # elev = i * n --> rotates object about the xy-plane with a magnitude of n
-#     # azim = i * n --> rotates object around the z axis with a magnitude of n
-#     # For top view elev = 90
-#     # For side view elev = 0
-#
-	#	ax.view_init(elev=(rot_elev * i), azim=(rot_azim * i))
-
-	#ani = FuncAnimation(fig, animate,
-     #  	 frames=550, interval=2, blit=False, repeat=True)
