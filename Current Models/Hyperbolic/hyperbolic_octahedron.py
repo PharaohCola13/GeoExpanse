@@ -56,16 +56,3 @@ def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
 	hyper_octa.set_edgecolor(edge_c) # Edge color of the lines on the figure
 	hyper_octa.set_linewidth(edge_w) # Line width of the edges
 	hyper_octa.set_facecolor(color) # General color of the figure
-
-	def animate(i):
-		global rot_elev, rot_azim
-	#     # azimuth angle : 0 deg to 360 deg
-	#     # elev = i * n --> rotates object about the xy-plane with a magnitude of n
-	#     # azim = i * n --> rotates object around the z axis with a magnitude of n
-	#     # For top view elev = 90
-	#     # For side view elev = 0
-	#
-		ax.view_init(elev=rot_elev * i, azim=rot_azim * i)
-
-	ani = FuncAnimation(fig, animate,
-		   	frames=1000000, interval=1000, blit=False, repeat=True)
