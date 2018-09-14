@@ -111,25 +111,3 @@ def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
 # Plot Surfaces
 	out = ax.add_collection3d(outer_region)
 	inn = ax.add_collection3d(inner_region)
-
-# Defintions for animations
-	def animate(i):
-# azimuth angle : 0 deg to 360 deg
-# elev = i * n --> rotates object about the xy-plane with a magnitude of n
-# azim = i * n --> rotates object around the z axis with a magnitude of n
-# For top view elev = 90
-# For side view elev = 0
-	
-	    ax.view_init(elev=i, azim= 4 * i)
-	    return out,
-
-# Animate
-	ani = FuncAnimation(fig, animate,
-	                   frames=88, interval=1, blit=False, repeat=True)
-
-#Saving to Tesseract.mp4
-
-	#Writer = writers['ffmpeg']
-	#writer = Writer(fps=15, bitrate=1800)
-
-	#ani.save('Tesseract.mp4', writer=writer)
