@@ -1,16 +1,12 @@
 # A Shell, brought to you by PharaohCola13
 
-import mpl_toolkits.mplot3d.axes3d as p3
-import matplotlib.pyplot as plt
+import sys
+sys.path.insert(0,'./parse.py')
+from  parse import *
 
-from mpl_toolkits.mplot3d.art3d import *
-from matplotlib.animation import *
-from matplotlib import *
-from numpy import *
+name = "Shell"
 
-option = int(input('Run? (0) Yes, (1) No\n>> '))
-
-while option == 0:
+if args.run:
 # Definition of x
 	def x_(u,v):
 		x = power(1.2, v) * (sin(u)**2 * sin(v))
@@ -55,35 +51,36 @@ while option == 0:
 # Surface Plot
 	shell = ax.plot_surface(x, y, z)
 
-	shell.set_alpha(1) # Transparency of figure
+	shell.set_alpha(args.alpha) # Transparency of figure
 	shell.set_edgecolor('w') # Edge color of the lines on the figure
 	shell.set_linewidth(1) # Line width of the edges
-	shell.set_facecolor('deepskyblue') # General color of the figure
+	shell.set_facecolor(args.color) # General color of the figure
 
+	if args.rotate:
 # Definitions for animation
-	def init():
-		return shell,
-
-	def animate(i):
-# azimuth angle : 0 deg to 360 deg
-# elev = i * n --> rotates object about the xy-plane with a magnitude of n
-# azim = i * n --> rotates object around the z axis with a magnitude of n
-# For top view elev = 90
-# For side view elev = 0
-
-			ax.view_init(elev=i, azim=i*4)
+		ddef init():
 			return shell,
+
+		def animate(i):
+	# azimuth angle : 0 deg to 360 deg
+	# elev = i * n --> rotates object about the xy-plane with a magnitude of n
+	# azim = i * n --> rotates object around the z axis with a magnitude of n
+	# For top view elev = 90
+	# For side view elev = 0
+
+				ax.view_init(elev=i, azim=i*4)
+				return shell,
 	
 # Animate
-	# ani = FuncAnimation(fig, animate, init_func=init,
-	#                   frames=100, interval=20, blit=False, repeat=True)
+		ani = FuncAnimation(fig, animate, init_func=init,
+	                   frames=100, interval=20, blit=False, repeat=True)
 
+		if args.save
 # Saving to Shell.mp4
 
-	# Writer = writers['ffmpeg']
-	# writer = Writer(fps=15, bitrate=1800)
+			Writer = writers['ffmpeg']
+			writer = Writer(fps=15, bitrate=1800)
 
-	# ani.save('Shell.mp4', writer=writer)
+			ani.save('../Samples/%s.mp4' % name, writer=writer)
 
 	plt.show()
-	option = int(input('Run again? (0) Yes, (1) No\n>> '))
