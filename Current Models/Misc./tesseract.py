@@ -1,17 +1,12 @@
 # A Tesseract, brought to you by PharaohCola13
 
-import mpl_toolkits.mplot3d.axes3d as p3
-import matplotlib.pyplot as plt
+import sys
+sys.path.insert(0,'./parse.py')
+from  parse import *
 
-from mpl_toolkits.mplot3d.art3d import *
-from matplotlib.animation import *
-from matplotlib import *
-from numpy import *
+name = "Tesseract"
 
-option = int(input('Run? (0) Yes, (1) No\n>> '))
-
-while option == 0:
-
+if args.run:
 # Points on the object
 	points = array([
 				   [-1,	-1,	-1],
@@ -117,31 +112,29 @@ while option == 0:
 	out = ax.add_collection3d(outer_region)
 	inn = ax.add_collection3d(inner_region)
 
+	if args.rotate:
 # Defintions for animations
-	def init():
-	    return out,
 
-	def animate(i):
-# azimuth angle : 0 deg to 360 deg
-# elev = i * n --> rotates object about the xy-plane with a magnitude of n
-# azim = i * n --> rotates object around the z axis with a magnitude of n
-# For top view elev = 90
-# For side view elev = 0
-	
-	    ax.view_init(elev=i, azim= 4 * i)
-	    return out,
+		def animate(i):
+	# azimuth angle : 0 deg to 360 deg
+	# elev = i * n --> rotates object about the xy-plane with a magnitude of n
+	# azim = i * n --> rotates object around the z axis with a magnitude of n
+	# For top view elev = 90
+	# For side view elev = 0
 
-# Animate
-	ani = FuncAnimation(fig, animate, init_func=init,
-	                   frames=88, interval=1, blit=False, repeat=True)
+		    ax.view_init(elev=i, azim= 4 * i)
+		    return out,
 
+	# Animate
+		ani = FuncAnimation(fig, animate,
+				   frames=88, interval=1, blit=False, repeat=True)
+		if args.save:
 #Saving to Tesseract.mp4
 
-	#Writer = writers['ffmpeg']
-	#writer = Writer(fps=15, bitrate=1800)
+			Writer = writers['ffmpeg']
+			writer = Writer(fps=15, bitrate=1800)
 
-	#ani.save('Tesseract.mp4', writer=writer)
+			ani.save('../Samples/%s.mp4' % name, writer=writer)
 
 	
 	plt.show() # Shows Figure
-	option = int(input('Run again? (0) Yes, (1) No\n>> '))
