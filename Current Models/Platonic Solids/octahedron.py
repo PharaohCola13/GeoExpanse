@@ -76,28 +76,3 @@ def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
 	octa.set_facecolor(color)
 
 	octahedron = ax.add_collection3d(octa)
-
-
-# Defintions for animations
-	def animate(i):
-# azimuth angle : 0 deg to 360 deg
-# elev = i * n --> rotates object about the xy-plane with a magnitude of n
-# azim = i * n --> rotates object around the z axis with a magnitude of n
-# For top view elev = 90
-# For side view elev = 0
-
-	    ax.view_init(elev=0, azim= 4 * i)
-	    return octahedron,
-
-# Smooth-ish transition @ elev=90+i, azim=4 * 1, .., frames=550
-
-# Animate
-	ani = FuncAnimation(fig, animate,
-	                   frames=550, interval=2, blit=False, repeat=True)
-
-#Saving to Octahedron.mp4
-
-	# Writer = writers['ffmpeg']
-	# writer = Writer(fps=15, bitrate=1800)
-
-	# ani.save('Octahedron.mp4', writer=writer)
