@@ -1,88 +1,58 @@
 # A Hyperbolic Paraboliod, brought to you by PharaohCola13
 
-import sys
-sys.path.insert(0,'./parse.py')
-from  parse import *
+import mpl_toolkits.mplot3d.axes3d as p3
+import matplotlib.pyplot as plt
+from matplotlib import *
+from numpy import *
+from mpl_toolkits.mplot3d.art3d import *
+from matplotlib.animation import *
 
-if args.run:
-    # Definition of x
-    def x_(u, v):
-        x = u
-        return x
-
-
-    # Definition of y
-    def y_(u, v):
-        y = v
-        return y
+def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
+	# Definition of x
+	def x_(u, v):
+		x = u
+		return x
 
 
-    # Definition of z
-    def z_(u, v):
-        z = u * v
-        return z
-
-    # Value of the angles
-    u = linspace(-pi/2, pi/2, 25)
-    v = linspace(-pi/2, pi/2, 25)
-
-    u, v = meshgrid(u, v)
-
-    # Symbolic representation
-    x = x_(u, v)
-    y = y_(u, v)
-    z = z_(u, v)
-
-    # Figure Properties
-    fig = plt.figure(figsize=(8, 8))
-
-    ax = p3.Axes3D(fig)
-    ax.set_facecolor('black')  # Figure background turns black
-
-    # Axis Properties
-    plt.axis('off')  # Turns off the axis grid
-    plt.axis('equal')
-
-    # Axis Limits
-    ax.set_xlim(-2, 2)
-    ax.set_ylim(-2, 2)
-    ax.set_zlim(-2, 2)
-
-    # Surface Plot
-    hyper_para = ax.plot_surface(x, y, z)
-
-    hyper_para.set_alpha(args.alpha)  # Transparency of figure
-    hyper_para.set_edgecolor('w')  # Edge color of the lines on the figure
-    hyper_para.set_linewidth(1)  # Line width of the edges
-    hyper_para.set_facecolor(args.color)  # General color of the figure
-
-    if args.rotate:
-# Definitions for animation
-        def init():
-            return hyper_para,
+	# Definition of y
+	def y_(u, v):
+		y = v
+		return y
 
 
-    def animate(i):
-# azimuth angle : 0 deg to 360 deg
-# elev = i * n --> rotates object about the xy-plane with a magnitude of n
-# azim = i * n --> rotates object around the z axis with a magnitude of n
-# For top view elev = 90
-# For side view elev = 0
+	# Definition of z
+	def z_(u, v):
+		z = u * v
+		return z
 
-        ax.view_init(elev=29, azim=i * 4)
-        return hyper_para,
+	# Value of the angles
+	u = linspace(-pi/2, pi/2, 25)
+	v = linspace(-pi/2, pi/2, 25)
 
+	u, v = meshgrid(u, v)
 
-# Animate
-        ani = FuncAnimation(fig, animate, init_func=init,
-                        frames=100, interval=20, blit=False, repeat=True)
+	# Symbolic representation
+	x = x_(u, v)
+	y = y_(u, v)
+	z = z_(u, v)
 
-        if args.save:
-# Saving to Hyperbolic_Paraboliod.mp4
+	# Figure Properties
+	ax = p3.Axes3D(fig)
+	ax.set_facecolor('black')  # Figure background turns black
 
-            Writer = writers['ffmpeg']
-            writer = Writer(fps=15, bitrate=1800)
+	# Axis Properties
+	plt.axis(grid)
+	plt.axis('equal')
 
-            ani.save('Hyperbolic_Paraboliod.mp4', writer=writer)
+	# Axis Limits
+	ax.set_xlim(-2, 2)
+	ax.set_ylim(-2, 2)
+	ax.set_zlim(-2, 2)
 
-plt.show()  # Shows Figure
+	# Surface Plot
+	hyper_para = ax.plot_surface(x, y, z)
+
+	hyper_para.set_alpha(alpha)  # Transparency of figure
+	hyper_para.set_edgecolor(edge_c)  # Edge color of the lines on the figure
+	hyper_para.set_linewidth(edge_w)  # Line width of the edges
+	hyper_para.set_facecolor(color)  # General color of the figure
