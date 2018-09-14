@@ -1,12 +1,16 @@
 # A Dodecahedron, brought to you by PharaohCola13
 
-import sys
-sys.path.insert(0,'../')
-from parse import *
+import mpl_toolkits.mplot3d.axes3d as p3
+import matplotlib.pyplot as plt
+from matplotlib import *
+from numpy import *
+from mpl_toolkits.mplot3d.art3d import *
+from matplotlib.animation import *
 
 name = "Embedded-Dodecahedron"
 
-if args.run:
+
+def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
 
 # Points on the object
 	points = array([
@@ -65,12 +69,10 @@ if args.run:
 		N[i,:] = dot(points[i,:],R)
 
 # Figure Properties
-	fig = plt.figure(figsize=(8,8))
-
 	ax = p3.Axes3D(fig)
 	ax.set_facecolor('black')
 
-	plt.axis('off')
+	plt.axis(grid)
 	plt.axis('equal')
 
 	ax.set_xlim(-4,4)
@@ -153,16 +155,12 @@ if args.run:
 
 	dodeca_50.set_edgecolor('slateblue')
 	dodeca_50.set_linewidth(2)
-	dodeca_50.set_alpha(args.alpha)
-	dodeca_50.set_facecolor(args.color)
+	dodeca_50.set_alpha(0.3)
+	dodeca_50.set_facecolor('royalblue')
 
 	hedron_50 = ax.add_collection3d(dodeca_50)
 
-	if args.rotate:
 # Defintions for animations
-		def init():
-			return hedron,
-
 		def animate(i):
 # azimuth angle : 0 deg to 360 deg
 # elev = i * n --> rotates object about the xy-plane with a magnitude of n
@@ -176,14 +174,5 @@ if args.run:
 # Smooth-ish transition @ elev=90+i, azim=4 * 1, .., frames=550
 
 # Animate
-		ani = FuncAnimation(fig, animate, init_func=init,
+		ani = FuncAnimation(fig, animate,
 						   frames=550, interval=2, blit=False, repeat=True)
-		if args.save:
-#Saving to Dodecahedron.mp4
-
-			Writer = writers['ffmpeg']
-			writer = Writer(fps=15, bitrate=1800)
-
-			ani.save('Dodecahedron.mp4', writer=writer)
-
-plt.show()
