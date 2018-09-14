@@ -44,8 +44,6 @@ def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
     z = z_(u, v)
 
     # Figure Properties
-    fig = plt.figure(figsize=(8, 8))
-
     ax = p3.Axes3D(fig)
     ax.set_facecolor('black')  # Figure background turns black
 
