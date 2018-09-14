@@ -3,25 +3,13 @@
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
 from matplotlib import *
-
-import argparse
 from numpy import *
 from mpl_toolkits.mplot3d.art3d import *
-from matplotlib.animation import * 
+from matplotlib.animation import *
 
 name = "Octahedron"
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-Y", "--run", help="Runs program", action="store_true")
-parser.add_argument("-c", "--color", help="Defines Color", action="store")
-parser.add_argument("-a", "--alpha", help="Defines Transparency", action="store", type=float)
-parser.add_argument("-r", "--rotate", help="Rotates Figure", action="store_true")
-parser.add_argument("-s", "--save", help="Saves Figure as mp4", action="store_true")
-
-args = parser.parse_args(args=None if sys.argv[1:] else ['--help'])
-
-
-if args.run:
+def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
 
 # Points on the object
 	points = array([
@@ -48,13 +36,11 @@ if args.run:
 		Z[i,:] = dot(points[i,:],P)
 
 # Figure Properties
-	fig = plt.figure(figsize=(8,8))
-
 	ax = p3.Axes3D(fig)
 	ax.set_facecolor('black') # Figure background turns black
 	
 # Axis Properties
-	plt.axis('off') # Turns off the axis grid
+	plt.axis(grid) # Turns off the axis grid
 	plt.axis('equal')
 
 # Axis Limits
@@ -84,18 +70,15 @@ if args.run:
 # Surface plot
 	octa = Poly3DCollection(verts)
 
-	octa.set_edgecolor('blue')
-	octa.set_linewidth(2)
-	octa.set_alpha(0.3)
-	octa.set_facecolor('skyblue')
+	octa.set_edgecolor(edge_c)
+	octa.set_linewidth(edge_w)
+	octa.set_alpha(alpha)
+	octa.set_facecolor(color)
 
 	octahedron = ax.add_collection3d(octa)
 
 
 # Defintions for animations
-	def init():
-	    return octahedron,
-
 	def animate(i):
 # azimuth angle : 0 deg to 360 deg
 # elev = i * n --> rotates object about the xy-plane with a magnitude of n
@@ -109,8 +92,8 @@ if args.run:
 # Smooth-ish transition @ elev=90+i, azim=4 * 1, .., frames=550
 
 # Animate
-	#ani = FuncAnimation(fig, animate, init_func=init,
-	#                   frames=550, interval=2, blit=False, repeat=True)
+	ani = FuncAnimation(fig, animate,
+	                   frames=550, interval=2, blit=False, repeat=True)
 
 #Saving to Octahedron.mp4
 
@@ -118,5 +101,3 @@ if args.run:
 	# writer = Writer(fps=15, bitrate=1800)
 
 	# ani.save('Octahedron.mp4', writer=writer)
-
-	plt.show() # Shows Figure
