@@ -3,24 +3,14 @@
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
 from matplotlib import *
-
-import argparse
 from numpy import *
 from mpl_toolkits.mplot3d.art3d import *
-from matplotlib.animation import * 
+from matplotlib.animation import *
 
 name = "Icosahedron"
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-Y", "--run", help="Runs program", action="store_true")
-parser.add_argument("-c", "--color", help="Defines Color", action="store")
-parser.add_argument("-a", "--alpha", help="Defines Transparency", action="store", type=float)
-parser.add_argument("-r", "--rotate", help="Rotates Figure", action="store_true")
-parser.add_argument("-s", "--save", help="Saves Figure as mp4", action="store_true")
+def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
 
-args = parser.parse_args(args=None if sys.argv[1:] else ['--help'])
-
-if args.run:
 # Points on the object
 	p = (1 + sqrt(5))/2
 	points = array([
@@ -52,13 +42,11 @@ if args.run:
 		I[i,:] = dot(points[i,:],P)
 
 # Figure Properties
-	fig = plt.figure(figsize=(8,8))
-
 	ax = p3.Axes3D(fig)
 	ax.set_facecolor('black') # Figure background turns black
 	
 # Axis Properties
-	plt.axis('off') # Turns off the axis grid
+	plt.axis(grid) # Turns off the axis grid
 	plt.axis('equal')
 
 # Axis Limits
@@ -99,18 +87,14 @@ if args.run:
 # Surface plot
 	icosa = Poly3DCollection(verts)
 
-	icosa.set_edgecolor('white')
-	icosa.set_linewidth(1)
-	icosa.set_alpha(args.alpha)
-	icosa.set_facecolor(args.color)
+	icosa.set_edgecolor(edge_c)
+	icosa.set_linewidth(edge_w)
+	icosa.set_alpha(alpha)
+	icosa.set_facecolor(color)
 
 	icosahedron = ax.add_collection3d(icosa)
 
-	if args.rotate:
 # Defintions for animations
-		def init():
-		    return icosahedron,
-
 		def animate(i):
 # azimuth angle : 0 deg to 360 deg
 # elev = i * n --> rotates object about the xy-plane with a magnitude of n
@@ -124,14 +108,5 @@ if args.run:
 # Smooth-ish transition @ elev=90+i, azim=4 * 1, .., frames=550
 
 # Animate
-		ani = FuncAnimation(fig, animate, init_func=init,
+		ani = FuncAnimation(fig, animate,
 		                   frames=550, interval=2, blit=False, repeat=True)
-		if args.save:
-#Saving to Icosahedron.mp4
-
-			Writer = writers['ffmpeg']
-			writer = Writer(fps=15, bitrate=1800)
-
-			ani.save('Icosahedron.mp4', writer=writer)
-
-plt.show()
