@@ -66,18 +66,3 @@ def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
 
 # Plot Surfaces
 	ax.add_collection3d(cube)
-	
-# Defintions for animations
-		def animate(i):
-# azimuth angle : 0 deg to 360 deg
-# elev = i * n --> rotates object about the xy-plane with a magnitude of n
-# azim = i * n --> rotates object around the z axis with a magnitude of n
-# For top view elev = 90
-# For side view elev = 0
-
-		    ax.view_init(elev=0, azim= 4 * i)
-		    return cube,
-
-# Animate
-		ani = FuncAnimation(fig, animate,
-	    	              frames=110, interval=1, blit=False, repeat=True)
