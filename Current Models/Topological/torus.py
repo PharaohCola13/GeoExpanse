@@ -64,7 +64,7 @@ while option == 0:
 # Surface Plot
 	torus = ax.plot_surface(x, y, z,  rstride=5, cstride=5)
 
-	torus.set_alpha(1) # Transparency of figure
+	torus.set_alpha(0.5) # Transparency of figure
 	torus.set_edgecolor('w') # Edge color of the lines on the figure
 	torus.set_linewidth(1) # Line width of the edges
 	torus.set_facecolor('deepskyblue') # General color of the figure
@@ -85,8 +85,8 @@ while option == 0:
 
 
 # Animate
-	ani = FuncAnimation(fig, animate, init_func=init,
-    	               frames=36, interval=1, blit=False, repeat=True)
+#	ani = FuncAnimation(fig, animate, init_func=init,
+ #   	               frames=36, interval=1, blit=False, repeat=True)
 
 # Saving to torus.mp4
 

@@ -102,7 +102,7 @@ ew_entry.grid(row=2, column=7)
 
 
 def rot(i):
-    selection = ax.view_init(elev=int(scroll_elev) * i, azim=int(scroll_azim) * i)
+    selection = ax.view_init(elev=scroll_elev.get() * 10, azim=scroll_azim.get() * 10)
 
 
 Tkinter.Label(root, text="XY-rotation").grid(row=1, column=1, pady=10)
@@ -124,14 +124,49 @@ ax.set_xlim(-5, 5)
 ax.set_ylim(-5, 5)
 ax.set_zlim(-5, 5)
 
-def make_shape():
-    shape(c_entry.get(c_entry.curselection()[0]),
-           ec_entry.get(ec_entry.curselection()[0]),
-           ew_entry.get(),
-           a_entry.get(),
-           #scroll_elev.get(),
-           #scroll_azim.get(),
-          )
+def make_shape(event=None):
+    c = c_entry.get(c_entry.curselection()[0])
+    edge_color = ec_entry.get(ec_entry.curselection()[0])
+    a = float(alpha.get())
+    def x_(u, v):
+        x = cos(u) * sin(v)
+        return x
+    def y_(u, v):
+        y = sin(u) * sin(v)
+        return y
+    def z_(u, v):
+        z = cos(v) + log1p(tan(2 + v) ** 2)
+        return z
+    u = linspace(0.001, 2 * pi, 25)
+    v = linspace(0, 2 * pi, 25)
+    u, v = meshgrid(u, v)
+    x = x_(u, v)
+    y = y_(u, v)
+    z = z_(u, v)
+    # Surface Plot
+    interest = ax.plot_surface(x, y, z)
+    interest.set_alpha(a)
+    interest.set_edgecolor(edge_color)
+    interest.set_linewidth(0.5)
+    interest.set_facecolor(c)
+    # Definitions for animation
+    def init():
+        return interest,
+    #
+    def animate(i):
+        #     # azimuth angle : 0 deg to 360 deg
+        #     # elev = i * n --> rotates object about the xy-plane with a magnitude of n
+        #     # azim = i * n --> rotates object around the z axis with a magnitude of n
+        #     # For top view elev = 90
+        #     # For side view elev = 0
+        #
+        ax.view_init(elev=scroll_elev.get() * 10, azim=scroll_azim.get() * 10)
+        return interest,
+
+    # Animate
+    ani = FuncAnimation(fig, animate, init_func=init,
+                        frames=100, interval=1, repeat=True)
+    plt.show()
 
 MakePlot = Tkinter.Button(root, command=make_shape, text="Render")
 MakePlot.grid(row=10, columns=3, sticky="nsew")

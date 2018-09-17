@@ -7,7 +7,10 @@ from numpy import *
 from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 
-def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
+def name():
+    name = "Sphere"
+
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
 # Definition of x
 	def x_(u,v):
     		x = cos(u) * sin(v)
@@ -28,7 +31,7 @@ def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
 
 # Values of the angles
 	u = linspace(0, pi, s + 1)
-	v = linspace(0, 2 * pi, 1000)
+	v = linspace(0, multi_pi * pi, edges)
 
 	u, v = meshgrid(u, v)
 
@@ -58,3 +61,6 @@ def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
 	sphere.set_edgecolor(edge_c) # Edge color of the lines on the figure
 	sphere.set_linewidth(edge_w) # Line width of the edges
 	sphere.set_facecolor(color) # General color of the figure
+
+	ax.format_coord = lambda x, y: ""
+#	plt.show()
