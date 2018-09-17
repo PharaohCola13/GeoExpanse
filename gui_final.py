@@ -7,7 +7,7 @@ import mpl_toolkits.mplot3d.axes3d as p3
 from matplotlib.animation import *
 from numpy import *
 from matplotlib.figure import Figure
-import tkinter as tk  # python 2.7
+import Tkinter as tk  # python 2.7
 import PIL
 from PIL import ImageTk
 #import ttk            # python 2.7
@@ -50,7 +50,7 @@ sys.path.insert(0, './Scutoid Research/')
 # #import breather_surface		 as brea
 # #import kuen_surface			 as kuen
 # #import steiner_surface		 as stei
-import roman_surface		 as roma
+#import roman_surface		 as roma
 #
 # # Platonic Surfaces
 # import cube					 as cube
@@ -62,7 +62,7 @@ import roman_surface		 as roma
 # #import cross_cap			 as cros
 # #import klein				 as klei
 # #import mobius				 as mobi
-# #import torus				 as toru
+import torus				 as toru
 #
 # ## In Development
 # import interesting			 as rile
@@ -101,15 +101,21 @@ class Geometry(tk.Frame):
 		# Vars
 
 		self.grid_axis = tk.StringVar()
+		
+		#self.alpha	   = tk.StringVar()
+		
+		self.axis_limits = tk.StringVar()
+
+		#self.		= 
 
 		# Functions
 
 		def axi():
-			self.plt.axis(str(self.grid_axis.get()))
+			plt.axis(str(self.grid_axis.get()))
 
 		def zoo():
-			self.plt.xlim(-1 * axis_zoom.get(), axis_zoom.get())
-			self.plt.ylim(-1 * axis_zoom.get(), axis_zoom.get())
+			self.plt.xlim(-1 * self.axis_zoom.get(), self.axis_zoom.get())
+			self.plt.ylim(-1 * self.axis_zoom.get(), self.axis_zoom.get())
 
 		def quit():
 			global root
@@ -156,13 +162,13 @@ class Geometry(tk.Frame):
 
 		# Entry of the number of sides
 		self.si_entry_label = tk.Label(root, text="Number of Sides").grid(row=0, column=1, sticky='nw', pady=270)
-		self.si_entry = tk.Scale(root, from_=1, to=50, resolution=1, orient=tk.HORIZONTAL)
+		self.si_entry = tk.Scale(root, from_=1, to=100, resolution=1, orient=tk.HORIZONTAL)
 		self.si_entry.grid(row=0, column=2, sticky='nw', pady=250)
 		self.si_entry.set(20)
 
 		# Entry of the number of edges
 		tk.Label(root, text="Number of edges").grid(row=0, column=1, sticky='nw', pady=310)
-		self.ed_entry = tk.Scale(root, from_=1, to=50, resolution=1, orient=tk.HORIZONTAL)
+		self.ed_entry = tk.Scale(root, from_=1, to=100, resolution=1, orient=tk.HORIZONTAL)
 		self.ed_entry.grid(row=0, column=2, sticky='nw', pady=290)
 		self.ed_entry.set(20)
 
@@ -171,7 +177,7 @@ class Geometry(tk.Frame):
 		self.pi_entry.grid(row=0, column=2, sticky='nw', pady=370)
 
 		tk.Label(root, text="Radius").grid(row=0, column=1, sticky='nw', pady=430)
-		self.ra_entry = tk.Scale(root, from_=1, to=50, resolution=1, orient=tk.HORIZONTAL)
+		self.ra_entry = tk.Scale(root, from_=1, to=100, resolution=1, orient=tk.HORIZONTAL)
 		self.ra_entry.grid(row=0, column=2, sticky='nw', pady=410)
 
 		# Edge Width
@@ -231,12 +237,6 @@ class Geometry(tk.Frame):
 
 		self.ec_entry.configure(yscrollcommand=self.ec_scroll.set)
 
-		zoom 		= self.axis_zoom.get()
-
-		plt.ax.set_xlim(-1 * zoom, zoom)
-		ax.set_ylim(-1 * zoom, zoom)
-		ax.set_zlim(-5, 5)
-
 	def plot(self,canvas, ax):
 		ax.clear()
 		name = "Unk Surface"
@@ -245,11 +245,16 @@ class Geometry(tk.Frame):
 
 		edge_c 		= self.ec_entry.get(self.ec_entry.curselection()[0])
 		color 		= self.c_entry.get(self.c_entry.curselection()[0])
-		rot_azim 	= self.scroll_azim.get()
-		rot_elev 	= self.scroll_elev.get()
-		alpha 		= self.a_entry.get()
+		#rot_azim 	= self.scroll_azim.get()
+		#rot_elev 	= self.scroll_elev.get()
+		#alpha 		= self.a_entry.get()
 		grid 		= self.grid_axis.get()
 		edge_w 		= self.ew_entry.get()
+		zoom 		= self.axis_zoom.get()
+		edges		= self.ed_entry.get()
+		sides 		= self.si_entry.get()
+		multi_pi	= self.pi_entry.get()
+		zoom 		= self.axis_zoom.get()
 
 		def x_(u, v):
 			x = cos(u) * sin(v)
@@ -263,8 +268,8 @@ class Geometry(tk.Frame):
 			z = cos(v) + log1p(tan(2 + v) ** 2)
 			return z
 
-		u = linspace(0.001, 2 * pi, 15)
-		v = linspace(0, 2 * pi, 15)
+		u = linspace(0.001, 2 * pi, self.si_entry.get())
+		v = linspace(0, 2 * pi, self.ed_entry.get())
 
 		u, v = meshgrid(u, v)
 
@@ -272,18 +277,21 @@ class Geometry(tk.Frame):
 		y = y_(u, v)
 		z = z_(u, v)
 
-		plt.axis(grid)
+		#plt.xlim(-1 * self.axis_zoom.get(),self.axis_zoom.get())
+		#plt.ylim(-1 * self.axis_zoom.get(), self.axis_zoom.get())
+		#ax.set_zlim(-5, 5)
 
+		plt.axis(self.grid_axis.get())
 		# plt.xlim(-1 * zoom, zoom)
 		# plt.ylim(-1 * zoom, zoom)
 		# ax.set_zlim(-2, 2)
 
 		interest = ax.plot_surface(x, y, z)
 
-		interest.set_alpha(alpha)
-		interest.set_edgecolor(edge_c)
-		interest.set_linewidth(edge_w)
-		interest.set_facecolor(color)
+		interest.set_alpha(self.a_entry.get())
+		interest.set_edgecolor(self.ec_entry.get(self.ec_entry.curselection()[0]))
+		interest.set_linewidth(self.ew_entry.get())
+		interest.set_facecolor(self.c_entry.get(self.c_entry.curselection()[0]))
 
 		def init():
 			return interest,
@@ -295,16 +303,16 @@ class Geometry(tk.Frame):
 			#     # For top view elev = 90
 			#     # For side view elev = 0
 			#
-			ax.view_init(elev=2 * i, azim=2 * i)
+			ax.view_init(elev=self.scroll_elev.get(), azim=self.scroll_azim.get())
 			return interest
 
 		# Animate
 		ani = FuncAnimation(self.fig, animate, init_func=init,
 							interval=1, frames=500, blit=False, repeat=True)
-		canvas.draw()
+		canvas.draw()	
 
 	def test(self, canvas, ax):
-		root.title("Geometric Models ({})".format(roma.name))
+		root.title("Geometric Models ({})".format(toru.name))
 
 		ax.clear()
 		edge_c 		= self.ec_entry.get(self.ec_entry.curselection()[0])
@@ -319,11 +327,11 @@ class Geometry(tk.Frame):
 		sides 		= self.si_entry.get()
 		multi_pi	= self.pi_entry.get()
 		zoom 		= self.axis_zoom.get()
+		radius		= self.ra_entry.get()
 
-		roma.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, zoom, rot_elev, rot_azim)
+		toru.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides,
+				   edges, multi_pi, zoom, rot_elev, rot_azim, radius)
 		canvas.draw()
-
 
 img = ImageTk.PhotoImage(file='penrose_icon.png')
 root.tk.call('wm', 'iconphoto', root._w, img)
