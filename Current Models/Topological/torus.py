@@ -2,15 +2,14 @@
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
-
-from mpl_toolkits.mplot3d.art3d import *
-from matplotlib.animation import *
 from matplotlib import *
 from numpy import *
+from mpl_toolkits.mplot3d.art3d import *
+from matplotlib.animation import *
 
-option = int(input('Run? (0) Yes, (1) No\n>> '))
+name = "Torus"
 
-while option == 0:
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides,edges, multi_pi, zoom, rot_elev, rot_azim, radius):
 # Definition of x
 	def x_(u, v):
     		x = 2 * ((c + a * cos(u)) * cos(v))
@@ -26,16 +25,14 @@ while option == 0:
     		z = 2 * (a * sin(u))
     		return z
 
-# Radius 
-	radius = float(input('What is the radius?\n>> '))
+# Radius
 	c = radius
 	
 # Radius of the tube
-	radius_tube = float(input('What is the radius of the tube?\n>> '))
-	a = radius_tube
+	a = edges
 
 # Values of the angles
-	n = 100
+	n = sides
 	u = linspace(0, 2 * pi, n)
 	v = linspace(0, 2 * pi, n)
 
@@ -47,27 +44,27 @@ while option == 0:
 	z = z_(u, v)
 
 # Figure Properties
-	fig = plt.figure(figsize=(8,8))
+	#fig = plt.figure(figsize=(8,8))
 
 	ax = p3.Axes3D(fig)
 	ax.set_facecolor('black') # Figure background turns black
 
 # Axis Properties
-	plt.axis('off') # Turns off the axis grid
+	plt.axis(grid) # Turns off the axis grid
 	plt.axis('equal')
 
 # Axis Limits
-	ax.set_xlim(-5,5)
-	ax.set_ylim(-5,5)
-	ax.set_zlim(-5,5)
+	ax.set_xlim(-50,50)
+	ax.set_ylim(-50,50)
+	ax.set_zlim(-50,50)
 
 # Surface Plot
 	torus = ax.plot_surface(x, y, z,  rstride=5, cstride=5)
 
-	torus.set_alpha(0.5) # Transparency of figure
-	torus.set_edgecolor('w') # Edge color of the lines on the figure
-	torus.set_linewidth(1) # Line width of the edges
-	torus.set_facecolor('deepskyblue') # General color of the figure
+	torus.set_alpha(alpha) # Transparency of figure
+	torus.set_edgecolor(edge_c) # Edge color of the lines on the figure
+	torus.set_linewidth(edge_w) # Line width of the edges
+	torus.set_facecolor(color) # General color of the figure
 
 # Defintions for animations	
 	def init():
@@ -80,13 +77,13 @@ while option == 0:
 # For top view elev = 90
 # For side view elev = 0
 
-	    ax.view_init(elev=50, azim= 4 * i)
+	    ax.view_init(elev=rot_elev, azim= rot_azim)
 	    return torus,
 
 
 # Animate
-#	ani = FuncAnimation(fig, animate, init_func=init,
- #   	               frames=36, interval=1, blit=False, repeat=True)
+	ani = FuncAnimation(fig, animate, init_func=init,
+    	               frames=36, interval=1, blit=False, repeat=True)
 
 # Saving to torus.mp4
 
@@ -101,6 +98,3 @@ while option == 0:
 	#	name = 'Spindle-Torus'
 	
 	# ani.save('%s.mp4' % name, writer=writer)
-	
-	plt.show() # Shows Figure
-	option = input('Run again? (0) Yes, (1) No\n>> ')

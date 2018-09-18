@@ -7,7 +7,7 @@ import mpl_toolkits.mplot3d.axes3d as p3
 from matplotlib.animation import *
 from numpy import *
 from matplotlib.figure import Figure
-import Tkinter as tk  # python 2.7
+import tkinter as tk  # python 2.7
 import PIL
 from PIL import ImageTk
 #import ttk            # python 2.7
