@@ -132,7 +132,8 @@ class Geometry(tk.Frame):
 				plt.savefig.format=str(self.format_save.get())
 
 			tk.Radiobutton(top, text="png", variable=self.format_save, value="png", command=img, width=5).grid(row=1, column=0)
-			tk.Button(top, text="save", command=lambda: plt.savefig(name, format=str(self.format_save.get()))).grid(row=0, column=1)
+			tk.Radiobutton(top, text="jpg", variable=self.format_save, value="jpg", command=img, width=5).grid(row=1, column=1)			
+			tk.Button(top, text="save", command=lambda: plt.savefig("{}.{}".format(name,str(self.format_save.get())), format=str(self.format_save.get()))).grid(row=0, column=1)
 			#self.format_save.set("png")
 
 		# Save window
