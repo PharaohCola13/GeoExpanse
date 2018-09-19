@@ -8,7 +8,10 @@ from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 from numpy import *
 
-def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid):
+name = "120-Polyhedron"
+
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
+				   edges, multi_pi, radius):
 
 # Points on the object
 	p = (1 + sqrt(5))/2
@@ -193,20 +196,3 @@ def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid):
 	hedron.set_facecolor(color)
 
 	hedron = ax.add_collection3d(hedron)
-
-	def animate(i):
-	#     # azimuth angle : 0 deg to 360 deg
-	#     # elev = i * n --> rotates object about the xy-plane with a magnitude of n
-	#     # azim = i * n --> rotates object around the z axis with a magnitude of n
-	#     # For top view elev = 90
-	#     # For side view elev = 0
-	#
-		ax.view_init(elev=(rot_elev * i), azim= (rot_azim * i))
-		return hedron,
-
-
-
-	ani = FuncAnimation(fig, animate,
-             frames=550, interval=2, blit=False, repeat=True)
-
-	plt.draw()

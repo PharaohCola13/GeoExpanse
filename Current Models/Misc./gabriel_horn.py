@@ -9,7 +9,8 @@ from matplotlib.animation import *
 
 name = "Gabriel's-Horn"
 
-def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
+				   edges, multi_pi, radius):
 	# Definition of x
 	def x_(u, v):
 		x = u

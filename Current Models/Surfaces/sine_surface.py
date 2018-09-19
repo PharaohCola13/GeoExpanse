@@ -7,8 +7,9 @@ from numpy import *
 from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 
-def name():
-    name = "Sine Surface"
+
+name = "Sine Surface"
+
 def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
     # Definition of x
     def x_(u,v):
@@ -38,8 +39,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
     z = z_(u,v)
 
     # Figure Properties
-   # fig = plt.figure(figsize=(8,8))
-
     ax = p3.Axes3D(fig)
     ax.set_facecolor('black') # Figure background turns black
 
@@ -59,6 +58,3 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
     sine.set_edgecolor(edge_c) # Edge color of the lines on the figure
     sine.set_linewidth(edge_w) # Line width of the edges
     sine.set_facecolor(color) # General color of the figure
-
-    #ax.format_coord = lambda x, y: ""
-    #plt.show()

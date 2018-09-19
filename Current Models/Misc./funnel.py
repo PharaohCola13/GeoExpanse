@@ -9,7 +9,8 @@ from matplotlib.animation import *
 
 name = "Funnel"
 
-def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
+				   edges, multi_pi, radius):
     # Definition of x
 	def x_(u, v):
 		x = u * cos(v)
@@ -44,13 +45,11 @@ def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
 	z = z_(u, v)
 
 	# Figure Properties
-	fig = plt.figure(figsize=(8, 8))
-
 	ax = p3.Axes3D(fig)
 	ax.set_facecolor('black')  # Figure background turns black
 
 	# Axis Properties
-	plt.axis(griid)  # Turns off the axis grid
+	plt.axis(grid)  # Turns off the axis grid
 	plt.axis('equal')
 
 	# Axis Limits

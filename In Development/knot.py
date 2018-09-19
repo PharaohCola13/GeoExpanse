@@ -2,79 +2,52 @@
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
-from matplotlib import cm
-import numpy as np
-from numpy import pi, linspace, cos, sin
-from matplotlib.animation import FuncAnimation
-from matplotlib.animation import writers
 
-def x_(u,v):
-    x = sin(v) + 2 * sin(2 * v)
-    return x
+from mpl_toolkits.mplot3d.art3d import *
+from matplotlib.animation import *
+from matplotlib import *
+from numpy import *
 
-def y_(u,v):
-    y = cos(v) - 2 * cos(2 * v)
-    return y
+name = "Knot"
 
-def z_(u,v):
-    z = -sin(u)
-    return z
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
+				   edges, multi_pi, radius):
+    def x_(u,v):
+        x = sin(v) + 2 * sin(2 * v)
+        return x
 
-u = linspace(0, 4 * pi, 100)
-v = linspace(0, 2 * pi, 100)
+    def y_(u,v):
+        y = cos(v) - 2 * cos(2 * v)
+        return y
 
-u,v = np.meshgrid(u,v)
+    def z_(u,v):
+        z = -sin(u)
+        return z
 
-x = x_(u,v)
-y = y_(u,v)
-z = z_(u,v)
+    u = linspace(0, 4 * pi, 100)
+    v = linspace(0, 2 * pi, 100)
 
-# Figure Properties
-fig = plt.figure(figsize=(8,8))
+    u,v = np.meshgrid(u,v)
 
-ax = p3.Axes3D(fig)
-ax.set_facecolor('black')
+    x = x_(u,v)
+    y = y_(u,v)
+    z = z_(u,v)
 
-plt.axis('off')
-plt.axis('equal')
+    # Figure Properties
+    ax = p3.Axes3D(fig)
+    ax.set_facecolor('black')
 
-# ax.set_xlim(-5,5)
-# ax.set_ylim(-5,5)
-ax.set_zlim(-5,5)
+    plt.axis(grid)
+    plt.axis('equal')
 
-# Surface plot
-k = ax.plot_surface(x, y, z, rstride=10, cstride=10, cmap='cool'
-)
+    # ax.set_xlim(-5,5)
+    # ax.set_ylim(-5,5)
+    ax.set_zlim(-5,5)
 
-k.set_linewidth(0.0)
-k.set_edgecolor('w')
-k.set_alpha(0.5)
+    # Surface plot
+    k = ax.plot_surface(x, y, z, rstride=10, cstride=10)
 
-# Defintions for animations
-def init():
-   return k,
-
-def animate(i):
-    # azimuth angle : 0 deg to 360 deg
-    # elev = i * n --> rotates object about the xy-plane with a magnitude of n
-    # azim = i * n --> rotates object around the z axis with a magnitude of n
-    # For top view elev = 90
-    # For side view elev = 0
-
-    ax.view_init(elev=50, azim= 2 * i)
-    return k,
-
-# Smooth transition elev = 50, frames = 180, interval = 1
-
-# Animate
-ani = FuncAnimation(fig, animate, init_func=init,
-                     frames=180, interval=1, blit=False, repeat=True)
-
-# Saving to Knot.mp4
-
-# Writer = writers['ffmpeg']
-# writer = Writer(fps=15, bitrate=1800)
-
-# ani.save('Knot.mp4', writer=writer)
-
-plt.show()
+    k.set_linewidth(edge_w)
+    k.set_edgecolor(edge_c)
+    k.set_alpha(alpha)
+    k.set_facecolor(color)

@@ -7,7 +7,8 @@ from numpy import *
 from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 
-def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
+				   edges, multi_pi, radius):
 # Definition of x
     def x_(u, v):
         x = sqrt(2) * cos(2 * u) * cos(v)**2 + cos(u) * sin(2 * v) / (2 - (b * sqrt(2) * sin(3 * u) * sin(2 * v)))
@@ -54,6 +55,6 @@ def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
     stein_surf = ax.plot_surface(x, y, z)
 
     stein_surf.set_alpha(alpha)  # Transparency of figure
-    stein_surf.set_edgecolor(edge.c)  # Edge color of the lines on the figure
+    stein_surf.set_edgecolor(edge_c)  # Edge color of the lines on the figure
     stein_surf.set_linewidth(edge_w)  # Line width of the edges
     stein_surf.set_facecolor(color)  # General color of the figure

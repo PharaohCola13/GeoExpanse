@@ -7,10 +7,11 @@ from numpy import *
 from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 
-def name():
-    name = "Sphere"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
+name = "Sphere"
+
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
+				   edges, multi_pi, radius):
 # Definition of x
 	def x_(u,v):
     		x = cos(u) * sin(v)

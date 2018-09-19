@@ -9,7 +9,8 @@ from matplotlib.animation import *
 
 name = "Cressant"
 
-def shape(fig, alpha, color, edge_c, edge_w, rot_elev, rot_azim, grid, sides):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
+				   edges, multi_pi, radius):
 # Definition of x
 	def x_(u,v):
 		x = (2 + sin(2 * pi * v) * sin(2 * pi * u)) * sin(3 * pi * v)

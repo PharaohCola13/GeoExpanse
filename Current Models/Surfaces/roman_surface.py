@@ -9,7 +9,8 @@ from matplotlib.animation import *
 
 name = "Roman Surface"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, zoom, rot_elev, rot_azim):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
+				   edges, multi_pi, radius):
     # Definition of x
     def x_(u,v):
             x = ((sqrt(2) * cos(2*u)*cos(v)**2) + (cos(u) * sin(2*v)))/(2 - a*sqrt(2) * sin(3*u)*sin(2*v))
@@ -59,23 +60,3 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, zoom,
     roman.set_edgecolor(edge_c) # Edge color of the lines on the figure
     roman.set_linewidth(edge_w) # Line width of the edges
     roman.set_facecolor(color) # General color of the figure
-
-    def init():
-        return roman,
-
-    def animate(i):
-        #     # azimuth angle : 0 deg to 360 deg
-        #     # elev = i * n --> rotates object about the xy-plane with a magnitude of n
-        #     # azim = i * n --> rotates object around the z axis with a magnitude of n
-        #     # For top view elev = 90
-        #     # For side view elev = 0
-        #
-        ax.view_init(elev=rot_elev * i, azim=rot_azim * i)
-        return roman
-
-    # Animate
-    ani = FuncAnimation(fig, animate, init_func=init,
-                        interval=1, frames=500, blit=False, repeat=True)
-
-    #ax.format_coord = lambda x, y: ""
-    #plt.show(block(True))

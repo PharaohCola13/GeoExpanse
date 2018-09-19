@@ -1,4 +1,4 @@
-# A Curve, brought to you by PharaohCola13
+# Something Strange, brought to you by PharaohCola13
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
@@ -8,24 +8,31 @@ from matplotlib.animation import *
 from matplotlib import *
 from numpy import *
 
-name = "Curve"
+name = "Something Strange"
 
 def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 				   edges, multi_pi, radius):
+# x: t*s*cos(u) * cos(v)
+# y: t*s*cos(u) * sin(v)
+# z: t * s * sin(v)
+
 	def x_(u,v):
-		x = u * cos(u) * (4 + cos(v + u))
+		x = t*s*cos(u) * cos(v)
 		return x
 
 	def y_(u,v):
-		y = u * sin(u) * (4 + cos(v + u))
+		y = t * s * cos(u) * sin(v)
 		return y
 
 	def z_(u,v):
-		z = 0.25 * (u * sin(v + u))
+		z = t * s* sin(v)
 		return z
 
-	u = linspace(0, 4 * pi, 25)
-	v = linspace(0, 2 * pi, 25)
+	s = 10
+	t = linspace(0, pi, 20)
+
+	u = linspace(0, 2 * pi, 20)
+	v = linspace(0, 2 * pi, 20)
 
 	u, v = np.meshgrid(u, v)
 
@@ -40,14 +47,14 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	plt.axis(grid)
 	plt.axis('equal')
 
-	#ax.set_xlim(-1,1)
-	#ax.set_ylim(-1,1)
-	ax.set_zlim(-10,10)
+	ax.set_xlim(-50,50)
+	ax.set_ylim(-50,50)
+	ax.set_zlim(-50,50)
 
 	# Surface Plot
-	curve = ax.plot_surface(x, y, z)
+	strange = ax.plot_surface(x, y, z)
 
-	curve.set_alpha(alpha)
-	curve.set_edgecolor(edge_c)
-	curve.set_linewidth(edge_w)
-	curve.set_facecolor(color)
+	strange.set_alpha(alpha)
+	strange.set_edgecolor(edge_c)
+	strange.set_linewidth(edge_w)
+	strange.set_facecolor(color)

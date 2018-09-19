@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Torus"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,edges, multi_pi, zoom, rot_elev, rot_azim, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides,edges, multi_pi, radius):
 # Definition of x
 	def x_(u, v):
     		x = 2 * ((c + a * cos(u)) * cos(v))
