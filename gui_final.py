@@ -174,12 +174,12 @@ class Geometry(tk.Frame):
             tk.Radiobutton(top, text="Pyramid",                 variable=self.shape_set, value="Pyramid")               .grid(row=2, column=0, sticky="w")
             tk.Radiobutton(top, text="Sphere",                  variable=self.shape_set, value="Sphere")                .grid(row=3, column=0, sticky="w")
 
-            tk.Label(top, text="--- Hyperbolic Objects ---", font=('Helvetica', 12, 'bold')).grid(row=4, column=0, sticky="nsew")
+            tk.Label(top, text="--- Hyperbolic Objects ---", font=('Times', 12, 'bold')).grid(row=4, column=0, sticky="nsew")
             tk.Radiobutton(top, text="Hyperbolic Octahedron",   variable=self.shape_set, value="Hyperbolic Octahedron") .grid(row=5, column=0 ,sticky="w")
             tk.Radiobutton(top, text="Hyperbolic Paraboliod",   variable=self.shape_set, value="Hyperbolic Paraboliod") .grid(row=6, column=0, sticky="w")
             tk.Radiobutton(top, text="One Sheet Hyperboliod",   variable=self.shape_set, value="One Sheet Hyperboliod") .grid(row=7, column=0, sticky="w")
 
-            tk.Label(top, text="--- Misc. ---", font=('Helvetica', 12, 'bold')).grid(row=8, column=0, sticky='nsew')
+            tk.Label(top, text="--- Miscellaneous ---", font=('Times', 12, 'bold')).grid(row=8, column=0, sticky='nsew')
             tk.Radiobutton(top, text="Three Dodecahedron",      variable=self.shape_set, value="Three Dodecahedron")    .grid(row=9, column=0, sticky="w")
             tk.Radiobutton(top, text="Cressant",                variable=self.shape_set, value="Cressant")              .grid(row=10, column=0, sticky="w")
             tk.Radiobutton(top, text="Funnel",                  variable=self.shape_set, value="Funnel")                .grid(row=11, column=0 ,sticky="w")
@@ -188,7 +188,7 @@ class Geometry(tk.Frame):
             tk.Radiobutton(top, text="Shell",                   variable=self.shape_set, value="Shell")                 .grid(row=14, column=0, sticky="w")
             tk.Radiobutton(top, text="Tesseract",               variable=self.shape_set, value="Tesseract")             .grid(row=15, column=0, sticky="w")
 
-            tk.Label(top, text="--- Surfaces ---", font=('Helvetica', 12, 'bold')).grid(row=1, column=2, sticky='new')
+            tk.Label(top, text="--- Surfaces ---", font=('Times', 12, 'bold')).grid(row=1, column=2, sticky='new')
             tk.Radiobutton(top, text="Breather's Surface",      variable=self.shape_set, value="Breather's Surface")    .grid(row=2, column=2, sticky="w")
             tk.Radiobutton(top, text="Kuen's Surface",          variable=self.shape_set, value="Kuen's Surface")        .grid(row=3, column=2, sticky="w")
             tk.Radiobutton(top, text="Steiner's Surface",       variable=self.shape_set, value="Steiner's Surface")     .grid(row=4, column=2, sticky="w")
@@ -196,19 +196,19 @@ class Geometry(tk.Frame):
 
            # tk.Separator(master, orient=VERTICAL).grid(column=1, row=0, rowspan=20, sticky='ns')
 
-            tk.Label(top, text="--- Platonic Solids ---", font=('Helvetica', 12, 'bold')).grid(row=6, column=2, sticky='nsew')
+            tk.Label(top, text="--- Platonic Solids ---", font=('Times', 12, 'bold')).grid(row=6, column=2, sticky='nsew')
             tk.Radiobutton(top, text="Cube",                    variable=self.shape_set, value="Cube")                  .grid(row=7, column=2, sticky="w")
             tk.Radiobutton(top, text="Dodecahedron",            variable=self.shape_set, value="Dodecahedron")          .grid(row=8, column=2 ,sticky="w")
             tk.Radiobutton(top, text="Icosahedron",             variable=self.shape_set, value="Icosahedron")           .grid(row=9, column=2, sticky="w")
             tk.Radiobutton(top, text="Octahedron",              variable=self.shape_set, value="Octahedron")            .grid(row=10, column=2, sticky="w")
 
-            tk.Label(top, text="--- Topological ---", font=('Helvetica', 12, 'bold')).grid(row=11, column=2, sticky='nsew')
+            tk.Label(top, text="--- Topological ---", font=('Times', 12, 'bold')).grid(row=11, column=2, sticky='nsew')
             tk.Radiobutton(top, text="Cross Cap",               variable=self.shape_set, value="Cross Cap")             .grid(row=12, column=2, sticky="w")
             tk.Radiobutton(top, text="Klein Bottle",            variable=self.shape_set, value="Klein Bottle")          .grid(row=13, column=2, sticky="w")
             tk.Radiobutton(top, text="Mobius Strip",            variable=self.shape_set, value="Mobius Strip")          .grid(row=14, column=2 ,sticky="w")
             tk.Radiobutton(top, text="Torus",                   variable=self.shape_set, value="Torus")                 .grid(row=15, column=2, sticky="w")
 
-            tk.Label(top, text="--- In Development ---", font=('Helvetica', 12, 'bold')).grid(row=1, column=4, sticky='nsew')
+            tk.Label(top, text="--- In Development ---", font=('Times', 12, 'bold')).grid(row=1, column=4, sticky='nsew')
             tk.Radiobutton(top, text="Interesting",             variable=self.shape_set, value="Interesting")           .grid(row=2, column=4, sticky="w")
             tk.Radiobutton(top, text="120-Polyhedron",          variable=self.shape_set, value="120 Polyhedron")        .grid(row=3, column=4, sticky="w")
             tk.Radiobutton(top, text="Hyperbolic Cylinder",     variable=self.shape_set, value="Hyperbolic Cylinder")   .grid(row=4, column=4 ,sticky="w")
