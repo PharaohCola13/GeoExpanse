@@ -2,7 +2,7 @@ import matplotlib
 matplotlib.use('TkAgg')
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg#, NavigationToolbar2TkAgg
 import mpl_toolkits.mplot3d.axes3d as p3
 from matplotlib.animation import *
 from numpy import *
@@ -94,6 +94,9 @@ s = {"Prism":prism,
      "Kuen's Surface":kuen_surface,
      "Steiner's Surface":steiner_surface,
      "Boy's Surface":boys_surface,
+     "Roman Surface":roman_surface,
+     "Sine Surface":sine_surface,
+     "Henneberg's Surface":henneberg_surface,
      "Cube": cube,
      "Dodecahedron":dodecahedron,
      "Icosahedron":icosahedron,
