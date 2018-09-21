@@ -41,8 +41,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	y = y_(u,v)
 	z = z_(u,v)
 
-# Figure Properties
-
 	ax = p3.Axes3D(fig)
 	ax.set_facecolor('black') # Figure background turns black
 
@@ -55,13 +53,14 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	ax.set_ylim(-1,1)
 	ax.set_zlim(-1,1)
 
+
+	return x,y,z
+# Figure Properties
+
 # Surface Plot
-	sphere = ax.plot_surface(x, y, z)
-
-	sphere.set_alpha(alpha) # Transparency of figure
-	sphere.set_edgecolor(edge_c) # Edge color of the lines on the figure
-	sphere.set_linewidth(edge_w) # Line width of the edges
-	sphere.set_facecolor(color) # General color of the figure
-
-	ax.format_coord = lambda x, y: ""
-#	plt.show()
+# 	sphere = ax.plot_surface(x, y, z)
+#
+# 	sphere.set_alpha(alpha) # Transparency of figure
+# 	sphere.set_edgecolor(edge_c) # Edge color of the lines on the figure
+# 	sphere.set_linewidth(edge_w) # Line width of the edges
+# 	sphere.set_facecolor(color) # General color of the figure
