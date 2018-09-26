@@ -58,9 +58,9 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 # Figure Properties
 
 # Surface Plot
-# 	sphere = ax.plot_surface(x, y, z)
-#
-# 	sphere.set_alpha(alpha) # Transparency of figure
-# 	sphere.set_edgecolor(edge_c) # Edge color of the lines on the figure
-# 	sphere.set_linewidth(edge_w) # Line width of the edges
-# 	sphere.set_facecolor(color) # General color of the figure
+	sphere = ax.plot_surface(x, y, z)
+
+	sphere.set_alpha(alpha) # Transparency of figure
+	sphere.set_edgecolor(edge_c) # Edge color of the lines on the figure
+	sphere.set_linewidth(edge_w) # Line width of the edges
+	sphere.set_facecolor(color) # General color of the figure
