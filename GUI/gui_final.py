@@ -12,6 +12,8 @@ import PIL
 from PIL import ImageTk
 import sys
 
+
+
 sys.path.insert(0, '../In Development/')
 
 sys.path.insert(0, '../Current Models/')
@@ -141,6 +143,7 @@ class Geometry(tk.Frame):
         canvas.get_tk_widget().grid(row=0,column=0, sticky='new')
         root.update_idletasks()
         canvas.draw()
+        frame = tk.Frame(root, width=100, height=100)
 
         # Vars
 
@@ -151,6 +154,8 @@ class Geometry(tk.Frame):
         self.scroll		= tk.IntVar()
 
         self.shape_set = tk.StringVar()
+
+        self.alpha = tk.StringVar()
 
         # Save Variables
 
@@ -209,8 +214,6 @@ class Geometry(tk.Frame):
             tk.Radiobutton(top, text="Steiner's Surface",       variable=self.shape_set, value="Steiner's Surface")     .grid(row=4, column=2, sticky="w")
             tk.Radiobutton(top, text="Boy's Surface",           variable=self.shape_set, value="Boy's Surface")         .grid(row=5, column=2, sticky="w")
 
-            # tk.Separator(master, orient=VERTICAL).grid(column=1, row=0, rowspan=20, sticky='ns')
-
             tk.Label(top, text="--- Platonic Solids ---", font=('Times', 12, 'bold')).grid(row=6, column=2, sticky='nsew')
             tk.Radiobutton(top, text="Cube",                    variable=self.shape_set, value="Cube")                  .grid(row=7, column=2, sticky="w")
             tk.Radiobutton(top, text="Dodecahedron",            variable=self.shape_set, value="Dodecahedron")          .grid(row=8, column=2 ,sticky="w")
@@ -242,6 +245,8 @@ class Geometry(tk.Frame):
             img = ImageTk.PhotoImage(file='penrose_icon.png')
             top.tk.call('wm', 'iconphoto', top._w, img)
 
+        tk.Button(root, text="Shapes", command=popup_shape).grid(row=0, column=1, columnspan=2, sticky='new',
+                                                                 pady=470)
         def popup_save():
             top = tk.Toplevel(self)
             top.geometry("200x100")
@@ -261,11 +266,20 @@ class Geometry(tk.Frame):
             img = ImageTk.PhotoImage(file='penrose_icon.png')
             top.tk.call('wm', 'iconphoto', top._w, img)
 
+        def menu():
+            menu = tk.Menu(root)
+            root.config(menu=menu)
+
+            filemenu = tk.Menu(menu)
+            menu.add_cascade(label="File", menu=filemenu)
+
+            filemenu.add_command(label="Save", command=popup_save)
+            filemenu.add_separator()
+            filemenu.add_command(label="Quit", command=quit)
+            return
+
         # Save window
         tk.Button(root, text="Save", command=popup_save).grid(row=0, column=1, columnspan=2, pady=656, sticky='new')
-
-        # Shape
-        tk.Button(root, text="Shapes", command=popup_shape).grid(row=0, column=1, columnspan=2, sticky='new', pady=470)
 
         # Ploting plot
         tk.Button(root, text="Render Plot", command=lambda: self.plot
@@ -280,11 +294,13 @@ class Geometry(tk.Frame):
 
         # Rotational functions
         tk.Label(root, text="XY-rotation").grid(row=0, column=0, sticky='new', pady=510)
-        self.scroll_elev = tk.Scale(root, from_=-50, to=50, width=40, orient=tk.HORIZONTAL, variable=self.scroll, command=scro)
+        self.scroll_elev = tk.Scale(root, from_=-50, to=50, width=40, orient=tk.HORIZONTAL, variable=self.scroll,
+                                    command=scro)
         self.scroll_elev.grid(row=0, column=0, sticky="nsew", pady=530)
 
         tk.Label(root, text="Z-rotation").grid(row=0, column=0, sticky="new", pady=610, )
-        self.scroll_azim = tk.Scale(root, from_=-50, to=50, width=40, orient=tk.HORIZONTAL, variable=self.scroll, command=scro)
+        self.scroll_azim = tk.Scale(root, from_=-50, to=50, width=40, orient=tk.HORIZONTAL, variable=self.scroll,
+                                    command=scro)
         self.scroll_azim.grid(row=0, column=0, sticky="nsew", pady=630)
 
         # Changing axis limits
@@ -331,7 +347,6 @@ class Geometry(tk.Frame):
         tk.Label(root, text="Edge Width").grid(row=0, column=1, sticky='nw', pady=350)
         self.ew_entry = tk.Scale(root, from_=0, to=5, resolution=0.5, orient=tk.HORIZONTAL)
         self.ew_entry.grid(row=0, column=2, sticky='nw', pady=330)
-
         self.ew_entry.set(1)
 
         # Face color
@@ -384,6 +399,7 @@ class Geometry(tk.Frame):
         self.ec_scroll.config(command=self.ec_entry.yview)
 
         self.ec_entry.configure(yscrollcommand=self.ec_scroll.set)
+
 
     def plot(self,canvas, ax):
         ax.clear()
