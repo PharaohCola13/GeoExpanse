@@ -266,17 +266,15 @@ class Geometry(tk.Frame):
             img = ImageTk.PhotoImage(file='penrose_icon.png')
             top.tk.call('wm', 'iconphoto', top._w, img)
 
-        def menu():
-            menu = tk.Menu(root)
-            root.config(menu=menu)
+        menu = tk.Menu(root)
+        root.config(menu=menu)
 
-            filemenu = tk.Menu(menu)
-            menu.add_cascade(label="File", menu=filemenu)
+        filemenu = tk.Menu(menu)
+        menu.add_cascade(label="File", menu=filemenu)
 
-            filemenu.add_command(label="Save", command=popup_save)
-            filemenu.add_separator()
-            filemenu.add_command(label="Quit", command=quit)
-            return
+        filemenu.add_command(label="Save", command=popup_save)
+        filemenu.add_separator()
+        filemenu.add_command(label="Quit", command=quit)
 
         # Save window
         tk.Button(root, text="Save", command=popup_save).grid(row=0, column=1, columnspan=2, pady=656, sticky='new')
