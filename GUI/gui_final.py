@@ -151,16 +151,17 @@ class Geometry(tk.Frame):
 
         self.axis_limits = tk.StringVar()
 
-        self.scroll		= tk.IntVar()
+        self.scroll		= tk.DoubleVar()
 
         self.shape_set = tk.StringVar()
 
         self.alpha = tk.StringVar()
 
+        self.theme = tk.StringVar()
+
         # Save Variables
 
         # Functions
-
         def axi():
             plt.axis(str(self.grid_axis.get()))
             plt.xlabel("X-Axis", color="white")
@@ -181,6 +182,28 @@ class Geometry(tk.Frame):
             global root
             root.quit()
             root.destroy()
+
+        def popup_theme():
+            top = tk.Toplevel(self)
+            top.title("Themes")
+
+            def dark(self):
+                self.tk.Frame.config(bg="black", fg="black", activebackground="black")
+
+            def light(self):
+                self.tk.Button.config(bg="white", fg="white", activebackground="white")
+
+            tk.Button(top, text="POP!", command=top.destroy).grid(row=0, column=0, sticky='new')
+
+            tk.Radiobutton(top, text="Dark", variable=self.theme.get(), value="Dark").grid(row=1, column=0, sticky="w")
+            tk.Radiobutton(top, text="Light", variable=self.theme.get(), value="Light").grid(row=2, column=0, sticky="w")
+            tk.Radiobutton(top, text="Normal", variable=self.theme.get(), value="Normal").grid(row=3, column=0, sticky="w")
+
+            tk.Button(top, text="Apply", command=lambda: dark(self)).grid(row=0, column=1, sticky="new")
+
+            img = ImageTk.PhotoImage(file='penrose_icon.png')
+            top.tk.call('wm', 'iconphoto', top._w, img)
+
 
         def popup_shape():
             top = tk.Toplevel(self)
@@ -249,19 +272,32 @@ class Geometry(tk.Frame):
                                                                  pady=470)
         def popup_save():
             top = tk.Toplevel(self)
-            top.geometry("200x100")
+            top.geometry("200x200")
             top.title("Save Figure")
             tk.Button(top, text="POP!", command=top.destroy).grid(row=0, column=0)
-            #Writer = writers['ffmpeg']
-            #writer = Writer(fps=15, bitrate=1800)
-            #ani.save('%s.mp4' % name, writer=writer)
             self.format_save	= tk.StringVar()
             def img():
                 plt.savefig.format=self.format_save.get()
+            def vid():
+                Writer = writers['ffmpeg']
+                writer = Writer(fps=15, bitrate=1800)
+                # # Defintions for animations
+                def init():
+                    return s[self.shape_set.get()],
+                def animate(i):
+                    # # azimuth angle : 0 deg to 360 deg
+                    # # elev = i * n --> rotates object about the xy-plane with a magnitude of n
+                    # # azim = i * n --> rotates object around the z axis with a magnitude of n
+                    # # For top view elev = 90
+                    # # For side view elev = 0
+                    return s[self.shape_set.get()],
 
             tk.Radiobutton(top, text="png", variable=self.format_save, value="png", command=img, width=5).grid(row=1, column=0)
             tk.Radiobutton(top, text="jpg", variable=self.format_save, value="jpg", command=img, width=5).grid(row=1, column=1)
-            tk.Button(top, text="save", command=lambda: plt.savefig("{}.{}".format(self.shape_set.get(),self.format_save.get()), format=str(self.format_save.get()))).grid(row=0, column=1)
+            tk.Radiobutton(top, text="mp4", command=vid, width=5).grid(row=2, column=0)
+            tk.Button(top, text="save img", command=lambda: plt.savefig("{}.{}".format(self.shape_set.get(),self.format_save.get()), format=str(self.format_save.get()))).grid(row=0, column=1)
+            tk.Button(top, text="save video", command=lambda: FuncAnimation(self.fig, vid.animate, init_func=vid.init,
+                            interval=1, frames=500, blit=False, repeat=True).save('{}.mp4'.format(self.shape_set.get()), writer=writer)).grid(row=0, column=2)
             #self.format_save.set("png")
             img = ImageTk.PhotoImage(file='penrose_icon.png')
             top.tk.call('wm', 'iconphoto', top._w, img)
@@ -273,6 +309,7 @@ class Geometry(tk.Frame):
         menu.add_cascade(label="File", menu=filemenu)
 
         filemenu.add_command(label="Save", command=popup_save)
+        filemenu.add_command(label="Theme", command=popup_theme)
         filemenu.add_separator()
         filemenu.add_command(label="Quit", command=quit)
 
@@ -482,7 +519,7 @@ class Geometry(tk.Frame):
 
         # # Defintions for animations
         def init():
-             return self.shape_set.get()
+             return s[self.shape_set.get()],
     #
         def animate(i):
     # # azimuth angle : 0 deg to 360 deg
@@ -490,7 +527,7 @@ class Geometry(tk.Frame):
     # # azim = i * n --> rotates object around the z axis with a magnitude of n
     # # For top view elev = 90
     # # For side view elev = 0
-             return self.shape_set.get()
+             return s[self.shape_set.get()],
 
 
     # Animate
