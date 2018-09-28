@@ -1,21 +1,14 @@
 import matplotlib
-import matplotlib.axes as axis
 matplotlib.use('TkAgg')
-import numpy as np
 import matplotlib.pyplot as plt
-from tkColorChooser import askcolor
-#from tkinter.colorchooser import *
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg#, NavigationToolbar2TkAgg
 import mpl_toolkits.mplot3d.axes3d as p3
 from matplotlib.animation import *
 from numpy import *
-from matplotlib.figure import Figure
-import Tkinter as tk  # python 2.7
-import PIL
+import tkinter as tk  # python 2.7
 from PIL import ImageTk
 import sys
-
-
+from tkinter.colorchooser import askcolor
 
 sys.path.insert(0, '../In Development/')
 
@@ -81,54 +74,55 @@ import dini_surface
 import knot
 import neat
 import spiral
+import penrose_triangle
 import testing
 import vase
 import something_strange
 import enneper_surface
-import curves
 
 s = {"Prism":prism,
-    "Pyramid":pyramid,
-     "Sphere":sphere,
-     "Hyperbolic Octahedron":hyperbolic_octahedron,
-     "Hyperbolic Paraboliod":hyperbolic_paraboloid,
-     "One Sheet Hyperboliod":one_sheet_hyperboloid,
-     "Three Dodecahedron": three_dodecahedron,
-     "Cressant":cressant,
-     "Funnel":funnel,
-     "Gabriel's Horn": gabriel_horn,
-     "Rose Spiral": rose_spiral,
-     "Shell":shell,
-     "Tesseract":tesseract,
-     "Breather's Surface":breather_surface,
-     "Kuen's Surface":kuen_surface,
-     "Steiner's Surface":steiner_surface,
-     "Boy's Surface":boys_surface,
-     "Roman Surface":roman_surface,
-     "Sine Surface":sine_surface,
-     "Henneberg's Surface":henneberg_surface,
-     "Cube": cube,
-     "Dodecahedron":dodecahedron,
-     "Icosahedron":icosahedron,
-     "Octahedron":octahedron,
-     "Cross Cap":cross_cap,
-     "Klein Bottle":klein,
-     "Mobius Strip":mobius,
-     "Torus":torus,
-     "Interesting":interesting,
-     "120 Polyhedron": polyhedron,
-     "Hyperbolic Cylinder":hyperbolic_cylinder,
-     "Dini's Surface":dini_surface,
-     "Knot":knot,
-     "Neat":neat,
-     "Spiral":spiral,
-     "Testing":testing,
-     "Vase":vase,
-     "Something Strange":something_strange,
-     "Enneper's Surface":enneper_surface,
+	"Pyramid":pyramid,
+	 "Sphere":sphere,
+	 "Hyperbolic Octahedron":hyperbolic_octahedron,
+	 "Hyperbolic Paraboliod":hyperbolic_paraboloid,
+	 "One Sheet Hyperboliod":one_sheet_hyperboloid,
+	 "Three Dodecahedron": three_dodecahedron,
+	 "Cressant":cressant,
+	 "Funnel":funnel,
+	 "Gabriel's Horn": gabriel_horn,
+	 "Rose Spiral": rose_spiral,
+	 "Shell":shell,
+	 "Tesseract":tesseract,
+	 "Breather's Surface":breather_surface,
+	 "Kuen's Surface":kuen_surface,
+	 "Steiner's Surface":steiner_surface,
+	 "Boy's Surface":boys_surface,
+	 "Roman Surface":roman_surface,
+	 "Sine Surface":sine_surface,
+	 "Henneberg's Surface":henneberg_surface,
+	 "Cube": cube,
+	 "Dodecahedron":dodecahedron,
+	 "Icosahedron":icosahedron,
+	 "Octahedron":octahedron,
+	 "Cross Cap":cross_cap,
+	 "Klein Bottle":klein,
+	 "Mobius Strip":mobius,
+	 "Torus":torus,
+	 "Unk Surface":interesting,
+	 "120 Polyhedron": polyhedron,
+	 "Hyperbolic Cylinder":hyperbolic_cylinder,
+	 "Dini's Surface":dini_surface,
+	 "Knot":knot,
+	 "Neat":neat,
+	 "Spiral":spiral,
+	 "Testing":testing,
+	 "Penrose Triangle":penrose_triangle,
+	 "Vase":vase,
+	 "Something Strange":something_strange,
+	 "Enneper's Surface":enneper_surface,
 	 #"Curves":curves
 	 "Line":line
-     }
+	 }
 
 
 root = tk.Tk()
@@ -140,11 +134,11 @@ root.geometry("720x780")
 img = ImageTk.PhotoImage(file='penrose_icon.png')
 
 class Geometry(tk.Frame):
-    def __init__(self, master=None):
-        tk.Frame.__init__(self,master)
-        self.createWidgets()
+	def __init__(self, master=None):
+		tk.Frame.__init__(self,master)
+		self.createWidgets()
 
-    def createWidgets(self):
+	def createWidgets(self):
 		self.fig = plt.figure(figsize=(5, 5))
 		ax = p3.Axes3D(self.fig)
 		ax.set_facecolor('black')
@@ -155,7 +149,7 @@ class Geometry(tk.Frame):
 		canvas.draw()
 		frame = tk.Frame(root, width=100, height=100)
 
-        # Vars
+		# Vars
 
 		self.grid_axis = tk.StringVar()
 
@@ -171,9 +165,9 @@ class Geometry(tk.Frame):
 
 		self.two_three = tk.StringVar()
 
-        # Save Variables
+		# Save Variables
 
-        # Functions
+		# Functions
 		def axi():
 			plt.axis(str(self.grid_axis.get()))
 			plt.xlabel("X-Axis", color="white")
@@ -181,11 +175,11 @@ class Geometry(tk.Frame):
 			ax.set_zlabel("Z-Axis", color="white")
 			plt.xticks(color="white")
 			plt.yticks(color="white")
-           # plt.plot([0,0], 'r-',lw=3)
+		   # plt.plot([0,0], 'r-',lw=3)
 
-        #def lim(i):
-        ##    plt.xlim((-1 * i, i))
-         #   plt.ylim((-1 * i, i))
+		#def lim(i):
+		##    plt.xlim((-1 * i, i))
+		 #   plt.ylim((-1 * i, i))
 		def space():
 			plt.figure(1)
 			plt.gca()
@@ -204,12 +198,12 @@ class Geometry(tk.Frame):
 		def FaceColor(self):
 			self.c_entry = askcolor(title="Face Color", color="#e4e4e4")[1]
 			
-			self.face.config(bg=self.c_entry, fg="black", activeforeground="black")
+			self.fck.config(bg=self.c_entry)
 			return self.c_entry
 
-		def EdgeColor():
+		def EdgeColor(self):
 			self.ec_entry = askcolor(color="#ffd900", title="Edge Color")[1]
-			self.edge.config(bg=self.ec_entry,fg="black", activeforeground="black")
+			self.eck.config(bg=self.ec_entry)
 			return self.ec_entry
 
 		def popup_theme():
@@ -251,7 +245,6 @@ class Geometry(tk.Frame):
 				self.edge.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf,activeforeground=dimfa)
 				menu.config(bg=dim, fg=dimf, activebackground=dim,activeforeground=dimfa)
 				filemenu.config(bg=dim, fg=dimf, activebackground=dim,activeforeground=dimfa)
-
 				pop.config(bg=dim, fg=dim, activebackground=dim)
 			def light(self):
 				tk.Button.config(bg="white", fg="white", activebackground="white")
@@ -263,6 +256,7 @@ class Geometry(tk.Frame):
 			tk.Radiobutton(top, text="Light", variable=self.theme.get(), value="Light").grid(row=2, column=0, sticky="w")
 			tk.Radiobutton(top, text="Normal", variable=self.theme.get(), value="Normal").grid(row=3, column=0, sticky="w")
 
+			self.theme.set("Dark")
 			tk.Button(top, text="Apply", command=lambda: dark(self)).grid(row=0, column=1, sticky="new")
 
 			top.tk.call('wm', 'iconphoto', top._w, img)
@@ -270,7 +264,7 @@ class Geometry(tk.Frame):
 
 		def popup_shape():
 			top = tk.Toplevel(self)
-	        #top.geometry("200x200"
+			#top.geometry("200x200"
 			top.title("Shapes")
 			pop = tk.Button(top, text="POP!", command=top.destroy)
 			pop.grid(row=0, column=0, sticky='new')
@@ -318,7 +312,7 @@ class Geometry(tk.Frame):
 				tk.Radiobutton(top, text="Torus",                   variable=self.shape_set, value="Torus")                 .grid(row=15, column=2, sticky="w")
 
 				tk.Label(top, text="--- In Development ---", font=('Times', 12, 'bold')).grid(row=1, column=4, sticky='nsew')
-				tk.Radiobutton(top, text="Interesting",             variable=self.shape_set, value="Interesting")           .grid(row=2, column=4, sticky="w")
+				tk.Radiobutton(top, text="Unk Surface",             variable=self.shape_set, value="Unk Surface")           .grid(row=2, column=4, sticky="w")
 				tk.Radiobutton(top, text="120-Polyhedron",          variable=self.shape_set, value="120 Polyhedron")        .grid(row=3, column=4, sticky="w")
 				tk.Radiobutton(top, text="Hyperbolic Cylinder",     variable=self.shape_set, value="Hyperbolic Cylinder")   .grid(row=4, column=4 ,sticky="w")
 				tk.Radiobutton(top, text="Dini's Surface",          variable=self.shape_set, value="Dini's Surface")        .grid(row=5, column=4, sticky="w")
@@ -329,8 +323,10 @@ class Geometry(tk.Frame):
 				tk.Radiobutton(top, text="Vase",                    variable=self.shape_set, value="Vase")                  .grid(row=10, column=4, sticky="w")
 				tk.Radiobutton(top, text="Something Strange",       variable=self.shape_set, value="Something Strange")     .grid(row=11, column=4, sticky="w")
 				tk.Radiobutton(top, text="Enneper's Surface",       variable=self.shape_set, value="Enneper's Surface")     .grid(row=12, column=4, sticky="w")
+				tk.Radiobutton(top, text="Penrose Triangle",        variable=self.shape_set, value="Penrose Triangle")      .grid(row=13,column=4,sticky="w")
+
 				#tk.Radiobutton(top, text="Curves",       variable=self.shape_set, value="Curves")     .grid(row=13, column=4, sticky="w")
-				self.shape_set.set("Prism")
+				self.shape_set.set("Penrose Triangle")
 
 			elif self.two_three.get() == "2d":
 				tk.Radiobutton(top, text="Line", variable=self.shape_set, value="Line").grid(row=1, column=0, sticky='w')
@@ -350,21 +346,21 @@ class Geometry(tk.Frame):
 				writer = Writer(fps=15, bitrate=1800)
 				# # Defintions for animations
 				def init():
-				    return s[self.shape_set.get()],
+					return s[self.shape_set.get()],
 				def animate(i):
-				    # # azimuth angle : 0 deg to 360 deg
-				    # # elev = i * n --> rotates object about the xy-plane with a magnitude of n
-				    # # azim = i * n --> rotates object around the z axis with a magnitude of n
-				    # # For top view elev = 90
-				    # # For side view elev = 0
-				    return s[self.shape_set.get()],
+					# # azimuth angle : 0 deg to 360 deg
+					# # elev = i * n --> rotates object about the xy-plane with a magnitude of n
+					# # azim = i * n --> rotates object around the z axis with a magnitude of n
+					# # For top view elev = 90
+					# # For side view elev = 0
+					return s[self.shape_set.get()],
 
 			tk.Radiobutton(top, text="png", variable=self.format_save, value="png", command=img, width=5).grid(row=1, column=0)
 			tk.Radiobutton(top, text="jpg", variable=self.format_save, value="jpg", command=img, width=5).grid(row=1, column=1)
 			tk.Radiobutton(top, text="mp4", command=vid, width=5).grid(row=2, column=0)
 			tk.Button(top, text="save img", command=lambda: plt.savefig("{}.{}".format(self.shape_set.get(),self.format_save.get()), format=str(self.format_save.get()))).grid(row=0, column=1)
 			tk.Button(top, text="save video", command=lambda: FuncAnimation(self.fig, vid.animate, init_func=vid.init,
-				            interval=1, frames=500, blit=False, repeat=True).save('{}.mp4'.format(self.shape_set.get()), writer=writer)).grid(row=0, column=2)
+							interval=1, frames=500, blit=False, repeat=True).save('{}.mp4'.format(self.shape_set.get()), writer=writer)).grid(row=0, column=2)
 
 			top.tk.call('wm', 'iconphoto', top._w, img)
 
@@ -386,13 +382,13 @@ class Geometry(tk.Frame):
 		self.elev_label  = tk.Label(root, text="XY-rotation")
 		self.elev_label.grid(row=0, column=0, sticky='new', pady=510)
 		self.scroll_elev = tk.Scale(root, from_=-50, to=50, width=40, orient=tk.HORIZONTAL, variable=self.scroll,
-							        command=scro)
+									command=scro)
 		self.scroll_elev.grid(row=0, column=0, sticky="nsew", pady=530)
 
 		self.azim_label = tk.Label(root, text="Z-rotation")
 		self.azim_label.grid(row=0, column=0, sticky="new", pady=610, )
 		self.scroll_azim = tk.Scale(root, from_=-50, to=50, width=40, orient=tk.HORIZONTAL, variable=self.scroll,
-							        command=scro)
+									command=scro)
 		self.scroll_azim.grid(row=0, column=0, sticky="nsew", pady=630)
 
 		# Transparency
@@ -416,7 +412,7 @@ class Geometry(tk.Frame):
 		self.ed_entry.grid(row=0, column=2, sticky='nw', pady=170)
 		self.ed_entry.set(20)
 
-		self.pi_label = tk.Label(root, text=r"Multiple of \pi)
+		self.pi_label = tk.Label(root, text=r"Multiple of \pi")
 		self.pi_label.grid(row=0, column=1, sticky='nw', pady=230)
 		self.pi_entry = tk.Scale(root, from_=1, to=100, resolution=1, orient=tk.HORIZONTAL)
 		self.pi_entry.grid(row=0, column=2, sticky='nw', pady=210)
@@ -435,12 +431,18 @@ class Geometry(tk.Frame):
 		self.ra_entry.grid(row=0, column=2, sticky='nw', pady=290)
 
 		# Face Color
-		self.face = tk.Button(text="Face Color", command=lambda: FaceColor(self), height=2)
-		self.face.grid(row=0, column=1, sticky='new', pady=30)
+		self.face = tk.Button(text="Face\n Color", command=lambda: FaceColor(self), height=3, width=3)
+		self.face.grid(row=0, column=1, sticky='ne', pady=30, padx=4)
+
+		self.fck = tk.Checkbutton(root, state=tk.DISABLED, height=3, width=3)
+		self.fck.grid(row=0, column=1, sticky='nw', pady=30)
 
 		# Edge Color
-		self.edge = tk.Button(text="Edge Color", command=EdgeColor, height=2)
-		self.edge.grid(row=0, column=2, sticky='new', pady=30)
+		self.edge = tk.Button(text="Edge\n Color", command=lambda: EdgeColor(self), height=3, width=3)
+		self.edge.grid(row=0, column=2, sticky='nw', pady=30)
+
+		self.eck = tk.Checkbutton(root, state=tk.DISABLED, height=3, width=3)
+		self.eck.grid(row=0, column=2, sticky='ne', pady=30)
 
 
 
@@ -477,55 +479,55 @@ class Geometry(tk.Frame):
 		self.three_space.grid(row=0, column=2, sticky='nw', pady=525)
 		self.two_three.set('3d')
 
-    def plot(self,canvas, ax):
-        ax.clear()
-        name = self.shape_set.get()
+	def plot(self,canvas, ax):
+		ax.clear()
+		name = self.shape_set.get()
 
-        root.title("Geometric Models ({})".format(name))
+		root.title("Geometric Models ({})".format(name))
 
-        def x_(u, v):
-            x = cos(u) * sin(v)
-            return x
+		def x_(u, v):
+			x = cos(u) * sin(v)
+			return x
 
-        def y_(u, v):
-            y = sin(u) * sin(v)
-            return y
+		def y_(u, v):
+			y = sin(u) * sin(v)
+			return y
 
-        def z_(u, v):
-            z = cos(v) + log1p(tan(2 + v) ** 2)
-            return z
+		def z_(u, v):
+			z = cos(v) + log1p(tan(2 + v) ** 2)
+			return z
 
-        u = linspace(0.001, 2 * pi, self.si_entry.get())
-        v = linspace(0, 2 * pi, self.ed_entry.get())
+		u = linspace(0.001, 2 * pi, self.si_entry.get())
+		v = linspace(0, 2 * pi, self.ed_entry.get())
 
-        u, v = meshgrid(u, v)
+		u, v = meshgrid(u, v)
 
-        x = x_(u, v)
-        y = y_(u, v)
-        z = z_(u, v)
+		x = x_(u, v)
+		y = y_(u, v)
+		z = z_(u, v)
 
 
-        plt.axis(self.grid_axis.get())
+		plt.axis(self.grid_axis.get())
 
-        s[self.shape_set.get()] = ax.plot_surface(x, y, z)
+		s[self.shape_set.get()] = ax.plot_surface(x, y, z)
 
-        s[self.shape_set.get()].set_alpha(self.a_entry.get())
-        s[self.shape_set.get()].set_edgecolor(self.ec_entry.get(self.ec_entry.curselection()[0]))
-        s[self.shape_set.get()].set_linewidth(self.ew_entry.get())
-        s[self.shape_set.get()].set_facecolor(self.c_entry.get(self.c_entry.curselection()[0]))
+		s[self.shape_set.get()].set_alpha(self.a_entry.get())
+		s[self.shape_set.get()].set_edgecolor(self.ec_entry)
+		s[self.shape_set.get()].set_linewidth(self.ew_entry.get())
+		s[self.shape_set.get()].set_facecolor(self.c_entry)
 
-        def init():
-            return s[self.shape_set.get()],
+		def init():
+			return s[self.shape_set.get()],
 
-        def animate(i):
-            return s[self.shape_set.get()]
+		def animate(i):
+			return s[self.shape_set.get()]
 
-        # Animate
-        ani = FuncAnimation(self.fig, animate, init_func=init,
-                            interval=1, frames=500, blit=False, repeat=True)
-        canvas.draw()
+		# Animate
+		ani = FuncAnimation(self.fig, animate, init_func=init,
+							interval=1, frames=500, blit=False, repeat=True)
+		canvas.draw()
 
-    def test(self, canvas, ax):
+	def test(self, canvas, ax):
 		edge_c 		= self.ec_entry
 		color 		= self.c_entry
 		rot_azim 	= self.scroll_azim.get()

@@ -23,8 +23,8 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
         z = cos(v) + log1p(tan(2 + v)**2)
         return z
 
-    u = linspace(0.001, 2 * pi, 25)
-    v = linspace(0, 2 * pi, 25)
+    u = linspace(0.001, multi_pi * pi, 1 + sides)
+    v = linspace(0, 2 * pi, edges)
 
     u, v = meshgrid(u, v)
 
