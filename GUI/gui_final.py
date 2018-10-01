@@ -5,10 +5,10 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg#, NavigationTool
 import mpl_toolkits.mplot3d.axes3d as p3
 from matplotlib.animation import *
 from numpy import *
-import tkinter as tk  # python 2.7
+import Tkinter as tk  # python 2.7
 from PIL import ImageTk
 import sys
-from tkinter.colorchooser import askcolor
+from tkColorChooser import askcolor
 
 sys.path.insert(0, '../In Development/')
 
@@ -124,21 +124,13 @@ s = {"Prism":prism,
 	 "Line":line
 	 }
 
-
-root = tk.Tk()
-
-root.title("Geometric Models")
-
-root.geometry("720x780")
-
-img = ImageTk.PhotoImage(file='penrose_icon.png')
-
 class Geometry(tk.Frame):
 	def __init__(self, master=None):
 		tk.Frame.__init__(self,master)
 		self.createWidgets()
 
 	def createWidgets(self):
+		img = ImageTk.PhotoImage(file='penrose_icon.png')
 		self.fig = plt.figure(figsize=(5, 5))
 		ax = p3.Axes3D(self.fig)
 		ax.set_facecolor('black')
@@ -161,11 +153,11 @@ class Geometry(tk.Frame):
 
 		self.alpha = tk.StringVar()
 
-		self.theme = tk.StringVar()
-
 		self.two_three = tk.StringVar()
 
-		# Save Variables
+		self.theme = theme
+
+	# Save Variables
 
 		# Functions
 		def axi():
@@ -210,12 +202,15 @@ class Geometry(tk.Frame):
 		def popup_theme():
 			top = tk.Toplevel(self)
 			top.title("Themes")
+
 			dim = "#303030"
 			dimf = "#00C0FF"
 			dimfa = dimf
 			dimt = dimf
+
 			bright = "potato"
 			brightf = "potato"
+
 			def dark(self):
 				#self.tk.Frame.config(bg=dim, fg=dim, activebackground=dim)
 				root.config(background=dim)
@@ -247,26 +242,31 @@ class Geometry(tk.Frame):
 				menu.config(bg=dim, fg=dimf, activebackground=dim,activeforeground=dimfa)
 				filemenu.config(bg=dim, fg=dimf, activebackground=dim,activeforeground=dimfa)
 				pop.config(bg=dim, fg=dim, activebackground=dim)
-				
+
 			def light(self):
 				tk.Button.config(bg="white", fg="white", activebackground="white")
 
 			pop = tk.Button(top, text="POP!", command=top.destroy)
 			pop.grid(row=0, column=0, sticky='new')
 
-			tk.Radiobutton(top, text="Dark", variable=self.theme.get(), value="Dark").grid(row=1, column=0, sticky="w")
-			tk.Radiobutton(top, text="Light", variable=self.theme.get(), value="Light").grid(row=2, column=0, sticky="w")
-			tk.Radiobutton(top, text="Normal", variable=self.theme.get(), value="Normal").grid(row=3, column=0, sticky="w")
+			#tk.Radiobutton(top, text="Dark", variable=self.theme.get(), value="Dark").grid(row=1, column=0, sticky="w")
+			#tk.Radiobutton(top, text="Light", variable=self.theme.get(), value="Light").grid(row=2, column=0, sticky="w")
+			#tk.Radiobutton(top, text="Normal", variable=self.theme.get(), value="Normal").grid(row=3, column=0, sticky="w")
 
-			self.theme.set("Dark")
-			tk.Button(top, text="Apply", variable=self.theme.get()).grid(row=0, column=1, sticky="new")
+			#self.theme.set("Dark")
+			if theme == "Dark":
+				dark(self)
+
+			elif theme == "Light":
+				tk.Button(top, text="Apply", command=lambda: light(self)).grid(row=0, column=1, sticky="new")
+
+			elif theme == "Normal":
+				tk.Button(top, text="Apply", command=lambda: default(self)).grid(row=0, column=1, sticky="new")
 
 			top.tk.call('wm', 'iconphoto', top._w, img)
 
-
 		def popup_shape():
 			top = tk.Toplevel(self)
-			#top.geometry("200x200"
 			top.title("Shapes")
 			pop = tk.Button(top, text="POP!", command=top.destroy)
 			pop.grid(row=0, column=0, sticky='new')
@@ -277,97 +277,97 @@ class Geometry(tk.Frame):
 			if self.two_three.get() == "3d":
 
 				#tk.Label(top, text="", font=('Helvetica', 16, 'bold'))
-				prism = tk.Radiobutton(top, text="Prism",variable=self.shape_set, value="Prism")					
+				prism = tk.Radiobutton(top, text="Prism",variable=self.shape_set, value="Prism")
 				prism.grid(row=1, column=0, sticky="w")
-				pyram = tk.Radiobutton(top, text="Pyramid",variable=self.shape_set, value="Pyramid")               
+				pyram = tk.Radiobutton(top, text="Pyramid",variable=self.shape_set, value="Pyramid")
 				pyram.grid(row=2, column=0, sticky="w")
-				spher = tk.Radiobutton(top, text="Sphere",variable=self.shape_set, value="Sphere")                
+				spher = tk.Radiobutton(top, text="Sphere",variable=self.shape_set, value="Sphere")
 				spher.grid(row=3, column=0, sticky="w")
 
 				hy = tk.Label(top, text="--- Hyperbolic Objects ---", font=('Times', 12, 'bold'))
 				hy.grid(row=4, column=0, sticky="nsew")
-				hyoct = tk.Radiobutton(top, text="Hyperbolic Octahedron",variable=self.shape_set, value="Hyperbolic Octahedron") 
+				hyoct = tk.Radiobutton(top, text="Hyperbolic Octahedron",variable=self.shape_set, value="Hyperbolic Octahedron")
 				hyoct.grid(row=5, column=0 ,sticky="w")
-				hypar = tk.Radiobutton(top, text="Hyperbolic Paraboliod",	variable=self.shape_set, value="Hyperbolic Paraboliod") 
+				hypar = tk.Radiobutton(top, text="Hyperbolic Paraboliod",	variable=self.shape_set, value="Hyperbolic Paraboliod")
 				hypar.grid(row=6, column=0, sticky="w")
-				onesh = tk.Radiobutton(top, text="One Sheet Hyperboliod",	variable=self.shape_set, value="One Sheet Hyperboliod") 
+				onesh = tk.Radiobutton(top, text="One Sheet Hyperboliod",	variable=self.shape_set, value="One Sheet Hyperboliod")
 				onesh.grid(row=7, column=0, sticky="w")
 
 				misc = tk.Label(top, text="--- Miscellaneous ---", font=('Times', 12, 'bold'))
 				misc.grid(row=8, column=0, sticky='nsew')
-				three = tk.Radiobutton(top, text="Three Dodecahedron",		variable=self.shape_set, value="Three Dodecahedron")    
+				three = tk.Radiobutton(top, text="Three Dodecahedron",		variable=self.shape_set, value="Three Dodecahedron")
 				three.grid(row=9,  column=0, sticky="w")
-				cress = tk.Radiobutton(top, text="Cressant",				variable=self.shape_set, value="Cressant")              
+				cress = tk.Radiobutton(top, text="Cressant",				variable=self.shape_set, value="Cressant")
 				cress.grid(row=10, column=0, sticky="w")
-				funne = tk.Radiobutton(top, text="Funnel",  				variable=self.shape_set, value="Funnel")                
+				funne = tk.Radiobutton(top, text="Funnel",  				variable=self.shape_set, value="Funnel")
 				funne.grid(row=11, column=0 ,sticky="w")
-				gabri = tk.Radiobutton(top, text="Gabriel's Horn",			variable=self.shape_set, value="Gabriel's Horn")        
+				gabri = tk.Radiobutton(top, text="Gabriel's Horn",			variable=self.shape_set, value="Gabriel's Horn")
 				gabri.grid(row=12, column=0, sticky="w")
-				roses = tk.Radiobutton(top, text="Rose Spiral",				variable=self.shape_set, value="Rose Spiral")           
+				roses = tk.Radiobutton(top, text="Rose Spiral",				variable=self.shape_set, value="Rose Spiral")
 				roses.grid(row=13, column=0, sticky="w")
-				shell = tk.Radiobutton(top, text="Shell", 					variable=self.shape_set, value="Shell")                 
+				shell = tk.Radiobutton(top, text="Shell", 					variable=self.shape_set, value="Shell")
 				shell.grid(row=14, column=0, sticky="w")
-				tesse = tk.Radiobutton(top, text="Tesseract",				variable=self.shape_set, value="Tesseract")             
+				tesse = tk.Radiobutton(top, text="Tesseract",				variable=self.shape_set, value="Tesseract")
 				tesse.grid(row=15, column=0, sticky="w")
 
 				surf = tk.Label(top, text="--- Surfaces ---", font=('Times', 12, 'bold'))
 				surf.grid(row=1, column=2, sticky='new')
-				breat = tk.Radiobutton(top, text="Breather's Surface",      variable=self.shape_set, value="Breather's Surface")    
+				breat = tk.Radiobutton(top, text="Breather's Surface",      variable=self.shape_set, value="Breather's Surface")
 				breat.grid(row=2, column=2, sticky="w")
-				kuens =tk.Radiobutton(top, text="Kuen's Surface",          variable=self.shape_set, value="Kuen's Surface")        
+				kuens =tk.Radiobutton(top, text="Kuen's Surface",          variable=self.shape_set, value="Kuen's Surface")
 				kuens.grid(row=3, column=2, sticky="w")
-				stein = tk.Radiobutton(top, text="Steiner's Surface",       variable=self.shape_set, value="Steiner's Surface")     
+				stein = tk.Radiobutton(top, text="Steiner's Surface",       variable=self.shape_set, value="Steiner's Surface")
 				stein.grid(row=4, column=2, sticky="w")
-				boyss = tk.Radiobutton(top, text="Boy's Surface",           variable=self.shape_set, value="Boy's Surface")         
+				boyss = tk.Radiobutton(top, text="Boy's Surface",           variable=self.shape_set, value="Boy's Surface")
 				boyss.grid(row=5, column=2, sticky="w")
 
 				plato = tk.Label(top, text="--- Platonic Solids ---", font=('Times', 12, 'bold'))
 				plato.grid(row=6, column=2, sticky='nsew')
-				cube = tk.Radiobutton(top, text="Cube",                    variable=self.shape_set, value="Cube")                  
+				cube = tk.Radiobutton(top, text="Cube",                    variable=self.shape_set, value="Cube")
 				cube.grid(row=7, column=2, sticky="w")
-				dodec = tk.Radiobutton(top, text="Dodecahedron",            variable=self.shape_set, value="Dodecahedron")          
+				dodec = tk.Radiobutton(top, text="Dodecahedron",            variable=self.shape_set, value="Dodecahedron")
 				dodec.grid(row=8, column=2 ,sticky="w")
-				icosa =tk.Radiobutton(top, text="Icosahedron",             variable=self.shape_set, value="Icosahedron")           
+				icosa =tk.Radiobutton(top, text="Icosahedron",             variable=self.shape_set, value="Icosahedron")
 				icosa.grid(row=9, column=2, sticky="w")
-				octah = tk.Radiobutton(top, text="Octahedron",              variable=self.shape_set, value="Octahedron")            
+				octah = tk.Radiobutton(top, text="Octahedron",              variable=self.shape_set, value="Octahedron")
 				octah.grid(row=10, column=2, sticky="w")
 
 				topo = tk.Label(top, text="--- Topological ---", font=('Times', 12, 'bold'))
 				topo.grid(row=11, column=2, sticky='nsew')
-				cross = tk.Radiobutton(top, text="Cross Cap",               variable=self.shape_set, value="Cross Cap")             
+				cross = tk.Radiobutton(top, text="Cross Cap",               variable=self.shape_set, value="Cross Cap")
 				cross.grid(row=12, column=2, sticky="w")
-				klein = tk.Radiobutton(top, text="Klein Bottle",            variable=self.shape_set, value="Klein Bottle")          
+				klein = tk.Radiobutton(top, text="Klein Bottle",            variable=self.shape_set, value="Klein Bottle")
 				klein.grid(row=13, column=2, sticky="w")
-				mobiu = tk.Radiobutton(top, text="Mobius Strip",            variable=self.shape_set, value="Mobius Strip")          
+				mobiu = tk.Radiobutton(top, text="Mobius Strip",            variable=self.shape_set, value="Mobius Strip")
 				mobiu.grid(row=14, column=2 ,sticky="w")
-				torus = tk.Radiobutton(top, text="Torus",                   variable=self.shape_set, value="Torus")                 
+				torus = tk.Radiobutton(top, text="Torus",                   variable=self.shape_set, value="Torus")
 				torus.grid(row=15, column=2, sticky="w")
 
 				dev = tk.Label(top, text="--- In Development ---", font=('Times', 12, 'bold'))
 				dev.grid(row=1, column=4, sticky='nsew')
-				unksu = tk.Radiobutton(top, text="Unk Surface",             variable=self.shape_set, value="Unk Surface")           
+				unksu = tk.Radiobutton(top, text="Unk Surface",             variable=self.shape_set, value="Unk Surface")
 				unksu.grid(row=2, column=4, sticky="w")
-				polyh = tk.Radiobutton(top, text="120-Polyhedron",          variable=self.shape_set, value="120 Polyhedron")        
+				polyh = tk.Radiobutton(top, text="120-Polyhedron",          variable=self.shape_set, value="120 Polyhedron")
 				polyh.grid(row=3, column=4, sticky="w")
-				hycyl = tk.Radiobutton(top, text="Hyperbolic Cylinder",     variable=self.shape_set, value="Hyperbolic Cylinder")   
+				hycyl = tk.Radiobutton(top, text="Hyperbolic Cylinder",     variable=self.shape_set, value="Hyperbolic Cylinder")
 				hycyl.grid(row=4, column=4 ,sticky="w")
-				dinis = tk.Radiobutton(top, text="Dini's Surface",          variable=self.shape_set, value="Dini's Surface")        
+				dinis = tk.Radiobutton(top, text="Dini's Surface",          variable=self.shape_set, value="Dini's Surface")
 				dinis.grid(row=5, column=4, sticky="w")
-				knot = tk.Radiobutton(top, text="Knot",                    variable=self.shape_set, value="Knot")                  
+				knot = tk.Radiobutton(top, text="Knot",                    variable=self.shape_set, value="Knot")
 				knot.grid(row=6, column=4, sticky="w")
-				neat = tk.Radiobutton(top, text="Neat",                    variable=self.shape_set, value="Neat")                  
+				neat = tk.Radiobutton(top, text="Neat",                    variable=self.shape_set, value="Neat")
 				neat.grid(row=7, column=4, sticky="w")
-				spira = tk.Radiobutton(top, text="Spiral",                  variable=self.shape_set, value="Spiral")                
-				spria.grid(row=8, column=4, sticky="w")
-				test = tk.Radiobutton(top, text="Testing",                 variable=self.shape_set, value="Testing")               
+				spira = tk.Radiobutton(top, text="Spiral",                  variable=self.shape_set, value="Spiral")
+				spira.grid(row=8, column=4, sticky="w")
+				test = tk.Radiobutton(top, text="Testing",                 variable=self.shape_set, value="Testing")
 				test.grid(row=9, column=4 ,sticky="w")
-				vase = tk.Radiobutton(top, text="Vase",                    variable=self.shape_set, value="Vase")                  
+				vase = tk.Radiobutton(top, text="Vase",                    variable=self.shape_set, value="Vase")
 				vase.grid(row=10, column=4, sticky="w")
-				somet = tk.Radiobutton(top, text="Something Strange",       variable=self.shape_set, value="Something Strange")     
+				somet = tk.Radiobutton(top, text="Something Strange",       variable=self.shape_set, value="Something Strange")
 				somet.grid(row=11, column=4, sticky="w")
-				ennep = tk.Radiobutton(top, text="Enneper's Surface",       variable=self.shape_set, value="Enneper's Surface")     
+				ennep = tk.Radiobutton(top, text="Enneper's Surface",       variable=self.shape_set, value="Enneper's Surface")
 				ennep.grid(row=12, column=4, sticky="w")
-				penro = tk.Radiobutton(top, text="Penrose Triangle",        variable=self.shape_set, value="Penrose Triangle")      
+				penro = tk.Radiobutton(top, text="Penrose Triangle",        variable=self.shape_set, value="Penrose Triangle")
 				penro.grid(row=13,column=4,sticky="w")
 
 				#tk.Radiobutton(top, text="Curves",       variable=self.shape_set, value="Curves")     .grid(row=13, column=4, sticky="w")
@@ -420,13 +420,13 @@ class Geometry(tk.Frame):
 		filemenu.add_command(label="Theme", command=popup_theme)
 		filemenu.add_separator()
 		filemenu.add_command(label="Quit", command=quit)
-		
-		if root.geometry == "720x780":
-			menu.add_command(label="Figure", command=adjust, state=tk.ACTIVE)
-			menu.add_command(label="All", command=lambda: root.geometry("720x780"), state=tk.DISABLED)
-		elif root.geometry == "500x500":
-			menu.add_command(label="Figure", command=adjust, state=tk.DIABLED)
-			menu.add_command(label="All", command=lambda: root.geometry("720x780"), state=tk.ACTIVE)
+
+		#if root.geometry("720x780"):
+		menu.add_command(label="Figure", command=adjust)
+		menu.add_command(label="All", command=lambda: root.geometry("720x780"))
+	  #elif root.geometry("500x500"):
+	#		menu.add_command(label="Figure", command=adjust, state=tk.DIABLED)
+#			menu.add_command(label="All", command=lambda: root.geometry("720x780"), state=tk.ACTIVE)
 
 		self.shapes = tk.Button(root, text="Shapes", command=popup_shape, height=4)
 		self.shapes.grid(row=0, column=2, sticky='new',pady=584)
@@ -611,11 +611,24 @@ class Geometry(tk.Frame):
 
 		canvas.draw()
 
-root.tk.call('wm', 'iconphoto', root._w, img)
 
-root.protocol("WM_DELETE_WINDOW", quit)
-root.update()
-root.update_idletasks()
 
-geo = Geometry(master=root)
-geo.mainloop()
+if __name__ == '__main__':
+	root = tk.Tk()
+	root.title("Geometric Models")
+
+	root.geometry("720x780")
+	img = ImageTk.PhotoImage(file='penrose_icon.png')
+
+	theme = "Dark"
+
+	root.tk.call('wm', 'iconphoto', root._w, img)
+	root.protocol("WM_DELETE_WINDOW", quit)
+	root.update()
+	root.update_idletasks()
+
+	geo = Geometry(master=root)
+
+	#geo.createWidgets()
+
+	geo.mainloop()

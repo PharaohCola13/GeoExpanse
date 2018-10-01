@@ -9,34 +9,36 @@ from matplotlib.animation import *
 
 name = "Curves"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,edges, multi_pi, radius): 
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides,edges, multi_pi, radius):
 
-	x = linspace(-1, 1, 50)
-	y = linspace(-1, 1, 50)
-	Z,Y = meshgrid(x,y)
-	X = Z**2 - 4
-	print(Y)
-	#Y = (X**2/16) + (Z**2/36)
-# Figure Properties
-	#fig = plt.figure(figsize=(8,8))
+    X = linspace(0, 2 * pi, 50)
+    Y = linspace(0, 2 * pi, 50)
+    x,y = meshgrid(X,Y)
+    z = cos(x) * sin(2*y)
+    #print(Y)
+    #Y = (X**2/16) + (Z**2/36)
+    # Figure Properties
+#    fig = plt.figure(figsize=(8,8))
 
-	ax = p3.Axes3D(fig)
-	ax.set_facecolor('black') # Figure background turns black
+    ax = p3.Axes3D(fig)
+    ax.set_facecolor('black') # Figure background turns black
 
-# Axis Properties
-	plt.axis(grid) # Turns off the axis grid
-# Axis Limits
+    #plt.plot([0, 0], 'r-', lw=3)
 
-# Surface Plot
-	curve = ax.plot_surface(X,Y,Z)
+    # Axis Properties
+    plt.axis(grid) # Turns off the axis grid
+    # Axis Limits
 
-	curve.set_alpha(alpha) # Transparency of figure#
-	curve.set_edgecolor(edge_c) # Edge color of the lines on the figure
-	curve.set_linewidth(edge_w) # Line width of the edges
-	curve.set_facecolor(color) # General color of the figure
+    # Surface Plot
+    curves = ax.plot_surface(x,y,z)
+
+    curves.set_alpha(alpha) # Transparency of figure#
+    curves.set_edgecolor(edge_c) # Edge color of the lines on the figure
+    curves.set_linewidth(edge_w) # Line width of the edges
+    curves.set_facecolor(color) # General color of the figure
 
 	#plt.draw()
-	#plt.show()
+#plt.show()
 
 # Saving to curve.mp4
 
