@@ -124,7 +124,46 @@ s = {"Prism":prism,
 	 "Line":line
 	 }
 
+#theme = "Dark"
+
+dim = "#303030"
+dimf = "#00C0FF"
+dimfa = dimf
+dimt = dimf
+
+bright = "potato"
+brightf = "potato"
+
+class themes(tk.Frame):
+	def __init__(self, master=None):
+		tk.Frame.__init__(self,master)
+		self.createWidgets()
+
+	def createWidgets(self):
+		img = ImageTk.PhotoImage(file='penrose_icon.png')
+		#canvas = FigureCanvasTkAgg(self.fig,root_alt)
+		#canvas.get_tk_widget().grid(row=0,column=0, sticky='new')
+	
+		#frame = tk.Frame(root_alt, width=100, height=100)
+		theme = tk.StringVar()
+
+		pop = tk.Button(root_alt, text="POP!", command=root_alt.destroy)
+		pop.grid(row=0, column=0, sticky='new')
+
+		tk.Radiobutton(root_alt, text="Dark", variable=theme.get(), value="Dark").grid(row=1, column=0, sticky="w")
+		tk.Radiobutton(root_alt, text="Light", variable=theme.get(), value="Light").grid(row=2, column=0, sticky="w")
+		tk.Radiobutton(root_alt, text="Normal", variable=theme.get(), value="Normal").grid(row=3, column=0, sticky="w")
+
+		theme.set("Dark")
+
+		#top.tk.call('wm', 'iconphoto', top._w, img)
+		#theme = "Dark"
+	#return theme
+
+theme = "Dark"
+
 class Geometry(tk.Frame):
+	global theme
 	def __init__(self, master=None):
 		tk.Frame.__init__(self,master)
 		self.createWidgets()
@@ -178,15 +217,10 @@ class Geometry(tk.Frame):
 			ax.set_facecolor('white')			
 			plt.axis('on')
 		def adjust():
-			root.geometry("500x500")
+			root.geometry("500x500+520+280")
 
 		def scro(i):
 			ax.view_init(elev=self.scroll.get(), azim=self.scroll.get())
-
-		def quit():
-			global root
-			root.quit()
-			root.destroy()
 
 		def FaceColor(self):
 			self.c_entry = askcolor(title="Face Color", color="#e4e4e4")[1]
@@ -199,71 +233,7 @@ class Geometry(tk.Frame):
 			self.eck.config(bg=self.ec_entry)
 			return self.ec_entry
 
-		def popup_theme():
-			top = tk.Toplevel(self)
-			top.title("Themes")
 
-			dim = "#303030"
-			dimf = "#00C0FF"
-			dimfa = dimf
-			dimt = dimf
-
-			bright = "potato"
-			brightf = "potato"
-
-			def dark(self):
-				#self.tk.Frame.config(bg=dim, fg=dim, activebackground=dim)
-				root.config(background=dim)
-				self.a_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
-				self.si_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
-				self.ed_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,troughcolor=dimt)
-				self.pi_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
-				self.ew_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
-				self.ra_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,troughcolor=dimt)
-				self.shapes.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
-				self.elev_label.config(bg=dim, fg=dimf, activebackground=dim)
-				self.azim_label.config(bg=dim, fg=dimf, activebackground=dim)
-				self.a_label.config(bg=dim, fg=dimf, activebackground=dim)
-				self.si_label.config(bg=dim, fg=dimf, activebackground=dim)
-				self.ed_label.config(bg=dim, fg=dimf, activebackground=dim)
-				self.pi_label.config(bg=dim, fg=dimf, activebackground=dim)
-				self.ew_label.config(bg=dim, fg=dimf, activebackground=dim)
-				self.ra_label.config(bg=dim, fg=dimf, activebackground=dim)
-				self.grid_on.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,activeforeground=dimfa, selectcolor=dim)
-				self.grid_off.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
-				self.two_space.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,activeforeground=dimfa, selectcolor=dim)
-				self.three_space.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,activeforeground=dimfa, selectcolor=dim)
-				self.plot_test.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
-				self.plot_plot.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
-				self.scroll_azim.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
-				self.scroll_elev.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
-				self.face.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
-				self.edge.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf,activeforeground=dimfa)
-				menu.config(bg=dim, fg=dimf, activebackground=dim,activeforeground=dimfa)
-				filemenu.config(bg=dim, fg=dimf, activebackground=dim,activeforeground=dimfa)
-				pop.config(bg=dim, fg=dim, activebackground=dim)
-
-			def light(self):
-				tk.Button.config(bg="white", fg="white", activebackground="white")
-
-			pop = tk.Button(top, text="POP!", command=top.destroy)
-			pop.grid(row=0, column=0, sticky='new')
-
-			#tk.Radiobutton(top, text="Dark", variable=self.theme.get(), value="Dark").grid(row=1, column=0, sticky="w")
-			#tk.Radiobutton(top, text="Light", variable=self.theme.get(), value="Light").grid(row=2, column=0, sticky="w")
-			#tk.Radiobutton(top, text="Normal", variable=self.theme.get(), value="Normal").grid(row=3, column=0, sticky="w")
-
-			#self.theme.set("Dark")
-			if theme == "Dark":
-				dark(self)
-
-			elif theme == "Light":
-				tk.Button(top, text="Apply", command=lambda: light(self)).grid(row=0, column=1, sticky="new")
-
-			elif theme == "Normal":
-				tk.Button(top, text="Apply", command=lambda: default(self)).grid(row=0, column=1, sticky="new")
-
-			top.tk.call('wm', 'iconphoto', top._w, img)
 
 		def popup_shape():
 			top = tk.Toplevel(self)
@@ -277,8 +247,8 @@ class Geometry(tk.Frame):
 			if self.two_three.get() == "3d":
 
 				#tk.Label(top, text="", font=('Helvetica', 16, 'bold'))
-				prism = tk.Radiobutton(top, text="Prism",variable=self.shape_set, value="Prism")
-				prism.grid(row=1, column=0, sticky="w")
+				top.prism = tk.Radiobutton(top, text="Prism",variable=self.shape_set, value="Prism")
+				top.prism.grid(row=1, column=0, sticky="w")
 				pyram = tk.Radiobutton(top, text="Pyramid",variable=self.shape_set, value="Pyramid")
 				pyram.grid(row=2, column=0, sticky="w")
 				spher = tk.Radiobutton(top, text="Sphere",variable=self.shape_set, value="Sphere")
@@ -376,6 +346,7 @@ class Geometry(tk.Frame):
 			elif self.two_three.get() == "2d":
 				line = tk.Radiobutton(top, text="Line", variable=self.shape_set, value="Line")
 				line.grid(row=1, column=0, sticky='w')
+			return prism
 
 
 		def popup_save():
@@ -417,32 +388,29 @@ class Geometry(tk.Frame):
 		menu.add_cascade(label="File", menu=filemenu)
 
 		filemenu.add_command(label="Save", command=popup_save)
-		filemenu.add_command(label="Theme", command=popup_theme)
+		#filemenu.add_command(label="Theme", command=popup_theme)
 		filemenu.add_separator()
 		filemenu.add_command(label="Quit", command=quit)
 
 		#if root.geometry("720x780"):
 		menu.add_command(label="Figure", command=adjust)
-		menu.add_command(label="All", command=lambda: root.geometry("720x780"))
+		menu.add_command(label="All", command=lambda: root.geometry("714x501"))
 	  #elif root.geometry("500x500"):
 	#		menu.add_command(label="Figure", command=adjust, state=tk.DIABLED)
 #			menu.add_command(label="All", command=lambda: root.geometry("720x780"), state=tk.ACTIVE)
 
-		self.shapes = tk.Button(root, text="Shapes", command=popup_shape, height=4)
-		self.shapes.grid(row=0, column=2, sticky='new',pady=584)
-
 		# Rotational functions
-		self.elev_label  = tk.Label(root, text="XY-rotation")
-		self.elev_label.grid(row=0, column=0, sticky='new', pady=510)
-		self.scroll_elev = tk.Scale(root, from_=-50, to=50, width=40, orient=tk.HORIZONTAL, variable=self.scroll,
-									command=scro)
-		self.scroll_elev.grid(row=0, column=0, sticky="nsew", pady=530)
+		#self.elev_label  = tk.Label(root, text="XY-rotation")
+		#self.elev_label.grid(row=0, column=0, sticky='new', pady=510)
+		#self.scroll_elev = tk.Scale(root, from_=-50, to=50, width=40, orient=tk.HORIZONTAL, variable=self.scroll,
+		#							command=scro)
+		#self.scroll_elev.grid(row=0, column=0, sticky="nsew", pady=530)
 
-		self.azim_label = tk.Label(root, text="Z-rotation")
-		self.azim_label.grid(row=0, column=0, sticky="new", pady=610, )
-		self.scroll_azim = tk.Scale(root, from_=-50, to=50, width=40, orient=tk.HORIZONTAL, variable=self.scroll,
-									command=scro)
-		self.scroll_azim.grid(row=0, column=0, sticky="nsew", pady=630)
+		#self.azim_label = tk.Label(root, text="Z-rotation")
+		#self.azim_label.grid(row=0, column=0, sticky="new", pady=610, )
+		#self.scroll_azim = tk.Scale(root, from_=-50, to=50, width=40, orient=tk.HORIZONTAL, variable=self.scroll,
+		#							command=scro)
+		#self.scroll_azim.grid(row=0, column=0, sticky="nsew", pady=630)
 
 		# Transparency
 		self.a_label = tk.Label(root, text="Transparency")
@@ -503,12 +471,12 @@ class Geometry(tk.Frame):
 		# Ploting plot
 		self.plot_plot = tk.Button(root, text="Render Plot", command=lambda: self.plot
 		(canvas,ax), height=4)
-		self.plot_plot.grid(row=0, column=1, sticky="new", pady=500)
+		self.plot_plot.grid(row=0, column=1, sticky="new", pady=350)
 
 		# Ploting test
 		self.plot_test = tk.Button(root, text="Update", command=lambda: self.test
 		(canvas,ax), height=4)
-		self.plot_test.grid(row=0, column=1,  sticky="new", pady=584)
+		self.plot_test.grid(row=0, column=1,  sticky="new", pady=430)
 
 
 		# Changing axis limits
@@ -526,11 +494,60 @@ class Geometry(tk.Frame):
 
 		# 2D or 3D
 		self.two_space = tk.Radiobutton(root, text="2D", variable=self.two_three, value='2d', command=space)
-		self.two_space.grid(row=0, column=2, sticky='nw', pady=500)
+		self.two_space.grid(row=0, column=2, sticky='nw', pady=350)
 
 		self.three_space = tk.Radiobutton(root, text="3D", variable=self.two_three, value='3d', command=space)
-		self.three_space.grid(row=0, column=2, sticky='nw', pady=525)
+		self.three_space.grid(row=0, column=2, sticky='nw', pady=380)
 		self.two_three.set('3d')
+
+		self.shapes = tk.Button(root, text="Shapes", command=popup_shape, height=4)
+		self.shapes.grid(row=0, column=2, sticky='new',pady=430)
+
+		def dark(self):		
+				#self.tk.Frame.config(bg=dim, fg=dim, activebackground=dim)
+				root.config(background=dim)
+				self.a_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
+				self.si_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
+				self.ed_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,troughcolor=dimt)
+				self.pi_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
+				self.ew_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
+				self.ra_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,troughcolor=dimt)
+				self.shapes.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
+				#self.elev_label.config(bg=dim, fg=dimf, activebackground=dim)
+				#self.azim_label.config(bg=dim, fg=dimf, activebackground=dim)
+				self.a_label.config(bg=dim, fg=dimf, activebackground=dim)
+				self.si_label.config(bg=dim, fg=dimf, activebackground=dim)
+				self.ed_label.config(bg=dim, fg=dimf, activebackground=dim)
+				self.pi_label.config(bg=dim, fg=dimf, activebackground=dim)
+				self.ew_label.config(bg=dim, fg=dimf, activebackground=dim)
+				self.ra_label.config(bg=dim, fg=dimf, activebackground=dim)
+				self.grid_on.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,activeforeground=dimfa, selectcolor=dim)
+				self.grid_off.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
+				self.two_space.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,activeforeground=dimfa, selectcolor=dim)
+				self.three_space.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,activeforeground=dimfa, selectcolor=dim)
+				self.plot_test.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
+				self.plot_plot.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
+				#self.scroll_azim.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
+				#self.scroll_elev.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
+				self.face.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
+				self.edge.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf,activeforeground=dimfa)
+				menu.config(bg=dim, fg=dimf, activebackground=dim,activeforeground=dimfa)
+				filemenu.config(bg=dim, fg=dimf, activebackground=dim,activeforeground=dimfa)
+				#pop.config(bg=dim, fg=dim, activebackground=dim)
+				#popup_shape(prism).config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,activeforeground=dimfa, selectcolor=dim)
+
+		def light(self):
+				tk.Button.config(bg="white", fg="white", activebackground="white")
+		if theme == "Dark":
+				dark(self)
+
+		elif theme == "Light":
+				tk.Button(top, text="Apply", command=lambda: light(self)).grid(row=0, column=1, sticky="new")
+
+		elif theme == "Normal":
+				tk.Button(top, text="Apply", command=lambda: default(self)).grid(row=0, column=1, sticky="new")
+
+
 
 	def plot(self,canvas, ax):
 		ax.clear()
@@ -569,22 +586,22 @@ class Geometry(tk.Frame):
 		s[self.shape_set.get()].set_linewidth(self.ew_entry.get())
 		s[self.shape_set.get()].set_facecolor(self.c_entry)
 
-		def init():
-			return s[self.shape_set.get()],
+		#def init():
+		#	return s[self.shape_set.get()],
 
-		def animate(i):
-			return s[self.shape_set.get()]
+		#def animate(i):
+		#	return s[self.shape_set.get()]
 
 		# Animate
-		ani = FuncAnimation(self.fig, animate, init_func=init,
-							interval=1, frames=500, blit=False, repeat=True)
+		#ani = FuncAnimation(self.fig, animate, init_func=init,
+		#					interval=1, frames=500, blit=False, repeat=True)
 		canvas.draw()
 
 	def test(self, canvas, ax):
 		edge_c 		= self.ec_entry
 		color 		= self.c_entry
-		rot_azim 	= self.scroll_azim.get()
-		rot_elev 	= self.scroll_elev.get()
+		#rot_azim 	= self.scroll_azim.get()
+		#rot_elev 	= self.scroll_elev.get()
 		alpha 		= self.a_entry.get()
 		grid 		= self.grid_axis.get()
 		edge_w 		= self.ew_entry.get()
@@ -615,20 +632,42 @@ class Geometry(tk.Frame):
 
 if __name__ == '__main__':
 	root = tk.Tk()
+	root_alt = tk.Tk()
+	
 	root.title("Geometric Models")
+	root_alt.title("Theme")
 
-	root.geometry("720x780")
+	#theme = themes.self.theme
+	root.geometry("714x501")
+	root_alt.geometry("200x200")
 	img = ImageTk.PhotoImage(file='penrose_icon.png')
-
-	theme = "Dark"
 
 	root.tk.call('wm', 'iconphoto', root._w, img)
 	root.protocol("WM_DELETE_WINDOW", quit)
 	root.update()
 	root.update_idletasks()
 
+	def quit():
+		global root
+		root.quit()
+		root.destroy()
+
+	
+	def quit_alt():
+		global root_alt
+		root_alt.quit()
+		root_alt.destroy()
+
+
+	#root_alt.tk.call('wm', 'iconphoto', root_alt._w, img)
+	root_alt.protocol("WM_DELETE_WINDOW", quit_alt)
+	root_alt.update()
+	root_alt.update_idletasks()
+
+	them = themes(master=root_alt)
+
 	geo = Geometry(master=root)
 
 	#geo.createWidgets()
-
+	them.mainloop()
 	geo.mainloop()
