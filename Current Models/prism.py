@@ -31,7 +31,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	h = 1
 
 # Radius
-	r = 1
+	r = radius
 
 # Number of edges on the base
 	s = sides
