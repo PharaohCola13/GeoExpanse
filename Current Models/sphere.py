@@ -53,8 +53,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	ax.set_ylim(-1,1)
 	ax.set_zlim(-1,1)
 
-
-	return x,y,z
 # Figure Properties
 
 # Surface Plot
@@ -64,5 +62,3 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	sphere.set_edgecolor(edge_c) # Edge color of the lines on the figure
 	sphere.set_linewidth(edge_w) # Line width of the edges
 	sphere.set_facecolor(color) # General color of the figure
-
-#eq = r"$\rangle {}, {}, {}\lrange$".format(x,y,z)
