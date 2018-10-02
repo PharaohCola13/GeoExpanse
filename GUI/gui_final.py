@@ -77,7 +77,7 @@ import line
 #
 # # ## In Development
 import interesting
-import polyhedron
+import hecatostoeicostohedron
 import hyperbolic_cylinder
 import dini_surface
 import knot
