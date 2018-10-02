@@ -5,10 +5,19 @@ from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg#, NavigationTool
 import mpl_toolkits.mplot3d.axes3d as p3
 from matplotlib.animation import *
 from numpy import *
-import Tkinter as tk  # python 2.7
 from PIL import ImageTk
+from PIL import Image
 import sys
 from tkColorChooser import askcolor
+from HoverInfo import CreateToolTip
+
+try:
+    # for Python2
+    import Tkinter as tk
+except ImportError:
+    # for Python3
+    import tkinter as tk
+
 
 sys.path.insert(0, '../In Development/')
 
@@ -79,6 +88,9 @@ import testing
 import vase
 import something_strange
 import enneper_surface
+import great_dodecahedron
+import great_icosahedron
+import cuboctahedron
 
 s = {"Prism":prism,
 	"Pyramid":pyramid,
@@ -121,7 +133,10 @@ s = {"Prism":prism,
 	 "Something Strange":something_strange,
 	 "Enneper's Surface":enneper_surface,
 	 #"Curves":curves
-	 "Line":line
+	 "Line":line,
+	 "Cuboctahedron": cuboctahedron,
+	 "Great Dodecahedron": great_dodecahedron,
+     "Great Icosahedron": great_icosahedron
 	 }
 
 #theme = "Dark"
@@ -196,8 +211,6 @@ class Geometry(tk.Frame):
 
 		self.theme = theme
 
-	# Save Variables
-
 		# Functions
 		def axi():
 			plt.axis(str(self.grid_axis.get()))
@@ -206,11 +219,7 @@ class Geometry(tk.Frame):
 			ax.set_zlabel("Z-Axis", color="white")
 			plt.xticks(color="white")
 			plt.yticks(color="white")
-		   # plt.plot([0,0], 'r-',lw=3)
 
-		#def lim(i):
-		##    plt.xlim((-1 * i, i))
-		 #   plt.ylim((-1 * i, i))
 		def space():
 			plt.figure(1)
 			plt.gca()
@@ -233,8 +242,6 @@ class Geometry(tk.Frame):
 			self.eck.config(bg=self.ec_entry)
 			return self.ec_entry
 
-
-
 		def popup_shape():
 			top = tk.Toplevel(self)
 			top.title("Shapes")
@@ -244,11 +251,14 @@ class Geometry(tk.Frame):
 			plot.grid(row=0, column=2, sticky="new")
 
 			top.tk.call('wm', 'iconphoto', top._w, img)
+
 			if self.two_three.get() == "3d":
 
 				#tk.Label(top, text="", font=('Helvetica', 16, 'bold'))
-				top.prism = tk.Radiobutton(top, text="Prism",variable=self.shape_set, value="Prism")
-				top.prism.grid(row=1, column=0, sticky="w")
+				prism = tk.Radiobutton(top, text="Prism",variable=self.shape_set, value="Prism")
+				prism.grid(row=1, column=0, sticky="w")
+				
+
 				pyram = tk.Radiobutton(top, text="Pyramid",variable=self.shape_set, value="Pyramid")
 				pyram.grid(row=2, column=0, sticky="w")
 				spher = tk.Radiobutton(top, text="Sphere",variable=self.shape_set, value="Sphere")
@@ -256,10 +266,16 @@ class Geometry(tk.Frame):
 
 				hy = tk.Label(top, text="--- Hyperbolic Objects ---", font=('Times', 12, 'bold'))
 				hy.grid(row=4, column=0, sticky="nsew")
+
 				hyoct = tk.Radiobutton(top, text="Hyperbolic Octahedron",variable=self.shape_set, value="Hyperbolic Octahedron")
 				hyoct.grid(row=5, column=0 ,sticky="w")
+				
+				hyoct_hover = CreateToolTip(hyoct, ImageTk.PhotoImage(file="./Visual/hyoct.png"),"test")
+
 				hypar = tk.Radiobutton(top, text="Hyperbolic Paraboliod",	variable=self.shape_set, value="Hyperbolic Paraboliod")
 				hypar.grid(row=6, column=0, sticky="w")
+				hypar_hover = CreateToolTip(hypar, ImageTk.PhotoImage(file="./Visual/hypar.png"),"test")
+
 				onesh = tk.Radiobutton(top, text="One Sheet Hyperboliod",	variable=self.shape_set, value="One Sheet Hyperboliod")
 				onesh.grid(row=7, column=0, sticky="w")
 
@@ -293,12 +309,20 @@ class Geometry(tk.Frame):
 
 				plato = tk.Label(top, text="--- Platonic Solids ---", font=('Times', 12, 'bold'))
 				plato.grid(row=6, column=2, sticky='nsew')
+				
 				cube = tk.Radiobutton(top, text="Cube",                    variable=self.shape_set, value="Cube")
 				cube.grid(row=7, column=2, sticky="w")
+				cube_hover = CreateToolTip(cube, ImageTk.PhotoImage(file="./Visual/cube.png"),"test")
+
+
 				dodec = tk.Radiobutton(top, text="Dodecahedron",            variable=self.shape_set, value="Dodecahedron")
 				dodec.grid(row=8, column=2 ,sticky="w")
+				dodec_hover = CreateToolTip(dodec, ImageTk.PhotoImage(file="./Visual/dodec.png"),"test")
+
 				icosa =tk.Radiobutton(top, text="Icosahedron",             variable=self.shape_set, value="Icosahedron")
 				icosa.grid(row=9, column=2, sticky="w")
+				icosa_hover = CreateToolTip(icosa, ImageTk.PhotoImage(file="./Visual/icosa.png"),"test")
+
 				octah = tk.Radiobutton(top, text="Octahedron",              variable=self.shape_set, value="Octahedron")
 				octah.grid(row=10, column=2, sticky="w")
 
@@ -339,6 +363,12 @@ class Geometry(tk.Frame):
 				ennep.grid(row=12, column=4, sticky="w")
 				penro = tk.Radiobutton(top, text="Penrose Triangle",        variable=self.shape_set, value="Penrose Triangle")
 				penro.grid(row=13,column=4,sticky="w")
+				cuboc = tk.Radiobutton(top, text="Cuboctahedron",       variable=self.shape_set, value="Cuboctahedron")
+				cuboc.grid(row=14, column=4, sticky="w")
+				grico = tk.Radiobutton(top, text="Great Icosahedron",        variable=self.shape_set, value="Great Icosahedron")
+				grico.grid(row=15,column=4,sticky="w")
+				grdod = tk.Radiobutton(top, text="Great Dodecahedron",        variable=self.shape_set, value="Great Dodecahedron")
+				grdod.grid(row=16,column=4,sticky="w")
 
 				#tk.Radiobutton(top, text="Curves",       variable=self.shape_set, value="Curves")     .grid(row=13, column=4, sticky="w")
 				self.shape_set.set("Penrose Triangle")
@@ -346,7 +376,6 @@ class Geometry(tk.Frame):
 			elif self.two_three.get() == "2d":
 				line = tk.Radiobutton(top, text="Line", variable=self.shape_set, value="Line")
 				line.grid(row=1, column=0, sticky='w')
-			return prism
 
 
 		def popup_save():
