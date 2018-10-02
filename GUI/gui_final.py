@@ -28,7 +28,7 @@ sys.path.insert(0, '../Current Models/Platonic Solids')
 sys.path.insert(0, '../Current Models/Surfaces')
 sys.path.insert(0, '../Current Models/Topological')
 sys.path.insert(0, '../Current Models/Two Space')
-
+sys.path.insert(0, '../Current Models/Archimedean')
 
 sys.path.insert(0, '../Scutoid Research/')
 
@@ -90,6 +90,8 @@ import something_strange
 import enneper_surface
 import great_dodecahedron
 import great_icosahedron
+
+# ## Archimedean
 import cuboctahedron
 
 s = {"Prism":prism,
