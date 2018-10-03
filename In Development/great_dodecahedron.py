@@ -11,18 +11,20 @@ name = "Cube"
 
 
 points = array([[0,0,0],
-                [0, 0, -5/(sqrt(50-10*sqrt(5)))],
-                [0, 0, 5/(sqrt(50-10*sqrt(5)))],
-                [-sqrt(2/(5 - sqrt(5))), 0, -1/sqrt(10 - 2 *sqrt(5))],
-                [sqrt(2/(5 - sqrt(5))), 0, 1/sqrt(10 - 2 *sqrt(5))],
-                [-(-1+sqrt(5))/(2 *sqrt(10 - 2 *sqrt(5))), -0.5 *sqrt((5 +sqrt(5))/(5 - sqrt(5))), -1/sqrt(10 - 2 *sqrt(5))],
-                [-(-1+sqrt(5))/(2 *sqrt(10 - 2 *sqrt(5))), 0.5 *sqrt((5 +sqrt(5))/(5 - sqrt(5))), -1/sqrt(10 - 2 *sqrt(5))],
-                [(-1 + sqrt(5))/(2 * sqrt(10 - 2 * sqrt(5))), -0.5 * sqrt((5 + sqrt(5))/(5 - sqrt(5))), 1/sqrt(10 - 2 * sqrt(5))],
-                [(-1 + sqrt(5))/(2 * sqrt(10 - 2 * sqrt(5))), 0.5 * sqrt((5 + sqrt(5))/(5 - sqrt(5))), 1/sqrt(10 - 2 * sqrt(5))],
-                [-(1 + sqrt(5))/(2 * sqrt(10 - 2 * sqrt(5))), -0.5, 1/sqrt(10 - 2 * sqrt(5))],
-                [-(1 + sqrt(5))/(2 * sqrt(10 - 2 * sqrt(5))), 0.5, 1/sqrt(10 - 2 * sqrt(5))],
-                [(1 + sqrt(5))/(2 * sqrt(10 - 2 * sqrt(5))), -0.5, -1/sqrt(10 - 2 * sqrt(5))],
-                [(1 + sqrt(5))/(2 * sqrt(10 - 2 * sqrt(5))), 0.5, -1/sqrt(10 - 2 * sqrt(5))]
+                [0,                         0, -5/(sqrt(50 - (10 * sqrt(5))))],
+                [0,                         0, 5/(sqrt(50 - (10 * sqrt(5))))],
+                [-sqrt(2/(5 - sqrt(5))),    0, -1/sqrt(10 - (2 * sqrt(5)))],
+                [sqrt(2/(5 - sqrt(5))),     0, 1/sqrt(10 - (2 * sqrt(5)))],
+
+                [-(-1 + sqrt(5))/(2 * sqrt(10 - (2 * sqrt(5)))), -0.5 * sqrt((5 + sqrt(5))/(5 - sqrt(5))), -1/sqrt(10 - (2 * sqrt(5)))],
+                [-(-1 + sqrt(5))/(2 * sqrt(10 - (2 * sqrt(5)))),  0.5 * sqrt((5 + sqrt(5))/(5 - sqrt(5))), -1/sqrt(10 - (2 * sqrt(5)))],
+                [(-1 + sqrt(5))/(2 * sqrt(10 - (2 * sqrt(5)))),  -0.5 * sqrt((5 + sqrt(5))/(5 - sqrt(5))), 1/sqrt(10 - (2 * sqrt(5)))],
+                [(-1 + sqrt(5))/(2 * sqrt(10 - (2 * sqrt(5)))),   0.5 * sqrt((5 + sqrt(5))/(5 - sqrt(5))), 1/sqrt(10 - (2 * sqrt(5)))],
+
+                [-(1 + sqrt(5))/(2 * sqrt(10 - (2 * sqrt(5)))),  -0.5, 1/sqrt(10 - (2 * sqrt(5)))],
+                [-(1 + sqrt(5))/(2 * sqrt(10 - (2 * sqrt(5)))),   0.5, 1/sqrt(10 - (2 * sqrt(5)))],
+                [(1 + sqrt(5))/(2 * sqrt(10 - (2 * sqrt(5)))),   -0.5, -1/sqrt(10 - (2 * sqrt(5)))],
+                [(1 + sqrt(5))/(2 * sqrt(10 - (2 * sqrt(5)))),    0.5, -1/sqrt(10 - (2 * sqrt(5)))]
                 ])
 
 # Scaling Matricies
@@ -36,7 +38,7 @@ for i in range(13):
     Z[i, :] = dot(points[i, :], P)
 
 # Figure Properties
-fig = plt.figure(figsize=(5, 5))
+fig = plt.figure(figsize=(8, 8))
 ax = p3.Axes3D(fig)
 ax.set_facecolor('black')
 

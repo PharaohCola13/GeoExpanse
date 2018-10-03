@@ -12,11 +12,11 @@ from tkColorChooser import askcolor
 from HoverInfo import CreateToolTip
 
 try:
-    # for Python2
-    import Tkinter as tk
+	# for Python2
+	import Tkinter as tk
 except ImportError:
-    # for Python3
-    import tkinter as tk
+	# for Python3
+	import tkinter as tk
 
 
 sys.path.insert(0, '../In Development/')
@@ -88,11 +88,12 @@ import testing
 import vase
 import something_strange
 import enneper_surface
-import great_dodecahedron
-import great_icosahedron
+#import great_dodecahedron
+#import great_icosahedron
 
 # ## Archimedean
 import cuboctahedron
+import great_rombicosidodecahedron
 
 s = {"Prism":prism,
 	"Pyramid":pyramid,
@@ -123,7 +124,7 @@ s = {"Prism":prism,
 	 "Mobius Strip":mobius,
 	 "Torus":torus,
 	 "Unk Surface":interesting,
-	 "120 Polyhedron": polyhedron,
+	 "Hecatostoeicostohedron": hecatostoeicostohedron,
 	 "Hyperbolic Cylinder":hyperbolic_cylinder,
 	 "Dini's Surface":dini_surface,
 	 "Knot":knot,
@@ -137,8 +138,9 @@ s = {"Prism":prism,
 	 #"Curves":curves
 	 "Line":line,
 	 "Cuboctahedron": cuboctahedron,
-	 "Great Dodecahedron": great_dodecahedron,
-     "Great Icosahedron": great_icosahedron
+	 "Great Rombicosidodecahedron": great_rombicosidodecahedron,
+#	 "Great Dodecahedron": great_dodecahedron,
+ #    "Great Icosahedron": great_icosahedron
 	 }
 
 #theme = "Dark"
@@ -213,6 +215,8 @@ class Geometry(tk.Frame):
 
 		self.theme = theme
 
+		self.rot = tk.StringVar()
+
 		# Functions
 		def axi():
 			plt.axis(str(self.grid_axis.get()))
@@ -227,11 +231,22 @@ class Geometry(tk.Frame):
 			plt.gca()
 			ax.set_facecolor('white')			
 			plt.axis('on')
+
 		def adjust():
 			root.geometry("500x500+520+280")
 
-		def scro(i):
-			ax.view_init(elev=self.scroll.get(), azim=self.scroll.get())
+		def auto_rot():
+
+			def init():
+				return s[self.shape_set.get()],
+
+			def animate(i):
+				ax.view_init(elev=i * 4, azim=i * 4)
+				return s[self.shape_set.get()]
+			if self.rot.get() == "on":
+			#Animate
+				ani = FuncAnimation(self.fig, animate, init_func=init,
+								interval=1, frames=500, blit=False, repeat=True)
 
 		def FaceColor(self):
 			self.c_entry = askcolor(title="Face Color", color="#e4e4e4")[1]
@@ -247,11 +262,11 @@ class Geometry(tk.Frame):
 		def popup_shape():
 			top = tk.Toplevel(self)
 			top.title("Shapes")
+			#top.geometry("750x750")
 			pop = tk.Button(top, text="POP!", command=top.destroy)
 			pop.grid(row=0, column=0, sticky='new')
 			plot = tk.Button(top, text="Plot",  command=lambda: self.test(canvas,ax))
 			plot.grid(row=0, column=2, sticky="new")
-
 			top.tk.call('wm', 'iconphoto', top._w, img)
 
 			if self.two_three.get() == "3d":
@@ -272,7 +287,7 @@ class Geometry(tk.Frame):
 				hyoct = tk.Radiobutton(top, text="Hyperbolic Octahedron",variable=self.shape_set, value="Hyperbolic Octahedron")
 				hyoct.grid(row=5, column=0 ,sticky="w")
 				
-				hyoct_hover = CreateToolTip(hyoct, ImageTk.PhotoImage(file="./Visual/hyoct.png"),"test")
+				hyoct_hover = CreateToolTip(hyoct, ImageTk.PhotoImage(file="./Visual/Hyperbolic Octahedron.png"),"test")
 
 				hypar = tk.Radiobutton(top, text="Hyperbolic Paraboliod",	variable=self.shape_set, value="Hyperbolic Paraboliod")
 				hypar.grid(row=6, column=0, sticky="w")
@@ -314,12 +329,12 @@ class Geometry(tk.Frame):
 				
 				cube = tk.Radiobutton(top, text="Cube",                    variable=self.shape_set, value="Cube")
 				cube.grid(row=7, column=2, sticky="w")
-				cube_hover = CreateToolTip(cube, ImageTk.PhotoImage(file="./Visual/cube.png"),"test")
+				cube_hover = CreateToolTip(cube, ImageTk.PhotoImage(file="./Visual/Cube.png"),"test")
 
 
 				dodec = tk.Radiobutton(top, text="Dodecahedron",            variable=self.shape_set, value="Dodecahedron")
 				dodec.grid(row=8, column=2 ,sticky="w")
-				dodec_hover = CreateToolTip(dodec, ImageTk.PhotoImage(file="./Visual/dodec.png"),"test")
+				dodec_hover = CreateToolTip(dodec, ImageTk.PhotoImage(file="./Visual/Dodecahedron.png"),"test")
 
 				icosa =tk.Radiobutton(top, text="Icosahedron",             variable=self.shape_set, value="Icosahedron")
 				icosa.grid(row=9, column=2, sticky="w")
@@ -343,7 +358,7 @@ class Geometry(tk.Frame):
 				dev.grid(row=1, column=4, sticky='nsew')
 				unksu = tk.Radiobutton(top, text="Unk Surface",             variable=self.shape_set, value="Unk Surface")
 				unksu.grid(row=2, column=4, sticky="w")
-				polyh = tk.Radiobutton(top, text="120-Polyhedron",          variable=self.shape_set, value="120 Polyhedron")
+				polyh = tk.Radiobutton(top, text="Hecatostoeicostohedron",  variable=self.shape_set, value="Hecatostoeicostohedron")
 				polyh.grid(row=3, column=4, sticky="w")
 				hycyl = tk.Radiobutton(top, text="Hyperbolic Cylinder",     variable=self.shape_set, value="Hyperbolic Cylinder")
 				hycyl.grid(row=4, column=4 ,sticky="w")
@@ -365,12 +380,18 @@ class Geometry(tk.Frame):
 				ennep.grid(row=12, column=4, sticky="w")
 				penro = tk.Radiobutton(top, text="Penrose Triangle",        variable=self.shape_set, value="Penrose Triangle")
 				penro.grid(row=13,column=4,sticky="w")
+
+				arch = tk.Label(top, text="--- Archimedean Solids ---", font=('Times', 12, 'bold'))
+				arch.grid(row=1, column=5, sticky='nsew')
 				cuboc = tk.Radiobutton(top, text="Cuboctahedron",       variable=self.shape_set, value="Cuboctahedron")
-				cuboc.grid(row=14, column=4, sticky="w")
-				grico = tk.Radiobutton(top, text="Great Icosahedron",        variable=self.shape_set, value="Great Icosahedron")
-				grico.grid(row=15,column=4,sticky="w")
-				grdod = tk.Radiobutton(top, text="Great Dodecahedron",        variable=self.shape_set, value="Great Dodecahedron")
-				grdod.grid(row=16,column=4,sticky="w")
+				cuboc.grid(row=2, column=5, sticky="w")
+				grrom = tk.Radiobutton(top, text="Great Rombicosidodecahedron", variable=self.shape_set, value="Great Rombicosidodecahedron")
+				grrom.grid(row=3, column=5, sticky="w")
+
+#				grico = tk.Radiobutton(top, text="Great Icosahedron",        variable=self.shape_set, value="Great Icosahedron")
+#				grico.grid(row=15,column=4,sticky="w")
+#				grdod = tk.Radiobutton(top, text="Great Dodecahedron",        variable=self.shape_set, value="Great Dodecahedron")
+#				grdod.grid(row=16,column=4,sticky="w")
 
 				#tk.Radiobutton(top, text="Curves",       variable=self.shape_set, value="Curves")     .grid(row=13, column=4, sticky="w")
 				self.shape_set.set("Penrose Triangle")
@@ -378,7 +399,16 @@ class Geometry(tk.Frame):
 			elif self.two_three.get() == "2d":
 				line = tk.Radiobutton(top, text="Line", variable=self.shape_set, value="Line")
 				line.grid(row=1, column=0, sticky='w')
-
+			#
+			# display = tk.Canvas(top, width=300, height=300)
+			# display.grid(row=20, column=2, columnspan=4)
+			#
+			# img_dis = ImageTk.PhotoImage(Image.open("./Visual/{}.png".format(self.shape_set.get())))
+			# display.create_image(5, 5, anchor=tk.NW, image=img_dis)
+			#
+			# top.update()
+			# top.update_idletasks()
+			# top.mainloop()
 
 		def popup_save():
 			top = tk.Toplevel(self)
@@ -419,31 +449,13 @@ class Geometry(tk.Frame):
 		menu.add_cascade(label="File", menu=filemenu)
 
 		filemenu.add_command(label="Save", command=popup_save)
-		#filemenu.add_command(label="Theme", command=popup_theme)
 		filemenu.add_separator()
 		filemenu.add_command(label="Quit", command=quit)
 
-		#if root.geometry("720x780"):
 		menu.add_command(label="Figure", command=adjust)
 		menu.add_command(label="All", command=lambda: root.geometry("714x501"))
-	  #elif root.geometry("500x500"):
-	#		menu.add_command(label="Figure", command=adjust, state=tk.DIABLED)
-#			menu.add_command(label="All", command=lambda: root.geometry("720x780"), state=tk.ACTIVE)
 
-		# Rotational functions
-		#self.elev_label  = tk.Label(root, text="XY-rotation")
-		#self.elev_label.grid(row=0, column=0, sticky='new', pady=510)
-		#self.scroll_elev = tk.Scale(root, from_=-50, to=50, width=40, orient=tk.HORIZONTAL, variable=self.scroll,
-		#							command=scro)
-		#self.scroll_elev.grid(row=0, column=0, sticky="nsew", pady=530)
-
-		#self.azim_label = tk.Label(root, text="Z-rotation")
-		#self.azim_label.grid(row=0, column=0, sticky="new", pady=610, )
-		#self.scroll_azim = tk.Scale(root, from_=-50, to=50, width=40, orient=tk.HORIZONTAL, variable=self.scroll,
-		#							command=scro)
-		#self.scroll_azim.grid(row=0, column=0, sticky="nsew", pady=630)
-
-		# Transparency
+		# # Transparency
 		self.a_label = tk.Label(root, text="Transparency")
 		self.a_label.grid(row=0, column=1, sticky='nw', pady=110)
 		self.a_entry = tk.Scale(root, from_=0, to=1, resolution=0.1, orient=tk.HORIZONTAL)
@@ -496,9 +508,6 @@ class Geometry(tk.Frame):
 		self.eck = tk.Checkbutton(root, state=tk.DISABLED, height=3, width=3)
 		self.eck.grid(row=0, column=2, sticky='ne', pady=30)
 
-
-
-
 		# Ploting plot
 		self.plot_plot = tk.Button(root, text="Render Plot", command=lambda: self.plot
 		(canvas,ax), height=4)
@@ -508,12 +517,6 @@ class Geometry(tk.Frame):
 		self.plot_test = tk.Button(root, text="Update", command=lambda: self.test
 		(canvas,ax), height=4)
 		self.plot_test.grid(row=0, column=1,  sticky="new", pady=430)
-
-
-		# Changing axis limits
-#		tk.Label(root, text="Axis Limits").grid(row=0, column=0, sticky="new", pady=710)#
-#		self.axis_zoom = tk.Scale(root, from_=1, to=100, width=40, orient=tk.HORIZONTAL)
-#		self.axis_zoom.grid(row=0, column=0, sticky="nsew", pady=730)
 
 		# Grid Functions (on/off)
 		self.grid_on = tk.Radiobutton(root, text="Grid On", variable=self.grid_axis, value='on', command=axi)
@@ -530,6 +533,13 @@ class Geometry(tk.Frame):
 		self.three_space = tk.Radiobutton(root, text="3D", variable=self.two_three, value='3d', command=space)
 		self.three_space.grid(row=0, column=2, sticky='nw', pady=380)
 		self.two_three.set('3d')
+
+		self.rot_on = tk.Radiobutton(root, text="Rot\n On", variable=self.rot, value='on', command=auto_rot)
+		self.rot_on.grid(row=0, column=2, sticky='ne', pady=350)
+
+		self.rot_off = tk.Radiobutton(root, text='Rot\n Off', variable=self.rot, value='off', command=auto_rot)
+		self.rot_off.grid(row=0, column=2, sticky='ne', pady=380)
+		self.rot.set('off')
 
 		self.shapes = tk.Button(root, text="Shapes", command=popup_shape, height=4)
 		self.shapes.grid(row=0, column=2, sticky='new',pady=430)
@@ -578,8 +588,6 @@ class Geometry(tk.Frame):
 		elif theme == "Normal":
 				tk.Button(top, text="Apply", command=lambda: default(self)).grid(row=0, column=1, sticky="new")
 
-
-
 	def plot(self,canvas, ax):
 		ax.clear()
 		name = self.shape_set.get()
@@ -617,15 +625,6 @@ class Geometry(tk.Frame):
 		s[self.shape_set.get()].set_linewidth(self.ew_entry.get())
 		s[self.shape_set.get()].set_facecolor(self.c_entry)
 
-		#def init():
-		#	return s[self.shape_set.get()],
-
-		#def animate(i):
-		#	return s[self.shape_set.get()]
-
-		# Animate
-		#ani = FuncAnimation(self.fig, animate, init_func=init,
-		#					interval=1, frames=500, blit=False, repeat=True)
 		canvas.draw()
 
 	def test(self, canvas, ax):
@@ -642,6 +641,7 @@ class Geometry(tk.Frame):
 		sides 		= self.si_entry.get()
 		multi_pi	= self.pi_entry.get()
 		radius		= self.ra_entry.get()
+		rot 		= self.rot.get()
 		
 		name = self.shape_set.get()
 		root.title("Geometric Modeling ({})".format(name))
@@ -655,7 +655,7 @@ class Geometry(tk.Frame):
 		#ax.set_zlim(-50,50)
 
 		s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius)		
+				   edges, multi_pi, radius)
 
 		canvas.draw()
 
