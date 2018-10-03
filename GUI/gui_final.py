@@ -145,10 +145,11 @@ s = {"Prism":prism,
 
 #theme = "Dark"
 
-dim = "#303030"
-dimf = "#00C0FF"
+dim = "#000E2E" #Background
+#"#303030"
+dimf = "#00C0FF" #Font Color
 dimfa = dimf
-dimt = dimf
+dimt = dimf #Slider color
 
 bright = "potato"
 brightf = "potato"
@@ -201,21 +202,23 @@ class Geometry(tk.Frame):
 
 		# Vars
 
-		self.grid_axis = tk.StringVar()
+		self.grid_axis 		= tk.StringVar()
 
-		self.axis_limits = tk.StringVar()
+		self.axis_limits 	= tk.StringVar()
 
-		self.scroll		= tk.DoubleVar()
+		self.scroll			= tk.DoubleVar()
 
-		self.shape_set = tk.StringVar()
+		self.shape_set 		= tk.StringVar()
 
-		self.alpha = tk.StringVar()
+		self.alpha 			= tk.StringVar()
 
-		self.two_three = tk.StringVar()
+		self.two_three 		= tk.StringVar()
 
-		self.theme = theme
+		self.theme 			= theme
 
-		self.rot = tk.StringVar()
+		self.rot 			= tk.StringVar()
+
+		self.format_save 	= tk.StringVar()
 
 		# Functions
 		def axi():
@@ -234,19 +237,6 @@ class Geometry(tk.Frame):
 
 		def adjust():
 			root.geometry("500x500+520+280")
-
-		def auto_rot():
-
-			def init():
-				return s[self.shape_set.get()],
-
-			def animate(i):
-				ax.view_init(elev=i * 4, azim=i * 4)
-				return s[self.shape_set.get()]
-			if self.rot.get() == "on":
-			#Animate
-				ani = FuncAnimation(self.fig, animate, init_func=init,
-								interval=1, frames=500, blit=False, repeat=True)
 
 		def FaceColor(self):
 			self.c_entry = askcolor(title="Face Color", color="#e4e4e4")[1]
@@ -385,7 +375,7 @@ class Geometry(tk.Frame):
 				arch.grid(row=1, column=5, sticky='nsew')
 				cuboc = tk.Radiobutton(top, text="Cuboctahedron",       variable=self.shape_set, value="Cuboctahedron")
 				cuboc.grid(row=2, column=5, sticky="w")
-				grrom = tk.Radiobutton(top, text="Great Rombicosidodecahedron", variable=self.shape_set, value="Great Rombicosidodecahedron")
+				grrom = tk.Radiobutton(top, text="Great\n Rombicosidodecahedron", variable=self.shape_set, value="Great Rombicosidodecahedron")
 				grrom.grid(row=3, column=5, sticky="w")
 
 #				grico = tk.Radiobutton(top, text="Great Icosahedron",        variable=self.shape_set, value="Great Icosahedron")
@@ -412,35 +402,21 @@ class Geometry(tk.Frame):
 
 		def popup_save():
 			top = tk.Toplevel(self)
-			top.geometry("200x200")
+			top.geometry("300x200")
 			top.title("Save Figure")
 			pop = tk.Button(top, text="POP!", command=top.destroy)
 			pop.grid(row=0, column=0)
 			self.format_save	= tk.StringVar()
 			def img():
 				plt.savefig.format=self.format_save.get()
-			def vid():
-				Writer = writers['ffmpeg']
-				writer = Writer(fps=15, bitrate=1800)
-				# # Defintions for animations
-				def init():
-					return s[self.shape_set.get()],
-				def animate(i):
-					# # azimuth angle : 0 deg to 360 deg
-					# # elev = i * n --> rotates object about the xy-plane with a magnitude of n
-					# # azim = i * n --> rotates object around the z axis with a magnitude of n
-					# # For top view elev = 90
-					# # For side view elev = 0
-					return s[self.shape_set.get()],
 
 			tk.Radiobutton(top, text="png", variable=self.format_save, value="png", command=img, width=5).grid(row=1, column=0)
 			tk.Radiobutton(top, text="jpg", variable=self.format_save, value="jpg", command=img, width=5).grid(row=1, column=1)
-			tk.Radiobutton(top, text="mp4", command=vid, width=5).grid(row=2, column=0)
+			tk.Radiobutton(top, text="mp4", variable=self.format_save,    value="mp4", width=5).grid(row=2, column=0)
 			tk.Button(top, text="save img", command=lambda: plt.savefig("{}.{}".format(self.shape_set.get(),self.format_save.get()), format=str(self.format_save.get()))).grid(row=0, column=1)
-			tk.Button(top, text="save video", command=lambda: FuncAnimation(self.fig, vid.animate, init_func=vid.init,
-							interval=1, frames=500, blit=False, repeat=True).save('{}.mp4'.format(self.shape_set.get()), writer=writer)).grid(row=0, column=2)
-
-			top.tk.call('wm', 'iconphoto', top._w, img)
+			tk.Button(top, text="save video", command=lambda: self.test(canvas,ax)).grid(row=0, column=2)
+			self.format_save.set("png")
+			#top.tk.call('wm', 'iconphoto', top._w, img)
 
 		menu = tk.Menu(root)
 		root.config(menu=menu)
@@ -514,8 +490,7 @@ class Geometry(tk.Frame):
 		self.plot_plot.grid(row=0, column=1, sticky="new", pady=350)
 
 		# Ploting test
-		self.plot_test = tk.Button(root, text="Update", command=lambda: self.test
-		(canvas,ax), height=4)
+		self.plot_test = tk.Button(root, text="Update", command=lambda: self.test(canvas,ax), height=4)
 		self.plot_test.grid(row=0, column=1,  sticky="new", pady=430)
 
 		# Grid Functions (on/off)
@@ -534,12 +509,11 @@ class Geometry(tk.Frame):
 		self.three_space.grid(row=0, column=2, sticky='nw', pady=380)
 		self.two_three.set('3d')
 
-		self.rot_on = tk.Radiobutton(root, text="Rot\n On", variable=self.rot, value='on', command=auto_rot)
+		self.rot_on = tk.Radiobutton(root, text="Rot\n On", variable=self.rot, value='on')#command=lambda: self.test(canvas,ax))
 		self.rot_on.grid(row=0, column=2, sticky='ne', pady=350)
 
-		self.rot_off = tk.Radiobutton(root, text='Rot\n Off', variable=self.rot, value='off', command=auto_rot)
+		self.rot_off = tk.Radiobutton(root, text='Rot\n Off', variable=self.rot, value='off')
 		self.rot_off.grid(row=0, column=2, sticky='ne', pady=380)
-		self.rot.set('off')
 
 		self.shapes = tk.Button(root, text="Shapes", command=popup_shape, height=4)
 		self.shapes.grid(row=0, column=2, sticky='new',pady=430)
@@ -642,20 +616,21 @@ class Geometry(tk.Frame):
 		multi_pi	= self.pi_entry.get()
 		radius		= self.ra_entry.get()
 		rot 		= self.rot.get()
-		
+		save 		= self.format_save.get()
+
 		name = self.shape_set.get()
 		root.title("Geometric Modeling ({})".format(name))
 
 		ax.clear()
 		plt.cla()
-		plt.clf()	
+		plt.clf()
 
 		#ax.set_xlim(self.axis_limits.get(),self.axis_limits.get())
 		#ax.set_ylim(self.axis_limits.get(),self.axis_limits.get())
 		#ax.set_zlim(-50,50)
 
 		s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius)
+				   edges, multi_pi, radius, rot, save)
 
 		canvas.draw()
 
@@ -663,14 +638,14 @@ class Geometry(tk.Frame):
 
 if __name__ == '__main__':
 	root = tk.Tk()
-	root_alt = tk.Tk()
+	#root_alt = tk.Tk()
 	
 	root.title("Geometric Models")
-	root_alt.title("Theme")
+	#root_alt.title("Theme")
 
 	#theme = themes.self.theme
 	root.geometry("714x501")
-	root_alt.geometry("200x200")
+	#root_alt.geometry("200x200")
 	img = ImageTk.PhotoImage(file='penrose_icon.png')
 
 	root.tk.call('wm', 'iconphoto', root._w, img)
@@ -691,14 +666,14 @@ if __name__ == '__main__':
 
 
 	#root_alt.tk.call('wm', 'iconphoto', root_alt._w, img)
-	root_alt.protocol("WM_DELETE_WINDOW", quit_alt)
-	root_alt.update()
-	root_alt.update_idletasks()
+	#root_alt.protocol("WM_DELETE_WINDOW", quit_alt)
+	##root_alt.update()
+	#root_alt.update_idletasks()
 
-	them = themes(master=root_alt)
+	#them = themes(master=root_alt)
 
 	geo = Geometry(master=root)
 
 	#geo.createWidgets()
-	them.mainloop()
+	#them.mainloop()
 	geo.mainloop()
