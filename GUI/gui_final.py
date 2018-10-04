@@ -1,13 +1,13 @@
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg#, NavigationToolbar2TkAgg
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import mpl_toolkits.mplot3d.axes3d as p3
 from matplotlib.animation import *
 from numpy import *
 from PIL import ImageTk
 from PIL import Image
-import sys
+import sys, glob
 from tkColorChooser import askcolor
 from HoverInfo import CreateToolTip
 
@@ -19,129 +19,82 @@ except ImportError:
 	import tkinter as tk
 
 
-sys.path.insert(0, '../In Development/')
+sys.path.append('../In Development/')
 
-sys.path.insert(0, '../Current Models/')
-sys.path.insert(0, '../Current Models/Hyperbolic')
-sys.path.insert(0, '../Current Models/Misc.')
-sys.path.insert(0, '../Current Models/Platonic Solids')
-sys.path.insert(0, '../Current Models/Surfaces')
-sys.path.insert(0, '../Current Models/Topological')
-sys.path.insert(0, '../Current Models/Two Space')
-sys.path.insert(0, '../Current Models/Archimedean')
+sys.path.append('../Current Models/')
+sys.path.append('../Current Models/Hyperbolic/')
+sys.path.append('../Current Models/Misc./')
+sys.path.append('../Current Models/Platonic Solids/')
+sys.path.append('../Current Models/Surfaces/')
+sys.path.append('../Current Models/Topological/')
+sys.path.append('../Current Models/Two Space/')
+sys.path.append('../Current Models/Archimedean/')
 
-sys.path.insert(0, '../Scutoid Research/')
+sys.path.append('../Scutoid Research/')
 
-## Current Models
-import prism
-import pyramid
-import sphere
-#
-# # Hyperbolic
-import hyperbolic_octahedron
-import hyperbolic_paraboloid
-import one_sheet_hyperboloid
-#
-# # Misc.
-import three_dodecahedron
-import cressant
-import funnel
-import gabriel_horn
-import rose_spiral
-import shell
-import tesseract
-#
-# # Surfaces
-import boys_surface
-import breather_surface
-import kuen_surface
-import steiner_surface
-import roman_surface
-import sine_surface
-import henneberg_surface
-#
-# # Platonic Surfaces
-import cube
-import dodecahedron
-import icosahedron
-import octahedron
-#
-# # Topological
-import cross_cap
-import klein
-import mobius
-import torus
-
-# # Two Space
+import prism, pyramid, sphere
+import hyperbolic_octahedron, hyperbolic_paraboloid, one_sheet_hyperboloid
+import three_dodecahedron, cressant, funnel, gabriel_horn, rose_spiral, shell, tesseract
+import breather_surface, kuen_surface, steiner_surface, boys_surface, roman_surface, sine_surface, henneberg_surface
+import cube, dodecahedron, icosahedron, octahedron
+import cross_cap, klein, mobius, torus
+import interesting, hecatostoeicostohedron, hyperbolic_cylinder, dini_surface, knot, neat, spiral, testing, penrose_triangle, vase, something_strange, enneper_surface
 import line
-#
-# # ## In Development
-import interesting
-import hecatostoeicostohedron
-import hyperbolic_cylinder
-import dini_surface
-import knot
-import neat
-import spiral
-import penrose_triangle
-import testing
-import vase
-import something_strange
-import enneper_surface
-#import great_dodecahedron
-#import great_icosahedron
+import cuboctahedron, great_rombicosidodecahedron, snub_cube, truncated_cube
 
-# ## Archimedean
-import cuboctahedron
-import great_rombicosidodecahedron
 
-s = {"Prism":prism,
-	"Pyramid":pyramid,
-	 "Sphere":sphere,
-	 "Hyperbolic Octahedron":hyperbolic_octahedron,
-	 "Hyperbolic Paraboliod":hyperbolic_paraboloid,
-	 "One Sheet Hyperboliod":one_sheet_hyperboloid,
-	 "Three Dodecahedron": three_dodecahedron,
-	 "Cressant":cressant,
-	 "Funnel":funnel,
-	 "Gabriel's Horn": gabriel_horn,
-	 "Rose Spiral": rose_spiral,
-	 "Shell":shell,
-	 "Tesseract":tesseract,
-	 "Breather's Surface":breather_surface,
-	 "Kuen's Surface":kuen_surface,
-	 "Steiner's Surface":steiner_surface,
-	 "Boy's Surface":boys_surface,
-	 "Roman Surface":roman_surface,
-	 "Sine Surface":sine_surface,
-	 "Henneberg's Surface":henneberg_surface,
-	 "Cube": cube,
-	 "Dodecahedron":dodecahedron,
-	 "Icosahedron":icosahedron,
-	 "Octahedron":octahedron,
-	 "Cross Cap":cross_cap,
-	 "Klein Bottle":klein,
-	 "Mobius Strip":mobius,
-	 "Torus":torus,
-	 "Unk Surface":interesting,
-	 "Hecatostoeicostohedron": hecatostoeicostohedron,
-	 "Hyperbolic Cylinder":hyperbolic_cylinder,
-	 "Dini's Surface":dini_surface,
-	 "Knot":knot,
-	 "Neat":neat,
-	 "Spiral":spiral,
-	 "Testing":testing,
-	 "Penrose Triangle":penrose_triangle,
-	 "Vase":vase,
-	 "Something Strange":something_strange,
-	 "Enneper's Surface":enneper_surface,
-	 #"Curves":curves
-	 "Line":line,
-	 "Cuboctahedron": cuboctahedron,
-	 "Great Rombicosidodecahedron": great_rombicosidodecahedron,
-#	 "Great Dodecahedron": great_dodecahedron,
- #    "Great Icosahedron": great_icosahedron
-	 }
+
+s = {	"Prism"					: prism,
+		"Pyramid"				: pyramid,
+ 		"Sphere"				: sphere,
+		"Hyperbolic Octahedron"	: hyperbolic_octahedron,
+ 		"Hyperbolic Paraboliod"	: hyperbolic_paraboloid,
+ 		"One Sheet Hyperboliod"	: one_sheet_hyperboloid,
+ 		"Three Dodecahedron"	: three_dodecahedron,
+ 		"Cressant"				: cressant,
+ 		"Funnel"				: funnel,
+ 		"Gabriel's Horn"		: gabriel_horn,
+ 		"Rose Spiral"			: rose_spiral,
+ 		"Shell"					: shell,
+ 		"Tesseract"				: tesseract,
+		"Breather's Surface"	: breather_surface,
+ 		"Kuen's Surface"		: kuen_surface,
+ 		"Steiner's Surface"		: steiner_surface,
+ 		"Boy's Surface"			: boys_surface,
+ 		"Roman Surface"			: roman_surface,
+ 		"Sine Surface"			: sine_surface,
+ 		"Henneberg's Surface"	: henneberg_surface,
+ 		"Cube"					: cube,
+ 		"Dodecahedron"			: dodecahedron,
+ 		"Icosahedron"			: icosahedron,
+ 		"Octahedron"			: octahedron,
+		"Cross Cap"				: cross_cap,
+ 		"Klein Bottle"			: klein,
+ 		"Mobius Strip"			: mobius,
+ 		"Torus"					: torus,
+ 		"Unk Surface"			: interesting,
+ 		"Hecatostoeicostohedron": hecatostoeicostohedron,
+ 		"Hyperbolic Cylinder"	: hyperbolic_cylinder,
+ 		"Dini's Surface"		: dini_surface,
+ 		"Knot"					: knot,
+ 		"Neat"					: neat,
+ 		"Spiral"				: spiral,
+ 		"Testing"				: testing,
+ 		"Penrose Triangle"		: penrose_triangle,
+ 		"Vase"					: vase,
+ 		"Something Strange"		: something_strange,
+ 		"Enneper's Surface"		: enneper_surface,
+ #		"Curves"				: curves
+ 		"Line"					: line,
+ 		"Cuboctahedron"			: cuboctahedron,
+ 		"Great Rombicosidodecahedron": great_rombicosidodecahedron,
+		"Snub Cube"				: snub_cube,
+		"Truncated Cube"		: truncated_cube,
+ #		"Great Dodecahedron"	: 'great_dodecahedron',
+ #		"Great Icosahedron"		: 'great_icosahedron'
+ }
+
+Polyhedra = ["Cube", "Dodecahedron", "Icosahedron", "Octahedron", "Cuboctahedron", "Great Rombicosidodecahedron", "Hecatostoeicostohedron", "Three Dodecahedron", "Tesseract"]
 
 #theme = "Dark"
 
@@ -177,7 +130,7 @@ class themes(tk.Frame):
 theme = "Dark"
 
 class Geometry(tk.Frame):
-	global theme
+	global theme, Polyhedra
 	def __init__(self, master=None):
 		tk.Frame.__init__(self,master)
 		self.createWidgets()
@@ -233,10 +186,25 @@ class Geometry(tk.Frame):
 			root.geometry("500x500+520+280")
 
 		def FaceColor(self):
-			self.c_entry = askcolor(title="Face Color", color="#e4e4e4")[1]
-			
+			color = ""
+			print(color)
+			self.c_entry = askcolor(title="Face Color", color=color)[1]
 			self.fck.config(bg=self.c_entry)
+			color = self.c_entry
+			print(self.c_entry)								
 			return self.c_entry
+
+		def FaceColor2(self):
+			color = ""
+			self.c_entry2 = askcolor(title="Face Color 2", color=color)[1]
+			self.f2.config(bg=self.c_entry2)							
+			return self.c_entry2
+
+		def FaceColor3(self):
+			color = ""
+			self.c_entry3 = askcolor(title="Face Color 3", color=color)[1]
+			self.f3.config(bg=self.c_entry3)								
+			return self.c_entry3
 
 		def EdgeColor(self):
 			self.ec_entry = askcolor(color="#ffd900", title="Edge Color")[1]
@@ -307,25 +275,12 @@ class Geometry(tk.Frame):
 				stein.grid(row=4, column=2, sticky="w")
 				boyss = tk.Radiobutton(top, text="Boy's Surface",           variable=self.shape_set, value="Boy's Surface")
 				boyss.grid(row=5, column=2, sticky="w")
-
-				plato = tk.Label(top, text="--- Platonic Solids ---", font=('Times', 12, 'bold'))
-				plato.grid(row=6, column=2, sticky='nsew')
-				
-				cube = tk.Radiobutton(top, text="Cube",                    variable=self.shape_set, value="Cube")
-				cube.grid(row=7, column=2, sticky="w")
-				#cube_hover = CreateToolTip(cube, ImageTk.PhotoImage(file="./Visual/Cube.png"),"test")
-
-
-				dodec = tk.Radiobutton(top, text="Dodecahedron",            variable=self.shape_set, value="Dodecahedron")
-				dodec.grid(row=8, column=2 ,sticky="w")
-				#dodec_hover = CreateToolTip(dodec, ImageTk.PhotoImage(file="./Visual/Dodecahedron.png"),"test")
-
-				icosa =tk.Radiobutton(top, text="Icosahedron",             variable=self.shape_set, value="Icosahedron")
-				icosa.grid(row=9, column=2, sticky="w")
-				#icosa_hover = CreateToolTip(icosa, ImageTk.PhotoImage(file="./Visual/icosa.png"),"test")
-
-				octah = tk.Radiobutton(top, text="Octahedron",              variable=self.shape_set, value="Octahedron")
-				octah.grid(row=10, column=2, sticky="w")
+				roman = tk.Radiobutton(top, text="Roman Surface",           variable=self.shape_set, value="Roman Surface")
+				roman.grid(row=6, column=2, sticky="w")
+				sines = tk.Radiobutton(top, text="Sine Surface",            variable=self.shape_set, value="Sine Surface")
+				sines.grid(row=7, column=2, sticky="w")
+				henne = tk.Radiobutton(top, text="Henneberg's Surface",      variable=self.shape_set, value="Henneberg's Surface")
+				henne.grid(row=7, column=2, sticky="w")
 
 				topo = tk.Label(top, text="--- Topological ---", font=('Times', 12, 'bold'))
 				topo.grid(row=11, column=2, sticky='nsew')
@@ -371,8 +326,31 @@ class Geometry(tk.Frame):
 				cuboc.grid(row=2, column=5, sticky="w")
 				grrom = tk.Radiobutton(top, text="Great\n Rombicosidodecahedron", variable=self.shape_set, value="Great Rombicosidodecahedron")
 				grrom.grid(row=3, column=5, sticky="w")
+				scube = tk.Radiobutton(top, text="Snub Cube", variable=self.shape_set, value="Snub Cube")
+				scube.grid(row=4, column=5, sticky="w")
+				tcube = tk.Radiobutton(top, text="Truncated Cube", variable=self.shape_set, value="Truncated Cube")
+				tcube.grid(row=5, column=5, sticky="w")
+				
+				plato = tk.Label(top, text="--- Platonic Solids ---", font=('Times', 12, 'bold'))
+				plato.grid(row=6, column=5, sticky='nsew')
+				
+				cube = tk.Radiobutton(top, text="Cube",                    variable=self.shape_set, value="Cube")
+				cube.grid(row=7, column=5, sticky="w")
+				#cube_hover = CreateToolTip(cube, ImageTk.PhotoImage(file="./Visual/Cube.png"),"test")
 
-#				grico = tk.Radiobutton(top, text="Great Icosahedron",        variable=self.shape_set, value="Great Icosahedron")
+
+				dodec = tk.Radiobutton(top, text="Dodecahedron",            variable=self.shape_set, value="Dodecahedron")
+				dodec.grid(row=8, column=5 ,sticky="w")
+				#dodec_hover = CreateToolTip(dodec, ImageTk.PhotoImage(file="./Visual/Dodecahedron.png"),"test")
+
+				icosa =tk.Radiobutton(top, text="Icosahedron",             variable=self.shape_set, value="Icosahedron")
+				icosa.grid(row=9, column=5, sticky="w")
+				#icosa_hover = CreateToolTip(icosa, ImageTk.PhotoImage(file="./Visual/icosa.png"),"test")
+
+				octah = tk.Radiobutton(top, text="Octahedron",              variable=self.shape_set, value="Octahedron")
+				octah.grid(row=10, column=5, sticky="w")
+
+				#grico = tk.Radiobutton(top, text="Great Icosahedron",        variable=self.shape_set, value="Great Icosahedron")
 #				grico.grid(row=15,column=4,sticky="w")
 #				grdod = tk.Radiobutton(top, text="Great Dodecahedron",        variable=self.shape_set, value="Great Dodecahedron")
 #				grdod.grid(row=16,column=4,sticky="w")
@@ -423,7 +401,7 @@ class Geometry(tk.Frame):
 		filemenu.add_command(label="Quit", command=quit)
 
 		menu.add_command(label="Figure", command=adjust)
-		menu.add_command(label="All", command=lambda: root.geometry("714x501"))
+		menu.add_command(label="All", command=lambda: root.geometry("932x501"))
 
 		# # Transparency
 		self.a_label = tk.Label(root, text="Transparency")
@@ -431,6 +409,13 @@ class Geometry(tk.Frame):
 		self.a_entry = tk.Scale(root, from_=0, to=1, resolution=0.1, orient=tk.HORIZONTAL)
 		self.a_entry.grid(row=0, column=2, sticky='nw', pady=90)
 		self.a_entry.set(0.4)
+
+		# # Height
+		self.h_label = tk.Label(root, text="Height")
+		self.h_label.grid(row=0, column=3, sticky='nw', pady=110, padx=10)
+		self.h_entry = tk.Scale(root, from_=1, to=10, resolution=0.1, orient=tk.HORIZONTAL)
+		self.h_entry.grid(row=0, column=4, sticky='nw', pady=90)
+		self.h_entry.set(1)
 
 		# Entry of the number of sides
 		self.si_label = tk.Label(root, text="Number of Sides")
@@ -459,24 +444,44 @@ class Geometry(tk.Frame):
 		self.ew_entry.set(1)
 
 		# Radius
-		self.ra_label = tk.Label(root, text="Radius")
-		self.ra_label.grid(row=0, column=1, sticky='nw', pady=310)
-		self.ra_entry = tk.Scale(root, from_=1, to=100, resolution=1, orient=tk.HORIZONTAL)
-		self.ra_entry.grid(row=0, column=2, sticky='nw', pady=290)
+		self.ram_label = tk.Label(root, text="Radius (Main)")
+		self.ram_label.grid(row=0, column=3, sticky='nw', pady=150, padx=10)
+		self.ram_entry = tk.Scale(root, from_=1, to=100, resolution=1, orient=tk.HORIZONTAL)
+		self.ram_entry.grid(row=0, column=4, sticky='nw', pady=130)
 
-		# Face Color
-		self.face = tk.Button(text="Face\n Color", command=lambda: FaceColor(self), height=3, width=3)
-		self.face.grid(row=0, column=1, sticky='ne', pady=30, padx=4)
-
-		self.fck = tk.Checkbutton(root, state=tk.DISABLED, height=3, width=3)
-		self.fck.grid(row=0, column=1, sticky='nw', pady=30)
+		# Radius
+		self.raa_label = tk.Label(root, text="Radius (Alt)")
+		self.raa_label.grid(row=0, column=3, sticky='nw', pady=190, padx=10)
+		self.raa_entry = tk.Scale(root, from_=1, to=100, resolution=1, orient=tk.HORIZONTAL)
+		self.raa_entry.grid(row=0, column=4, sticky='nw', pady=170)
 
 		# Edge Color
-		self.edge = tk.Button(text="Edge\n Color", command=lambda: EdgeColor(self), height=3, width=3)
-		self.edge.grid(row=0, column=2, sticky='nw', pady=30)
+		self.edge = tk.Button(text="Edge Color", command=lambda: EdgeColor(self))
+		self.edge.grid(row=0, column=1, sticky='new', pady=30, padx=0)
 
-		self.eck = tk.Checkbutton(root, state=tk.DISABLED, height=3, width=3)
-		self.eck.grid(row=0, column=2, sticky='ne', pady=30)
+		self.eck = tk.Message(root, width=200000000, text=" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ", borderwidth=5, 				relief=tk.GROOVE)
+		self.eck.grid(row=0, column=1, sticky='new', pady=60)
+
+		# Face Color
+		self.face = tk.Button(text="Face Color", command=lambda: FaceColor(self))
+		self.face.grid(row=0, column=2, sticky='new', pady=30, padx=0)
+
+		self.fck = tk.Message(root, width=200000000, text=" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ", borderwidth=5, 				relief=tk.GROOVE)
+		self.fck.grid(row=0, column=2, sticky='new', pady=60, padx=0)
+
+		# Edge Color
+		self.face2 = tk.Button(text="Face Color 2", command=lambda: FaceColor2(self))
+		self.face2.grid(row=0, column=3, sticky='new', pady=30, padx=0)
+
+		self.f2 = tk.Message(root, width=2000000, text=" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ", borderwidth=5, 				relief=tk.GROOVE)
+		self.f2.grid(row=0, column=3, sticky='new', pady=60, padx=0)
+
+		# Face Color
+		self.face3 = tk.Button(text="Face Color 3", command=lambda: FaceColor3(self))
+		self.face3.grid(row=0, column=4, sticky='new', pady=30, padx=0)
+
+		self.f3 = tk.Message(root, width=2000000, text=" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ", borderwidth=5, 				relief=tk.GROOVE)
+		self.f3.grid(row=0, column=4, sticky='new', pady=60, padx=0)
 
 		# Ploting plot
 		self.plot_plot = tk.Button(root, text="Render Plot", command=lambda: self.plot
@@ -503,41 +508,68 @@ class Geometry(tk.Frame):
 		self.three_space.grid(row=0, column=2, sticky='nw', pady=380)
 		self.two_three.set('3d')
 
-		self.rot_on = tk.Radiobutton(root, text="Rot\n On", variable=self.rot, value='on')#command=lambda: self.test(canvas,ax))
-		self.rot_on.grid(row=0, column=2, sticky='ne', pady=350)
+		# Rotation 
+		self.rot_on = tk.Radiobutton(root, text="Rot On", variable=self.rot, value='on')#command=lambda: self.test(canvas,ax))
+		self.rot_on.grid(row=0, column=3, sticky='new')
 
-		self.rot_off = tk.Radiobutton(root, text='Rot\n Off', variable=self.rot, value='off')
-		self.rot_off.grid(row=0, column=2, sticky='ne', pady=380)
+		self.rot_off = tk.Radiobutton(root, text='Rot Off', variable=self.rot, value='off')
+		self.rot_off.grid(row=0, column=4, sticky='new')
 
+		# Shape Popup
 		self.shapes = tk.Button(root, text="Shapes", command=popup_shape, height=4)
 		self.shapes.grid(row=0, column=2, sticky='new',pady=430)
-
-		def dark(self):		
-				#self.tk.Frame.config(bg=dim, fg=dim, activebackground=dim)
+		
+		def dark(self):
 				root.config(background=dim)
-				self.a_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
-				self.si_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
-				self.ed_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,troughcolor=dimt)
-				self.pi_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
-				self.ew_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
-				self.ra_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,troughcolor=dimt)
-				self.shapes.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
-				self.a_label.config(bg=dim, fg=dimf, activebackground=dim)
-				self.si_label.config(bg=dim, fg=dimf, activebackground=dim)
-				self.ed_label.config(bg=dim, fg=dimf, activebackground=dim)
-				self.pi_label.config(bg=dim, fg=dimf, activebackground=dim)
-				self.ew_label.config(bg=dim, fg=dimf, activebackground=dim)
-				self.ra_label.config(bg=dim, fg=dimf, activebackground=dim)
-				self.grid_on.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,activeforeground=dimfa, selectcolor=dim)
-				self.grid_off.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
-				self.two_space.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,activeforeground=dimfa, selectcolor=dim)
-				self.three_space.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,activeforeground=dimfa, selectcolor=dim)
-				self.plot_test.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
-				self.plot_plot.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
-				self.face.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
-				self.edge.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf,activeforeground=dimfa)
-				menu.config(bg=dim, fg=dimf, activebackground=dim,activeforeground=dimfa)
-				filemenu.config(bg=dim, fg=dimf, activebackground=dim,activeforeground=dimfa)
+				# Scales
+				self.a_entry.config(bg=dim,   fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
+				self.h_entry.config(bg=dim,   fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
+				self.si_entry.config(bg=dim,  fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
+				self.ed_entry.config(bg=dim,  fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
+				self.pi_entry.config(bg=dim,  fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
+				self.ew_entry.config(bg=dim,  fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
+				self.ram_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
+				self.raa_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
+
+				# Labels
+				self.a_label.config(bg=dim,   fg=dimf, activebackground=dim)
+				self.h_label.config(bg=dim,   fg=dimf, activebackground=dim)
+				self.si_label.config(bg=dim,  fg=dimf, activebackground=dim)
+				self.ed_label.config(bg=dim,  fg=dimf, activebackground=dim)
+				self.pi_label.config(bg=dim,  fg=dimf, activebackground=dim)
+				self.ew_label.config(bg=dim,  fg=dimf, activebackground=dim)
+				self.ram_label.config(bg=dim, fg=dimf, activebackground=dim)
+				self.raa_label.config(bg=dim, fg=dimf, activebackground=dim)
+				# Radio Buttons
+				self.grid_on.config(bg=dim, 	fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
+				self.grid_off.config(bg=dim, 	fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
+				self.two_space.config(bg=dim,	fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
+				self.three_space.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
+				self.rot_on.config(bg=dim, 		fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
+				self.rot_off.config(bg=dim, 	fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
+				
+				# Button				
+				self.plot_test.config(bg=dim, 	fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
+				self.plot_plot.config(bg=dim, 	fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
+				self.face.config(bg=dim, 		fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
+				self.face2.config(bg=dim, 		fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
+				self.face3.config(bg=dim, 		fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
+				self.edge.config(bg=dim, 		fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
+				self.shapes.config(bg=dim, 		fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
+				# Menu				
+				menu.config(bg=dim, 	fg=dimf, activebackground=dim, activeforeground=dimfa)
+				filemenu.config(bg=dim, fg=dimf, activebackground=dim, activeforeground=dimfa)
+				
+		print(Polyhedra[1])
+		while self.shape_set.get() == Polyhedra[1]:
+			print(Polyhedra)
+			disdim = "#cc00ff"
+			self.ra_entry.config(state=tk.DISABLED)
+			self.pi_entry.config(state=tk.DISABLED)
+			self.ed_entry.config(fg=disdim, troughcolor=disdim, state=tk.DISABLED)
+		#else:
+		#	print("Nope")
+	
 
 		def light(self):
 				tk.Button.config(bg="white", fg="white", activebackground="white")
@@ -592,6 +624,7 @@ class Geometry(tk.Frame):
 	def test(self, canvas, ax):
 		edge_c 		= self.ec_entry
 		color 		= self.c_entry
+		color2		= self.c_entry2
 		#rot_azim 	= self.scroll_azim.get()
 		#rot_elev 	= self.scroll_elev.get()
 		alpha 		= self.a_entry.get()
@@ -602,7 +635,8 @@ class Geometry(tk.Frame):
 		edges		= self.ed_entry.get()
 		sides 		= self.si_entry.get()
 		multi_pi	= self.pi_entry.get()
-		radius		= self.ra_entry.get()
+		radiusa		= self.raa_entry.get()
+		radiusm		= self.ram_entry.get()
 		rot 		= self.rot.get()
 		save 		= self.format_save.get()
 
@@ -618,7 +652,7 @@ class Geometry(tk.Frame):
 		#ax.set_zlim(-50,50)
 
 		s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius)
+				   edges, multi_pi, radiusm, color2)
 
 		canvas.draw()
 
@@ -632,7 +666,7 @@ if __name__ == '__main__':
 	#root_alt.title("Theme")
 
 	#theme = themes.self.theme
-	root.geometry("714x501")
+	root.geometry("932x501")
 	#root_alt.geometry("200x200")
 	img = ImageTk.PhotoImage(file='penrose_icon.png')
 
