@@ -46,9 +46,9 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	plt.axis(grid)
 	plt.axis('equal')
 
-	ax.set_xlim(-4, 4)
-	ax.set_ylim(-4, 4)
-	ax.set_zlim(-4, 4)
+	ax.set_xlim(-1, 1)
+	ax.set_ylim(-1, 1)
+	ax.set_zlim(-1, 1)
 
 	# Interval
 	r = [-1, 1]
@@ -72,12 +72,12 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 		          [Z[7], Z[10], Z[4]]
 		          ]
 
-	cuboc = Poly3DCollection(verts_cube)
+	cuboc = Poly3DCollection(verts_cuboc)
 
-	cuboc.set_edgecolor("white")
-	cuboc.set_linewidth(0.5)
-	cuboc.set_alpha(0.5)
-	cuboc.set_facecolor("blue")
+	cuboc.set_edgecolor(edge_c)
+	cuboc.set_linewidth(edge_w)
+	cuboc.set_alpha(alpha)
+	cuboc.set_facecolor(color)
 
 	# Plot Surfaces
 	ax.add_collection3d(cuboc)
