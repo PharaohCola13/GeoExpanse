@@ -80,7 +80,7 @@ cube = Poly3DCollection(verts_cube)
 
 cube.set_edgecolor("blue")
 cube.set_linewidth(1)
-cube.set_alpha(0.2)
+cube.set_alpha(0.5)
 cube.set_facecolor("cyan")
 
 # Plot Surfaces

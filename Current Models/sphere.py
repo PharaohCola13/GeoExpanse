@@ -14,18 +14,18 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 				   edges, multi_pi, radius):
 # Definition of x
 	def x_(u,v):
-    		x = cos(u) * sin(v)
-    		return x
+			x = cos(u) * sin(v)
+			return x
 
 # Definition of y
 	def y_(u,v):
-    		y = sin(u) * sin(v)
-    		return y
+			y = sin(u) * sin(v)
+			return y
 
 # Definition of z
 	def z_(u,v):
-    		z  = cos(v)
-    		return z
+			z  = cos(v)
+			return z
 
 # Number of edges on the base
 	s = sides

@@ -267,9 +267,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	 	def animate(i):
 	 		ax.view_init(elev=i, azim=i)
 	 		return cube
-	#
-	 	# s[self.shape_set.get()]
-	#
+
 	# 	# Animate
 	 	ani = FuncAnimation(fig, animate, init_func=init,
 	 				  interval=1, frames=500, blit=False, repeat=True)
@@ -288,12 +286,10 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 			ax.view_init(elev=i, azim=i)
 			return cube
 
-		#
-		# s[self.shape_set.get()]
-		#
-		# 	# Animate
+		# Animate
 		ani = FuncAnimation(fig, animate, init_func=init,
 							interval=1, frames=500, blit=False, repeat=True)
 		plt.show()
+
 	elif rot == "off":
 		plt.draw()

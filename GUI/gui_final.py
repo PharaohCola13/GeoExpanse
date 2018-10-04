@@ -145,7 +145,7 @@ s = {"Prism":prism,
 
 #theme = "Dark"
 
-dim = "#000E2E" #Background
+dim = "#303030" #Background
 #"#303030"
 dimf = "#00C0FF" #Font Color
 dimfa = dimf
@@ -173,12 +173,6 @@ class themes(tk.Frame):
 		tk.Radiobutton(root_alt, text="Dark", variable=theme.get(), value="Dark").grid(row=1, column=0, sticky="w")
 		tk.Radiobutton(root_alt, text="Light", variable=theme.get(), value="Light").grid(row=2, column=0, sticky="w")
 		tk.Radiobutton(root_alt, text="Normal", variable=theme.get(), value="Normal").grid(row=3, column=0, sticky="w")
-
-		theme.set("Dark")
-
-		#top.tk.call('wm', 'iconphoto', top._w, img)
-		#theme = "Dark"
-	#return theme
 
 theme = "Dark"
 
@@ -277,11 +271,11 @@ class Geometry(tk.Frame):
 				hyoct = tk.Radiobutton(top, text="Hyperbolic Octahedron",variable=self.shape_set, value="Hyperbolic Octahedron")
 				hyoct.grid(row=5, column=0 ,sticky="w")
 				
-				hyoct_hover = CreateToolTip(hyoct, ImageTk.PhotoImage(file="./Visual/Hyperbolic Octahedron.png"),"test")
+				#hyoct_hover = CreateToolTip(hyoct, ImageTk.PhotoImage(file="./Visual/Hyperbolic Octahedron.png"),"test")
 
 				hypar = tk.Radiobutton(top, text="Hyperbolic Paraboliod",	variable=self.shape_set, value="Hyperbolic Paraboliod")
 				hypar.grid(row=6, column=0, sticky="w")
-				hypar_hover = CreateToolTip(hypar, ImageTk.PhotoImage(file="./Visual/hypar.png"),"test")
+				#hypar_hover = CreateToolTip(hypar, ImageTk.PhotoImage(file="./Visual/hypar.png"),"test")
 
 				onesh = tk.Radiobutton(top, text="One Sheet Hyperboliod",	variable=self.shape_set, value="One Sheet Hyperboliod")
 				onesh.grid(row=7, column=0, sticky="w")
@@ -319,16 +313,16 @@ class Geometry(tk.Frame):
 				
 				cube = tk.Radiobutton(top, text="Cube",                    variable=self.shape_set, value="Cube")
 				cube.grid(row=7, column=2, sticky="w")
-				cube_hover = CreateToolTip(cube, ImageTk.PhotoImage(file="./Visual/Cube.png"),"test")
+				#cube_hover = CreateToolTip(cube, ImageTk.PhotoImage(file="./Visual/Cube.png"),"test")
 
 
 				dodec = tk.Radiobutton(top, text="Dodecahedron",            variable=self.shape_set, value="Dodecahedron")
 				dodec.grid(row=8, column=2 ,sticky="w")
-				dodec_hover = CreateToolTip(dodec, ImageTk.PhotoImage(file="./Visual/Dodecahedron.png"),"test")
+				#dodec_hover = CreateToolTip(dodec, ImageTk.PhotoImage(file="./Visual/Dodecahedron.png"),"test")
 
 				icosa =tk.Radiobutton(top, text="Icosahedron",             variable=self.shape_set, value="Icosahedron")
 				icosa.grid(row=9, column=2, sticky="w")
-				icosa_hover = CreateToolTip(icosa, ImageTk.PhotoImage(file="./Visual/icosa.png"),"test")
+				#icosa_hover = CreateToolTip(icosa, ImageTk.PhotoImage(file="./Visual/icosa.png"),"test")
 
 				octah = tk.Radiobutton(top, text="Octahedron",              variable=self.shape_set, value="Octahedron")
 				octah.grid(row=10, column=2, sticky="w")
@@ -528,8 +522,6 @@ class Geometry(tk.Frame):
 				self.ew_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
 				self.ra_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,troughcolor=dimt)
 				self.shapes.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
-				#self.elev_label.config(bg=dim, fg=dimf, activebackground=dim)
-				#self.azim_label.config(bg=dim, fg=dimf, activebackground=dim)
 				self.a_label.config(bg=dim, fg=dimf, activebackground=dim)
 				self.si_label.config(bg=dim, fg=dimf, activebackground=dim)
 				self.ed_label.config(bg=dim, fg=dimf, activebackground=dim)
@@ -542,14 +534,10 @@ class Geometry(tk.Frame):
 				self.three_space.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,activeforeground=dimfa, selectcolor=dim)
 				self.plot_test.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
 				self.plot_plot.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
-				#self.scroll_azim.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
-				#self.scroll_elev.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
 				self.face.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
 				self.edge.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf,activeforeground=dimfa)
 				menu.config(bg=dim, fg=dimf, activebackground=dim,activeforeground=dimfa)
 				filemenu.config(bg=dim, fg=dimf, activebackground=dim,activeforeground=dimfa)
-				#pop.config(bg=dim, fg=dim, activebackground=dim)
-				#popup_shape(prism).config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,activeforeground=dimfa, selectcolor=dim)
 
 		def light(self):
 				tk.Button.config(bg="white", fg="white", activebackground="white")
@@ -630,7 +618,7 @@ class Geometry(tk.Frame):
 		#ax.set_zlim(-50,50)
 
 		s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius, rot, save)
+				   edges, multi_pi, radius)
 
 		canvas.draw()
 
