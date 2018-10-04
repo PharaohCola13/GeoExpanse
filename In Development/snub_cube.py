@@ -107,12 +107,23 @@ verts_cube = [[Z[2],Z[12],Z[0],Z[14]],
                 [Z[15],Z[23],Z[19]],
                ]
 
-cube = Poly3DCollection(verts_cube)
+for n in range(0, 38):
+    print(len(verts_cube[n]))
 
-cube.set_edgecolor("white")
-cube.set_linewidth(0.5)
-cube.set_alpha(0.5)
-cube.set_facecolor("blue")
+    if len(verts_cube[n]) == 3:
+        cube = Poly3DCollection(verts_cube[3])
+
+        cube.set_edgecolor("white")
+        cube.set_linewidth(0.5)
+        cube.set_alpha(0.5)
+        cube.set_facecolor("blue")
+    elif len(verts_cube[n]) == 4:
+        cube = Poly3DCollection(verts_cube[10])
+
+        cube.set_edgecolor("white")
+        cube.set_linewidth(0.5)
+        cube.set_alpha(0.5)
+        cube.set_facecolor("yellow")
 
 # Plot Surfaces
 ax.add_collection3d(cube)
