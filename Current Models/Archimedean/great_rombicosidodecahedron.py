@@ -10,7 +10,7 @@ from matplotlib.animation import *
 name = "Great Rombicosidodecahedron"
 
 def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius, rot, save):
+				   edges, multi_pi, radius):
 
 	points = array([[0,0,0],
 					[-1, 	0.25 * (-3 - sqrt(5)), 0.25 * (-7 - (3 * sqrt(5)))],
@@ -260,36 +260,36 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	# Plot Surfaces
 	ax.add_collection3d(cube)
 
-	if save == "mp4":
-	 	def init():
-	 		return cube,  # s[self.shape_set.get()],
+	#if save == "mp4":
+	# 	def init():
+	# 		return cube,  # s[self.shape_set.get()],
 	#
-	 	def animate(i):
-	 		ax.view_init(elev=i, azim=i)
-	 		return cube
+	# 	def animate(i):
+	# 		ax.view_init(elev=i, azim=i)
+	# 		return cube
 
 	# 	# Animate
-	 	ani = FuncAnimation(fig, animate, init_func=init,
-	 				  interval=1, frames=500, blit=False, repeat=True)
+	# 	ani = FuncAnimation(fig, animate, init_func=init,
+#	 				  interval=1, frames=500, blit=False, repeat=True)
 	#
-	 	Writer = writers['ffmpeg']
-	 	writer = Writer(fps=15, bitrate=1800)
+	# 	Writer = writers['ffmpeg']
+	# 	writer = Writer(fps=15, bitrate=1800)
 	#
-	 	ani.save('{}.mp4'.format(name),writer=writer)
-		plt.show()
-	elif rot == "on":
-		def init():
-			return cube,  # s[self.shape_set.get()],
+	# 	ani.save('{}.mp4'.format(name),writer=writer)
+#		plt.show()
+#	elif rot == "on":
+#		def init():
+#			return cube,  # s[self.shape_set.get()],
 
 		#
-		def animate(i):
-			ax.view_init(elev=i, azim=i)
-			return cube
+#		def animate(i):
+#			ax.view_init(elev=i, azim=i)
+#			return cube
 
 		# Animate
-		ani = FuncAnimation(fig, animate, init_func=init,
-							interval=1, frames=500, blit=False, repeat=True)
-		plt.show()
-
-	elif rot == "off":
-		plt.draw()
+#		ani = FuncAnimation(fig, animate, init_func=init,
+#							interval=1, frames=500, blit=False, repeat=True)
+#		plt.show()
+#
+#	elif rot == "off":
+#		plt.draw()
