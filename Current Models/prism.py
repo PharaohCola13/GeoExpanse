@@ -14,12 +14,12 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 				   edges, multi_pi, radius):
 # Definition of x
 	def x_(u,v):
-		x = r * cos(v)
+		x = a * cos(v)
 		return x
 
 # Definition of y
 	def y_(u,v):
-		y = r * sin(v)
+		y = b * sin(v)
 		return y
 
 # Definition of z
@@ -31,14 +31,15 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	h = 1
 
 # Radius
-	r = radius
+	a = radius
+	b = radius
 
 # Number of edges on the base
 	s = sides
 
 # Value of the angles
-	u = linspace(0, h, 100)
-	v = linspace(0, 2 * pi, s + 1)
+	u = linspace(0, h, edges)
+	v = linspace(0, 2 * pi, s +1)
 
 	u, v = meshgrid(u, v)
 
@@ -56,8 +57,8 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	plt.axis('equal')
 
 # Axis Limits
-	ax.set_xlim(-1 * r,r)
-	ax.set_ylim(-1 * r,r)
+	ax.set_xlim(-1 * a,a)
+	ax.set_ylim(-1 * a,a)
 	ax.set_zlim(0,h)
 
 #Surface Plot

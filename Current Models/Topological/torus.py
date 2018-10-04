@@ -9,92 +9,92 @@ from matplotlib.animation import *
 
 name = "Torus"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,edges, multi_pi, radius):
-# Definition of x
-	def x_(u, v):
-    		x = 2 * ((c + a * cos(u)) * cos(v))
-    		return x
 
-# Definition of y
-	def y_(u, v):
-    		y = 2 * ((c + a * cos(u)) * sin(v))
-    		return y
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radius):
+    # Definition of x
+    def x_(u, v):
+        x = 2 * ((c + a * cos(u)) * cos(v))
+        return x
 
-# Definition of z
-	def z_(u, v):
-    		z = 2 * (a * sin(u))
-    		return z
+    # Definition of y
+    def y_(u, v):
+        y = 2 * ((c + a * cos(u)) * sin(v))
+        return y
 
-# Radius
-	c = radius
-	
-# Radius of the tube
-	a = edges
+    # Definition of z
+    def z_(u, v):
+        z = 2 * (a * sin(u))
+        return z
 
-# Values of the angles
-	n = sides
-	u = linspace(0, 2 * pi, n)
-	v = linspace(0, 2 * pi, n)
+    # Radius
+    c = radius
 
-	u, v = meshgrid(u,v)
+    # Radius of the tube
+    a = edges
 
-# Symbolic Representation
-	x = x_(u, v)
-	y = y_(u, v)
-	z = z_(u, v)
+    # Values of the angles
+    n = sides
+    u = linspace(0, 2 * pi, n + 1)
+    v = linspace(0, 2 * pi, n)
 
-# Figure Properties
-	#fig = plt.figure(figsize=(8,8))
+    u, v = meshgrid(u, v)
 
-	ax = p3.Axes3D(fig)
-	ax.set_facecolor('black') # Figure background turns black
+    # Symbolic Representation
+    x = x_(u, v)
+    y = y_(u, v)
+    z = z_(u, v)
 
-# Axis Properties
-	plt.axis(grid) # Turns off the axis grid
-	plt.axis('equal')
+    # Figure Properties
+    # fig = plt.figure(figsize=(8,8))
 
-# Axis Limits
-	ax.set_xlim(-50,50)
-	ax.set_ylim(-50,50)
-	ax.set_zlim(-50,50)
+    ax = p3.Axes3D(fig)
+    ax.set_facecolor('black')  # Figure background turns black
 
-# Surface Plot
-	torus = ax.plot_surface(x, y, z,  rstride=5, cstride=5)
+    # Axis Properties
+    plt.axis(grid)  # Turns off the axis grid
+    plt.axis('equal')
 
-	torus.set_alpha(alpha) # Transparency of figure
-	torus.set_edgecolor(edge_c) # Edge color of the lines on the figure
-	torus.set_linewidth(edge_w) # Line width of the edges
-	torus.set_facecolor(color) # General color of the figure
+    # Axis Limits
+    ax.set_xlim(-50, 50)
+    ax.set_ylim(-50, 50)
+    ax.set_zlim(-50, 50)
 
-# Defintions for animations	
-	def init():
-	    return torus,
+    # Surface Plot
+    torus = ax.plot_surface(x, y, z, rstride=5, cstride=5)
 
-	def animate(i):
-# azimuth angle : 0 deg to 360 deg
-# elev = i * n --> rotates object about the xy-plane with a magnitude of n
-# azim = i * n --> rotates object around the z axis with a magnitude of n
-# For top view elev = 90
-# For side view elev = 0
+    torus.set_alpha(alpha)  # Transparency of figure
+    torus.set_edgecolor(edge_c)  # Edge color of the lines on the figure
+    torus.set_linewidth(edge_w)  # Line width of the edges
+    torus.set_facecolor(color)  # General color of the figure
 
-	    ax.view_init(elev=rot_elev, azim= rot_azim)
-	    return torus,
+    # Defintions for animations
+    def init():
+        return torus,
 
+    def animate(i):
+        # azimuth angle : 0 deg to 360 deg
+        # elev = i * n --> rotates object about the xy-plane with a magnitude of n
+        # azim = i * n --> rotates object around the z axis with a magnitude of n
+        # For top view elev = 90
+        # For side view elev = 0
 
-# Animate
-	ani = FuncAnimation(fig, animate, init_func=init,
-    	               frames=36, interval=1, blit=False, repeat=True)
+        ax.view_init(elev=rot_elev, azim=rot_azim)
+        return torus,
+
+    # Animate
+    ani = FuncAnimation(fig, animate, init_func=init,
+                        frames=36, interval=1, blit=False, repeat=True)
 
 # Saving to torus.mp4
 
-	# Writer = writers['ffmpeg']
-	# writer = Writer(fps=15, bitrate=1800)
-	
-	# if c > a:
-	#	name = 'Ring-Torus'
-	# elif c == a:
-	#	name = 'Horn-Torus'
-	#elif c < a:
-	#	name = 'Spindle-Torus'
-	
-	# ani.save('%s.mp4' % name, writer=writer)
+# Writer = writers['ffmpeg']
+# writer = Writer(fps=15, bitrate=1800)
+
+# if c > a:
+#	name = 'Ring-Torus'
+# elif c == a:
+#	name = 'Horn-Torus'
+# elif c < a:
+#	name = 'Spindle-Torus'
+
+# ani.save('%s.mp4' % name, writer=writer)

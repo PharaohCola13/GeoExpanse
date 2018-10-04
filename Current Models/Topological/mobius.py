@@ -50,4 +50,3 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
     mb.set_edgecolor(edge_c)
     mb.set_alpha(alpha)
     mb.set_facecolor(color)
-
