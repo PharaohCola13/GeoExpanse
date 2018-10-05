@@ -10,8 +10,7 @@ from numpy import *
 
 name = "Hyperbolic Cylinder"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides,edges, multi_pi, radius):
     # Definition of x
     def x_(u, v):
         x = a * sinh(u)
