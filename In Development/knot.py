@@ -10,8 +10,7 @@ from numpy import *
 
 name = "Knot"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
     def x_(u,v):
         x = sin(v) + 2 * sin(2 * v)
         return x
