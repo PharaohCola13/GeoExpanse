@@ -10,8 +10,7 @@ from matplotlib.animation import *
 name = "Embedded-Dodecahedron"
 
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3):
 
 # Points on the object
 	points = array([
@@ -105,10 +104,10 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 
 	dodeca = Poly3DCollection(verts)
 
-	dodeca.set_edgecolor('aqua')
-	dodeca.set_linewidth(2)
-	dodeca.set_alpha(0.1)
-	dodeca.set_facecolor('skyblue')
+	dodeca.set_edgecolor(edge_c)
+	dodeca.set_linewidth(edge_w)
+	dodeca.set_alpha(alpha)
+	dodeca.set_facecolor(color)
 
 	hedron = ax.add_collection3d(dodeca)
 
@@ -129,10 +128,10 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 
 	dodeca_75 = Poly3DCollection(verts_75)
 
-	dodeca_75.set_edgecolor('dodgerblue')
-	dodeca_75.set_linewidth(2)
-	dodeca_75.set_alpha(0.2)
-	dodeca_75.set_facecolor('deepskyblue')
+	dodeca_75.set_edgecolor(edge_c)
+	dodeca_75.set_linewidth(edge_w)
+	dodeca_75.set_alpha(alpha)
+	dodeca_75.set_facecolor(color2)
 
 	hedron_75 = ax.add_collection3d(dodeca_75)
 
@@ -154,9 +153,9 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 
 	dodeca_50 = Poly3DCollection(verts_50)
 
-	dodeca_50.set_edgecolor('slateblue')
-	dodeca_50.set_linewidth(2)
-	dodeca_50.set_alpha(0.3)
-	dodeca_50.set_facecolor('royalblue')
+	dodeca_50.set_edgecolor(edge_c)
+	dodeca_50.set_linewidth(edge_w)
+	dodeca_50.set_alpha(alpha)
+	dodeca_50.set_facecolor(color3)
 
 	hedron_50 = ax.add_collection3d(dodeca_50)
