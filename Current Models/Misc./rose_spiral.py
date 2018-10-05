@@ -9,8 +9,7 @@ from matplotlib.animation import *
 
 name = "Rose Spiral"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
     # Definition of x
     def x_(u, v):
         x = r * cos(u) * sin(v)
@@ -28,8 +27,8 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
         return z
 
     # Value of the angles
-    u = linspace(0, 2* pi, 100)
-    v = linspace(0, pi, 100)
+    u = linspace(0, 2 * pi, sides + 1)
+    v = linspace(0, pi, edges)
 
     u, v = meshgrid(u, v)
 
