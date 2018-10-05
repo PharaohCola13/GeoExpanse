@@ -9,8 +9,8 @@ from matplotlib.animation import *
 
 name = "Cube"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid):
+
 	points = array([[-1, -1, -1],
 	               [1, -1, -1 ],
 	               [1, 1, -1],
@@ -42,10 +42,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	ax.set_ylim(-4,4)
 	ax.set_zlim(-4,4)
 
-# Interval
-	r = [-1,1]
-
-	X, Y = np.meshgrid(r, r)
 
 # Side Configuration for Cube
 	verts_cube = [[Z[0],Z[1],Z[2],Z[3]],
