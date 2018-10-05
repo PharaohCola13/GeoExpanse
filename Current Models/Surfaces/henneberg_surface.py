@@ -11,8 +11,7 @@ from fractions import Fraction
 
 name = "Henneberg's Surface"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
 # Definition of x
         def x_(u,v):
                 x = 2 * sinh(u) * cos(v) - Fraction(2,3) * sinh(3 * u) * cos(3 * v)
@@ -29,10 +28,10 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
                 return z
 
         # Number of edges on the base
-        s = 100
+        s = sides
         # Values of the angles
-        u = linspace(-pi/4, pi/4, 30)
-        v = linspace(-pi/2, pi/2, 30)
+        u = linspace(-pi/4, pi/4, s + 1)
+        v = linspace(-pi/2, pi/2, edges)
 
         u, v = meshgrid(u, v)
 
@@ -50,9 +49,9 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
         plt.axis('equal')
 
         # Axis Limits
-        ax.set_xlim(-10,10)
-        ax.set_ylim(-10,10)
-        ax.set_zlim(-10,10)
+#        ax.set_xlim(-10,10)
+#        ax.set_ylim(-10,10)
+#        ax.set_zlim(-10,10)
 
         # Surface Plot
         henne = ax.plot_surface(x, y, z)
