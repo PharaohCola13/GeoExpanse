@@ -10,8 +10,7 @@ from numpy import *
 
 name = "Cross-Cap"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
 # Definition of x
 	def x_(u,v):
 			x = cos(u) * sin(2 * v)
@@ -29,8 +28,9 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 
 
 # Values of the angles
+	s = sides
 	u = linspace(0, 2 * pi, s + 1)
-	v = linspace(0, pi/2, 28)
+	v = linspace(0, pi/2, edges)
 
 	u, v = meshgrid(u, v)
 
@@ -46,11 +46,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 # Axis Properties
 	plt.axis(grid) # Turns off the axis grid
 	plt.axis('equal')
-
-# Axis Limits
-	#ax.set_xlim(-5,5)
-	#ax.set_ylim(-5,5)
-	#ax.set_zlim(-5,5)
 
 # Surface Plot
 	cross_cap = ax.plot_surface(x,y,z, rstride=1, cstride=1)
