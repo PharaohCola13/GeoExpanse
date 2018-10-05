@@ -9,8 +9,7 @@ from matplotlib.animation import *
 
 name = "Shell"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
 # Definition of x
 	def x_(u,v):
 		x = power(1.2, v) * (sin(u)**2 * sin(v))
@@ -27,8 +26,9 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 		return z
 
 #Value of the angles
-	u = linspace(0, pi, 25)
-	v = linspace(-pi/4, 5 * pi/2, 25)
+	s = sides
+	u = linspace(0, pi, s + 1)
+	v = linspace(-pi/4, 5 * pi/2, edges)
 
 	u, v = meshgrid(u, v)
 
