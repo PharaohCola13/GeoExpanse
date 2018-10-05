@@ -47,9 +47,11 @@ import cuboctahedron, great_rombicosidodecahedron, snub_cube, truncated_cube
 s = {	"Prism"					: prism,
 		"Pyramid"				: pyramid,
  		"Sphere"				: sphere,
+
 		"Hyperbolic Octahedron"	: hyperbolic_octahedron,
  		"Hyperbolic Paraboliod"	: hyperbolic_paraboloid,
  		"One Sheet Hyperboliod"	: one_sheet_hyperboloid,
+
  		"Three Dodecahedron"	: three_dodecahedron,
  		"Cressant"				: cressant,
  		"Funnel"				: funnel,
@@ -57,6 +59,7 @@ s = {	"Prism"					: prism,
  		"Rose Spiral"			: rose_spiral,
  		"Shell"					: shell,
  		"Tesseract"				: tesseract,
+
 		"Breather's Surface"	: breather_surface,
  		"Kuen's Surface"		: kuen_surface,
  		"Steiner's Surface"		: steiner_surface,
@@ -64,14 +67,17 @@ s = {	"Prism"					: prism,
  		"Roman Surface"			: roman_surface,
  		"Sine Surface"			: sine_surface,
  		"Henneberg's Surface"	: henneberg_surface,
+
  		"Cube"					: cube,
  		"Dodecahedron"			: dodecahedron,
  		"Icosahedron"			: icosahedron,
  		"Octahedron"			: octahedron,
+
 		"Cross Cap"				: cross_cap,
  		"Klein Bottle"			: klein,
  		"Mobius Strip"			: mobius,
  		"Torus"					: torus,
+
  		"Unk Surface"			: interesting,
  		"Hecatostoeicostohedron": hecatostoeicostohedron,
  		"Hyperbolic Cylinder"	: hyperbolic_cylinder,
@@ -84,9 +90,9 @@ s = {	"Prism"					: prism,
  		"Vase"					: vase,
  		"Something Strange"		: something_strange,
  		"Enneper's Surface"		: enneper_surface,
- #		"Curves"				: curves
  		"Line"					: line,
- 		"Cuboctahedron"			: cuboctahedron,
+ 		
+		"Cuboctahedron"			: cuboctahedron,
  		"Great Rombicosidodecahedron": great_rombicosidodecahedron,
 		"Snub Cube"				: snub_cube,
 		"Truncated Cube"		: truncated_cube,
@@ -94,38 +100,18 @@ s = {	"Prism"					: prism,
  #		"Great Icosahedron"		: 'great_icosahedron'
  }
 
-Polyhedra = ["Cube", "Dodecahedron", "Icosahedron", "Octahedron", "Cuboctahedron", "Great Rombicosidodecahedron", "Hecatostoeicostohedron", "Three Dodecahedron", "Tesseract"]
-
-#theme = "Dark"
+Polyhedra = [s.keys()[26], s.keys()[11], s.keys()[15], s.keys()[6], s.keys()[31], s.keys()[18:21], s.keys()[35], s.keys()[38], s.keys()[9]]
+Surfaces  = [s.keys()[0],  s.keys()[2],  s.keys()[4:6], s.keys()[7:9], s.keys()[23], s.keys()[32], s.keys()[41:43]]
+Topology  = [s.keys()[10], s.keys()[13], s.keys()[24]]
+print(Polyhedra[0])
 
 dim = "#303030" #Background
-#"#303030"
 dimf = "#00C0FF" #Font Color
 dimfa = dimf
 dimt = dimf #Slider color
 
 bright = "potato"
 brightf = "potato"
-
-class themes(tk.Frame):
-	def __init__(self, master=None):
-		tk.Frame.__init__(self,master)
-		self.createWidgets()
-
-	def createWidgets(self):
-		img = ImageTk.PhotoImage(file='penrose_icon.png')
-		#canvas = FigureCanvasTkAgg(self.fig,root_alt)
-		#canvas.get_tk_widget().grid(row=0,column=0, sticky='new')
-	
-		#frame = tk.Frame(root_alt, width=100, height=100)
-		theme = tk.StringVar()
-
-		pop = tk.Button(root_alt, text="POP!", command=root_alt.destroy)
-		pop.grid(row=0, column=0, sticky='new')
-
-		tk.Radiobutton(root_alt, text="Dark", variable=theme.get(), value="Dark").grid(row=1, column=0, sticky="w")
-		tk.Radiobutton(root_alt, text="Light", variable=theme.get(), value="Light").grid(row=2, column=0, sticky="w")
-		tk.Radiobutton(root_alt, text="Normal", variable=theme.get(), value="Normal").grid(row=3, column=0, sticky="w")
 
 theme = "Dark"
 
@@ -187,11 +173,8 @@ class Geometry(tk.Frame):
 
 		def FaceColor(self):
 			color = ""
-			print(color)
 			self.c_entry = askcolor(title="Face Color", color=color)[1]
-			self.fck.config(bg=self.c_entry)
-			color = self.c_entry
-			print(self.c_entry)								
+			self.fck.config(bg=self.c_entry)							
 			return self.c_entry
 
 		def FaceColor2(self):
@@ -207,7 +190,7 @@ class Geometry(tk.Frame):
 			return self.c_entry3
 
 		def EdgeColor(self):
-			self.ec_entry = askcolor(color="#ffd900", title="Edge Color")[1]
+			self.ec_entry = askcolor(title="Edge Color", color="#ffd900")[1]
 			self.eck.config(bg=self.ec_entry)
 			return self.ec_entry
 
@@ -530,7 +513,6 @@ class Geometry(tk.Frame):
 				self.ew_entry.config(bg=dim,  fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
 				self.ram_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
 				self.raa_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
-
 				# Labels
 				self.a_label.config(bg=dim,   fg=dimf, activebackground=dim)
 				self.h_label.config(bg=dim,   fg=dimf, activebackground=dim)
@@ -547,7 +529,6 @@ class Geometry(tk.Frame):
 				self.three_space.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
 				self.rot_on.config(bg=dim, 		fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
 				self.rot_off.config(bg=dim, 	fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
-				
 				# Button				
 				self.plot_test.config(bg=dim, 	fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
 				self.plot_plot.config(bg=dim, 	fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
@@ -560,7 +541,7 @@ class Geometry(tk.Frame):
 				menu.config(bg=dim, 	fg=dimf, activebackground=dim, activeforeground=dimfa)
 				filemenu.config(bg=dim, fg=dimf, activebackground=dim, activeforeground=dimfa)
 				
-		print(Polyhedra[1])
+		#print(Polyhedra[1])
 		while self.shape_set.get() == Polyhedra[1]:
 			print(Polyhedra)
 			disdim = "#cc00ff"
@@ -622,16 +603,32 @@ class Geometry(tk.Frame):
 		canvas.draw()
 
 	def test(self, canvas, ax):
-		edge_c 		= self.ec_entry
-		color 		= self.c_entry
-		color2		= self.c_entry2
-		#rot_azim 	= self.scroll_azim.get()
-		#rot_elev 	= self.scroll_elev.get()
+		global Polyhedra
+		try:
+			edge_c = self.ec_entry
+		except AttributeError:
+			edge_c = "#f608ff"
+			self.ec_entry.color = edge_c
+			self.eck.config(bg=edge_c)
+		try:
+			color  = self.c_entry
+		except AttributeError:
+			color = "#00c4ff"
+			self.fck.config(bg=color)
+		try:
+			color2  = self.c_entry2
+		except AttributeError:
+			color2 = "#000000"
+			self.f2.config(bg=color2)
+		try:
+			color3  = self.c_entry3
+		except AttributeError:
+			color3 = "#000000"
+			self.f3.config(bg=color3)
+		
 		alpha 		= self.a_entry.get()
 		grid 		= self.grid_axis.get()
 		edge_w 		= self.ew_entry.get()
-		#zoom 		= self.axis_zoom.get()
-		#slope 		= self.slope.get()
 		edges		= self.ed_entry.get()
 		sides 		= self.si_entry.get()
 		multi_pi	= self.pi_entry.get()
@@ -639,6 +636,8 @@ class Geometry(tk.Frame):
 		radiusm		= self.ram_entry.get()
 		rot 		= self.rot.get()
 		save 		= self.format_save.get()
+		height		= self.h_entry.get()
+
 
 		name = self.shape_set.get()
 		root.title("Geometric Modeling ({})".format(name))
@@ -647,27 +646,58 @@ class Geometry(tk.Frame):
 		plt.cla()
 		plt.clf()
 
-		#ax.set_xlim(self.axis_limits.get(),self.axis_limits.get())
-		#ax.set_ylim(self.axis_limits.get(),self.axis_limits.get())
-		#ax.set_zlim(-50,50)
-
-		s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radiusm, color2)
-
+		try:
+			s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides,
+					   edges, multi_pi, radiusm, radiusa, color2, color3, height)
+		except KeyError:
+			name = interesting.name
+			root.title("Geometric Modeling ({})".format(name))
+			interesting.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides,
+					   edges, multi_pi)
+		except TypeError:
+			try: # General
+				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi)
+			except TypeError:
+				try: # Polyhedra (Tri-Color)
+					s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, color2, color3)
+				except TypeError:
+					try: # Polyhedra (Bi-Color)
+						s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, color2)
+					except TypeError:
+						try: # Polyhedra (Mono-Color)
+							s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid)
+						except TypeError:
+							try: # Prism /Sphere
+								s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, radiusa, height)
+							except TypeError:
+								try: # Pyramid / Funnel / G. Horn
+									s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, height)
+								except TypeError:
+									try: # Hyperbolic Surfaces 								
+										s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi)
+									except TypeError:
+										try: # Cressant
+											s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges)
+										except TypeError:
+											try:
+												s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm)
+											except TypeError:
+												try:
+													s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, radiusm, color2)
+												except TypeError:
+													try:
+														s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, radiusm)
+													except TypeError:
+														print("FUCKING SHIT")
 		canvas.draw()
 
 
 
 if __name__ == '__main__':
 	root = tk.Tk()
-	#root_alt = tk.Tk()
 	
 	root.title("Geometric Models")
-	#root_alt.title("Theme")
-
-	#theme = themes.self.theme
 	root.geometry("932x501")
-	#root_alt.geometry("200x200")
 	img = ImageTk.PhotoImage(file='penrose_icon.png')
 
 	root.tk.call('wm', 'iconphoto', root._w, img)
@@ -687,15 +717,5 @@ if __name__ == '__main__':
 		root_alt.destroy()
 
 
-	#root_alt.tk.call('wm', 'iconphoto', root_alt._w, img)
-	#root_alt.protocol("WM_DELETE_WINDOW", quit_alt)
-	##root_alt.update()
-	#root_alt.update_idletasks()
-
-	#them = themes(master=root_alt)
-
 	geo = Geometry(master=root)
-
-	#geo.createWidgets()
-	#them.mainloop()
 	geo.mainloop()
