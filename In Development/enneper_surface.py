@@ -9,8 +9,8 @@ from matplotlib.animation import *
 
 name = "Enneper Surface"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
+
     def x_(u,v):
         x = u - (u**3/3) + (u * v**2)
         return x
