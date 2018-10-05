@@ -9,8 +9,7 @@ from matplotlib.animation import *
 
 name = "Gabriel's-Horn"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radius, height):
 	# Definition of x
 	def x_(u, v):
 		x = u
@@ -27,13 +26,14 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 		z = (a * sin(v)) /u
 		return z
 
-	a = 1 # changes radius of the entire thing
+	a = radius # changes radius of the entire thing
 
-	h = 1
+	h = height
 
 	# Value of the angles
-	u = linspace(1, h, 25)
-	v = linspace(0, 2 * pi, 25)
+	s = sides
+	u = linspace(1, h, s + 1)
+	v = linspace(0, 2 * pi, edges)
 
 	u, v = meshgrid(u, v)
 
