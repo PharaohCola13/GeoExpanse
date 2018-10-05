@@ -8,8 +8,10 @@ from matplotlib.animation import *
 from matplotlib import *
 from numpy import *
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):    # Definition of x
+name = "Kuen Surface"
+
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges):    
+# Definition of x
     def x_(u, v):
         x = 2 * cosh(v) * (cos(u) + u* sin(u)) / (cosh(v)**2 + u**2)
         return x
@@ -26,8 +28,8 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
         return z
 
     # Value of the angles
-    u = linspace(-4, 4, 50)
-    v = linspace(-3.75, 3.75, 50)
+    u = linspace(-4, 4,  sides + 1)
+    v = linspace(-3.75, 3.75, edges)
 
     u, v = meshgrid(u, v)
 
