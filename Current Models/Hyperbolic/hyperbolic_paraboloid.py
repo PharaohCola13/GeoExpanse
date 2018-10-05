@@ -9,8 +9,7 @@ from matplotlib.animation import *
 
 name = "Hyperbolic Paraboliod"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
 	# Definition of x
 	def x_(u, v):
 		x = u
@@ -29,8 +28,9 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 		return z
 
 	# Value of the angles
-	u = linspace(-pi/2, pi/2, 25)
-	v = linspace(-pi/2, pi/2, 25)
+	s = sides
+	u = linspace(-pi/2, pi/2, s + 1)
+	v = linspace(-pi/2, pi/2, edges)
 
 	u, v = meshgrid(u, v)
 
