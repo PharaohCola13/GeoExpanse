@@ -9,8 +9,7 @@ from matplotlib.animation import *
 
 name = "Tesseract"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, radius, color2):
 # Points on the object
 	points = array([
 				   [-1,	-1,	-1],
@@ -60,7 +59,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	ax.set_zlim(-4,4)
 
 # Radius
-	r = 1
+	r = radius
 	r = [-1 * r,r]
 
 # Definition of x and y
@@ -95,18 +94,18 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 # Outside Region
 	outer_region = Poly3DCollection(verts_outer)
 
-	outer_region.set_edgecolor('white')
-	outer_region.set_linewidth(1)
-	outer_region.set_alpha(0.2)	
-	outer_region.set_facecolor('blue')
+	outer_region.set_edgecolor(edge_c)
+	outer_region.set_linewidth(edge_w)
+	outer_region.set_alpha(alpha)	
+	outer_region.set_facecolor(color)
 
 # Inside Region
 	inner_region = Poly3DCollection(verts_inner)
 
-	inner_region.set_edgecolor('white')
-	inner_region.set_linewidth(1)
-	inner_region.set_alpha(0.5)
-	inner_region.set_facecolor('purple')
+	inner_region.set_edgecolor(edge_c)
+	inner_region.set_linewidth(edge_w)
+	inner_region.set_alpha(alpha)
+	inner_region.set_facecolor(color2)
 
 
 # Plot Surfaces
