@@ -9,8 +9,8 @@ from matplotlib.animation import *
 
 name = "Cressant"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges):
+
 # Definition of x
 	def x_(u,v):
 		x = (2 + sin(2 * pi * v) * sin(2 * pi * u)) * sin(3 * pi * v)
@@ -27,8 +27,9 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 		return z
 
 # Value of the angles
-	u = linspace(0, 1, 50)
-	v = linspace(0, 1, 50)
+	s = sides
+	u = linspace(0, 1, s + 1)
+	v = linspace(0, 1, edges)
 
 	u, v = np.meshgrid(u, v)
 
@@ -46,11 +47,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	plt.axis(grid) # Turns off the axis grid
 	plt.axis('equal')
 
-# Axis Limits
-	#ax.set_xlim(-1,1)
-	#ax.set_ylim(-1,1)
-	#ax.set_zlim(-10,10)
-
 # Surface Plot
 	cressant = ax.plot_surface(x, y, z)
 
@@ -58,4 +54,3 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	cressant.set_edgecolor(edge_c) # Edge color of the lines on the figure
 	cressant.set_linewidth(edge_w) # Line width of the edges
 	cressant.set_facecolor(color) # General color of the figure
-
