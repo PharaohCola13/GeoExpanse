@@ -9,8 +9,7 @@ from matplotlib.animation import *
 
 name = "Dodecahedron"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid):
 
 # Points on the object
 	points = array([
@@ -63,13 +62,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	ax.set_ylim(-4, 4)
 	ax.set_zlim(-4, 4)
 
-# Radius
-	r = 1
-	r = [-1 * r,r]
-
-# Definition of x and y
-	X, Y = np.meshgrid(r, r)
-
 # The edges of the object
 	verts = [
 			[Z[0],  Z[1],  Z[2],  Z[3],  Z[4]], 
@@ -95,4 +87,3 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	dodeca.set_facecolor(color)
 
 	dodecahedron = ax.add_collection3d(dodeca)
-
