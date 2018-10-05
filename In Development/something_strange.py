@@ -10,8 +10,7 @@ from numpy import *
 
 name = "Something Strange"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
 # x: t*s*cos(u) * cos(v)
 # y: t*s*cos(u) * sin(v)
 # z: t * s * sin(v)
@@ -28,7 +27,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 		z = t * s* sin(v)
 		return z
 
-	s = 10
+	s = sides
 	t = linspace(0, pi, 20)
 
 	u = linspace(0, 2 * pi, 20)
