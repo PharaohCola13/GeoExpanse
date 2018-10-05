@@ -10,8 +10,8 @@ from matplotlib.animation import *
 name = "Penrose Triangle"
 
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-          edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid):
+
     points = array([[0.09, 2.761, 0], #0
                     [-2.66, -2.19, 0], #1
                     [3.284, -2.19, 0], #2
