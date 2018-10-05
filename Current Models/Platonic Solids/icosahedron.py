@@ -9,8 +9,7 @@ from matplotlib.animation import *
 
 name = "Icosahedron"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid):
 
 # Points on the object
 	p = (1 + sqrt(5))/2
@@ -54,12 +53,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	ax.set_xlim(-5, 5)
 	ax.set_ylim(-5, 5)
 	ax.set_zlim(-5, 5)
-
-# Radius
-	r = [-1 ,1]
-
-# Definition of x and y
-	X, Y = np.meshgrid(r, r)
 
 # The edges of the object
 	verts = [
