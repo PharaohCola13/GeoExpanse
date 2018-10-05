@@ -11,8 +11,7 @@ from numpy import *
 
 name = "Vase"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
     # Definition of x
     def x_(u, v):
         x = u
@@ -49,9 +48,9 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
     plt.axis('equal')
 
     # Axis Limits
-    ax.set_xlim(-5, 5)
-    ax.set_ylim(-5, 5)
-    ax.set_zlim(-5, 5)
+    #ax.set_xlim(-5, 5)
+    #ax.set_ylim(-5, 5)
+    #ax.set_zlim(-5, 5)
 
     # Surface Plot
     vase = ax.plot_surface(x, y, z)
