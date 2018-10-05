@@ -9,8 +9,7 @@ from matplotlib.animation import *
 
 name = "Truncated Cube"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):	
+def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3):	
 
 	points = array([[0,0,0],
 					[-0.5, 0.5 + 1/(sqrt(2)), 0.5 +1/(sqrt(2))],
@@ -53,7 +52,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 		Z[i, :] = dot(points[i, :], P)
 
 	# Figure Properties
-	#fig = plt.figure(figsize=(8, 8))
 	ax = p3.Axes3D(fig)
 	ax.set_facecolor('black')
 
@@ -71,20 +69,22 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 
 	# Side Configuration for Cube
 	# Cube Properties
-	verts_trcube = [[Z[6],Z[12],Z[10],Z[8],Z[4],Z[18],Z[20],Z[2]],
-				[Z[1],Z[19],Z[17],Z[3],Z[7],Z[9],Z[11],Z[5]],
-				[Z[3],Z[24],Z[23],Z[4],Z[8],Z[15],Z[16],Z[7]],
-				[Z[5],Z[14],Z[13],Z[6],Z[2],Z[21],Z[22],Z[1]],
-				[Z[9],Z[16],Z[15],Z[10],Z[12],Z[13],Z[14],Z[11]],
-				[Z[19],Z[22],Z[21],Z[20],Z[18],Z[23],Z[24],Z[17]],
-				[Z[16],Z[9],Z[7]],
-				[Z[5],Z[11],Z[14]],
-				[Z[3],Z[17],Z[24]],
-				[Z[22],Z[19],Z[1]],
-				[Z[8],Z[10],Z[15]],
-				[Z[13],Z[12],Z[6]],
-				[Z[23],Z[18],Z[4]],
-				[Z[2],Z[20],Z[21]],
+	verts_trcube = [[Z[6], Z[12], Z[10], Z[8],  Z[4],  Z[18], Z[20], Z[2]],
+					[Z[1], Z[19], Z[17], Z[3],  Z[7],  Z[9],  Z[11], Z[5]],
+					[Z[3], Z[24], Z[23], Z[4],  Z[8],  Z[15], Z[16], Z[7]],
+					[Z[5], Z[14], Z[13], Z[6],  Z[2],  Z[21], Z[22], Z[1]],
+					[Z[9], Z[16], Z[15], Z[10], Z[12], Z[13], Z[14], Z[11]],
+					[Z[19],Z[22], Z[21], Z[20], Z[18], Z[23], Z[24], Z[17]],
+					]
+	trcube_three = [					
+					[Z[16],Z[9],Z[7]],
+					[Z[5],Z[11],Z[14]],
+					[Z[3],Z[17],Z[24]],
+					[Z[22],Z[19],Z[1]],
+					[Z[8],Z[10],Z[15]],
+					[Z[13],Z[12],Z[6]],
+					[Z[23],Z[18],Z[4]],
+					[Z[2],Z[20],Z[21]],
 				  ]
 
 	tr_cube = Poly3DCollection(verts_trcube)
@@ -94,5 +94,14 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	tr_cube.set_alpha(alpha)
 	tr_cube.set_facecolor(color)
 
+	tr_cube1 = Poly3DCollection(trcube_three)
+
+	tr_cube1.set_edgecolor(edge_c)
+	tr_cube1.set_linewidth(edge_w)
+	tr_cube1.set_alpha(alpha)
+	tr_cube1.set_facecolor(color2)
+
 	# Plot Surfaces
 	ax.add_collection3d(tr_cube)
+	ax.add_collection3d(tr_cube1)
+	
