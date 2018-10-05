@@ -10,7 +10,8 @@ from fractions import Fraction
 
 name = "Boy's Surface"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
+
 # Definition of x
     def x_(u, v):
         x = (cos(u) * (Fraction(1,3) * sqrt(2) * cos(u) * cos(2 * v) + Fraction(2,3) * sin(u) * cos(v))) / (1 - sqrt(2) * sin(u) * cos(u) * sin(3 * v))
@@ -28,8 +29,8 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,edges, multi_pi, radius
         return z
 
 # Value of the angles
-    u = linspace(0, multi_pi * pi, edges)
-    v = linspace(0, multi_pi * pi, sides)
+    u = linspace(0, multi_pi * pi, sides + 1)
+    v = linspace(0, multi_pi * pi, edges)
 
     u, v = meshgrid(u, v)
 
