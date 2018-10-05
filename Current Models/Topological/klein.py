@@ -10,8 +10,7 @@ from matplotlib.animation import *
 name = "Klein Bottle"
 
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-          edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
     # Definition of x
     def x_(u, v):
         x = -2 + 2 * cos(v) - cos(u)
@@ -34,8 +33,8 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
         return z
 
     # Values of the angles
-    u = linspace(0, 2 * pi, s + 1)
-    v = linspace(0, 4 * pi, 38)
+    u = linspace(0, 2 * pi, sides + 1)
+    v = linspace(0, 4 * pi, edges)
 
     u, v = meshgrid(u, v)
 
