@@ -9,8 +9,7 @@ from matplotlib.animation import *
 
 name = "Octahedron"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid):
 
 # Points on the object
 	points = array([
@@ -48,12 +47,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	ax.set_xlim(-1, 1)
 	ax.set_ylim(-1, 1)
 	ax.set_zlim(-1, 1)
-
-# Radius
-	r = [-1 ,1]
-
-# Definition of x and y
-	X, Y = np.meshgrid(r, r)
 
 # The edges of the object
 	verts = [
