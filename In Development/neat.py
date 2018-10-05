@@ -9,8 +9,7 @@ from numpy import *
 
 name = "Neat"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
     def x_(u,v):
         x = 0.5 * (v * cos(u))
         return x
