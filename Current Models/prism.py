@@ -10,8 +10,8 @@ from matplotlib.animation import *
 
 name = "Prism"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, radiusa, height):
+
 # Definition of x
 	def x_(u,v):
 		x = a * cos(v)
@@ -28,18 +28,18 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 		return z
 
 # Height
-	h = 1
+	h = height
 
 # Radius
-	a = radius
-	b = radius
+	a = radiusm
+	b = radiusa
 
 # Number of edges on the base
 	s = sides
 
 # Value of the angles
 	u = linspace(0, h, edges)
-	v = linspace(0, 2 * pi, s +1)
+	v = linspace(0, 2 * pi, s + 1)
 
 	u, v = meshgrid(u, v)
 
