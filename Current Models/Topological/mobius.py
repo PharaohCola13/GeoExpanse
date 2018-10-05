@@ -11,8 +11,8 @@ from matplotlib.animation import writers
 from matplotlib import cm
 
 name = "Mobius Strip"
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid):
+
     # Mobius Band components
     theta = np.linspace(0, 2 * np.pi, 30)
 
