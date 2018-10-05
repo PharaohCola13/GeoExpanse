@@ -10,8 +10,7 @@ from matplotlib.animation import *
 
 name = "One-Sheet-Hyperboloid"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
 	# Definition of x
 	def x_(u, v):
 		x = (cosh(u) * cos(v))
@@ -27,9 +26,10 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 		z = sinh(u)
 		return z
 
+	s = sides
 	# Value of the angles
-	u = linspace(-2, 2, 25)
-	v = linspace(0, 2 * pi, 25)
+	u = linspace(-2, 2, s + 1)
+	v = linspace(0, 2 * pi, edges)
 
 	u, v = meshgrid(u, v)
 
