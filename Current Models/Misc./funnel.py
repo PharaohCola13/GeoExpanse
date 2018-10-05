@@ -9,8 +9,7 @@ from matplotlib.animation import *
 
 name = "Funnel"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radius, height):
     # Definition of x
 	def x_(u, v):
 		x = u * cos(v)
@@ -28,14 +27,15 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 		return z
 
 	# Determines the total height of the funnel
-	h = 1
+	h = height
 
 	# Defines the radius of the hole
-	r = 1
+	r = radius
 
 	# Value of the angles
-	u = linspace(r, pi, 25)
-	v = linspace(0, 2 * pi, 25)
+	s = sides
+	u = linspace(r, pi, s + 1)
+	v = linspace(0, 2 * pi, edges)
 
 	u, v = meshgrid(u, v)
 
@@ -64,4 +64,3 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	funnel.set_edgecolor(edge_c)  # Edge color of the lines on the figure
 	funnel.set_linewidth(edge_w)  # Line width of the edges
 	funnel.set_facecolor(color)  # General color of the figure
-
