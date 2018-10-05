@@ -10,29 +10,31 @@ from matplotlib.animation import *
 
 name = "Sphere"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, radiusa, height):
 # Definition of x
 	def x_(u,v):
-			x = cos(u) * sin(v)
+			x = a * cos(u) * sin(v)
 			return x
 
 # Definition of y
 	def y_(u,v):
-			y = sin(u) * sin(v)
+			y = b * sin(u) * sin(v)
 			return y
 
 # Definition of z
 	def z_(u,v):
-			z  = cos(v)
+			z  = h * cos(v)
 			return z
 
 # Number of edges on the base
+	a = radiusm
+	b = radiusa
 	s = sides
+	h = height
 
 # Values of the angles
-	u = linspace(0, pi, s + 1)
-	v = linspace(0, multi_pi * pi, edges)
+	u = linspace(0, pi, edges)
+	v = linspace(0, multi_pi * pi, s + 1)
 
 	u, v = meshgrid(u, v)
 
