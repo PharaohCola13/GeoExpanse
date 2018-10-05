@@ -7,15 +7,14 @@ from numpy import *
 from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 
-name = "Snub cube"
+name = "Snub Cube"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius, color2):
+def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3):
 
 
-	C0 = sqrt(3 * (4 - cbrt(17 + 3*sqrt(33)) - cbrt(17 - 3*sqrt(33)))) / 6
-	C1 = sqrt(3 * (2 + cbrt(17 + 3*sqrt(33)) + cbrt(17 - 3*sqrt(33)))) / 6
-	C2 = sqrt(3 * (4 + cbrt(199 + 3*sqrt(33)) + cbrt(199 - 3*sqrt(33)))) / 6
+	C0 = sqrt(3 * (4 - cbrt(17  + 3 * sqrt(33)) - cbrt(17  - 3 * sqrt(33)))) / 6
+	C1 = sqrt(3 * (2 + cbrt(17  + 3 * sqrt(33)) + cbrt(17  - 3 * sqrt(33)))) / 6
+	C2 = sqrt(3 * (4 + cbrt(199 + 3 * sqrt(33)) + cbrt(199 - 3 * sqrt(33)))) / 6
 
 	points = array([[C1,   C0,  C2], #0
 		            [C1,  -C0, -C2], #1
@@ -69,7 +68,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	X, Y = np.meshgrid(r, r)
 
 	# Side Configuration for scube
-	# scube Properties
 	verts_scube = [ [Z[2],Z[12],Z[0],Z[14]],
 		            [Z[3],Z[13],Z[1],Z[15]],
 		            [Z[4],Z[16],Z[5],Z[17]],
@@ -78,44 +76,40 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 		            [Z[9],Z[20],Z[10],Z[23]],
 					]
 	verts_tri =   [
-		            [Z[0],Z[8],Z[14]],
-		            [Z[1],Z[9],Z[15]],
-		            [Z[2],Z[10],Z[12]],
-		            [Z[3],Z[11],Z[13]],
-		            [Z[4],Z[0],Z[16]],
-		            [Z[5],Z[1],Z[17]],
-		            [Z[6],Z[2],Z[18]],
-		            [Z[7],Z[3],Z[19]],
-		            [Z[8],Z[4],Z[21]],
-		            [Z[9],Z[5],Z[20]],
-		            [Z[10],Z[6],Z[23]],
-		            [Z[11],Z[7],Z[22]],
-		            [Z[12],Z[16],Z[0]],
-		            [Z[13],Z[17],Z[1]],
-		            [Z[14],Z[18],Z[2]],
-		            [Z[15],Z[19],Z[3]],
-		            [Z[16],Z[20],Z[5]],
-		            [Z[17],Z[21],Z[4]],
-		            [Z[18],Z[22],Z[7]],
-		            [Z[19],Z[23],Z[6]],
-		            [Z[20],Z[12],Z[10]],
-		            [Z[21],Z[13],Z[11]],
-		            [Z[22],Z[14],Z[8]],
-		            [Z[23],Z[15],Z[9]],
-		            [Z[8],Z[0],Z[4]],
-		            [Z[9],Z[1],Z[5]],
-		            [Z[10],Z[2],Z[6]],
-		            [Z[11],Z[3],Z[7]],
-		            [Z[12],Z[20],Z[16]],
-		            [Z[13],Z[21],Z[17]],
-		            [Z[14],Z[22],Z[18]],
-		            [Z[15],Z[23],Z[19]],
+		            [Z[0],  Z[8],  Z[14]],
+		            [Z[1],  Z[9],  Z[15]],
+		            [Z[2],  Z[10], Z[12]],
+		            [Z[3],  Z[11], Z[13]],
+		            [Z[4],  Z[0],  Z[16]],
+		            [Z[5],  Z[1],  Z[17]],
+		            [Z[6],  Z[2],  Z[18]],
+		            [Z[7],  Z[3],  Z[19]],
+		            [Z[8],  Z[4],  Z[21]],
+		            [Z[9],  Z[5],  Z[20]],
+		            [Z[10], Z[6],  Z[23]],
+		            [Z[11], Z[7],  Z[22]],
+		            [Z[12], Z[16], Z[0]],
+		            [Z[13], Z[17], Z[1]],
+		            [Z[14], Z[18], Z[2]],
+		            [Z[15], Z[19], Z[3]],
+		            [Z[16], Z[20], Z[5]],
+		            [Z[17], Z[21], Z[4]],
+		            [Z[18], Z[22], Z[7]],
+		            [Z[19], Z[23], Z[6]],
+		            [Z[20], Z[12], Z[10]],
+		            [Z[21], Z[13], Z[11]],
+		            [Z[22], Z[14], Z[8]],
+		            [Z[23], Z[15], Z[9]],
+		            [Z[8],  Z[0],  Z[4]],
+		            [Z[9],  Z[1],  Z[5]],
+		            [Z[10], Z[2],  Z[6]],
+		            [Z[11], Z[3],  Z[7]],
+		            [Z[12], Z[20], Z[16]],
+		            [Z[13], Z[21], Z[17]],
+		            [Z[14], Z[22], Z[18]],
+		            [Z[15], Z[23], Z[19]],
 		           ]
 
-	#for n in range(0, 38):
-	 #   print(len(verts_scube[n]))
-
-	  #  if len(verts_scube[n]) == 3:
 	scube = Poly3DCollection(verts_scube)
 
 	scube.set_edgecolor(edge_c)
@@ -129,14 +123,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	scube1.set_linewidth(edge_w)
 	scube1.set_alpha(alpha)
 	scube1.set_facecolor(color2)
-	#    elif len(verts_scube[n]) == 4:
-	 #       scube = Poly3DCollection(verts_scube[10])
 
-	  #      scube.set_edgecolor("white")
-	   #     scube.set_linewidth(0.5)
-		#    scube.set_alpha(0.5)
-		 #   scube.set_facecolor("yellow")
-
-	# Plot Surfaces
 	ax.add_collection3d(scube)
 	ax.add_collection3d(scube1)
