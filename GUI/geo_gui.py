@@ -10,6 +10,7 @@ from PIL import Image
 import sys, glob
 from tkColorChooser import askcolor
 from HoverInfo import CreateToolTip
+from time import sleep
 
 try:
 	# for Python2
@@ -114,6 +115,20 @@ bright = "potato"
 brightf = "potato"
 
 theme = "Dark"
+
+class Startup():	
+	load = tk.Tk()	
+	label = tk.Label(load, text="Loading")
+	def task():
+		global load
+		sleep(2)
+		#load.quit()
+		load.destroy
+	load.title("Starting")
+	
+	label.grid(row=0, column=0)
+	load.after(500, task())
+	load.mainloop()
 
 class Geometry(tk.Frame):
 	global theme, Polyhedra
@@ -384,7 +399,7 @@ class Geometry(tk.Frame):
 		filemenu.add_command(label="Quit", command=quit)
 
 		menu.add_command(label="Figure", command=adjust)
-		menu.add_command(label="All", command=lambda: root.geometry("932x501"))
+		menu.add_command(label="Full", command=lambda: root.geometry("932x501"))
 
 		# # Transparency
 		self.a_label = tk.Label(root, text="Transparency")
@@ -414,10 +429,12 @@ class Geometry(tk.Frame):
 		self.ed_entry.grid(row=0, column=2, sticky='nw', pady=170)
 		self.ed_entry.set(20)
 
+		# Multiple of Pi
 		self.pi_label = tk.Label(root, text=r"Multiple of \pi")
 		self.pi_label.grid(row=0, column=1, sticky='nw', pady=230)
 		self.pi_entry = tk.Scale(root, from_=1, to=100, resolution=1, orient=tk.HORIZONTAL)
 		self.pi_entry.grid(row=0, column=2, sticky='nw', pady=210)
+		self.pi_entry.set(2)
 
 		# Edge Width
 		self.ew_label = tk.Label(root, text="Edge Width")
@@ -608,7 +625,7 @@ class Geometry(tk.Frame):
 			edge_c = self.ec_entry
 		except AttributeError:
 			edge_c = "#f608ff"
-			self.ec_entry.color = edge_c
+			#self.ec_entry.color = edge_c
 			self.eck.config(bg=edge_c)
 		try:
 			color  = self.c_entry
@@ -690,8 +707,6 @@ class Geometry(tk.Frame):
 													except TypeError:
 														print("FUCKING SHIT")
 		canvas.draw()
-
-
 
 if __name__ == '__main__':
 	root = tk.Tk()
