@@ -11,6 +11,7 @@ name = "Torus"
 
 
 def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radius):
+
     # Definition of x
     def x_(u, v):
         x = 2 * ((c + a * cos(u)) * cos(v))
@@ -33,9 +34,9 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiu
     a = edges
 
     # Values of the angles
-    n = sides
-    u = linspace(0, 2 * pi, n + 1)
-    v = linspace(0, 2 * pi, n)
+    s = sides
+    u = linspace(0, 2 * pi, s + 1)
+    v = linspace(0, 2 * pi, edges)
 
     u, v = meshgrid(u, v)
 
@@ -45,8 +46,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiu
     z = z_(u, v)
 
     # Figure Properties
-    # fig = plt.figure(figsize=(8,8))
-
     ax = p3.Axes3D(fig)
     ax.set_facecolor('black')  # Figure background turns black
 
@@ -67,34 +66,9 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiu
     torus.set_linewidth(edge_w)  # Line width of the edges
     torus.set_facecolor(color)  # General color of the figure
 
-    # Defintions for animations
-    def init():
-        return torus,
-
-    def animate(i):
-        # azimuth angle : 0 deg to 360 deg
-        # elev = i * n --> rotates object about the xy-plane with a magnitude of n
-        # azim = i * n --> rotates object around the z axis with a magnitude of n
-        # For top view elev = 90
-        # For side view elev = 0
-
-        ax.view_init(elev=rot_elev, azim=rot_azim)
-        return torus,
-
-    # Animate
-    ani = FuncAnimation(fig, animate, init_func=init,
-                        frames=36, interval=1, blit=False, repeat=True)
-
-# Saving to torus.mp4
-
-# Writer = writers['ffmpeg']
-# writer = Writer(fps=15, bitrate=1800)
-
 # if c > a:
 #	name = 'Ring-Torus'
 # elif c == a:
 #	name = 'Horn-Torus'
 # elif c < a:
 #	name = 'Spindle-Torus'
-
-# ani.save('%s.mp4' % name, writer=writer)
