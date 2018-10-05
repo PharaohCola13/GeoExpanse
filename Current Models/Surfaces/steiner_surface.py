@@ -25,11 +25,11 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
         z = 3 * (cos(v)**2 / (2 - (b * sqrt(2) * sin(3 * u) * sin(2 * v)))) - 1
         return z
 
-    b = linspace(0, 1, 75)
+    b = linspace(0, 1, sides + 1)
 
 # Value of the angles
-    u = linspace(0, pi, 75)
-    v = linspace(0, pi, 75)
+    u = linspace(0, pi, sides + 1)
+    v = linspace(0, pi, edges)
 
     u, v = meshgrid(u, v)
 
