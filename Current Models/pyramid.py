@@ -9,8 +9,8 @@ from matplotlib.animation import *
 
 name = "Pyramid"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-				   edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radius, height):
+
 # Definition of x
 	def x_(u,v):
 	    x = ((h - u) / h) * r * cos(v)
@@ -27,17 +27,17 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	    return z
 
 # Height
-	h = 1
+	h = height
 
 # Radius
-	r = 1
+	r = radius
 
 # Number of edges on the base
 	s = sides
 
 # Value of the angles
-	u = linspace(0, h, 100)
-	v = linspace(0, 2 * pi, s + 1)
+	u = linspace(0, h, edges)
+	v = linspace(0, 2 * pi,s + 1)
 
 	u, v = meshgrid(u, v)
 
