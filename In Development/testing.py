@@ -7,11 +7,12 @@ from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 from matplotlib import *
 from numpy import *
+import time
 
 name = "Testing"
 
 def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-					   edges, multi_pi, radiusm, radiusa, color2, color3, height):
+					   edges, multi_pi, radiusm, radiusa, color2, color3, height, rot, save):
 	def x_(u,v):
 		x = cos(u) * sin(v)
 		return x
@@ -24,8 +25,8 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 		z = cos(v) + log1p(tan(2+v)**2)
 		return z
 
-	u = linspace(0.001, 2 * pi, 25)
-	v = linspace(0, 2 * pi, 25)
+	u = linspace(0.001, multi_pi * pi, 1 + sides)
+	v = linspace(0, 2 * pi, edges)
 
 	u, v = meshgrid(u, v)
 
@@ -46,17 +47,103 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 
 	# Surface Plot
 
-	interest = ax.plot_surface(x, y, z)
+	test = ax.plot_surface(x, y, z)
 
-	interest.set_alpha(alpha)
-	interest.set_edgecolor(edge_c)
-	interest.set_linewidth(edge_w)
-	interest.set_facecolor(color)
+	test.set_alpha(alpha)
+	test.set_edgecolor(edge_c)
+	test.set_linewidth(edge_w)
+	test.set_facecolor(color)
 
-#
+	def rot_on():
+		plt.axis("off")
+		ax.set_facecolor('black')
+		ax.grid(False)
+		ax.axis('off')
+		ax.set_xticks([])
+		ax.set_yticks([])
+		ax.set_zticks([])
+
+		plt.axis('off')
+		plt.axis('equal')
+		def init():
+			return test,
+
+		def animate(i):
+			ax.view_init(elev=i, azim=i)
+			return test
+
+		# Animate
+		ani = FuncAnimation(fig, animate, init_func=init,
+							interval=1, frames=500, repeat=True)
+
+		plt.ion()
+		plt.show()
+		time.sleep(0)
+		plt.close()
+
+	def save_mp4():
+		plt.axis("off")
+		ax.set_facecolor('black')
+		ax.grid(False)
+		ax.axis('off')
+		ax.set_xticks([])
+		ax.set_yticks([])
+		ax.set_zticks([])
+
+		plt.axis('off')
+		plt.axis('equal')
+		def init():
+			return test,
+
+		def animate(i):
+			ax.view_init(elev=i, azim=i)
+			return test
+
+		# Animate
+		ani = FuncAnimation(fig, animate, init_func=init,
+							interval=1, frames=500, repeat=True)
+
+		Writer = writers['ffmpeg']
+		 	
+		writer = Writer(fps=15, bitrate=1800)
+	#
+		ani.save('{}.mp4'.format(name),writer=writer)
+		
+		plt.ion()
+		plt.show()
+		time.sleep(0)
+		plt.close()
+		 	
+
+	def rot_off():
+		ax.set_facecolor('black')
+		ax.grid(False)
+		ax.axis('off')
+		ax.set_xticks([])
+		ax.set_yticks([])
+		ax.set_zticks([])
+
+		plt.axis('off')
+		plt.axis('equal')
+		
+		plt.ion()
+		plt.show()
+		time.sleep(0)
+		plt.close()		
+		#plt.draw()
+
+	if rot == "on":
+		rot_on()
+		
+	if save == "mp4":
+		save_mp4()
+
+	if rot == "off":
+		rot_off()
+
 # # Definitions for animation
 # def init():
-#  	return interest,
+#  	return test,
 # #
 # def animate(i):
 # #     # azimuth angle : 0 deg to 360 deg
@@ -66,17 +153,17 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 # #     # For side view elev = 0
 # #
 #     ax.view_init(elev=20, azim=i*4)
-#     return interest
+#     return test
 #
 # # Animate
 # #ani = FuncAnimation(fig, animate, init_func=init,
 # #                  frames=200, interval=50, blit=False, repeat=True)
 #
-# # Saving to Interesting.mp4
+# # Saving to testing.mp4
 #
 # #Writer = writers['ffmpeg']
 # #writer = Writer(fps=25, bitrate=1800)
 #
-# #ani.save('Interesting.mp4', writer=writer)
+# #ani.save('testing.mp4', writer=writer)
 #
 # plt.show()
