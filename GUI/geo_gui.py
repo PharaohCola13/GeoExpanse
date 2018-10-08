@@ -9,14 +9,15 @@ from PIL import ImageTk
 from PIL import Image
 import sys
 from time import sleep
+
 try:
 	# for Python2
 	import Tkinter as tk
-	import Tkinter.ttk as ttk
+	# import tk.ttk as ttk
 except ImportError:
 	# for Python3
 	import tkinter as tk
-	import tkinter.ttk as ttk
+	# import tk.ttk as ttk
 
 try:
 	from tkColorChooser import askcolor
@@ -105,11 +106,6 @@ s = {	"Prism"					: prism,
  #		"Great Icosahedron"		: 'great_icosahedron'
  }
 
-#Polyhedra = [s.keys()[26], s.keys()[11], s.keys()[15], s.keys()[6], s.keys()[31], s.keys()[18:21], s.keys()[35], s.keys()[38], s.keys()[9]]
-#Surfaces  = [s.keys()[0],  s.keys()[2],  s.keys()[4:6], s.keys()[7:9], s.keys()[23], s.keys()[32], s.keys()[41:43]]
-#Topology  = [s.keys()[10], s.keys()[13], s.keys()[24]]
-#print(Polyhedra[0])
-
 dim = "#303030" #Background
 dimf = "#00C0FF" #Font Color
 dimfa = dimf
@@ -122,35 +118,36 @@ brightf = "potato"
 
 theme = "Dark"
 
-class Startup():
-	def __init__(self, master=None):
-		tk.Frame.__init__(self,master)
+#class Startup():
+#	def __init__(self, master=None):
+#		tk.Frame.__init__(self,master)
 
-	def task():
-		def bar():
-			load = tk.Tk()
-			load.title("Starting")
+#	def task():
+		#def bar():
+		#	load = tk.Tk()
+		#	load.title("Starting")
 
-			progress = ttk.Progressbar(load, orient=tk.HORIZONTAL, length=200, mode='determinate')
+		#	progress = ttk.Progressbar(load, orient=tk.HORIZONTAL, length=200, mode='determinate')
 
-			progress['value'] = 1
-			load.update_idletasks()
-			sleep(5)
+		#	progress['value'] = 1
+		#	load.update_idletasks()
+		#	sleep(5)
 
-			progress['value'] = 10
-			load.update_idletasks()
-			sleep(5)
-			progress['value'] = 30
+		#	progress['value'] = 10
+		#	load.update_idletasks()
+		#	sleep(5)
+		#	progress['value'] = 30
 
-			load.update_idletasks()
-			sleep(5)
-			progress['value'] = 150
+		#	load.update_idletasks()
+		#	sleep(5)
+		#	progress['value'] = 150
 
-			progress.grid(row=0, column=0)
+		#	progress.grid(row=0, column=0)
 
-			load.mainloop()
-			return bar()
-		return task()
+		#	load.mainloop()
+		#	return bar()
+		#return task()
+
 
 class Geometry(tk.Frame):
 	global theme, Polyhedra
@@ -227,7 +224,8 @@ class Geometry(tk.Frame):
 			return self.c_entry3
 
 		def EdgeColor(self):
-			self.ec_entry = askcolor(title="Edge Color", color="#ffd900")[1]
+			color = ""
+			self.ec_entry = askcolor(title="Edge Color", color=color)[1]
 			self.eck.config(bg=self.ec_entry)
 			return self.ec_entry
 
@@ -630,7 +628,7 @@ class Geometry(tk.Frame):
 		self.two_three.set('3d')
 
 		# Rotation 
-		self.rot_on = tk.Radiobutton(root, text="Rot On", variable=self.rot, value='on')#command=lambda: self.test(canvas,ax))
+		self.rot_on = tk.Radiobutton(root, text="Rot On", variable=self.rot, value='on')
 		self.rot_on.grid(row=0, column=3, sticky='new')
 
 		self.rot_off = tk.Radiobutton(root, text='Rot Off', variable=self.rot, value='off')
@@ -725,16 +723,17 @@ class Geometry(tk.Frame):
 		plt.cla()
 		plt.clf()
 		try: #Count: 14
-			s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, radiusa, color2, color3, height)
+			s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, radiusa, color2, color3, height, rot, save)
 		except KeyError:
 			name = interesting.name
 			root.title("Geometric Modeling ({})".format(name))
-			interesting.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi)
+			testing.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, radiusa, color2, color3, height, rot, save)
 
 			self.face2.config(state=tk.DISABLED, highlightbackground=disa)
 			self.f2.config(bg=dim, fg=dim, relief=tk.RIDGE)
 			self.face3.config(state=tk.DISABLED, highlightbackground=disa)
 			self.f3.config(bg=dim, fg=dim, relief=tk.RIDGE)
+			#self.ec_entry.config(color=edge_c)
 
 			self.raa_entry.config(state=tk.DISABLED,bg=dim, fg=dim, activebackground=disa,  troughcolor=dim)
 			self.raa_label.config(fg=disa)
@@ -911,9 +910,9 @@ class Geometry(tk.Frame):
 											self.raa_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
 											self.raa_label.config(fg=disa)
 											self.ram_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-											self._label.config(fg=dimf)
+											self.ram_label.config(fg=dimf)
 											self.pi_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackgroun=dim, troughcolor=dim)
-											self._label.config(fg=disa)
+											self.pi_label.config(fg=disa)
 											self.si_entry.config(state=tk.DISABLED,bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
 											self.si_label.config(fg=disa)
 											self.ed_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
@@ -958,8 +957,9 @@ class Geometry(tk.Frame):
 													self.si_label.config(fg=disa)
 													self.ed_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
 													self.ed_label.config(fg=disa)
-												except TypeError:
+												except NameError:
 													print("FUCKING SHIT")
+													#pass
 		canvas.draw()
 
 if __name__ == '__main__':
