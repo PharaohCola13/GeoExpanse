@@ -168,7 +168,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3):
 		Z[i, :] = dot(points[i, :], P)
 
 	# Figure Properties
-	#fig = plt.figure(figsize=(8, 8))
 	ax = p3.Axes3D(fig)
 	ax.set_facecolor('black')
 

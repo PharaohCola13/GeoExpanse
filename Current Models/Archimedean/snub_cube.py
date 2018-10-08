@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Snub Cube"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3):
+def shape(fig, alpha, color, edge_c, edge_w, grid, color2):
 
 
 	C0 = sqrt(3 * (4 - cbrt(17  + 3 * sqrt(33)) - cbrt(17  - 3 * sqrt(33)))) / 6
@@ -61,11 +61,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3):
 	ax.set_xlim(-1, 1)
 	ax.set_ylim(-1, 1)
 	ax.set_zlim(-1, 1)
-
-	# Interval
-	r = [-1, 1]
-
-	X, Y = np.meshgrid(r, r)
 
 	# Side Configuration for scube
 	verts_scube = [ [Z[2],Z[12],Z[0],Z[14]],

@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Cuboctahedron"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3):	
+def shape(fig, alpha, color, edge_c, edge_w, grid, color2):
 
 
 	points = array([[0,0,0],

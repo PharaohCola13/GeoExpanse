@@ -57,9 +57,9 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiu
 	plt.axis('equal')
 
 # Axis Limits
-	ax.set_xlim(-1 * a,a)
-	ax.set_ylim(-1 * a,a)
-	ax.set_zlim(0,h)
+#	ax.set_xlim(-1 * a,a)
+#	ax.set_ylim(-1 * a,a)
+#	ax.set_zlim(0,h)
 
 #Surface Plot
 	prism = ax.plot_surface(x,y,z)

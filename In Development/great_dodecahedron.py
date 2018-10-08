@@ -36,7 +36,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid):
 		Z[i, :] = dot(points[i, :], P)
 
 	# Figure Properties
-	fig = plt.figure(figsize=(8, 8))
+	#fig = plt.figure(figsize=(8, 8))
 	ax = p3.Axes3D(fig)
 	ax.set_facecolor('black')
 

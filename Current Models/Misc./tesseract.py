@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Tesseract"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, radius, color2):
+def shape(fig, alpha, color, edge_c, edge_w, grid, color2):
 # Points on the object
 	points = array([
 				   [-1,	-1,	-1],
@@ -57,13 +57,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, radius, color2):
 	ax.set_xlim(-4,4)
 	ax.set_ylim(-4,4)
 	ax.set_zlim(-4,4)
-
-# Radius
-	r = radius
-	r = [-1 * r,r]
-
-# Definition of x and y
-	X, Y = np.meshgrid(r, r)
 
 # Outer Region Configuration
 	verts_outer = [

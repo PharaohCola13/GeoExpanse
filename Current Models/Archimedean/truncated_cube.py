@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Truncated Cube"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3):	
+def shape(fig, alpha, color, edge_c, edge_w, grid, color2):
 
 	points = array([[0,0,0],
 					[-0.5, 0.5 + 1/(sqrt(2)), 0.5 +1/(sqrt(2))],
@@ -61,11 +61,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3):
 	ax.set_xlim(-4, 4)
 	ax.set_ylim(-4, 4)
 	ax.set_zlim(-4, 4)
-
-	# Interval
-	r = [-1, 1]
-
-	X, Y = np.meshgrid(r, r)
 
 	# Side Configuration for Cube
 	# Cube Properties

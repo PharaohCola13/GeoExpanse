@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Cressant"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edge):
 
 # Definition of x
 	def x_(u,v):
@@ -27,8 +27,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges):
 		return z
 
 # Value of the angles
-	s = sides
-	u = linspace(0, 1, s + 1)
+	u = linspace(0, 1, sides + 1)
 	v = linspace(0, 1, edges)
 
 	u, v = np.meshgrid(u, v)

@@ -45,7 +45,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid):
 
     ax.set_xlim(-10, 10)
     ax.set_ylim(-10, 10)
-    ax.set_zlim(0, 0)
     ax.view_init(elev=90, azim=0)
 
     # Side Configuration for pen_tri
