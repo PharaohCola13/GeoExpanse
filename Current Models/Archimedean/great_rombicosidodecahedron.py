@@ -273,37 +273,3 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3):
 	ax.add_collection3d(cube)
 	ax.add_collection3d(cube1)
 	ax.add_collection3d(cube2)
-
-	#if save == "mp4":
-	# 	def init():
-	# 		return cube,  # s[self.shape_set.get()],
-	#
-	# 	def animate(i):
-	# 		ax.view_init(elev=i, azim=i)
-	# 		return cube
-
-	# 	# Animate
-	# 	ani = FuncAnimation(fig, animate, init_func=init,
-#	 				  interval=1, frames=500, blit=False, repeat=True)
-	#
-	# 	Writer = writers['ffmpeg']
-	# 	writer = Writer(fps=15, bitrate=1800)
-	#
-	# 	ani.save('{}.mp4'.format(name),writer=writer)
-#		plt.show()
-#	elif rot == "on":
-#		def init():
-#			return cube,  # s[self.shape_set.get()],
-
-		#
-#		def animate(i):
-#			ax.view_init(elev=i, azim=i)
-#			return cube
-
-		# Animate
-#		ani = FuncAnimation(fig, animate, init_func=init,
-#							interval=1, frames=500, blit=False, repeat=True)
-#		plt.show()
-#
-#	elif rot == "off":
-#		plt.draw()
