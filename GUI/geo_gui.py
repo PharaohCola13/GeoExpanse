@@ -1,5 +1,5 @@
 import matplotlib
-matplotlib.use('TkAgg')
+
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import mpl_toolkits.mplot3d.axes3d as p3
@@ -9,6 +9,12 @@ from PIL import ImageTk
 from PIL import Image
 import sys
 from time import sleep
+
+
+try:
+	matplotlib.use('tkagg')
+except AttributeError:
+	matplotlib.use('TKAgg')
 
 try:
 	# for Python2
@@ -23,6 +29,7 @@ try:
 	from tkColorChooser import askcolor
 except ImportError:
 	from tkinter.colorchooser import askcolor
+
 
 
 sys.path.append('../In Development/')
@@ -44,7 +51,7 @@ import three_dodecahedron, cressant, funnel, gabriel_horn, rose_spiral, shell, t
 import breather_surface, kuen_surface, steiner_surface, boys_surface, roman_surface, sine_surface, henneberg_surface
 import cube, dodecahedron, icosahedron, octahedron
 import cross_cap, klein, mobius, torus
-import interesting, hecatostoeicostohedron, hyperbolic_cylinder, dini_surface, knot, neat, spiral, testing, penrose_triangle, vase, something_strange, enneper_surface
+import unk_surface, hecatostoeicostohedron, hyperbolic_cylinder, dini_surface, knot, neat, spiral, testing, penrose_triangle, vase, something_strange, enneper_surface
 import line
 import cuboctahedron, great_rombicosidodecahedron, snub_cube, truncated_cube
 
@@ -84,7 +91,7 @@ s = {	"Prism"					: prism,
 		"Mobius Strip"			: mobius,
 		"Torus"					: torus,
 
-		"Unk Surface"			: interesting,
+		"Unk Surface"			: unk_surface,
 		"Hecatostoeicostohedron": hecatostoeicostohedron,
 		"Hyperbolic Cylinder"	: hyperbolic_cylinder,
 		"Dini's Surface"		: dini_surface,
@@ -725,8 +732,8 @@ class Geometry(tk.Frame):
 		try: #Count: 14
 			s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, radiusa, color2, color3, height, rot, save)
 		except KeyError:
-			name = interesting.name
-			root.title("Geometric Modeling ({})".format(name))
+			#name = testing.name
+			root.title("Geometric Modeling (Testing)")
 			testing.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, radiusa, color2, color3, height, rot, save)
 
 			self.face2.config(state=tk.DISABLED, highlightbackground=disa)
