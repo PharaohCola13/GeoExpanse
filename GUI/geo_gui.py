@@ -443,7 +443,8 @@ class Geometry(tk.Frame):
 			#mp4.grid(row=2, column=0)
 			#mp4.config(bg=dim, 	fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf, selectcolor=dim)
 
-			save_img = tk.Button(top, text="save img", command=lambda: plt.savefig("{}.{}".format(self.shape_set.get(),self.format_save.get()), format=str(self.format_save.get())))
+			save_img = tk.Button(top, text="save img", command=lambda: plt.savefig("{}.png".format(s[self.shape_set.get()])))
+#plt.savefig("{}.{}".format(self.shape_set.get(),self.format_save.get()), format=str(self.format_save.get())))
 			save_img.grid(row=0, column=1)
 			save_img.config(bg=dim,fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
