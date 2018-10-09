@@ -48,8 +48,6 @@ import interesting, hecatostoeicostohedron, hyperbolic_cylinder, dini_surface, k
 import line
 import cuboctahedron, great_rombicosidodecahedron, snub_cube, truncated_cube
 
-
-
 s = {	"Prism"					: prism,
 		"Pyramid"				: pyramid,
 		"Sphere"				: sphere,
@@ -106,57 +104,19 @@ s = {	"Prism"					: prism,
  #		"Great Icosahedron"		: 'great_icosahedron'
  }
 
+
 dim = "#303030" #Background
 dimf = "#00C0FF" #Font Color
-dimfa = dimf
-dimt = dimf #Slider color
 
-disa = "#d400ff"
-
-bright = "potato"
-brightf = "potato"
-
-theme = "Dark"
-
-#class Startup():
-#	def __init__(self, master=None):
-#		tk.Frame.__init__(self,master)
-
-#	def task():
-		#def bar():
-		#	load = tk.Tk()
-		#	load.title("Starting")
-
-		#	progress = ttk.Progressbar(load, orient=tk.HORIZONTAL, length=200, mode='determinate')
-
-		#	progress['value'] = 1
-		#	load.update_idletasks()
-		#	sleep(5)
-
-		#	progress['value'] = 10
-		#	load.update_idletasks()
-		#	sleep(5)
-		#	progress['value'] = 30
-
-		#	load.update_idletasks()
-		#	sleep(5)
-		#	progress['value'] = 150
-
-		#	progress.grid(row=0, column=0)
-
-		#	load.mainloop()
-		#	return bar()
-		#return task()
-
+disa = "#d400ff" # Disabled Text
 
 class Geometry(tk.Frame):
-	global theme, Polyhedra
 	def __init__(self, master=None):
 		tk.Frame.__init__(self,master)
 		self.createWidgets()
 
 	def createWidgets(self):
-		img = ImageTk.PhotoImage(file='penrose_icon.png')
+		global icon
 		self.fig = plt.figure(figsize=(5, 5))
 		ax = p3.Axes3D(self.fig)
 		ax.set_facecolor('black')
@@ -170,21 +130,12 @@ class Geometry(tk.Frame):
 		# Vars
 
 		self.grid_axis 		= tk.StringVar()
-
 		self.axis_limits 	= tk.StringVar()
-
 		self.scroll			= tk.DoubleVar()
-
 		self.shape_set 		= tk.StringVar()
-
 		self.alpha 			= tk.StringVar()
-
 		self.two_three 		= tk.StringVar()
-
-		self.theme 			= theme
-
 		self.rot 			= tk.StringVar()
-
 		self.format_save 	= tk.StringVar()
 
 		# Functions
@@ -206,26 +157,22 @@ class Geometry(tk.Frame):
 			root.geometry("500x500+520+280")
 
 		def FaceColor(self):
-			color = ""
-			self.c_entry = askcolor(title="Face Color", color=color)[1]
+			self.c_entry = askcolor(title="Face Color")[1]
 			self.fck.config(bg=self.c_entry)							
 			return self.c_entry
 
 		def FaceColor2(self):
-			color = ""
-			self.c_entry2 = askcolor(title="Face Color 2", color=color)[1]
+			self.c_entry2 = askcolor(title="Face Color 2")[1]
 			self.f2.config(bg=self.c_entry2)							
 			return self.c_entry2
 
 		def FaceColor3(self):
-			color = ""
-			self.c_entry3 = askcolor(title="Face Color 3", color=color)[1]
+			self.c_entry3 = askcolor(title="Face Color 3")[1]
 			self.f3.config(bg=self.c_entry3)								
 			return self.c_entry3
 
 		def EdgeColor(self):
-			color = ""
-			self.ec_entry = askcolor(title="Edge Color", color=color)[1]
+			self.ec_entry = askcolor(title="Edge Color")[1]
 			self.eck.config(bg=self.ec_entry)
 			return self.ec_entry
 
@@ -233,285 +180,280 @@ class Geometry(tk.Frame):
 			top = tk.Toplevel(self)
 			top.title("Shapes")
 			top.config(background=dim)
-			#top.geometry("750x750")
+			top.tk.call('wm', 'iconphoto', top._w, icon)
+			
 			pop = tk.Button(top, text="POP!", command=top.destroy)
 			pop.grid(row=0, column=0, sticky='new')
-			pop.config(bg=dim,fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
+			pop.config(bg=dim,fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
+			
 			plotter = tk.Button(top, text="Plot",  command=lambda: self.plot(canvas,ax))
 			plotter.grid(row=0, column=2, sticky="new")
-			plotter.config(bg=dim,fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
-			top.tk.call('wm', 'iconphoto', top._w, img)
-
+			plotter.config(bg=dim,fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
+			
 			if self.two_three.get() == "3d":
-
-				#tk.Label(top, text="", font=('Helvetica', 16, 'bold'))
 				prism = tk.Radiobutton(top, text="Prism",variable=self.shape_set, value="Prism")
 				prism.grid(row=1, column=0, sticky="w")
-				prism.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				pyram = tk.Radiobutton(top, text="Pyramid",variable=self.shape_set, value="Pyramid")
 				pyram.grid(row=2, column=0, sticky="w")
-				pyram.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				spher = tk.Radiobutton(top, text="Sphere",variable=self.shape_set, value="Sphere")
 				spher.grid(row=3, column=0, sticky="w")
-				spher.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
+				##
 				hy = tk.Label(top, text="--- Hyperbolic Objects ---", font=('Times', 12, 'bold'))
 				hy.grid(row=4, column=0, sticky="nsew")
 				hy.config(bg=dim, fg=dimf, activebackground=dim)
 
-				hyoct = tk.Radiobutton(top, text="Hyperbolic Octahedron",variable=self.shape_set, value="Hyperbolic Octahedron")
+				hyoct = tk.Radiobutton(top, text="Hyperbolic Octahedron", variable=self.shape_set, value="Hyperbolic Octahedron")
 				hyoct.grid(row=5, column=0 ,sticky="w")
-				hyoct.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
-				
-				#hyoct_hover = CreateToolTip(hyoct, ImageTk.PhotoImage(file="./Visual/Hyperbolic Octahedron.png"),"test")
 
 				hypar = tk.Radiobutton(top, text="Hyperbolic Paraboliod",	variable=self.shape_set, value="Hyperbolic Paraboliod")
 				hypar.grid(row=6, column=0, sticky="w")
-				hypar.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
-				#hypar_hover = CreateToolTip(hypar, ImageTk.PhotoImage(file="./Visual/hypar.png"),"test")
 
 				onesh = tk.Radiobutton(top, text="One Sheet Hyperboliod",	variable=self.shape_set, value="One Sheet Hyperboliod")
 				onesh.grid(row=7, column=0, sticky="w")
-				onesh.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
-
+				
+				##
 				misc = tk.Label(top, text="--- Miscellaneous ---", font=('Times', 12, 'bold'))
 				misc.grid(row=8, column=0, sticky='nsew')
 				misc.config(bg=dim, fg=dimf, activebackground=dim)
 
 				three = tk.Radiobutton(top, text="Three Dodecahedron",		variable=self.shape_set, value="Three Dodecahedron")
 				three.grid(row=9,  column=0, sticky="w")
-				three.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
-
+				
 				cress = tk.Radiobutton(top, text="Cressant",				variable=self.shape_set, value="Cressant")
 				cress.grid(row=10, column=0, sticky="w")
-				cress.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
-
+				
 				funne = tk.Radiobutton(top, text="Funnel",  				variable=self.shape_set, value="Funnel")
 				funne.grid(row=11, column=0 ,sticky="w")
-				funne.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
-
+				
 				gabri = tk.Radiobutton(top, text="Gabriel's Horn",			variable=self.shape_set, value="Gabriel's Horn")
 				gabri.grid(row=12, column=0, sticky="w")
-				gabri.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
-
+				
 				roses = tk.Radiobutton(top, text="Rose Spiral",				variable=self.shape_set, value="Rose Spiral")
 				roses.grid(row=13, column=0, sticky="w")
-				roses.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
-
+				
 				shell = tk.Radiobutton(top, text="Shell", 					variable=self.shape_set, value="Shell")
 				shell.grid(row=14, column=0, sticky="w")
-				shell.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
-
+				
 				tesse = tk.Radiobutton(top, text="Tesseract",				variable=self.shape_set, value="Tesseract")
 				tesse.grid(row=15, column=0, sticky="w")
-				tesse.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
-
+				
+				##
 				surf = tk.Label(top, text="--- Surfaces ---", font=('Times', 12, 'bold'))
 				surf.grid(row=1, column=2, sticky='new')
 				surf.config(bg=dim, fg=dimf, activebackground=dim)
 
 				breat = tk.Radiobutton(top, text="Breather's Surface",      variable=self.shape_set, value="Breather's Surface")
 				breat.grid(row=2, column=2, sticky="w")
-				breat.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				kuens =tk.Radiobutton(top, text="Kuen's Surface",          variable=self.shape_set, value="Kuen's Surface")
 				kuens.grid(row=3, column=2, sticky="w")
-				kuens.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				stein = tk.Radiobutton(top, text="Steiner's Surface",       variable=self.shape_set, value="Steiner's Surface")
 				stein.grid(row=4, column=2, sticky="w")
-				stein.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				boyss = tk.Radiobutton(top, text="Boy's Surface",           variable=self.shape_set, value="Boy's Surface")
 				boyss.grid(row=5, column=2, sticky="w")
-				boyss.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				roman = tk.Radiobutton(top, text="Roman Surface",           variable=self.shape_set, value="Roman Surface")
 				roman.grid(row=6, column=2, sticky="w")
-				roman.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				sines = tk.Radiobutton(top, text="Sine Surface",            variable=self.shape_set, value="Sine Surface")
 				sines.grid(row=7, column=2, sticky="w")
-				sines.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				henne = tk.Radiobutton(top, text="Henneberg's Surface",      variable=self.shape_set, value="Henneberg's Surface")
 				henne.grid(row=7, column=2, sticky="w")
-				henne.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
+				##
 				topo = tk.Label(top, text="--- Topological ---", font=('Times', 12, 'bold'))
 				topo.grid(row=11, column=2, sticky='nsew')
 				topo.config(bg=dim, fg=dimf, activebackground=dim)
 
 				cross = tk.Radiobutton(top, text="Cross Cap",               variable=self.shape_set, value="Cross Cap")
 				cross.grid(row=12, column=2, sticky="w")
-				cross.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				klein = tk.Radiobutton(top, text="Klein Bottle",            variable=self.shape_set, value="Klein Bottle")
 				klein.grid(row=13, column=2, sticky="w")
-				klein.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				mobiu = tk.Radiobutton(top, text="Mobius Strip",            variable=self.shape_set, value="Mobius Strip")
 				mobiu.grid(row=14, column=2 ,sticky="w")
-				mobiu.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				torus = tk.Radiobutton(top, text="Torus",                   variable=self.shape_set, value="Torus")
 				torus.grid(row=15, column=2, sticky="w")
-				torus.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
+				##
 				dev = tk.Label(top, text="--- In Development ---", font=('Times', 12, 'bold'))
 				dev.grid(row=1, column=4, sticky='nsew')
 				dev.config(bg=dim, fg=dimf, activebackground=dim)
 
 				unksu = tk.Radiobutton(top, text="Unk Surface",             variable=self.shape_set, value="Unk Surface")
 				unksu.grid(row=2, column=4, sticky="w")
-				unksu.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				polyh = tk.Radiobutton(top, text="Hecatostoeicostohedron",  variable=self.shape_set, value="Hecatostoeicostohedron")
 				polyh.grid(row=3, column=4, sticky="w")
-				polyh.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				hycyl = tk.Radiobutton(top, text="Hyperbolic Cylinder",     variable=self.shape_set, value="Hyperbolic Cylinder")
 				hycyl.grid(row=4, column=4 ,sticky="w")
-				hycyl.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				dinis = tk.Radiobutton(top, text="Dini's Surface",          variable=self.shape_set, value="Dini's Surface")
 				dinis.grid(row=5, column=4, sticky="w")
-				dinis.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				knot = tk.Radiobutton(top, text="Knot",                    variable=self.shape_set, value="Knot")
 				knot.grid(row=6, column=4, sticky="w")
-				knot.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				neat = tk.Radiobutton(top, text="Neat",                    variable=self.shape_set, value="Neat")
 				neat.grid(row=7, column=4, sticky="w")
-				neat.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				spira = tk.Radiobutton(top, text="Spiral",                  variable=self.shape_set, value="Spiral")
 				spira.grid(row=8, column=4, sticky="w")
-				spira.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				test = tk.Radiobutton(top, text="Testing",                 variable=self.shape_set, value="Testing")
 				test.grid(row=9, column=4 ,sticky="w")
-				test.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				vase = tk.Radiobutton(top, text="Vase",                    variable=self.shape_set, value="Vase")
 				vase.grid(row=10, column=4, sticky="w")
-				vase.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				somet = tk.Radiobutton(top, text="Something Strange",       variable=self.shape_set, value="Something Strange")
 				somet.grid(row=11, column=4, sticky="w")
-				somet.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				ennep = tk.Radiobutton(top, text="Enneper's Surface",       variable=self.shape_set, value="Enneper's Surface")
 				ennep.grid(row=12, column=4, sticky="w")
-				ennep.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				penro = tk.Radiobutton(top, text="Penrose Triangle",        variable=self.shape_set, value="Penrose Triangle")
 				penro.grid(row=13,column=4,sticky="w")
-				penro.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
+				##
 				arch = tk.Label(top, text="--- Archimedean Solids ---", font=('Times', 12, 'bold'))
 				arch.grid(row=1, column=5, sticky='nsew')
 				arch.config(bg=dim, fg=dimf, activebackground=dim)
 
 				cuboc = tk.Radiobutton(top, text="Cuboctahedron",       variable=self.shape_set, value="Cuboctahedron")
 				cuboc.grid(row=2, column=5, sticky="w")
-				cuboc.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				grrom = tk.Radiobutton(top, text="Great\n Rombicosidodecahedron", variable=self.shape_set, value="Great Rombicosidodecahedron")
 				grrom.grid(row=3, column=5, sticky="w")
-				grrom.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				scube = tk.Radiobutton(top, text="Snub Cube", variable=self.shape_set, value="Snub Cube")
 				scube.grid(row=4, column=5, sticky="w")
-				scube.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				tcube = tk.Radiobutton(top, text="Truncated Cube", variable=self.shape_set, value="Truncated Cube")
 				tcube.grid(row=5, column=5, sticky="w")
-				tcube.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
+				##
 				plato = tk.Label(top, text="--- Platonic Solids ---", font=('Times', 12, 'bold'))
 				plato.grid(row=6, column=5, sticky='nsew')
 				plato.config(bg=dim, fg=dimf, activebackground=dim)
 
 				cube = tk.Radiobutton(top, text="Cube",                    variable=self.shape_set, value="Cube")
 				cube.grid(row=7, column=5, sticky="w")
-				#cube_hover = CreateToolTip(cube, ImageTk.PhotoImage(file="./Visual/Cube.png"),"test")
-				cube.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				dodec = tk.Radiobutton(top, text="Dodecahedron",            variable=self.shape_set, value="Dodecahedron")
 				dodec.grid(row=8, column=5 ,sticky="w")
-				#dodec_hover = CreateToolTip(dodec, ImageTk.PhotoImage(file="./Visual/Dodecahedron.png"),"test")
-				dodec.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
-
 				icosa =tk.Radiobutton(top, text="Icosahedron",             variable=self.shape_set, value="Icosahedron")
 				icosa.grid(row=9, column=5, sticky="w")
-				#icosa_hover = CreateToolTip(icosa, ImageTk.PhotoImage(file="./Visual/icosa.png"),"test")
-				icosa.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
 
 				octah = tk.Radiobutton(top, text="Octahedron",              variable=self.shape_set, value="Octahedron")
 				octah.grid(row=10, column=5, sticky="w")
-				octah.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,selectcolor=dim)
-
 
 				#grico = tk.Radiobutton(top, text="Great Icosahedron",        variable=self.shape_set, value="Great Icosahedron")
 #				grico.grid(row=15,column=4,sticky="w")
 #				grdod = tk.Radiobutton(top, text="Great Dodecahedron",        variable=self.shape_set, value="Great Dodecahedron")
 #				grdod.grid(row=16,column=4,sticky="w")
+				#cube_hover = CreateToolTip(cube, ImageTk.PhotoImage(file="./Visual/Cube.png"),"test")
+				
+				def shape_config():
+					fam  = [prism, pyram, spher]
+					hyp  = [hyoct, hypar, onesh]
+					mis  = [three, cress, funne, gabri, roses, shell, tesse]
+					sur  = [breat, kuens, stein, boyss, roman, sines, henne]
+					top  = [cross, klein, mobiu, torus]
+					dev  = [unksu, polyh, hycyl, dinis, knot, neat, spira, test, vase, somet, ennep, penro]
+					arc  = [cuboc, grrom, scube, tcube]
+					pla  = [cube, dodec, icosa, octah]
+					sh_all = fam + hyp + mis + sur + top + dev + arc + pla				
+					for m in sh_all:
+						m.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)
+				return shape_config()
+				#shape_config()
 
-				#tk.Radiobutton(top, text="Curves",       variable=self.shape_set, value="Curves")     .grid(row=13, column=4, sticky="w")
 				self.shape_set.set("Penrose Triangle")
 
 			elif self.two_three.get() == "2d":
 				line = tk.Radiobutton(top, text="Line", variable=self.shape_set, value="Line")
 				line.grid(row=1, column=0, sticky='w')
-			# display = tk.Canvas(top, width=300, height=300)
-			# display.grid(row=20, column=2, columnspan=4)
-			#
-			# img_dis = ImageTk.PhotoImage(Image.open("./Visual/{}.png".format(self.shape_set.get())))
-			# display.create_image(5, 5, anchor=tk.NW, image=img_dis)
-			#
-			# top.update()
-			# top.update_idletasks()
-			# top.mainloop()
 
 		def popup_save():
 			top = tk.Toplevel(self)
 			top.geometry("300x200")
 			top.title("Save Figure")
+			top.tk.call('wm', 'iconphoto', top._w, icon)
 			top.config(background=dim)
+			
 			pop = tk.Button(top, text="POP!", command=top.destroy)
 			pop.grid(row=0, column=0)
-			pop.config(bg=dim, 	fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
+			pop.config(bg=dim, 	fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
+
 			self.format_save	= tk.StringVar()
+
 			def img():
 				plt.savefig.format=self.format_save.get()
 
+			#def save_mp4():
+			#	plt.axis("off")
+			#	ax.set_facecolor('black')
+			#	ax.grid(False)
+			#	ax.axis('off')
+			#	ax.set_xticks([])
+			#	ax.set_yticks([])
+			#	ax.set_zticks([])
+
+			#	plt.axis('off')
+			#	plt.axis('equal')
+
+			#	def init():
+			#		return testing.test,
+
+			#	def animate(i):
+			#		ax.view_init(elev=i, azim=i)
+			#		return testing.test,
+
+				# Animate
+			#	ani = FuncAnimation(self.fig, animate, init_func=init, interval=1, frames=500, repeat=True)
+
+			#	Writer = writers['ffmpeg']
+			#	writer = Writer(fps=15, bitrate=1800)
+			#	ani.save('Testers.mp4',writer=writer)
+		
+			#	plt.ion()
+			#	plt.show()
+			#	sleep(0)
+			#	plt.close()
+
 			png = tk.Radiobutton(top, text="png", variable=self.format_save, value="png", command=img, width=5)
 			png.grid(row=1, column=0)
-			png.config(bg=dim, 	fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
+			png.config(bg=dim, 	fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf, selectcolor=dim)
 
 			jpg = tk.Radiobutton(top, text="jpg", variable=self.format_save, value="jpg", command=img, width=5)
 			jpg.grid(row=1, column=1)
-			jpg.config(bg=dim, 	fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
+			jpg.config(bg=dim, 	fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf, selectcolor=dim)
 
-			mp4 = tk.Radiobutton(top, text="mp4", variable=self.format_save,    value="mp4", width=5)
-			mp4.grid(row=2, column=0)
-			mp4.config(bg=dim, 	fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
+			#mp4 = tk.Radiobutton(top, text="mp4", variable=self.format_save,    value="mp4", width=5)
+			#mp4.grid(row=2, column=0)
+			#mp4.config(bg=dim, 	fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf, selectcolor=dim)
 
 			save_img = tk.Button(top, text="save img", command=lambda: plt.savefig("{}.{}".format(self.shape_set.get(),self.format_save.get()), format=str(self.format_save.get())))
 			save_img.grid(row=0, column=1)
-			save_img.config(bg=dim,fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
+			save_img.config(bg=dim,fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
-			save_vid = tk.Button(top, text="save video", command=lambda: self.plot(canvas,ax))
-			save_vid.grid(row=0, column=2)
-			save_vid.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
+			#save_vid = tk.Button(top, text="save video", command=lambda: save_mp4())
+			#save_vid.grid(row=0, column=2)
+			#save_vid.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
 			self.format_save.set("png")
-			#top.tk.call('wm', 'iconphoto', top._w, img)
-
+			
+		
 		menu = tk.Menu(root)
 		root.config(menu=menu)
 
@@ -583,28 +525,28 @@ class Geometry(tk.Frame):
 		self.edge = tk.Button(text="Edge Color", command=lambda: EdgeColor(self))
 		self.edge.grid(row=0, column=1, sticky='new', pady=30, padx=0)
 
-		self.eck = tk.Message(root, width=200000000, text=" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ", borderwidth=5, 				relief=tk.GROOVE)
+		self.eck = tk.Message(root, width=200000000, text=" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ", borderwidth=5,relief=tk.GROOVE)
 		self.eck.grid(row=0, column=1, sticky='new', pady=60)
 
 		# Face Color
 		self.face = tk.Button(text="Face Color", command=lambda: FaceColor(self))
 		self.face.grid(row=0, column=2, sticky='new', pady=30, padx=0)
 
-		self.fck = tk.Message(root, width=200000000, text=" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ", borderwidth=5, 				relief=tk.GROOVE)
+		self.fck = tk.Message(root, width=200000000, text=" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ", borderwidth=5,relief=tk.GROOVE)
 		self.fck.grid(row=0, column=2, sticky='new', pady=60, padx=0)
 
 		# Edge Color
 		self.face2 = tk.Button(text="Face Color 2", command=lambda: FaceColor2(self), state=tk.NORMAL)
 		self.face2.grid(row=0, column=3, sticky='new', pady=30, padx=0)
 
-		self.f2 = tk.Message(root, width=2000000, text=" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ", borderwidth=5, 				relief=tk.GROOVE)
+		self.f2 = tk.Message(root, width=2000000, text=" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ", borderwidth=5, relief=tk.GROOVE)
 		self.f2.grid(row=0, column=3, sticky='new', pady=60, padx=0)
 
 		# Face Color
 		self.face3 = tk.Button(text="Face Color 3", command=lambda: FaceColor3(self), state=tk.NORMAL)
 		self.face3.grid(row=0, column=4, sticky='new', pady=30, padx=0)
 
-		self.f3 = tk.Message(root, width=2000000, text=" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ", borderwidth=5, 				relief=tk.GROOVE)
+		self.f3 = tk.Message(root, width=2000000, text=" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ", borderwidth=5,relief=tk.GROOVE)
 		self.f3.grid(row=0, column=4, sticky='new', pady=60, padx=0)
 
 		# Plotting
@@ -639,45 +581,24 @@ class Geometry(tk.Frame):
 		self.shapes.grid(row=0, column=3, columnspan=2, sticky='new',pady=430)
 		
 		def dark(self):
+				scales = [self.a_entry,  self.h_entry,  self.si_entry,  self.ed_entry,  	self.pi_entry,  self.ew_entry, self.ram_entry,  self.raa_entry]
+				labels = [self.a_label,  self.h_label,  self.si_label,  self.ed_label,  	self.pi_label,  self.ew_label, self.ram_label,  self.raa_label]
+				radio  = [self.grid_on,  self.grid_off, self.two_space, self.three_space, 	self.rot_on, 	self.rot_off]
+				button = [self.plotting, self.face,		self.face2, 	self.face3, 	self.edge, 		self.shapes]
+				menus  = [menu, 		 filemenu]
+
 				root.config(background=dim)
 				# Scales
-				self.a_entry.config(bg=dim,   fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
-				self.h_entry.config(bg=dim,   fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
-				self.si_entry.config(bg=dim,  fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
-				self.ed_entry.config(bg=dim,  fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
-				self.pi_entry.config(bg=dim,  fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
-				self.ew_entry.config(bg=dim,  fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
-				self.ram_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
-				self.raa_entry.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimt)
-				# Labels
-				self.a_label.config(bg=dim,   fg=dimf, activebackground=dim)
-				self.h_label.config(bg=dim,   fg=dimf, activebackground=dim)
-				self.si_label.config(bg=dim,  fg=dimf, activebackground=dim)
-				self.ed_label.config(bg=dim,  fg=dimf, activebackground=dim)
-				self.pi_label.config(bg=dim,  fg=dimf, activebackground=dim)
-				self.ew_label.config(bg=dim,  fg=dimf, activebackground=dim)
-				self.ram_label.config(bg=dim, fg=dimf, activebackground=dim)
-				self.raa_label.config(bg=dim, fg=dimf, activebackground=dim)
-				# Radio Buttons
-				self.grid_on.config(bg=dim, 	fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
-				self.grid_off.config(bg=dim, 	fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
-				self.two_space.config(bg=dim,	fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
-				self.three_space.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
-				self.rot_on.config(bg=dim, 		fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
-				self.rot_off.config(bg=dim, 	fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa, selectcolor=dim)
-				# Button				
-				self.plotting.config(bg=dim, 	fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
-				self.face.config(bg=dim, 		fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
-				self.face2.config(bg=dim, 		fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
-				self.face3.config(bg=dim, 		fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
-				self.edge.config(bg=dim, 		fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
-				self.shapes.config(bg=dim, 		fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimfa)
-				# Menu				
-				menu.config(bg=dim, 	fg=dimf, activebackground=dim, activeforeground=dimfa)
-				filemenu.config(bg=dim, fg=dimf, activebackground=dim, activeforeground=dimfa)
-
-#				prism.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimfa,
-#					 selectcolor=dim)
+				for m in scales:
+					m.config(bg=dim,    fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimf)
+				for n in labels:
+					n.config(bg=dim,    fg=dimf, activebackground=dim)
+				for o in radio:
+					o.config(bg=dim, 	fg=dimf, activebackground=dim, highlightthickness=0, 	 activeforeground=dimf, selectcolor=dim)
+				for p in button:
+					p.config(bg=dim, 	fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
+				for q in menus:
+					q.config(bg=dim, 	fg=dimf, activebackground=dim, activeforeground=dimf)
 
 		return dark(self)
 
@@ -715,251 +636,265 @@ class Geometry(tk.Frame):
 		save 		= self.format_save.get()
 		height		= self.h_entry.get()
 
-
 		name = self.shape_set.get()
 		root.title("Geometric Modeling ({})".format(name))
 
 		ax.clear()
 		plt.cla()
 		plt.clf()
+
 		try: #Count: 14
 			s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, radiusa, color2, color3, height, rot, save)
 		except KeyError:
 			name = interesting.name
 			root.title("Geometric Modeling ({})".format(name))
-			testing.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, radiusa, color2, color3, height, rot, save)
+			testing.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, rot, save)
 
-			self.face2.config(state=tk.DISABLED, highlightbackground=disa)
-			self.f2.config(bg=dim, fg=dim, relief=tk.RIDGE)
-			self.face3.config(state=tk.DISABLED, highlightbackground=disa)
-			self.f3.config(bg=dim, fg=dim, relief=tk.RIDGE)
-			#self.ec_entry.config(color=edge_c)
+			active 			= [self.si_entry,  self.ed_entry,  self.pi_entry]
+			active_label 	= [self.si_label,  self.ed_label,  self.pi_label]
+			disable 		= [self.ram_entry, self.raa_entry, self.h_entry]
+			disable_label 	= [self.ram_label, self.raa_label, self.h_label]
+			color			= [self.face2, 	   self.face3]
+			color_label		= [self.f2, 	   self.f3]
 
-			self.raa_entry.config(state=tk.DISABLED,bg=dim, fg=dim, activebackground=disa,  troughcolor=dim)
-			self.raa_label.config(fg=disa)
-			self.ram_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=disa, troughcolor=dim)
-			self.ram_label.config(fg=disa)
-			self.h_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=disa, troughcolor=dim)
-			self.h_label.config(fg=disa)
-			self.si_entry.config(state=tk.ACTIVE)
-			self.si_label.config(fg=dimf)
-			self.ed_entry.config(state=tk.ACTIVE)
-			self.ed_label.config(fg=dimf)
-			self.pi_entry.config(state=tk.ACTIVE)
-			self.pi_label.config(fg=dimf)
+			for m in disable:
+				m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
+				for n in disable_label:
+					n.config(fg=disa)
+					for o in color:	
+						o.config(state=tk.DISABLED, highlightbackground=disa)
+						for p in color_label:
+							p.config(bg=dim, fg=dim, relief=tk.RIDGE)
+			for m in active:
+				m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
+				for n in active_label:
+					n.config(fg=dimf)
 		except TypeError:
 			try: # Count: 12
 				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, radiusa, height)
 
-				self.face2.config(state=tk.DISABLED, highlightbackground=disa)
-				self.f2.config(bg=dim, fg=dim, relief=tk.RIDGE)
-				self.face3.config(state=tk.DISABLED, highlightbackground=disa)
-				self.f3.config(bg=dim, fg=dim, relief=tk.RIDGE)
+				active 			= [self.si_entry,  self.ed_entry,  self.pi_entry, self.raa_entry, self.ram_entry, self.h_entry]
+				active_label 	= [self.si_label,  self.ed_label,  self.pi_label, self.raa_label, self.ram_label, self.h_label]
+				color			= [self.face2, 	   self.face3]
+				color_label		= [self.f2, 	   self.f3]
 
-				self.si_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-				self.si_label.config(fg=dimf)
-				self.ed_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-				self.ed_label.config(fg=dimf)
-				self.pi_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-				self.pi_label.config(fg=dimf)
-				self.raa_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-				self.raa_label.config(fg=dimf)
-				self.ram_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-				self.ram_label.config(fg=dimf)
-				self.h_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-				self.h_label.config(fg=dimf)
+				for n in color:	
+					n.config(state=tk.DISABLED, highlightbackground=disa)
+					for m in color_label:
+						m.config(bg=dim, fg=dim, relief=tk.RIDGE)
+				
+				for n in active:
+					n.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
+					for m in active_label:
+						m.config(fg=dimf)
+				
 			except TypeError:
 				try: # Count: 11
 					s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, height)
+					active 			= [self.si_entry,  self.ed_entry,  self.pi_entry, self.ram_entry, self.h_entry]
+					active_label 	= [self.si_label,  self.ed_label,  self.pi_label, self.ram_label, self.h_label]
+					disable			= [self.raa_entry]
+					disable_label 	= [self.raa_label]
+					color			= [self.face2, 	   self.face3]
+					color_label		= [self.f2, 	   self.f3]
 
-					self.face2.config(state=tk.DISABLED, highlightbackground=disa)
-					self.f2.config(bg=dim, fg=dim, relief=tk.RIDGE)
-					self.face3.config(state=tk.DISABLED, highlightbackground=disa)
-					self.f3.config(bg=dim, fg=dim, relief=tk.RIDGE)
-
-					self.si_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim,  troughcolor=dimt)
-					self.si_label.config(fg=dimf)
-					self.ed_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-					self.ed_label.config(fg=dimf)
-					self.pi_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-					self.pi_label.config(fg=dimf)
-					self.ram_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-					self.ram_label.config(fg=dimf)
-					self.h_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-					self.h_label.config(fg=dimf)
-					self.raa_entry.config(state=tk.DISABLED,bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-					self.raa_label.config(fg=disa)
+					
+					for m in disable:
+						m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
+						for n in disable_label:
+							n.config(fg=disa)
+							for o in color:	
+								o.config(state=tk.DISABLED, highlightbackground=disa)
+								for p in color_label:
+									p.config(bg=dim, fg=dim, relief=tk.RIDGE)
+				
+					for m in active:
+						m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
+						for n in active_label:
+							n.config(fg=dimf)
+	
 				except TypeError:
 					try: # Count: 10
 						s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm)
-
-						self.face2.config(state=tk.DISABLED, highlightbackground=disa)
-						self.f2.config(bg=dim, fg=dim, relief=tk.RIDGE)
-						self.face3.config(state=tk.DISABLED, highlightbackground=disa)
-						self.f3.config(bg=dim, fg=dim, relief=tk.RIDGE)
-
-						self.si_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-						self.si_label.config(fg=dimf)
-						self.ed_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-						self.ed_label.config(fg=dimf)
-						self.pi_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-						self.pi_label.config(fg=dimf)
-						self.ram_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-						self.ram_label.config(fg=dimf)
-						self.raa_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-						self.raa_label.config(fg=disa)
-						self.h_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-						self.h_label.config(fg=disa)
+						active 			= [self.si_entry,  self.ed_entry,  self.pi_entry, self.ram_entry]
+						active_label 	= [self.si_label,  self.ed_label,  self.pi_label, self.ram_label]
+						disable			= [self.raa_entry, self.h_entry]
+						disable_label 	= [self.raa_label, self.h_label]
+						color			= [self.face2, 	   self.face3]
+						color_label		= [self.f2, 	   self.f3]
+	
+						for m in disable:
+							m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
+							for n in disable_label:
+								n.config(fg=disa)
+								for o in color:	
+									o.config(state=tk.DISABLED, highlightbackground=disa)
+									for p in color_label:
+										p.config(bg=dim, fg=dim, relief=tk.RIDGE)
+				
+						for m in active:
+							m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
+							for n in active_label:
+								n.config(fg=dimf)
+	
 					except TypeError:
 						try: # Count: 9
 							s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi)
+							active 			= [self.si_entry,  self.ed_entry,  self.pi_entry]
+							active_label 	= [self.si_label,  self.ed_label,  self.pi_label]
+							disable			= [self.raa_entry, self.h_entry,   self.ram_entry]
+							disable_label 	= [self.raa_label, self.h_label,   self.ram_label]
+							color			= [self.face2, 	   self.face3]
+							color_label		= [self.f2, 	   self.f3]
+	
+							for m in disable:
+								m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
+								for n in disable_label:
+									n.config(fg=disa)
+									for o in color:	
+										o.config(state=tk.DISABLED, highlightbackground=disa)
+										for p in color_label:
+											p.config(bg=dim, fg=dim, relief=tk.RIDGE)
+				
+							for m in active:
+								m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
+								for n in active_label:
+									n.config(fg=dimf)
 
-							self.face2.config(state=tk.DISABLED, highlightbackground=disa)
-							self.f2.config(bg=dim, fg=dim, relief=tk.RIDGE)
-							self.face3.config(state=tk.DISABLED, highlightbackground=disa)
-							self.f3.config(bg=dim, fg=dim, relief=tk.RIDGE)
-
-							self.si_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-							self.si_label.config(fg=dimf)
-							self.ed_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-							self.ed_label.config(fg=dimf)
-							self.pi_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-							self.pi_label.config(fg=dimf)
-							self.raa_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-							self.raa_label.config(fg=disa)
-							self.h_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-							self.h_label.config(fg=disa)
-							self.ram_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-							self.ram_label.config(fg=disa)
 						except TypeError:
 							try: # Count: 8
 								s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, radiusm, color2)
+								active 			= [self.ram_entry]
+								active_label 	= [self.ram_label]
+								disable			= [self.si_entry,  self.ed_entry,  self.pi_entry,	self.raa_entry,   self.h_entry]
+								disable_label 	= [self.si_label,  self.ed_label,  self.pi_label, 	self.raa_label,   self.h_label]
+								color			= [self.face2, 	   self.face3]
+								color_label		= [self.f2, 	   self.f3]
+	
+								for m in disable:
+									m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
+									for n in disable_label:
+										n.config(fg=disa)
+										for o in color:	
+											self.face3.config(state=tk.DISABLED, highlightbackground=disa)
+											for p in color_label:
+												self.f3.config(bg=dim, fg=dim, relief=tk.RIDGE)
+				
+								for m in active:
+									m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
+									for n in active_label:
+										n.config(fg=dimf)
+										for o in color:
+											self.face2.config(state=tk.ACTIVE, highlightbackground=dimf)
+											for p in color_label:
+												self.f2.config(relief=tk.GROOVE)
 
-								self.face3.config(state=tk.DISABLED, highlightbackground=disa)
-								self.face2.config(state=tk.ACTIVE, highlightbackground=dimfa)
-								self.f3.config(bg=dim, fg=dim, relief=tk.RIDGE)
-								self.f2.config(relief=tk.GROOVE)
-
-								self.pi_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-								self.pi_label.config(fg=disa)
-								self.ram_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-								self.ram_label.config(fg=dimf)
-								self.raa_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-								self.raa_label.config(fg=disa)
-								self.h_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-								self.h_label.config(fg=disa)
-								self.si_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-								self.si_label.config(fg=disa)
-								self.ed_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-								self.ed_label.config(fg=disa)
 							except ValueError:
-								try:
-									s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges)
+								s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges)
+								active 			= [self.si_entry,  self.ed_entry]								
+								active_label 	= [self.si_label,  self.ed_label]
+								disable			= [self.pi_entry,	self.raa_entry,   self.h_entry, self.ram_entry]
+								disable_label 	= [self.pi_label, 	self.raa_label,   self.h_label, self.ram_label]
+								color			= [self.face2, 	   self.face3]
+								color_label		= [self.f2, 	   self.f3]
+	
+								for m in disable:
+									m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
+									for n in disable_label:
+										n.config(fg=disa)
+										for o in color:	
+											o.config(state=tk.DISABLED, highlightbackground=disa)
+											for p in color_label:
+												p.config(bg=dim, fg=dim, relief=tk.RIDGE)
+				
+								for m in active:
+									m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
+									for n in active_label:
+										n.config(fg=dimf)
 
-									self.face2.config(state=tk.DISABLED, highlightbackground=disa)
-									self.f2.config(bg=dim, fg=dim, relief=tk.RIDGE)
-									self.face3.config(state=tk.DISABLED, highlightbackground=disa)
-									self.f3.config(bg=dim, fg=dim, relief=tk.RIDGE)
-
-									self.h_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-									self.h_label.config(fg=disa)
-									self.ram_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-									self.ram_label.config(fg=disa)
-									self.raa_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-									self.raa_label.config(fg=disa)
-									self.si_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-									self.si_label.config(fg=dimf)
-									self.ed_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-									self.ed_label.config(fg=dimf)
-									self.pi_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-									self.pi_label.config(fg=disa)
-								except TypeError:
-									print("It's all good")
 							except TypeError:
 								try: # Count: 8
 									s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, color2, color3)
+									disable			= [self.pi_entry,	self.raa_entry,   self.h_entry, self.ram_entry, self.si_entry,  self.ed_entry]
+									disable_label 	= [self.pi_label, 	self.raa_label,   self.h_label, self.ram_label, self.si_label,  self.ed_label]
+									color			= [self.face2, 	   self.face3]
+									color_label		= [self.f2, 	   self.f3]
+	
+									for m in disable:
+										m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
+										for n in disable_label:
+											n.config(fg=disa)
+											for o in color:	
+												o.config(state=tk.ACTIVE, highlightbackground=dimf)
+												for p in color_label:
+													p.config(relief=tk.GROOVE)
 
-									self.face2.config(state=tk.ACTIVE, highlightbackground=dimfa)
-									self.face3.config(state=tk.ACTIVE, highlightbackground=dimfa)
-									self.f2.config(relief=tk.GROOVE)
-									self.f3.config(relief=tk.GROOVE)
-
-									self.pi_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, highlightthickness=0, troughcolor=dim)
-									self.pi_label.config(fg=disa)
-									self.si_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, highlightthickness=0, troughcolor=dim)
-									self.si_label.config(fg=disa)
-									self.ed_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, highlightthickness=0, troughcolor=dim)
-									self.ed_label.config(fg=disa)
-									self.h_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, highlightthickness=0, troughcolor=dim)
-									self.h_label.config(fg=disa)
-									self.ram_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, highlightthickness=0, troughcolor=dim)
-									self.ram_label.config(fg=disa)
-									self.raa_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-									self.raa_label.config(fg=disa)
 								except TypeError:
 										try: # Count:7
 											s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, radiusm)
+											active 			= [self.ram_entry]								
+											active_label 	= [self.ram_label]
+											disable			= [self.pi_entry,	self.raa_entry,   self.h_entry, self.si_entry, self.ed_entry]
+											disable_label 	= [self.pi_label, 	self.raa_label,   self.h_label, self.si_label, self.ed_label]
+											color			= [self.face2, 	    self.face3]
+											color_label		= [self.f2, 	    self.f3]
+	
+											for m in disable:
+												m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
+												for n in disable_label:
+													n.config(fg=disa)
+													for o in color:	
+														o.config(state=tk.DISABLED, highlightbackground=disa)
+														for p in color_label:
+															p.config(bg=dim, fg=dim, relief=tk.RIDGE)
+				
+											for m in active:
+												m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
+												for n in active_label:
+													n.config(fg=dimf)
 
-											self.face2.config(state=tk.DISABLED, highlightbackground=disa)
-											self.f2.config(bg=dim, fg=dim, relief=tk.RIDGE)
-											self.face3.config(state=tk.DISABLED, highlightbackground=disa)
-											self.f3.config(bg=dim, fg=dim, relief=tk.RIDGE)
-
-											self.h_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-											self.h_label.config(fg=disa)
-											self.raa_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-											self.raa_label.config(fg=disa)
-											self.ram_entry.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimt)
-											self.ram_label.config(fg=dimf)
-											self.pi_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackgroun=dim, troughcolor=dim)
-											self.pi_label.config(fg=disa)
-											self.si_entry.config(state=tk.DISABLED,bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-											self.si_label.config(fg=disa)
-											self.ed_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-											self.ed_label.config(fg=disa)
 										except TypeError:
 											try: #Count: 7
 												s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, color2)
-												self.face3.config(state=tk.DISABLED, highlightbackground=disa)
-												self.face2.config(state=tk.ACTIVE, highlightbackground=dimfa)
-												self.f2.config(relief=tk.GROOVE)
-												self.f3.config(bg=dim, fg=dim, relief=tk.RIDGE)
+												disable			= [self.pi_entry,  self.raa_entry, self.h_entry, self.si_entry, self.ed_entry, self.ram_entry]
+												disable_label 	= [self.pi_label,  self.raa_label, self.h_label, self.si_label, self.ed_label, self.ram_label]
+												color			= [self.face2, 	   self.face3]
+												color_label		= [self.f2, 	   self.f3]
+	
+												for m in disable:
+													m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
+													for n in disable_label:
+														n.config(fg=disa)
+														for o in color:	
+															self.face3.config(state=tk.DISABLED, highlightbackground=disa)
+															for p in color_label:
+																self.f3.config(bg=dim, fg=dim, relief=tk.RIDGE)
+				
 
-												self.h_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-												self.h_label.config(fg=disa)
-												self.raa_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-												self.raa_label.config(fg=disa)
-												self.ram_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-												self.ram_label.config(fg=disa)
-												self.pi_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-												self.pi_label.config(fg=disa)
-												self.si_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-												self.si_label.config(fg=disa)
-												self.ed_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-												self.ed_label.config(fg=disa)
+												for o in color:	
+													self.face2.config(state=tk.ACTIVE, highlightbackground=dimf)
+													for p in color_label:
+														self.f2.config(relief=tk.GROOVE)
+		
 											except TypeError:
 												try: #Count: 6
 													s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid)
-													self.face2.config(state=tk.DISABLED, highlightbackground=disa)
-													self.f2.config(bg=dim, fg=dim, relief=tk.RIDGE)
-													self.face3.config(state=tk.DISABLED, highlightbackground=disa)
-													self.f3.config(bg=dim, fg=dim, relief=tk.RIDGE)
-
-													self.ram_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-													self.ram_label.config(fg=disa)
-													self.h_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-													self.h_label.config(fg=disa)
-													self.raa_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-													self.raa_label.config(fg=disa)
-													self.pi_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-													self.pi_label.config(fg=disa)
-													self.si_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-													self.si_label.config(fg=disa)
-													self.ed_entry.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-													self.ed_label.config(fg=disa)
+													disable			= [self.pi_entry,  self.raa_entry, self.h_entry, self.si_entry, self.ed_entry, self.ram_entry]
+													disable_label 	= [self.pi_label,  self.raa_label, self.h_label, self.si_label, self.ed_label, self.ram_label]
+													color			= [self.face2, 	   self.face3]
+													color_label		= [self.f2, 	   self.f3]
+	
+													for m in disable:
+														m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
+														for n in disable_label:
+															n.config(fg=disa)
+															for o in color:	
+																o.config(state=tk.DISABLED, highlightbackground=disa)
+																for p in color_label:
+																	p.config(bg=dim, fg=dim, relief=tk.RIDGE)
+				
 												except NameError:
 													print("FUCKING SHIT")
-													#pass
 		canvas.draw()
 
 if __name__ == '__main__':
@@ -967,9 +902,9 @@ if __name__ == '__main__':
 	
 	root.title("Geometric Models")
 	root.geometry("932x501")
-	img = ImageTk.PhotoImage(file='penrose_icon.png')
+	icon = ImageTk.PhotoImage(file='penrose_icon.png')
 
-	root.tk.call('wm', 'iconphoto', root._w, img)
+	root.tk.call('wm', 'iconphoto', root._w, icon)
 	root.protocol("WM_DELETE_WINDOW", quit)
 	root.update()
 	root.update_idletasks()
