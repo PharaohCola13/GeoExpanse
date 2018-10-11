@@ -1,6 +1,6 @@
 import matplotlib
 
-matplotlib.use('TkAgg')
+matplotlib.use('tkagg')
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import mpl_toolkits.mplot3d.axes3d as p3
@@ -44,7 +44,7 @@ import three_dodecahedron, cressant, funnel, gabriel_horn, rose_spiral, shell, t
 import breather_surface, kuen_surface, steiner_surface, boys_surface, roman_surface, sine_surface, henneberg_surface
 import cube, dodecahedron, icosahedron, octahedron
 import cross_cap, klein, mobius, torus
-import interesting, hecatostoeicostohedron, hyperbolic_cylinder, dini_surface, knot, neat, spiral, testing, \
+import unk_surface, hecatostoeicostohedron, hyperbolic_cylinder, dini_surface, knot, neat, spiral, testing, \
     penrose_triangle, vase, something_strange, enneper_surface
 import line
 import cuboctahedron, great_rombicosidodecahedron, snub_cube, truncated_cube
@@ -53,54 +53,54 @@ s = {"Prism"				: prism,
          "Pyramid"				: pyramid,
          "Sphere"				: sphere,
 
-         "Hyperbolic Octahedon"	: hyperbolic_octahedron,
-         "Hyperbolic Parabolod"	: hyperbolic_paraboloid,
-         "One Sheet Hyperbolod"	: one_sheet_hyperboloid,
+         "Hyperbolic Octahedron"	: hyperbolic_octahedron,
+         "Hyperbolic Paraboloid"	: hyperbolic_paraboloid,
+         "One Sheet Hyperboloid"	: one_sheet_hyperboloid,
 
          "Three Dodecahedon"	: three_dodecahedron,
          "Cressant"				: cressant,
          "Funnel"				: funnel,
-         "Gabriel's Hn"		: gabriel_horn,
-         "Rose Spi"			: rose_spiral,
+         "Gabriel's Horn"		: gabriel_horn,
+         "Rose Spiral"			: rose_spiral,
          "Shell"					: shell,
          "Tesseract"				: tesseract,
 
-         "Breather's Surfce"	: breather_surface,
-         "Kuen's Surfe"		: kuen_surface,
-         "Steiner's Surfe"		: steiner_surface,
-         "Boy's Surf"			: boys_surface,
-         "Roman Surf"			: roman_surface,
-         "Sine Surf"			: sine_surface,
-         "Henneberg's Surfce"	: henneberg_surface,
+         "Breather's Surface"	: breather_surface,
+         "Kuen's Surface"		: kuen_surface,
+         "Steiner's Surface"		: steiner_surface,
+         "Boy's Surface"			: boys_surface,
+         "Roman Surface"			: roman_surface,
+         "Sine Surface"			: sine_surface,
+         "Henneberg's Surface"	: henneberg_surface,
 
          "Cube"					: cube,
-         "Dodecahed"			: dodecahedron,
-         "Icosahed"			: icosahedron,
-         "Octahed"			: octahedron,
+         "Dodecahedron"			: dodecahedron,
+         "Icosahedron"			: icosahedron,
+         "Octahedron"			: octahedron,
 
          "Cross Cap"				: cross_cap,
-         "Klein Bot"			: klein,
-         "Mobius St"			: mobius,
+         "Klein Bottle"			: klein,
+         "Mobius Strip"			: mobius,
          "Torus"					: torus,
 
-         "Unk Surf"			: interesting,
+         "Unk Surface"			: unk_surface,
          "Hecatostoeicostohedron": hecatostoeicostohedron,
-         "Hyperbolic Cyliner"	: hyperbolic_cylinder,
-         "Dini's Surfe"		: dini_surface,
+         "Hyperbolic Cylinder"	: hyperbolic_cylinder,
+         "Dini's Surface"		: dini_surface,
          "Knot"					: knot,
          "Neat"					: neat,
          "Spiral"				: spiral,
          "Testing"				: testing,
-         "Penrose Triane"		: penrose_triangle,
+         "Penrose Triangle"		: penrose_triangle,
          "Vase"					: vase,
-         "Something Strae"		: something_strange,
-         "Enneper's Surfe"		: enneper_surface,
+         "Something Strange"		: something_strange,
+         "Enneper's Surface"		: enneper_surface,
          "Line"					: line,
 
-         "Cuboctahed"			: cuboctahedron,
+         "Cuboctahedron"			: cuboctahedron,
          "Great Rombicosidodecahedron": great_rombicosidodecahedron,
          "Snub Cube"				: snub_cube,
-         "Truncated Ce"		: truncated_cube,
+         "Truncated Cube"		: truncated_cube,
          #		"Great Dodecahedron"	: 'great_dodecahedron',
          #		"Great Icosahedron"		: 'great_icosahedron'
 
@@ -112,24 +112,32 @@ dimf = "#00C0FF"  #   ont Color
 
 disa = "#d400ff" #   isabled Text
 
-c
-
-
-ss Geometry(tk.Frame):
+class Geometry(tk.Frame):
     def __init__(self, master=None):
-        tk.Frame.__init__(self,mas ter)
+        tk.Frame.__init__(self,master)
         self.createWidgets()
 
     def createWidgets(self):
         global icon
-        self.fig = plt.figure(figsize=(5, 5))
+        self.fig = plt.figure(figsize=(4, 4))
+        self.fig1 = plt.figure(figsize=(4,4))
+
         ax = p3.Axes3D(self.fig)
+        ax1 = p3.Axes3D(self.fig1)
         ax.set_facecolor('black')
-        plt.axis('off')
-        canvas = FigureCanvasTkAgg(self.fig,roo t)
-        canvas.get_tk_widget().grid(row=0,col umn=0, sticky='new')
+        ax1.set_facecolor('black')
+        plt.figure(1)
+        plt.axis("off")
+        plt.figure(2)
+        plt.axis("off")
+        canvas = FigureCanvasTkAgg(self.fig,root)
+        canvas.get_tk_widget().grid(row=0,column=0, sticky='new')
+
+        canvas1 = FigureCanvasTkAgg(self.fig1, root)
+        canvas1.get_tk_widget().grid(row=0, column=0, sticky='new', pady=400)
         root.update_idletasks()
         canvas.draw()
+        canvas1.draw()
         frame = tk.Frame(root, width=100, height=100)
 
         # Vars
@@ -159,7 +167,7 @@ ss Geometry(tk.Frame):
             plt.axis('on')
 
         def adjust():
-            root.geometry("500x500+520+280")
+            root.geometry("800x800+520+280")
 
         def FaceColor(self):
             self.c_entry = askcolor(title="Face Color")[1]
@@ -189,20 +197,20 @@ ss Geometry(tk.Frame):
 
             pop = tk.Button(top, text="POP!", command=top.destroy)
             pop.grid(row=0, column=0, sticky='new')
-            pop.config(bg=dim,f g=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
+            pop.config(bg=dim,fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
-            plotter = tk.Button(top, text="Plot", command=lambda: self.plot(canvas,a x))
+            plotter = tk.Button(top, text="Plot", command=lambda: self.plot(canvas,ax, canvas1))
             plotter.grid(row=0, column=2, sticky="new")
-            plotter.config(bg=dim,f g=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
+            plotter.config(bg=dim,fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
             if self.two_three.get() == "3d":
-                prism = tk.Radiobutton(top, text="Prism",v ariable=self.shape_set, value="Prism")
+                prism = tk.Radiobutton(top, text="Prism",variable=self.shape_set, value="Prism")
                 prism.grid(row=1, column=0, sticky="w")
 
-                pyram = tk.Radiobutton(top, text="Pyramid",v ariable=self.shape_set, value="Pyramid")
+                pyram = tk.Radiobutton(top, text="Pyramid",variable=self.shape_set, value="Pyramid")
                 pyram.grid(row=2, column=0, sticky="w")
 
-                spher = tk.Radiobutton(top, text="Sphere",v ariable=self.shape_set, value="Sphere")
+                spher = tk.Radiobutton(top, text="Sphere",variable=self.shape_set, value="Sphere")
                 spher.grid(row=3, column=0, sticky="w")
 
                 ##
@@ -214,12 +222,12 @@ ss Geometry(tk.Frame):
                                        value="Hyperbolic Octahedron")
                 hyoct.grid(row=5, column=0 , sticky="w")
 
-                hypar = tk.Radiobutton(top, text="Hyperbolic Paraboliod", variable=self.shape_set,
-                                       value="Hyperbolic Paraboliod")
+                hypar = tk.Radiobutton(top, text="Hyperbolic Paraboloid", variable=self.shape_set,
+                                       value="Hyperbolic Paraboloid")
                 hypar.grid(row=6, column=0, sticky="w")
 
-                onesh = tk.Radiobutton(top, text="One Sheet Hyperboliod", variable=self.shape_set,
-                                       value="One Sheet Hyperboliod")
+                onesh = tk.Radiobutton(top, text="One Sheet Hyperboloid", variable=self.shape_set,
+                                       value="One Sheet Hyperboloid")
                 onesh.grid(row=7, column=0, sticky="w")
 
                 ##
@@ -419,36 +427,36 @@ ss Geometry(tk.Frame):
             def img():
                 plt.savefig.format = self.format_save.get()
 
-            # def save_mp4():
-            #	plt.axis("off")
-            #	ax.set_facecolor('black')
-            #	ax.grid(False)
-            #	ax.axis('off')
-            #	ax.set_xticks([])
-            #	ax.set_yticks([])
-            #	ax.set_zticks([])
+            def vid():
+            	plt.axis("off")
+            	ax.set_facecolor('black')
+            	ax.grid(False)
+            	ax.axis('off')
+            	ax.set_xticks([])
+            	ax.set_yticks([])
+            	ax.set_zticks([])
 
-            #	plt.axis('off')
-            #	plt.axis('equal')
+            	plt.axis('off')
+            	plt.axis('equal')
 
-            #	def init():
-            #		return testing.test,
+            	def init():
+            		return testing.test,
 
-            #	def animate(i):
-            #		ax.view_init(elev=i, azim=i)
-            #		return testing.test,
+            	def animate(i):
+            		ax.view_init(elev=i, azim=i)
+            		return testing.test,
 
-            # Animate
-            #	ani = FuncAnimation(self.fig, animate, init_func=init, interval=1, frames=500, repeat=True)
+    #            Animate
+            	ani = FuncAnimation(self.fig, animate, init_func=init, interval=1, frames=500, repeat=True)
 
-            #	Writer = writers['ffmpeg']
-            #	writer = Writer(fps=15, bitrate=1800)
-            #	ani.save('Testers.mp4',writer=writer)
+            	Writer = writers['ffmpeg']
+            	writer = Writer(fps=15, bitrate=1800)
+            	ani.save('{}.{}'.format(s[self.shape_set.get(), self.format_save.get()]),writer=writer)
 
-            #	plt.ion()
-            #	plt.show()
-            #	sleep(0)
-            #	plt.close()
+            	plt.ion()
+            	plt.show()
+            	sleep(0)
+            	plt.close()
 
             png = tk.Radiobutton(top, text="png", variable=self.format_save, value="png", command=img, width=5)
             png.grid(row=1, column=0)
@@ -460,19 +468,18 @@ ss Geometry(tk.Frame):
             jpg.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,
                        selectcolor=dim)
 
-            # mp4 = tk.Radiobutton(top, text="mp4", variable=self.format_save,    value="mp4", width=5)
-            # mp4.grid(row=2, column=0)
-            # mp4.config(bg=dim, 	fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf, selectcolor=dim)
+            mp4 = tk.Radiobutton(top, text="mp4", variable=self.format_save,    value="mp4", width=5)
+            mp4.grid(row=2, column=0)
+            mp4.config(bg=dim, 	fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf, selectcolor=dim)
 
             save_img = tk.Button(top, text="save img",
-                                 command=lambda: plt.savefig("{}.png".format(s[self.shape_set.get()])))
-            # plt.savefig("{}.{}".format(self.shape_set.get(),self.format_save.get()), format=str(self.format_save.get())))
+                                 command=lambda: plt.savefig("{}.{}".format(s[self.shape_set.get()].name, self.format_save.get())))
             save_img.grid(row=0, column=1)
             save_img.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
-            # save_vid = tk.Button(top, text="save video", command=lambda: save_mp4())
-            # save_vid.grid(row=0, column=2)
-            # save_vid.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
+            save_vid = tk.Button(top, text="save video")
+            save_vid.grid(row=0, column=2)
+            save_vid.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
             self.format_save.set("png")
 
@@ -487,7 +494,7 @@ ss Geometry(tk.Frame):
         filemenu.add_command(label="Quit", command=quit)
 
         menu.add_command(label="Figure", command=adjust)
-        menu.add_command(label="Full", command=lambda: root.geometry("932x501"))
+        menu.add_command(label="Full", command=lambda: root.geometry("1232x801"))
 
         # # Transparency
         self.a_label = tk.Label(root, text="Transparency")
@@ -577,8 +584,8 @@ ss Geometry(tk.Frame):
                              borderwidth=5, relief=tk.GROOVE)
         self.f3.grid(row=0, column=4, sticky='new', pady=60, padx=0)
 
-        # Plotting
-        self.plotting = tk.Button(root, text="Update", command=lambda: self.plot(canvas, ax), height=4)
+        # Plotting,
+        self.plotting = tk.Button(root, text="Update", command=lambda: self.plot(canvas, ax, canvas1, ax1), height=4)
         self.plotting.grid(row=0, column=1, columnspan=2, sticky="new", pady=430)
 
         # Grid Functions (on/off)
@@ -633,7 +640,7 @@ ss Geometry(tk.Frame):
 
         return dark(self)
 
-    def plot(self, canvas, ax):
+    def plot(self, canvas, ax, canvas1, ax1):
         try:
             edge_c = self.ec_entry
         except AttributeError:
@@ -671,6 +678,7 @@ ss Geometry(tk.Frame):
         root.title("Geometric Modeling ({})".format(name))
 
         ax.clear()
+        ax1.clear()
         plt.cla()
         plt.clf()
 
@@ -678,10 +686,9 @@ ss Geometry(tk.Frame):
             s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm,
                                           radiusa, color2, color3, height, rot, save)
         except KeyError:
-            name = interesting.name
-            root.title("Geometric Modeling ({})".format(name))
-            testing.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, rot, save)
-
+            root.title("Geometric Modeling (Testing)")
+            print(save)
+            testing.shape(self.fig, self.fig1, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, rot)
             active = [self.si_entry, self.ed_entry, self.pi_entry]
             active_label = [self.si_label, self.ed_label, self.pi_label]
             disable = [self.ram_entry, self.raa_entry, self.h_entry]
@@ -721,7 +728,6 @@ ss Geometry(tk.Frame):
                     n.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
                     for m in active_label:
                         m.config(fg=dimf)
-
             except TypeError:
                 try:  # Count: 11
                     s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi,
@@ -951,13 +957,14 @@ ss Geometry(tk.Frame):
                                             except NameError:
                                                 print("FUCKING SHIT")
         canvas.draw()
+        canvas1.draw()
 
 
 if __name__ == '__main__':
     root = tk.Tk()
 
     root.title("Geometric Models")
-    root.geometry("932x501")
+    root.geometry("1232x801")
     icon = ImageTk.PhotoImage(file='penrose_icon.png')
 
     root.tk.call('wm', 'iconphoto', root._w, icon)

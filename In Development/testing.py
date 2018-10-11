@@ -11,8 +11,8 @@ import time
 
 name = "Testing"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
-					   edges, multi_pi, radiusm, radiusa, color2, color3, height, rot, save):
+def shape(fig, fig1, alpha, color, edge_c, edge_w, grid, sides,
+					   edges, multi_pi, rot):
 	def x_(u,v):
 		x = cos(u) * sin(v)
 		return x
@@ -37,9 +37,16 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	ax = p3.Axes3D(fig)
 	ax.set_facecolor('black')
 
-	plt.axis(grid)
+	ax1 = p3.Axes3D(fig1)
+	ax1.set_facecolor('black')
+
+	plt.figure(1)
+	plt.axis("off")
 	plt.axis('equal')
 
+	plt.figure(2)
+	plt.axis("off")
+	plt.axis("equal")
 	# Figure Properties
 	#ax.set_xlim(-1,1)
 	#ax.set_ylim(-1,1)
@@ -48,13 +55,20 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	# Surface Plot
 
 	test = ax.plot_surface(x, y, z)
+	test1 = ax1.plot_surface(x, y, z)
 
 	test.set_alpha(alpha)
 	test.set_edgecolor(edge_c)
 	test.set_linewidth(edge_w)
 	test.set_facecolor(color)
 
+	test1.set_alpha(alpha)
+	test1.set_edgecolor(edge_c)
+	test1.set_linewidth(edge_w)
+	test1.set_facecolor(color)
+
 	def rot_on():
+
 		plt.axis("off")
 		ax.set_facecolor('black')
 		ax.grid(False)
@@ -69,7 +83,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 			return test,
 
 		def animate(i):
-			ax.view_init(elev=i, azim=i)
+			ax.view_init(elev=45, azim=i)
 			return test
 
 		# Animate
@@ -80,40 +94,43 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 		plt.show()
 		time.sleep(0)
 		plt.close()
+		#ax.clear()
+		#plt.cla()
+		#plt.clf()
 
-	def save_mp4():
-		plt.axis("off")
-		ax.set_facecolor('black')
-		ax.grid(False)
-		ax.axis('off')
-		ax.set_xticks([])
-		ax.set_yticks([])
-		ax.set_zticks([])
-
-		plt.axis('off')
-		plt.axis('equal')
-		def init():
-			return test,
-
-		def animate(i):
-			ax.view_init(elev=i, azim=i)
-			return test
-
-		# Animate
-		ani = FuncAnimation(fig, animate, init_func=init,
-							interval=1, frames=500, repeat=True)
-
-		Writer = writers['ffmpeg']
-		 	
-		writer = Writer(fps=15, bitrate=1800)
+	# def save_mp4():
+	# 	plt.axis("off")
+	# 	ax.set_facecolor('black')
+	# 	ax.grid(False)
+	# 	ax.axis('off')
+	# 	ax.set_xticks([])
+	# 	ax.set_yticks([])
+	# 	ax.set_zticks([])
 	#
-		ani.save('{}.mp4'.format(name),writer=writer)
-		
-		plt.ion()
-		plt.show()
-		time.sleep(0)
-		plt.close()
-		 	
+	# 	plt.axis('off')
+	# 	plt.axis('equal')
+	# 	def init():
+	# 		return test,
+	#
+	# 	def animate(i):
+	# 		ax.view_init(elev=i, azim=i)
+	# 		return test
+	#
+	# 	# Animate
+	# 	ani = FuncAnimation(fig, animate, init_func=init,
+	# 						interval=1, frames=500, repeat=True)
+	#
+	# 	Writer = writers['ffmpeg']
+	#
+	# 	writer = Writer(fps=15, bitrate=1800)
+	# #
+	# 	ani.save('{}.mp4'.format(name),writer=writer)
+	#
+	# 	plt.ion()
+	# 	plt.show()
+	# 	time.sleep(0)
+	# 	plt.close()
+	#
 
 	def rot_off():
 		ax.set_facecolor('black')
@@ -135,8 +152,8 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 	if rot == "on":
 		rot_on()
 		
-	if save == "mp4":
-		save_mp4()
+	#if save == "mp4":
+		#save_mp4()
 
 	if rot == "off":
 		rot_off()

@@ -28,8 +28,8 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
 
 	s = sides
 	# Value of the angles
-	u = linspace(-2, 2, s + 1)
-	v = linspace(0, 2 * pi, edges)
+	u = linspace(-2, 2, edges)
+	v = linspace(0, 2 * pi, s + 1)
 
 	u, v = meshgrid(u, v)
 

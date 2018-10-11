@@ -30,8 +30,8 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges):
 	r = 1. - b**2
 	w = sqrt(r)
 	# Value of the angles
-	u = linspace(-13.2,  13.2, sides + 1)
-	v = linspace(-37.4, 37.4, edges)
+	u = linspace(-13.2,  13.2, edges)
+	v = linspace(-37.4, 37.4, sides + 1)
 
 	u, v = meshgrid(u, v)
 
