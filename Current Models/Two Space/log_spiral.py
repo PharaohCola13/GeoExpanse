@@ -16,4 +16,4 @@ r = r_(u)
 plt.subplot(111, projection='polar')
 plt.plot(u, r)
 
-plt.show()
+#plt.show()
