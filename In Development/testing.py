@@ -11,7 +11,7 @@ import time
 
 name = "Testing"
 
-def shape(fig, fig1, alpha, color, edge_c, edge_w, grid, sides,
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides,
 					   edges, multi_pi, rot):
 	def x_(u,v):
 		x = cos(u) * sin(v)
@@ -37,17 +37,17 @@ def shape(fig, fig1, alpha, color, edge_c, edge_w, grid, sides,
 	ax = p3.Axes3D(fig)
 	ax.set_facecolor('black')
 
-	ax1 = p3.Axes3D(fig1)
-	ax1.set_facecolor('black')
+#	ax1 = p3.Axes3D(fig1)
+#	ax1.set_facecolor('black')
 
-	plt.figure(1)
+#	plt.figure(1)
 	plt.axis("off")
 	plt.axis('equal')
 
-	plt.figure(2)
-	plt.axis("off")
-	plt.axis("equal")
-	# Figure Properties
+#	plt.figure(2)
+#	plt.axis("off")
+#	plt.axis("equal")
+#	# Figure Properties
 	#ax.set_xlim(-1,1)
 	#ax.set_ylim(-1,1)
 	#ax.set_zlim(-1,1)
@@ -55,17 +55,17 @@ def shape(fig, fig1, alpha, color, edge_c, edge_w, grid, sides,
 	# Surface Plot
 
 	test = ax.plot_surface(x, y, z)
-	test1 = ax1.plot_surface(x, y, z)
+#	test1 = ax1.plot_surface(x, y, z)
 
 	test.set_alpha(alpha)
 	test.set_edgecolor(edge_c)
 	test.set_linewidth(edge_w)
 	test.set_facecolor(color)
 
-	test1.set_alpha(alpha)
-	test1.set_edgecolor(edge_c)
-	test1.set_linewidth(edge_w)
-	test1.set_facecolor(color)
+#	test1.set_alpha(alpha)#
+#	test1.set_edgecolor(edge_c)
+#	test1.set_linewidth(edge_w)
+#	test1.set_facecolor(color)
 
 	def rot_on():
 
