@@ -52,7 +52,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiu
     # Axis Limits
     ax.set_xlim(-2, 2)
     ax.set_ylim(-2, 2)
-    ax.set_zlim(-2 * pi, 2 * pi)
+    ax.set_zlim(-4 *pi, 2 *pi)
 
     # Surface Plot
     dini = ax.plot_surface(x, y, z)

@@ -36,7 +36,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid):
 		Z[i, :] = dot(points[i, :], P)
 
 	# Figure Properties
-	#fig = plt.figure(figsize=(8, 8))
 	ax = p3.Axes3D(fig)
 	ax.set_facecolor('black')
 
@@ -46,11 +45,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid):
 	ax.set_xlim(-4, 4)
 	ax.set_ylim(-4, 4)
 	ax.set_zlim(-4, 4)
-
-	# Interval
-	r = [-1, 1]
-
-	X, Y = np.meshgrid(r, r)
 
 	# Side Configuration for Cube
 	# Cube Properties
