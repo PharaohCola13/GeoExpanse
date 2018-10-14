@@ -29,75 +29,92 @@ pip install [name of package]
 ## Executing the scripts
 Currently, there is a GUI functioning, however it is still in heavy development. The GUI code is [here](https://github.com/PharaohCola13/geometric-models/blob/master/gui_final.py). To execute the GUI, simply type in your terminal
 ```
-python gui_final.py
+python geo_gui.py
 ```
 
 ## Current Models
 A )
 
 B )
-[Boy's Surface](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Surfaces/boys_surface.py) |
+[Boy's Surface](http://mathworld.wolfram.com/BoySurface.html) |
 [Breather Surface](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Surfaces/breather_surface.py)
 
 C )
-[Cressant](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Misc./cressant.py) | 
-[Cross Cap](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Topological/cross_cap.py) |
-[Cube](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Platonic%20Solids/cube.py) 
+[Crescent](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Misc./cressant.py) | 
+[Cross Cap](http://mathworld.wolfram.com/Cross-Cap.html) |
+[Cube](http://mathworld.wolfram.com/Cube.html) |
+[Cuboctahedron](http://mathworld.wolfram.com/Cuboctahedron.html)
+[Cylinder (Hyperbolic)](http://mathworld.wolfram.com/HyperbolicCylinder.html)
 
 D )
-[Dodecahedron](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Platonic%20Solids/dodecahedron.py) 
+[Dodecahedron](http://mathworld.wolfram.com/Dodecahedron.html) |
+[Dini's Surface](http://mathworld.wolfram.com/DinisSurface.html) |
+[Deltoid](http://mathworld.wolfram.com/Deltoid.html)
 
 E )
+[Enneper's Surface](http://mathworld.wolfram.com/EnnepersMinimalSurface.html)
 
 F ) 
-[Funnel](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Misc./funnel.py)
+[Funnel](http://mathworld.wolfram.com/Funnel.html)
 
 G )
-[Gabriel's Horn](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Misc./gabriel_horn.py)
+[Gabriel's Horn](http://mathworld.wolfram.com/GabrielsHorn.html) | 
+[Great Icosahedron](http://mathworld.wolfram.com/GreatIcosahedron.html) | 
+[Great Rombicosidodeahedron](http://mathworld.wolfram.com/GreatRhombicosidodecahedron.html)
 
 H )
+[Henneberg's Surface](http://mathworld.wolfram.com/HennebergsMinimalSurface.html) |
+Hecatoeicostohedron
 
 I )
-[Icosahedron](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Platonic%20Solids/icosahedron.py)
+[Icosahedron](http://mathworld.wolfram.com/Icosahedron.html)
 
 J )
 
 K )
-[Klein Bottle](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Topological/klein.py) | 
-[Kuen Surface](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Surfaces/kuen_surface.py)
+[Klein Bottle](http://mathworld.wolfram.com/KleinBottle.html) | 
+[Kuen Surface](http://mathworld.wolfram.com/KuenSurface.html)
 
 L )
 
 M )
-[Mobius Strip](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Topological/mobius.py)
+[Mobius Strip](http://mathworld.wolfram.com/MoebiusStrip.html)
 
 N )
 
 O )
-[Octahedron](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Platonic%20Solids/octahedron.py) |
-[Octahedron (Hyperbolic)](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Hyperbolic/hyperbolic_octahedron.py) |
-[One Sheet Hyperboloid / Wormhole](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Hyperbolic/one_sheet_hyperboloid.py)
+[Octahedron](http://mathworld.wolfram.com/Octahedron.html) |
+[Octahedron (Hyperbolic)](http://mathworld.wolfram.com/HyperbolicOctahedron.html) |
+[One Sheet Hyperboloid](http://mathworld.wolfram.com/One-SheetedHyperboloid.html)
 
 P )
-[Prism Family](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/prism.py) |
-[Pyramid Family](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/pyramid.py) |
-[Paraboloid (Hyperbolic)](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Hyperbolic/hyperbolic_paraboloid.py)
+[Prism Family](http://mathworld.wolfram.com/Prism.html) |
+[Pyramid Family](http://mathworld.wolfram.com/Pyramid.html) |
+[Paraboloid (Hyperbolic)](http://mathworld.wolfram.com/HyperbolicParaboloid.html) |
+[Penrose Triangle](http://mathworld.wolfram.com/PenroseTriangle.html) |
+[Penrose Square](http://mathworld.wolfram.com/Tribox.html) |
+Penrose Circle |
+[Parabola](http://mathworld.wolfram.com/Parabola.html)
 
 Q )
 
 R )
-[Rose Spiral](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Misc./rose_spiral.py)
+[Rose Spiral](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Misc./rose_spiral.py) |
+[Roman Surface](http://mathworld.wolfram.com/RomanSurface.html)
 
 S )
 [Shell](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Misc./shell.py) |
-[Sphere Family](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/sphere.py) |
-[Steiner's Surface](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Surfaces/steiner_surface.py)
+[Sphere Family](http://mathworld.wolfram.com/Sphere.html) |
+[Steiner's Surface](http://mathworld.wolfram.com/SteinerSurface.html) |
+[Snub Cube](http://mathworld.wolfram.com/SnubCube.html)
 
 T )
-[Tesseract](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Misc./tesseract.py) |
-[Torus Family](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Topological/torus.py)
+[Tesseract](http://mathworld.wolfram.com/Tesseract.html) |
+[Torus Family](http://mathworld.wolfram.com/Torus.html) |
+[Truncated Cube](http://mathworld.wolfram.com/TruncatedCube.html)
 
 U )
+Unk Surface
 
 V )
 
@@ -110,14 +127,8 @@ Y )
 Z )
 
 ## Models in Development
+Great Dodecaheron | Scutoid | Vase | Log Spiral | Penrose Pentagon | Penrose Hexagon | Polygon Family
 
-[Trefoil Knot](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/knot.py) | 
-[Spiral](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/spiral.py) | 
-[Pseudosphere](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/pseudosphere.py) |
-[Scutoid](https://github.com/PharaohCola13/geometric-models/tree/master/Scutoid%20Research) |
-[Vase](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/vase.py) |
-[Cylinder (Hyperbolic)](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/hyperbolic_cylinder.py) |
-[Dini's Surface](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/dini_surface.py) 
 
 ## Future Works
 I intend to have models of a great variety of geometric and topological objects.
@@ -125,8 +136,7 @@ I intend to have models of a great variety of geometric and topological objects.
 If you would like to see a particular shape that is not listed anywhere above feel free to fill out an [issue](https://github.com/PharaohCola13/geometric-models/issues) and 
 label it request.
 
-I am currently working on a geometric paper describing the physical geometry of a Scutoid, as well as identifying the properties of [this](https://github.com/PharaohCola13/geometric-models/blob/master/In%20Development/interesting.py) object.
-For the time being, the object will be called a "Unk Surface".
+I am currently working on a geometric paper describing the physical geometry of a Scutoid.
 
 ## Contact
 
