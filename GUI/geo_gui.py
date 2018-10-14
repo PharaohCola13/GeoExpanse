@@ -40,7 +40,7 @@ sys.path.append('../Scutoid Research/')
 
 import prism, pyramid, sphere
 import hyperbolic_octahedron, hyperbolic_paraboloid, one_sheet_hyperboloid
-import three_dodecahedron, cressant, funnel, gabriel_horn, rose_spiral, shell, tesseract
+import three_dodecahedron, crescent, funnel, gabriel_horn, rose_spiral, shell, tesseract
 import breather_surface, kuen_surface, steiner_surface, boys_surface, roman_surface, sine_surface, henneberg_surface
 import cube, dodecahedron, icosahedron, octahedron
 import cross_cap, klein, mobius, torus
@@ -59,7 +59,7 @@ s = {"Prism"				: prism,
 		 "One Sheet Hyperboloid"	: one_sheet_hyperboloid,
 
 		 "Three Dodecahedon"	: three_dodecahedron,
-		 "Cressant"				: cressant,
+		 "Cressant"				: crescent,
 		 "Funnel"				: funnel,
 		 "Gabriel's Horn"		: gabriel_horn,
 		 "Rose Spiral"			: rose_spiral,
@@ -368,7 +368,6 @@ class Geometry(tk.Frame):
 				grico = tk.Radiobutton(top, text="Great Icosahedron",        variable=self.shape_set, value="Great Icosahedron")
 				grico.grid(row=7,column=5,sticky="w")
 
-
 				##
 				plato = tk.Label(top, text="--- Platonic Solids ---", font=('Times', 12, 'bold'))
 				plato.grid(row=9, column=5, sticky='nsew')
@@ -384,7 +383,6 @@ class Geometry(tk.Frame):
 
 				octah = tk.Radiobutton(top, text="Octahedron", variable=self.shape_set, value="Octahedron")
 				octah.grid(row=13, column=5, sticky="w")
-
 
 				# cube_hover = CreateToolTip(cube, ImageTk.PhotoImage(file="./Visual/Cube.png"),"test")
 
@@ -434,19 +432,19 @@ class Geometry(tk.Frame):
 	#
 		def popup_save():
 			top = tk.Toplevel(self)
-			top.geometry("300x200")
+			#top.geometry("300x200")
 			top.title("Save Figure")
 			top.tk.call('wm', 'iconphoto', top._w, icon)
 			top.config(background=dim)
+
+			top.update_idletasks()
+			top.update()
 
 			pop = tk.Button(top, text="POP!", command=top.destroy)
 			pop.grid(row=0, column=0)
 			pop.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
 			self.format_save = tk.StringVar()
-
-			def img():
-				plt.savefig.format = self.format_save.get()
 
 			def vid():
 				plt.axis("off")
@@ -479,30 +477,45 @@ class Geometry(tk.Frame):
 				sleep(0)
 				plt.close()
 
-			png = tk.Radiobutton(top, text="png", variable=self.format_save, value="png", command=img, width=5)
-			png.grid(row=1, column=0)
-			png.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,
+			clt = tk.Radiobutton(top, text="Transparent On")
+			clt.grid(row=1, column=2)
+			clt.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,
 					   selectcolor=dim)
 
-			jpg = tk.Radiobutton(top, text="jpg", variable=self.format_save, value="jpg", command=img, width=5)
+			clf = tk.Radiobutton(top, text="Transparent Off")
+			clf.grid(row=2, column=2)
+			clf.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,  activeforeground=dimf,
+					   selectcolor=dim)
+
+			png = tk.Radiobutton(top, text="png", variable=self.format_save, value="png", width=5)
+			png.grid(row=1, column=0)
+			png.config(bg=dim, fg=dimf, activebackground=dim,  highlightthickness=0, activeforeground=dimf,
+					   selectcolor=dim)
+
+			jpg = tk.Radiobutton(top, text="jpg", variable=self.format_save, value="jpg", width=5)
 			jpg.grid(row=1, column=1)
 			jpg.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,
 					   selectcolor=dim)
 
 			mp4 = tk.Radiobutton(top, text="mp4", variable=self.format_save,    value="mp4", width=5)
 			mp4.grid(row=2, column=0)
-			mp4.config(bg=dim, 	fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf, selectcolor=dim)
+			mp4.config(bg=dim, 	fg=dimf, activebackground=dim,  highlightthickness=0, activeforeground=dimf, selectcolor=dim)
 
-			save_img = tk.Button(top, text="save img",
-								 command=lambda: plt.savefig("{}.{}".format(s[self.shape_set.get()].name, self.format_save.get()), facecolor='black'))
+			save_img = tk.Button(top, text="save img")
 			save_img.grid(row=0, column=1)
 			save_img.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
+
+			save_img.config(command=lambda: plt.savefig("{}.{}".format(s[self.shape_set.get()].name, self.format_save.get()),  transparent=True))
 
 			save_vid = tk.Button(top, text="save video")
 			save_vid.grid(row=0, column=2)
 			save_vid.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
 			self.format_save.set("png")
+
+			top.update()
+			top.update_idletasks()
+			top.mainloop()
 
 		menu = tk.Menu(root)
 		root.config(menu=menu)
@@ -555,7 +568,7 @@ class Geometry(tk.Frame):
 	# 	# Edge Width
 		self.ew_label = tk.Label(root, text="Edge Width")
 		self.ew_label.grid(row=0, column=1, sticky='nw', pady=270)
-		self.ew_entry = tk.Scale(root, from_=0, to=5, resolution=0.5, orient=tk.HORIZONTAL)
+		self.ew_entry = tk.Scale(root, from_=0, to=10, resolution=0.5, orient=tk.HORIZONTAL)
 		self.ew_entry.grid(row=0, column=2, sticky='nw', pady=250)
 		self.ew_entry.set(1)
 	#
@@ -707,14 +720,13 @@ class Geometry(tk.Frame):
 										  radiusa, color2, color3, height, rot, save)
 		except KeyError:
 			root.title("Geometric Modeling (Testing)")
-			print(save)
 			testing.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, rot)
 			active = [self.a_entry, self.si_entry, self.ed_entry, self.pi_entry]
 			active_label = [self.a_label, self.si_label, self.ed_label, self.pi_label]
 			disable = [self.ram_entry, self.raa_entry, self.h_entry]
 			disable_label = [self.ram_label, self.raa_label, self.h_label]
-			color = [self.face, self.face2, self.face3]
-			color_label = [self.fck,self.f2, self.f3]
+			color = [self.face2, self.face3]
+			color_label = [self.f2, self.f3]
 
 			for m in disable:
 				m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
@@ -726,8 +738,10 @@ class Geometry(tk.Frame):
 							p.config(bg=dim, fg=dim, relief=tk.RIDGE)
 			for m in active:
 				m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
+				self.face.config(state=tk.ACTIVE, highlightbackground=dimf)
 				for n in active_label:
 					n.config(fg=dimf)
+					self.fck.config(relief=tk.GROOVE)
 		except TypeError:
 			try:  # Count: 12
 				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi,
@@ -1064,7 +1078,7 @@ if __name__ == '__main__':
 
 	root.title("Geometric Models")
 	root.geometry("1232x801")
-	icon = ImageTk.PhotoImage(file='penrose_icon.png')
+	icon = ImageTk.PhotoImage(file='icon.png')
 
 	root.tk.call('wm', 'iconphoto', root._w, icon)
 	root.protocol("WM_DELETE_WINDOW", quit)

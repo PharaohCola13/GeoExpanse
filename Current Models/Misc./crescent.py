@@ -7,7 +7,7 @@ from numpy import *
 from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 
-name = "Cressant"
+name = "Crescent"
 
 def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges):
 
