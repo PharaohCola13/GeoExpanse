@@ -1,4 +1,4 @@
-# A Hecatostoeicostohedron, brought to you by PharaohCola13
+# A Hecatonicosihedron, brought to you by PharaohCola13
 import matplotlib
 from matplotlib import *
 
@@ -8,7 +8,7 @@ from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 from numpy import *
 
-name = "Hecatostoeicostohedron"
+name = "Hecatonicosihedron"
 
 def shape(fig, alpha, color, edge_c, edge_w, grid):
 

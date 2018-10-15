@@ -44,7 +44,7 @@ import three_dodecahedron, crescent, funnel, gabriel_horn, rose_spiral, shell, t
 import breather_surface, kuen_surface, steiner_surface, boys_surface, roman_surface, sine_surface, henneberg_surface
 import cube, dodecahedron, icosahedron, octahedron
 import cross_cap, klein, mobius, torus
-import unk_surface, hecatostoeicostohedron, hyperbolic_cylinder, dini_surface, neat, spiral, testing, penrose_triangle, vase, something_strange, enneper_surface
+import unk_surface, hecatonicosihedron, hyperbolic_cylinder, dini_surface, neat, spiral, testing, penrose_triangle, vase, something_strange, enneper_surface
 import line
 import cuboctahedron, great_rombicosidodecahedron, snub_cube, truncated_cube
 import great_dodecahedron, great_icosahedron
@@ -85,7 +85,7 @@ s = {"Prism"				: prism,
 		 "Torus"					: torus,
 
 		 "Unk Surface"			: unk_surface,
-		 "Hecatostoeicostohedron": hecatostoeicostohedron,
+		 "Hecatonicosihedron": hecatonicosihedron,
 		 "Hyperbolic Cylinder"	: hyperbolic_cylinder,
 		 "Dini's Surface"		: dini_surface,
 		 "Neat"					: neat,
@@ -361,8 +361,8 @@ class Geometry(tk.Frame):
 				tcube = tk.Radiobutton(top, text="Truncated Cube", variable=self.shape_set, value="Truncated Cube")
 				tcube.grid(row=5, column=5, sticky="w")
 
-				polyh = tk.Radiobutton(top, text="Hecatostoeicostohedron", variable=self.shape_set,
-									   value="Hecatostoeicostohedron")
+				polyh = tk.Radiobutton(top, text="Hecatonicosihedron", variable=self.shape_set,
+									   value="Hecatonicosihedron")
 				polyh.grid(row=6, column=5, sticky="w")
 
 				grico = tk.Radiobutton(top, text="Great Icosahedron",        variable=self.shape_set, value="Great Icosahedron")
