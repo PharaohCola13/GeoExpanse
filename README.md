@@ -39,6 +39,7 @@ C )
 [Cube](http://mathworld.wolfram.com/Cube.html) |
 [Cuboctahedron](http://mathworld.wolfram.com/Cuboctahedron.html)
 [Cylinder (Hyperbolic)](http://mathworld.wolfram.com/HyperbolicCylinder.html)
+[Corkscrew Surface](http://mathworld.wolfram.com/CorkscrewSurface.html)
 
 D )
 [Dodecahedron](http://mathworld.wolfram.com/Dodecahedron.html) |
@@ -58,7 +59,8 @@ G )
 
 H )
 [Henneberg's Surface](http://mathworld.wolfram.com/HennebergsMinimalSurface.html) |
-Hecatoeicostohedron
+Hecatoeicostohedron |
+[Helicoid (Hyperbolic)](http://mathworld.wolfram.com/HyperbolicHelicoid.html)
 
 I )
 [Icosahedron](http://mathworld.wolfram.com/Icosahedron.html)
@@ -100,7 +102,10 @@ S )
 [Shell](https://github.com/PharaohCola13/geometric-models/tree/master/Current%20Models/Misc./shell.py) |
 [Sphere Family](http://mathworld.wolfram.com/Sphere.html) |
 [Steiner's Surface](http://mathworld.wolfram.com/SteinerSurface.html) |
-[Snub Cube](http://mathworld.wolfram.com/SnubCube.html)
+[Snub Cube](http://mathworld.wolfram.com/SnubCube.html) |
+[Seashell](http://mathworld.wolfram.com/Seashell.html) |
+[Steinbach Screw](http://mathworld.wolfram.com/SteinbachScrew.html) | 
+[Shoe Surface](http://mathworld.wolfram.com/ShoeSurface.html)
 
 T )
 [Tesseract](http://mathworld.wolfram.com/Tesseract.html) |
