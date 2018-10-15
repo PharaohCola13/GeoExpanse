@@ -1,11 +1,11 @@
 # Geometric Models
 Models of Geometric Figures
-(Work in Progress)
+(*Kinda late Alpha Stages*)
 
-I am still working on documentation for the models. 
+(*Its a work in progress*)
+
 ## Table of Contents
 - [Setup](#setup)
-- [Executing the scripts](#executing-the-scripts)
 - [Current models](#current-models)
 - [Models in development](#models-in-development)
 - [Future works](#future-works)
@@ -15,23 +15,17 @@ I am still working on documentation for the models.
 - [Contact](#contact)
 
 ## Setup
-To begin, these scripts should run on both Python 2 and 
-Python 3 versions. There are some packages that are required for all of the models:
-
-- matplotlib
-- numpy
-- tkinter (for GUI)
-
-The latest version of these packages can be installed by
+The GUI is now a standalone desktop application!!!
+Simply download the zip file for this project and navigate to:
 ```
-pip install [name of package]
+/geometric-models-master/GUI/ 
 ```
-## Executing the scripts
-Currently, there is a GUI functioning, however it is still in heavy development. The GUI code is [here](https://github.com/PharaohCola13/geometric-models/blob/master/gui_final.py). To execute the GUI, simply type in your terminal
+and enter into your command line
 ```
-python geo_gui.py
+dist/geo_gui
 ```
-
+I will continue to make bug fixes and updates to the application.
+As of now, it is exclusively a Linux application. However, I am working towards making it a multi-OS tool. 
 ## Current Models
 A )
 
@@ -138,6 +132,8 @@ label it request.
 
 I am currently working on a geometric paper describing the physical geometry of a Scutoid.
 
+On the development side, I am working towards a multi-OS application that can be installed and uninstalled (*if desired*) with ease. I am new to this so it might be a while.
+
 ## Contact
 
-If there are any questions feel free to contact me at my [email](spencerrile620@gmail.com).
+If there are any questions feel free to contact me at my [email](spencer.riley@student.nmt.edu).
