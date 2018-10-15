@@ -15,7 +15,7 @@ Models of Geometric Figures
 - [Contact](#contact)
 
 ## Setup
-The GUI is now a standalone desktop application!!!
+The GUI is now a standalone desktop application!!! (*kind of*)
 Simply download the zip file for this project and navigate to:
 ```
 /geometric-models-master/GUI/ 
