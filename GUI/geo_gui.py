@@ -169,23 +169,23 @@ class Geometry(tk.Frame):
 			root.geometry("800x800+520+280")
 
 		def FaceColor(self):
-			self.c_entry = askcolor(title="Face Color")[1]
-			self.fck.config(bg=self.c_entry)
+			self.c_entry = askcolor(parent=self, title="Face Color")[1]
+			self.fck.config(bg=self.c_entry, text=str(self.c_entry))
 			return self.c_entry
 
 		def FaceColor2(self):
 			self.c_entry2 = askcolor(title="Face Color 2")[1]
-			self.f2.config(bg=self.c_entry2)
+			self.f2.config(bg=self.c_entry2, text=str(self.c_entry2))
 			return self.c_entry2
 
 		def FaceColor3(self):
 			self.c_entry3 = askcolor(title="Face Color 3")[1]
-			self.f3.config(bg=self.c_entry3)
+			self.f3.config(bg=self.c_entry3, text=str(self.c_entry3))
 			return self.c_entry3
 
 		def EdgeColor(self):
 			self.ec_entry = askcolor(title="Edge Color")[1]
-			self.eck.config(bg=self.ec_entry)
+			self.eck.config(bg=self.ec_entry, text=str(self.ec_entry))
 			return self.ec_entry
 #
 		def popup_shape():
@@ -679,22 +679,22 @@ class Geometry(tk.Frame):
 			edge_c = self.ec_entry
 		except AttributeError:
 			edge_c = "#f608ff"
-			self.eck.config(bg=edge_c)
+			self.eck.config(bg=edge_c, text=str(edge_c))
 		try:
 			color = self.c_entry
 		except AttributeError:
 			color = "#00c4ff"
-			self.fck.config(bg=color)
+			self.fck.config(bg=color,text=str(color))
 		try:
 			color2 = self.c_entry2
 		except AttributeError:
 			color2 = "#000001"
-			self.f2.config(bg=color2)
+			self.f2.config(bg=color2, text=str(color2))
 		try:
 			color3 = self.c_entry3
 		except AttributeError:
 			color3 = "#000000"
-			self.f3.config(bg=color3)
+			self.f3.config(bg=color3, text=str(color3))
 
 		alpha = self.a_entry.get()
 		grid = self.grid_axis.get()
@@ -719,6 +719,7 @@ class Geometry(tk.Frame):
 			s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm,
 										  radiusa, color2, color3, height, rot, save)
 		except KeyError:
+
 			root.title("Geometric Modeling (Testing)")
 			testing.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, rot)
 			active = [self.a_entry, self.si_entry, self.ed_entry, self.pi_entry]
@@ -1080,23 +1081,21 @@ if __name__ == '__main__':
 	root.geometry("1232x801")
 	icon = ImageTk.PhotoImage(file='icon.png')
 
-	root.tk.call('wm', 'iconphoto', root._w, icon)
-	root.protocol("WM_DELETE_WINDOW", quit)
-	root.update()
-	root.update_idletasks()
-
-
 	def quit():
 		global root
 		root.quit()
 		root.destroy()
 
 
-	def quit_alt():
-		global root_alt
-		root_alt.quit()
-		root_alt.destroy()
+	root.tk.call('wm', 'iconphoto', root._w, icon)
+	root.protocol("WM_DELETE_WINDOW", quit)
+	root.update()
+	root.update_idletasks()
 
+	def quit():
+		global root
+		root.quit()
+		root.destroy()
 
 	geo = Geometry(master=root)
 	geo.mainloop()
