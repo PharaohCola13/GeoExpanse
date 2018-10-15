@@ -1,4 +1,4 @@
-# Geometric Models
+# GeoMetrics
 Models of Geometric Figures
 (*Kinda late Alpha Stages*)
 
