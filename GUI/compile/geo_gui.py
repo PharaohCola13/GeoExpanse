@@ -123,7 +123,7 @@ class Geometry(tk.Frame):
 		self.createWidgets()
 
 	def createWidgets(self):
-		global icon
+#		global icon
 		self.fig = plt.figure(figsize=(8, 8), facecolor="black", edgecolor="white")
 #
 		ax = p3.Axes3D(self.fig)
@@ -191,7 +191,7 @@ class Geometry(tk.Frame):
 			top = tk.Toplevel(self)
 			top.title("Shapes")
 			top.config(background=dim)
-			top.tk.call('wm', 'iconphoto', top._w, icon)
+#			top.tk.call('wm', 'iconphoto', top._w, icon)
 
 			pop = tk.Button(top, text="POP!", command=top.destroy)
 			pop.grid(row=0, column=0, sticky='new')
@@ -433,7 +433,7 @@ class Geometry(tk.Frame):
 			top = tk.Toplevel(self)
 			#top.geometry("300x200")
 			top.title("Save Figure")
-			top.tk.call('wm', 'iconphoto', top._w, icon)
+#			top.tk.call('wm', 'iconphoto', top._w, icon)
 			top.config(background=dim)
 
 			top.update_idletasks()
@@ -1078,7 +1078,7 @@ if __name__ == '__main__':
 
 	root.title("Geometric Models")
 	root.geometry("1232x801")
-	icon = ImageTk.PhotoImage(file='icon.png')
+#	icon = ImageTk.PhotoImage(file='icon.png')
 
 	def quit():
 		global root
@@ -1086,7 +1086,7 @@ if __name__ == '__main__':
 		root.destroy()
 
 
-	root.tk.call('wm', 'iconphoto', root._w, icon)
+#	root.tk.call('wm', 'iconphoto', root._w, icon)
 	root.protocol("WM_DELETE_WINDOW", quit)
 	root.update()
 	root.update_idletasks()
