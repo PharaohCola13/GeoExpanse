@@ -1,30 +1,22 @@
 import matplotlib
-
 matplotlib.use('tkagg')
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import mpl_toolkits.mplot3d.axes3d as p3
 from matplotlib.animation import *
-from numpy import *
 from PIL import ImageTk
 from PIL import Image
 import sys
 from time import sleep
 
 try:
-	# for Python2
-	import Tkinter as tk
-# import tk.ttk as ttk
-except ImportError:
-	# for Python3
 	import tkinter as tk
-# import tk.ttk as ttk
-
-try:
-	from tkColorChooser import askcolor
-except ImportError:
 	from tkinter.colorchooser import askcolor
+except ImportError:
+	import Tkinter as tk
+	from tkColorChooser import askcolor
 
+## 
 sys.path.append('../In Development/')
 
 sys.path.append('../Current Models/')
@@ -36,86 +28,99 @@ sys.path.append('../Current Models/Topological/')
 sys.path.append('../Current Models/Two Space/')
 sys.path.append('../Current Models/Archimedean/')
 
-sys.path.append('../Scutoid Research/')
-
 import prism, pyramid, sphere
-import hyperbolic_octahedron, hyperbolic_paraboloid, one_sheet_hyperboloid
-import three_dodecahedron, crescent, funnel, gabriel_horn, rose_spiral, shell, tesseract
-import breather_surface, kuen_surface, steiner_surface, boys_surface, roman_surface, sine_surface, henneberg_surface
+import hyperbolic_octahedron, hyperbolic_paraboloid, one_sheet_hyperboloid, hyperbolic_helicoid, hyperbolic_cylinder
+import three_dodecahedron, crescent, funnel, gabriel_horn, rose_spiral, shell, tesseract, spiral, seashell, steinbach_screw
+import breather_surface, kuen_surface, steiner_surface, boys_surface, roman_surface, sine_surface, henneberg_surface, unk_surface, dini_surface, enneper_surface, corkscrew_surface, shoe_surface
 import cube, dodecahedron, icosahedron, octahedron
 import cross_cap, klein, mobius, torus
-import unk_surface, hecatonicosihedron, hyperbolic_cylinder, dini_surface, neat, spiral, testing, penrose_triangle, vase, something_strange, enneper_surface
-import line
-import cuboctahedron, great_rombicosidodecahedron, snub_cube, truncated_cube
-import great_dodecahedron, great_icosahedron
-import deltoid, log_spiral, parabola, penrose_square
-#
-s = {"Prism"				: prism,
-		 "Pyramid"				: pyramid,
-		 "Sphere"				: sphere,
+import neat, testing, vase, something_strange, great_dodecahedron
+import cuboctahedron, great_rombicosidodecahedron, snub_cube, truncated_cube, hecatonicosihedron, great_icosahedron
+import deltoid, log_spiral, parabola, penrose_square, penrose_circle, line, penrose_triangle
+
+##
+s = {	 "Prism"					: prism,
+		 "Pyramid"					: pyramid,
+		 "Sphere"					: sphere,
 
 		 "Hyperbolic Octahedron"	: hyperbolic_octahedron,
 		 "Hyperbolic Paraboloid"	: hyperbolic_paraboloid,
 		 "One Sheet Hyperboloid"	: one_sheet_hyperboloid,
+		 "Hyperbolic Cylinder"		: hyperbolic_cylinder,
+		 "Hyperbolic Helicoid"		: hyperbolic_helicoid,
 
-		 "Three Dodecahedon"	: three_dodecahedron,
-		 "Cressant"				: crescent,
-		 "Funnel"				: funnel,
-		 "Gabriel's Horn"		: gabriel_horn,
-		 "Rose Spiral"			: rose_spiral,
+		 "Three Dodecahedon"		: three_dodecahedron,
+		 "Crescent"					: crescent,
+		 "Funnel"					: funnel,
+		 "Gabriel's Horn"			: gabriel_horn,
+		 "Rose Spiral"				: rose_spiral,
 		 "Shell"					: shell,
 		 "Tesseract"				: tesseract,
+		 "Spiral"					: spiral,
+		 "Seashell"					: seashell,
+		 "Steinbach Screw"			: steinbach_screw,
 
-		 "Breather's Surface"	: breather_surface,
-		 "Kuen's Surface"		: kuen_surface,
+		 "Breather's Surface"		: breather_surface,
+		 "Kuen's Surface"			: kuen_surface,
 		 "Steiner's Surface"		: steiner_surface,
 		 "Boy's Surface"			: boys_surface,
 		 "Roman Surface"			: roman_surface,
-		 "Sine Surface"			: sine_surface,
-		 "Henneberg's Surface"	: henneberg_surface,
+		 "Sine Surface"				: sine_surface,
+		 "Henneberg's Surface"		: henneberg_surface,
+		 "Dini's Surface"			: dini_surface,
+		 "Enneper's Surface"		: enneper_surface,
+		 "Corkscrew Surface"		: corkscrew_surface,
+		 "Shoe Surface"				: shoe_surface,
+		 "Unk Surface"				: unk_surface,
 
-		 "Cube"					: cube,
-		 "Dodecahedron"			: dodecahedron,
-		 "Icosahedron"			: icosahedron,
-		 "Octahedron"			: octahedron,
+		 "Cube"						: cube,
+		 "Dodecahedron"				: dodecahedron,
+		 "Icosahedron"				: icosahedron,
+		 "Octahedron"				: octahedron,
 
 		 "Cross Cap"				: cross_cap,
-		 "Klein Bottle"			: klein,
-		 "Mobius Strip"			: mobius,
+		 "Klein Bottle"				: klein,
+		 "Mobius Strip"				: mobius,
 		 "Torus"					: torus,
 
-		 "Unk Surface"			: unk_surface,
-		 "Hecatonicosihedron": hecatonicosihedron,
-		 "Hyperbolic Cylinder"	: hyperbolic_cylinder,
-		 "Dini's Surface"		: dini_surface,
-		 "Neat"					: neat,
-		 "Spiral"				: spiral,
-		 "Testing"				: testing,
-		 "Penrose Triangle"		: penrose_triangle,
-		 "Vase"					: vase,
+		 "Neat"						: neat,
+		 "Testing"					: testing,
+		 "Great Dodecahedron"		: great_dodecahedron,
+		 "Vase"						: vase,
 		 "Something Strange"		: something_strange,
-		 "Enneper's Surface"		: enneper_surface,
-		 "Line"					: line,
 
 		 "Cuboctahedron"			: cuboctahedron,
+		 "Hecatonicosihedron"		: hecatonicosihedron,
 		 "Great Rombicosidodecahedron": great_rombicosidodecahedron,
 		 "Snub Cube"				: snub_cube,
-		 "Truncated Cube"		: truncated_cube,
+		 "Truncated Cube"			: truncated_cube,
+		 "Great Icosahedron"		: great_icosahedron,
 
-		 "Deltoid"				: deltoid,
-		 "Log Spiral"			: log_spiral,
-		 "Parabola"				: parabola,
-		 "Penrose Square"		: penrose_square,
-		 "Great Dodecahedron"	: great_dodecahedron,
-		 "Great Icosahedron"	: great_icosahedron
+		 "Line"						: line,
+		 "Deltoid"					: deltoid,
+		 "Log Spiral"				: log_spiral,
+		 "Parabola"					: parabola,
+		 "Penrose Circle"			: penrose_circle,
+		 "Penrose Square"			: penrose_square,
+		 "Penrose Triangle"			: penrose_triangle,
 
 }
 
+gen 	= ["Prism", "Pyramid", "Sphere"]
+hyper	= ["Hyperbolic Octahedron", "Hyperbolic Paraboloid", "One Sheet Hyperboloid", "Hyperbolic Cylinder", "Hyperbolic Helicoid"]
+misc 	= ["Three Dodecahedron", "Crescent", "Funnel", "Gabriel's Horn", "Rose Spiral", "Shell", "Tesseract", "Spiral", "Seashell", "Steinbach Screw"]
+surf 	= ["Breather's Surface", "Kuen's Surface", "Steiner's Surface", "Boy's Surface", "Roman Surface", "Sine Surface", "Henneberg's Surface", "Dini's Surface", "Enneper's Surface", "Corkscrew Surface", "Shoe Surface", "Unk Surface"]
+topo 	= ["Cross Cap", "Klein Bottle", "Mobius Strip", "Torus"]
+deve 	= ["Neat", "Testing", "Great Dodecahedron", "Vase", "Something Strange"]
+arch 	= ["Cuboctahedron", "Hecatonicosihedron", "Great Rombicosidodecahedron", "Snub Cube", "Truncated Cube", "Great Icosahedron"]
+plat    = ["Cube", "Dodecahedron", "Octahedron", "Icosahedron"]
+two 	= ["Line", "Deltoid", "Log Spiral", "Parabola"]
+pen		= ["Penrose Circle", "Penrose Triangle", "Penrose Square"]
 
-dim = "#303030"  #   ackground
-dimf = "#00C0FF"  #   ont Color
-#
-disa = "#d400ff" #   isabled Text
+dim = "#303030"  #   Background
+dimf = "#00C0FF"  #   Font Color
+
+disa = "#d400ff" #   Disabled Text
 
 class Geometry(tk.Frame):
 	def __init__(self, master=None):
@@ -125,20 +130,15 @@ class Geometry(tk.Frame):
 	def createWidgets(self):
 #		global icon
 		self.fig = plt.figure(figsize=(8, 8), facecolor="black", edgecolor="white")
-#
 		ax = p3.Axes3D(self.fig)
 		ax.set_facecolor('black')
 		plt.axis("off")
-#
+
 		canvas = FigureCanvasTkAgg(self.fig,root)
-		canvas.get_tk_widget().grid(row=0,column=0, sticky='new')
-#
+		canvas.get_tk_widget().grid(row=0,column=0, sticky='new')	
 		root.update_idletasks()
-#
 		canvas.draw()
-#
-		frame = tk.Frame(root, width=100, height=100)
-#
+
 # 		# Vars
 
 		self.grid_axis 		= tk.StringVar()
@@ -154,6 +154,7 @@ class Geometry(tk.Frame):
 		def axi():
 			plt.axis(str(self.grid_axis.get()))
 			plt.xlabel("X-Axis", color="white")
+			plt.ylabel("Y-Axis", color="white")
 			ax.set_zlabel("Z-Axis", color="white")
 			plt.xticks(color="white")
 			plt.yticks(color="white")
@@ -202,236 +203,77 @@ class Geometry(tk.Frame):
 			plotter.config(bg=dim,fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
 			if self.two_three.get() == "3d":
-				prism = tk.Radiobutton(top, text="Prism",variable=self.shape_set, value="Prism")
-				prism.grid(row=1, column=0, sticky="w")
-
-				pyram = tk.Radiobutton(top, text="Pyramid",variable=self.shape_set, value="Pyramid")
-				pyram.grid(row=2, column=0, sticky="w")
-
-				spher = tk.Radiobutton(top, text="Sphere",variable=self.shape_set, value="Sphere")
-				spher.grid(row=3, column=0, sticky="w")
+				for n in range(len(gen)):
+					tk.Radiobutton(top, text=gen[n], variable=self.shape_set, value=gen[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+1, column=0, sticky='w')
 
 				##
-				hy = tk.Label(top, text="--- Hyperbolic Objects ---", font=('Times', 12, 'bold'))
-				hy.grid(row=4, column=0, sticky="nsew")
-				hy.config(bg=dim, fg=dimf, activebackground=dim)
+				hyperbolic = tk.Label(top, text="--- Hyperbolic Objects ---", font=('Times', 12, 'bold'))
+				hyperbolic.grid(row=4, column=0, sticky="nsew")
+				hyperbolic.config(bg=dim, fg=dimf, activebackground=dim)
 
-				hyoct = tk.Radiobutton(top, text="Hyperbolic Octahedron", variable=self.shape_set,
-									   value="Hyperbolic Octahedron")
-				hyoct.grid(row=5, column=0 , sticky="w")
-
-				hypar = tk.Radiobutton(top, text="Hyperbolic Paraboloid", variable=self.shape_set,
-									   value="Hyperbolic Paraboloid")
-				hypar.grid(row=6, column=0, sticky="w")
-
-				onesh = tk.Radiobutton(top, text="One Sheet Hyperboloid", variable=self.shape_set,
-									   value="One Sheet Hyperboloid")
-				onesh.grid(row=7, column=0, sticky="w")
-
-				hycyl = tk.Radiobutton(top, text="Hyperbolic Cylinder", variable=self.shape_set,
-									   value="Hyperbolic Cylinder")
-				hycyl.grid(row=8, column=0, sticky="w")
-
+				for n in range(len(hyper)):
+					tk.Radiobutton(top, text=hyper[n], variable=self.shape_set, value=hyper[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+5, column=0, sticky='w')
 
 				##
-				misc = tk.Label(top, text="--- Miscellaneous ---", font=('Times', 12, 'bold'))
-				misc.grid(row=10, column=0, sticky='nsew')
-				misc.config(bg=dim, fg=dimf, activebackground=dim)
+				miscellaneous = tk.Label(top, text="--- Miscellaneous ---", font=('Times', 12, 'bold'))
+				miscellaneous.grid(row=10, column=0, sticky='nsew')
+				miscellaneous.config(bg=dim, fg=dimf, activebackground=dim)
 
-				three = tk.Radiobutton(top, text="Three Dodecahedron", variable=self.shape_set,
-									   value="Three Dodecahedron")
-				three.grid(row=11, column=0, sticky="w")
-
-				cress = tk.Radiobutton(top, text="Cressant", variable=self.shape_set, value="Cressant")
-				cress.grid(row=12, column=0, sticky="w")
-
-				funne = tk.Radiobutton(top, text="Funnel", variable=self.shape_set, value="Funnel")
-				funne.grid(row=13, column=0, sticky="w")
-
-				gabri = tk.Radiobutton(top, text="Gabriel's Horn", variable=self.shape_set, value="Gabriel's Horn")
-				gabri.grid(row=14, column=0, sticky="w")
-
-				roses = tk.Radiobutton(top, text="Rose Spiral", variable=self.shape_set, value="Rose Spiral")
-				roses.grid(row=15, column=0, sticky="w")
-
-				shell = tk.Radiobutton(top, text="Shell", variable=self.shape_set, value="Shell")
-				shell.grid(row=16, column=0, sticky="w")
-
-				tesse = tk.Radiobutton(top, text="Tesseract", variable=self.shape_set, value="Tesseract")
-				tesse.grid(row=17, column=0, sticky="w")
-
-				spira = tk.Radiobutton(top, text="Spiral", variable=self.shape_set, value="Spiral")
-				spira.grid(row=18, column=0, sticky="w")
-
+				for n in range(len(misc)):
+					tk.Radiobutton(top, text=misc[n], variable=self.shape_set, value=misc[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+11, column=0, sticky='w')
 
 				##
-				surf = tk.Label(top, text="--- Surfaces ---", font=('Times', 12, 'bold'))
-				surf.grid(row=1, column=2, sticky='new')
-				surf.config(bg=dim, fg=dimf, activebackground=dim)
-
-				breat = tk.Radiobutton(top, text="Breather's Surface", variable=self.shape_set,
-									   value="Breather's Surface")
-				breat.grid(row=2, column=2, sticky="w")
-
-				kuens = tk.Radiobutton(top, text="Kuen's Surface", variable=self.shape_set, value="Kuen's Surface")
-				kuens.grid(row=3, column=2, sticky="w")
-
-				stein = tk.Radiobutton(top, text="Steiner's Surface", variable=self.shape_set,
-									   value="Steiner's Surface")
-				stein.grid(row=4, column=2, sticky="w")
-
-				boyss = tk.Radiobutton(top, text="Boy's Surface", variable=self.shape_set, value="Boy's Surface")
-				boyss.grid(row=5, column=2, sticky="w")
-
-				roman = tk.Radiobutton(top, text="Roman Surface", variable=self.shape_set, value="Roman Surface")
-				roman.grid(row=6, column=2, sticky="w")
-
-				sines = tk.Radiobutton(top, text="Sine Surface", variable=self.shape_set, value="Sine Surface")
-				sines.grid(row=7, column=2, sticky="w")
-
-				henne = tk.Radiobutton(top, text="Henneberg's Surface", variable=self.shape_set,
-									   value="Henneberg's Surface")
-				henne.grid(row=7, column=2, sticky="w")
-
-				dinis = tk.Radiobutton(top, text="Dini's Surface", variable=self.shape_set, value="Dini's Surface")
-				dinis.grid(row=8, column=2, sticky="w")
-
-				ennep = tk.Radiobutton(top, text="Enneper's Surface", variable=self.shape_set,
-
-									   value="Enneper's Surface")
-				ennep.grid(row=9, column=2, sticky="w")
-
-				unksu = tk.Radiobutton(top, text="Unk Surface", variable=self.shape_set, value="Unk Surface")
-				unksu.grid(row=10, column=2, sticky="w")
+				surface = tk.Label(top, text="--- Surfaces ---", font=('Times', 12, 'bold'))
+				surface.grid(row=1, column=2, sticky='new')
+				surface.config(bg=dim, fg=dimf, activebackground=dim)
+				for n in range(len(surf)):
+					tk.Radiobutton(top, text=surf[n], variable=self.shape_set, value=surf[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+2, column=2, sticky='w')
 
 				##
-				topo = tk.Label(top, text="--- Topological ---", font=('Times', 12, 'bold'))
-				topo.grid(row=11, column=2, sticky='nsew')
-				topo.config(bg=dim, fg=dimf, activebackground=dim)
-
-				cross = tk.Radiobutton(top, text="Cross Cap", variable=self.shape_set, value="Cross Cap")
-				cross.grid(row=12, column=2, sticky="w")
-
-				klein = tk.Radiobutton(top, text="Klein Bottle", variable=self.shape_set, value="Klein Bottle")
-				klein.grid(row=13, column=2, sticky="w")
-
-				mobiu = tk.Radiobutton(top, text="Mobius Strip", variable=self.shape_set, value="Mobius Strip")
-				mobiu.grid(row=14, column=2, sticky="w")
-
-				torus = tk.Radiobutton(top, text="Torus", variable=self.shape_set, value="Torus")
-				torus.grid(row=15, column=2, sticky="w")
+				topological = tk.Label(top, text="--- Topological ---", font=('Times', 12, 'bold'))
+				topological.grid(row=14, column=2, sticky='nsew')
+				topological.config(bg=dim, fg=dimf, activebackground=dim)
+				for n in range(len(topo)):
+					tk.Radiobutton(top, text=topo[n], variable=self.shape_set, value=topo[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+15, column=2, sticky='w')
 
 				##
-				dev = tk.Label(top, text="--- In Development ---", font=('Times', 12, 'bold'))
-				dev.grid(row=1, column=4, sticky='nsew')
-				dev.config(bg=dim, fg=dimf, activebackground=dim)
-
-				neat = tk.Radiobutton(top, text="Neat", variable=self.shape_set, value="Neat")
-				neat.grid(row=2, column=4, sticky="w")
-
-				test = tk.Radiobutton(top, text="Testing", variable=self.shape_set, value="Testing")
-				test.grid(row=3, column=4, sticky="w")
-
-				vase = tk.Radiobutton(top, text="Vase", variable=self.shape_set, value="Vase")
-				vase.grid(row=4, column=4, sticky="w")
-
-				somet = tk.Radiobutton(top, text="Something Strange", variable=self.shape_set,
-									   value="Something Strange")
-				somet.grid(row=5, column=4, sticky="w")
-
-				grdod = tk.Radiobutton(top, text="Great Dodecahedron",        variable=self.shape_set, value="Great Dodecahedron")
-				grdod.grid(row=7,column=4,sticky="w")
+				development = tk.Label(top, text="--- In Development ---", font=('Times', 12, 'bold'))
+				development.grid(row=1, column=4, sticky='nsew')
+				development.config(bg=dim, fg=dimf, activebackground=dim)
+				for n in range(len(deve)):
+					tk.Radiobutton(top, text=deve[n], variable=self.shape_set, value=deve[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+2, column=4, sticky='w')
 
 				##
-				arch = tk.Label(top, text="--- Archimedean Solids ---", font=('Times', 12, 'bold'))
-				arch.grid(row=1, column=5, sticky='nsew')
-				arch.config(bg=dim, fg=dimf, activebackground=dim)
-
-				cuboc = tk.Radiobutton(top, text="Cuboctahedron", variable=self.shape_set, value="Cuboctahedron")
-				cuboc.grid(row=2, column=5, sticky="w")
-
-				grrom = tk.Radiobutton(top, text="Great\n Rombicosidodecahedron", variable=self.shape_set,
-									   value="Great Rombicosidodecahedron")
-				grrom.grid(row=3, column=5, sticky="w")
-
-				scube = tk.Radiobutton(top, text="Snub Cube", variable=self.shape_set, value="Snub Cube")
-				scube.grid(row=4, column=5, sticky="w")
-
-				tcube = tk.Radiobutton(top, text="Truncated Cube", variable=self.shape_set, value="Truncated Cube")
-				tcube.grid(row=5, column=5, sticky="w")
-
-				polyh = tk.Radiobutton(top, text="Hecatonicosihedron", variable=self.shape_set,
-									   value="Hecatonicosihedron")
-				polyh.grid(row=6, column=5, sticky="w")
-
-				grico = tk.Radiobutton(top, text="Great Icosahedron",        variable=self.shape_set, value="Great Icosahedron")
-				grico.grid(row=7,column=5,sticky="w")
-
+				archimedean = tk.Label(top, text="--- Archimedean Solids ---", font=('Times', 12, 'bold'))
+				archimedean.grid(row=1, column=5, sticky='nsew')
+				archimedean.config(bg=dim, fg=dimf, activebackground=dim)
+				for n in range(len(arch)):
+					tk.Radiobutton(top, text=arch[n], variable=self.shape_set, value=arch[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+2, column=5, sticky='w')
+			
 				##
-				plato = tk.Label(top, text="--- Platonic Solids ---", font=('Times', 12, 'bold'))
-				plato.grid(row=9, column=5, sticky='nsew')
-				plato.config(bg=dim, fg=dimf, activebackground=dim)
-
-				cube = tk.Radiobutton(top, text="Cube", variable=self.shape_set, value="Cube")
-				cube.grid(row=10, column=5, sticky="w")
-
-				dodec = tk.Radiobutton(top, text="Dodecahedron", variable=self.shape_set, value="Dodecahedron")
-				dodec.grid(row=11, column=5, sticky="w")
-				icosa = tk.Radiobutton(top, text="Icosahedron", variable=self.shape_set, value="Icosahedron")
-				icosa.grid(row=12, column=5, sticky="w")
-
-				octah = tk.Radiobutton(top, text="Octahedron", variable=self.shape_set, value="Octahedron")
-				octah.grid(row=13, column=5, sticky="w")
+				platonic = tk.Label(top, text="--- Platonic Solids ---", font=('Times', 12, 'bold'))
+				platonic.grid(row=9, column=5, sticky='nsew')
+				platonic.config(bg=dim, fg=dimf, activebackground=dim)
+				for n in range(len(plat)):
+					tk.Radiobutton(top, text=plat[n], variable=self.shape_set, value=plat[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+10, column=5, sticky='w')
 
 				# cube_hover = CreateToolTip(cube, ImageTk.PhotoImage(file="./Visual/Cube.png"),"test")
-
-				def shape_config():
-					fam = [prism, pyram, spher]
-					hyp = [hyoct, hypar, onesh, hycyl]
-					mis = [three, cress, funne, gabri, roses, shell, tesse, spira]
-					sur = [breat, kuens, stein, boyss, roman, sines, henne, dinis, ennep, unksu]
-					top = [cross, klein, mobiu, torus]
-					dev = [neat, test, vase, somet, grdod, grico]
-					arc = [cuboc, grrom, scube, tcube, polyh]
-					pla = [cube, dodec, icosa, octah]
-					sh_all = fam + hyp + mis + sur + top + dev + arc + pla
-					for m in sh_all:
-						m.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)
-
-				return shape_config()
-				# shape_config()
 
 				self.shape_set.set("Unk Surface")
 
 			elif self.two_three.get() == "2d":
-				line = tk.Radiobutton(top, text="Line", variable=self.shape_set, value="Line")
-				line.grid(row=1, column=0, sticky='w')
-				line.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)
+				for n in range(len(two)):
+					tk.Radiobutton(top, text=two[n], variable=self.shape_set, value=two[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+1, column=0, sticky='w')
 
-				pentr = tk.Radiobutton(top, text="Penrose Triangle", variable=self.shape_set, value="Penrose Triangle")
-				pentr.grid(row=2, column=0, sticky="w")
-				pentr.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)
-
-				delto = tk.Radiobutton(top, text="Deltoid", variable=self.shape_set, value="Deltoid")
-				delto.grid(row=3, column=0, sticky="w")
-				delto.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)
-
-				logsp = tk.Radiobutton(top, text="Log Spiral", variable=self.shape_set, value="Log Spiral")
-				logsp.grid(row=4, column=0, sticky="w")
-				logsp.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)
-
-				parab = tk.Radiobutton(top, text="Parabola", variable=self.shape_set, value="Parabola")
-				parab.grid(row=5, column=0, sticky="w")
-				parab.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)
-
-				pensq = tk.Radiobutton(top, text="Penrose Square", variable=self.shape_set, value="Penrose Square")
-				pensq.grid(row=6, column=0, sticky="w")
-				pensq.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)
+				penrose = tk.Label(top, text="--- Penrose Projections ---", font=('Times', 12, 'bold'))
+				penrose.grid(row=1, column=2, sticky='nsew')
+				penrose.config(bg=dim, fg=dimf, activebackground=dim)
+				for n in range(len(pen)):
+					tk.Radiobutton(top, text=pen[n], variable=self.shape_set, value=pen[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+2, column=2, sticky='w')
 
 	#
 		def popup_save():
 			top = tk.Toplevel(self)
-			#top.geometry("300x200")
 			top.title("Save Figure")
 #			top.tk.call('wm', 'iconphoto', top._w, icon)
 			top.config(background=dim)
@@ -656,9 +498,8 @@ class Geometry(tk.Frame):
 			radio = [self.grid_on, self.grid_off, self.two_space, self.three_space, self.rot_on, self.rot_off]
 			button = [self.plotting, self.face, self.face2, self.face3, self.edge, self.shapes]
 			menus = [menu, filemenu]
-
 			root.config(background=dim)
-			# Scales
+
 			for m in scales:
 				m.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimf)
 			for n in labels:
@@ -670,7 +511,6 @@ class Geometry(tk.Frame):
 				p.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 			for q in menus:
 				q.config(bg=dim, fg=dimf, activebackground=dim, activeforeground=dimf)
-
 		return dark(self)
 	#
 	def plot(self, canvas, ax):
@@ -708,7 +548,7 @@ class Geometry(tk.Frame):
 		height = self.h_entry.get()
 
 		name = self.shape_set.get()
-		root.title("Geometric Modeling ({})".format(name))
+		root.title("GeoMetrics ({})".format(name))
 
 		ax.clear()
 		plt.cla()
@@ -719,7 +559,7 @@ class Geometry(tk.Frame):
 										  radiusa, color2, color3, height, rot, save)
 		except KeyError:
 
-			root.title("Geometric Modeling (Testing)")
+			root.title("GeoMetrics (Testing)")
 			testing.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, rot)
 			active = [self.a_entry, self.si_entry, self.ed_entry, self.pi_entry]
 			active_label = [self.a_label, self.si_label, self.ed_label, self.pi_label]
@@ -1076,7 +916,7 @@ class Geometry(tk.Frame):
 if __name__ == '__main__':
 	root = tk.Tk()
 
-	root.title("Geometric Models")
+	root.title("GeoMetrics")
 	root.geometry("1232x801")
 #	icon = ImageTk.PhotoImage(file='icon.png')
 
