@@ -4,7 +4,8 @@
 [![Stars](https://img.shields.io/github/stars/pharaohcola13/GeoMetrics.svg?branch=master)](https://img.shields.io/github/stars/pharaohcola13/GeoMetrics)
 
 [![3D Models](https://img.shields.io/badge/3D%20Models-47-lightgrey.svg?branch=master)](https://github.com/PharaohCola13/GeoMetrics/tree/master/src/Current%20Models)
-[![2D Models](https://img.shields.io/badge/2d%20Models-7-lightgrey.svg)](https://github.com/PharaohCola13/GeoMetrics/tree/master/src/Current%20Models/Two%20Space/) [![Join the chat at https://gitter.im/GeoMetrics13/Lobby](https://badges.gitter.im/GeoMetrics13/Lobby.svg)](https://gitter.im/GeoMetrics13/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![2D Models](https://img.shields.io/badge/2d%20Models-7-lightgrey.svg)](https://github.com/PharaohCola13/GeoMetrics/tree/master/src/Current%20Models/Two%20Space/)
+
 
 Models of Geometric Figures
 (*Kinda late Alpha Stages*)
