@@ -1,6 +1,10 @@
 # GeoMetrics 
-![](https://img.shields.io/github/license/mashape/apistatus.svg?branch=master)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?branch=master)](https://opensource.org/licenses/MIT)
+[![Issues](https://img.shields.io/github/issues/pharaohcola13/GeoMetrics.svg?branch=master)](https://img.shields.io/github/issues/pharaohcola13/GeoMetrics)
+[![Stars](https://img.shields.io/github/stars/pharaohcola13/GeoMetrics.svg?branch=master)](https://img.shields.io/github/stars/pharaohcola13/GeoMetrics)
 
+[![3D Models](https://img.shields.io/badge/3D%20Models-47-lightgrey.svg?branch=master)](https://github.com/PharaohCola13/GeoMetrics/tree/master/src/Current%20Models)
+[![2D Models](https://img.shields.io/badge/2d%20Models-7-lightgrey.svg)](https://github.com/PharaohCola13/GeoMetrics/tree/master/src/Current%20Models/Two%20Space/)
 
 Models of Geometric Figures
 (*Kinda late Alpha Stages*)
