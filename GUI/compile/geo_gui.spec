@@ -6,7 +6,7 @@ block_cipher = None
 a = Analysis(['geo_gui.py'],
              pathex=['/home/pharaohcola13/PycharmProjects/Research/GeoMetrics/GUI/compile'],
              binaries=[],
-             datas=[('icon.png', 'icon')],
+             datas=None,
              hiddenimports=['PIL._tkinter_finder', 'matplotlib'],
              hookspath=[],
              runtime_hooks=[],
@@ -29,4 +29,4 @@ exe = EXE(pyz,
           strip=False,
           upx=True,
           runtime_tmpdir=None,
-          console=True, icon='icon.png')
+          console=False, icon='icon.ico')
