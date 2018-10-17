@@ -141,7 +141,7 @@ label it request.
 
 I am currently working on a geometric paper describing the physical geometry of a Scutoid.
 
-On the development side, I am working towards a multi-OS application that can be installed and uninstalled (*if desired*) with ease. I am new to this so it might be a while.
+On the development side, I am working towards a multi-OS application that can be installed and uninstalled (*if desired*) with ease. For Linux users, I am making an attempt to have the software installable from a PPA repository to use with the APT packaging manager. I am new to this so it might be a while.
 
 ## Contact
 
