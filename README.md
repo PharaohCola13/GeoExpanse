@@ -15,17 +15,13 @@ Models of Geometric Figures
 - [Contact](#contact)
 
 ## Setup
-The GUI is now a standalone desktop application!!! (*kind of*)
-Simply download the zip file for this project and navigate to:
+The GUI is now a standalone desktop application!!!!
+You can simply go to 
 ```
-/GeoMetrics-master/GUI/ 
+/build/[Your OS]/
 ```
-and enter into your command line
-```
-dist/geo_gui
-```
-I will continue to make bug fixes and updates to the application.
-As of now, it is exclusively a Linux application. However, I am working towards making it a multi-OS tool. 
+and download the executable. I will continue to make bug fixes and updates to the application.
+As of now, it is a Linux/Windows application. However, I am working towards making it work for MacOS as well. 
 ## Current Models
 A )
 
