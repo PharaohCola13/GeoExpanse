@@ -1,4 +1,7 @@
-# GeoMetrics
+# GeoMetrics 
+![](https://img.shields.io/github/license/mashape/apistatus.svg?branch=master)
+
+
 Models of Geometric Figures
 (*Kinda late Alpha Stages*)
 
