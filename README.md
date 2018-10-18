@@ -1,4 +1,4 @@
-# GeoMetrics <img src="https://github.com/PharaohCola13/GeoMetrics/blob/master/docs/assets/images/tux.svg" alt="Linux"> <img src="https://github.com/PharaohCola13/GeoMetrics/blob/master/docs/assets/images/windows.svg" alt="Windows">
+# GeoMetrics
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?branch=master)](https://opensource.org/licenses/MIT)
 [![Issues](https://img.shields.io/github/issues/pharaohcola13/GeoMetrics.svg?branch=master)](https://img.shields.io/github/issues/pharaohcola13/GeoMetrics)
