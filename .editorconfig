@@ -1,0 +1,11 @@
+# EditorConfig helps developers define and maintain consistent
+# coding styles between different editors and IDEs
+# editorconfig.org
+
+root = True
+
+[*.py]
+indent_style = tab
+indent_size = 4
+end_of_line = lf
+charset = utf-8
