@@ -169,24 +169,36 @@ class Geometry(tk.Frame):
 			root.geometry("800x800+520+280")
 
 		def FaceColor(self):
-			self.c_entry = askcolor(parent=self, title="Face Color")[1]
-			self.fck.config(bg=self.c_entry, text=str(self.c_entry))
-			return self.c_entry
+			self.c_entry = askcolor(title="Face Color")
+			if self.c_entry[0] > (128,128,128):
+				self.fck.config(bg=self.c_entry[1], text=str(self.c_entry[1]), fg='#000')
+			elif self.c_entry[0] < (128,128,128):
+				self.fck.config(bg=self.c_entry[1], text=str(self.c_entry[1]), fg='#fff')
+			return self.c_entry[1]
 
 		def FaceColor2(self):
-			self.c_entry2 = askcolor(title="Face Color 2")[1]
-			self.f2.config(bg=self.c_entry2, text=str(self.c_entry2))
-			return self.c_entry2
+			self.c_entry2 = askcolor(title="Face Color 2")
+			if self.c_entry2[0] > (128,128,128):
+				self.f2.config(bg=self.c_entry2[1], text=str(self.c_entry2[1]), fg='#000')
+			elif self.c_entry2[0] < (128,128,128):
+				self.f2.config(bg=self.c_entry2[1], text=str(self.c_entry2[1]), fg='#fff')
+			return self.c_entry2[1]
 
 		def FaceColor3(self):
-			self.c_entry3 = askcolor(title="Face Color 3")[1]
-			self.f3.config(bg=self.c_entry3, text=str(self.c_entry3))
-			return self.c_entry3
+			self.c_entry3 = askcolor(title="Face Color 3")
+			if self.c_entry3[0] > (128,128,128):
+				self.f3.config(bg=self.c_entry3[1], text=str(self.c_entry3[1]), fg='#000')
+			elif self.c_entry3[0] < (128,128,128):
+				self.f3.config(bg=self.c_entry3[1], text=str(self.c_entry3[1]), fg='#fff')
+			return self.c_entry3[1]
 
 		def EdgeColor(self):
-			self.ec_entry = askcolor(title="Edge Color")[1]
-			self.eck.config(bg=self.ec_entry, text=str(self.ec_entry))
-			return self.ec_entry
+			self.ec_entry = askcolor(title="Edge Color")
+			if self.ec_entry[0] > (128,128,128):
+				self.eck.config(bg=self.ec_entry[1], text=str(self.ec_entry[1]), fg='#000')
+			elif self.ec_entry[0] < (128,128,128):
+				self.eck.config(bg=self.ec_entry[1], text=str(self.ec_entry[1]), fg='#fff')
+			return self.ec_entry[1]
 #
 		def popup_shape():
 			top = tk.Toplevel(self)
@@ -286,6 +298,7 @@ class Geometry(tk.Frame):
 			pop.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
 			self.format_save = tk.StringVar()
+			self.transparency = tk.StringVar()
 
 			def vid():
 				plt.axis("off")
@@ -318,15 +331,6 @@ class Geometry(tk.Frame):
 				sleep(0)
 				plt.close()
 
-			clt = tk.Radiobutton(top, text="Transparent On")
-			clt.grid(row=1, column=2)
-			clt.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,
-					   selectcolor=dim)
-
-			clf = tk.Radiobutton(top, text="Transparent Off")
-			clf.grid(row=2, column=2)
-			clf.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,  activeforeground=dimf,
-					   selectcolor=dim)
 
 			png = tk.Radiobutton(top, text="png", variable=self.format_save, value="png", width=5)
 			png.grid(row=1, column=0)
@@ -346,14 +350,30 @@ class Geometry(tk.Frame):
 			save_img.grid(row=0, column=1)
 			save_img.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
-			save_img.config(command=lambda: plt.savefig("{}.{}".format(s[self.shape_set.get()].name, self.format_save.get()),  transparent=True))
-
 			save_vid = tk.Button(top, text="save video")
 			save_vid.grid(row=0, column=2)
 			save_vid.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
 			self.format_save.set("png")
 
+			def trans_on():
+				save_img.config(
+					command=lambda: plt.savefig("{}.{}".format(s[self.shape_set.get()].name, self.format_save.get()),
+												transparent=True))
+			def trans_off():
+				save_img.config(
+					command=lambda: plt.savefig("{}.{}".format(s[self.shape_set.get()].name, self.format_save.get()),
+												transparent=False, facecolor="black"))
+
+			clt = tk.Radiobutton(top, text="Transparent On", command=trans_on(), variable=self.transparent)
+			clt.grid(row=1, column=2)
+			clt.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,
+					   selectcolor=dim)
+
+			clf = tk.Radiobutton(top, text="Transparent Off", command=trans_off(), variable=self.transparent)
+			clf.grid(row=2, column=2)
+			clf.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,  activeforeground=dimf,
+					   selectcolor=dim)
 			top.update()
 			top.update_idletasks()
 			top.mainloop()
@@ -515,22 +535,22 @@ class Geometry(tk.Frame):
 	#
 	def plot(self, canvas, ax):
 		try:
-			edge_c = self.ec_entry
+			edge_c = self.ec_entry[1]
 		except AttributeError:
 			edge_c = "#f608ff"
 			self.eck.config(bg=edge_c, text=str(edge_c))
 		try:
-			color = self.c_entry
+			color = self.c_entry[1]
 		except AttributeError:
 			color = "#00c4ff"
 			self.fck.config(bg=color,text=str(color))
 		try:
-			color2 = self.c_entry2
+			color2 = self.c_entry2[1]
 		except AttributeError:
 			color2 = "#000001"
 			self.f2.config(bg=color2, text=str(color2))
 		try:
-			color3 = self.c_entry3
+			color3 = self.c_entry3[1]
 		except AttributeError:
 			color3 = "#000000"
 			self.f3.config(bg=color3, text=str(color3))

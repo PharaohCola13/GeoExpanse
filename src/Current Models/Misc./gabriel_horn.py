@@ -32,8 +32,8 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiu
 
 	# Value of the angles
 	s = sides
-	u = linspace(1, h, s + 1)
-	v = linspace(0, 2 * pi, edges)
+	u = linspace(1, h, edges)
+	v = linspace(0, 2 * pi, s + 1)
 
 	u, v = meshgrid(u, v)
 
@@ -51,9 +51,9 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiu
 	plt.axis('equal')
 
 	# Axis Limits
-	ax.set_xlim(-4, 4)
-	ax.set_ylim(-4, 4)
-	ax.set_zlim(-4, 4)
+	ax.set_xlim(-2 * a, 2 * a)
+	ax.set_ylim(-2 * a, 2 * a)
+	ax.set_zlim(-h, h)
 
 	# Surface Plot
 	horn = ax.plot_surface(x, y, z)
