@@ -577,7 +577,7 @@ class Geometry(tk.Frame):
 		height = self.h_entry.get()
 
 		name = self.shape_set.get()
-		root.title("Geotesimal ({})".format(name))
+		root.title("GeoExpanse ({})".format(name))
 
 		ax.clear()
 		plt.cla()
@@ -588,7 +588,7 @@ class Geometry(tk.Frame):
 										  radiusa, color2, color3, height, rot, save)
 		except KeyError:
 
-			root.title("Geotesimal (Testing)")
+			root.title("GeoExpanse (Testing)")
 			testing.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, rot)
 			active = [self.a_entry, self.si_entry, self.ed_entry, self.pi_entry]
 			active_label = [self.a_label, self.si_label, self.ed_label, self.pi_label]
@@ -970,7 +970,7 @@ class Geometry(tk.Frame):
 if __name__ == '__main__':
 	root = tk.Tk()
 
-	root.title("Geotesimal")
+	root.title("GeoExpanse")
 	root.geometry("1232x801")
 	icon = ImageTk.PhotoImage(file='icon.png')
 
