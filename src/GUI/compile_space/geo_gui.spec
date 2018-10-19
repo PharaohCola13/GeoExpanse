@@ -3,7 +3,7 @@
 block_cipher = None
 
 
-a = Analysis(['geo_gui.py'],
+a = Analysis(['../geo_gui.py', '../../Current Models/*.py', '../../Current Models/Archimedean/*.py', '../../Current Models/Hyperbolic/*.py', '../../Current Models/Misc./*.py', '../../Current Models/Surfaces/*.py', '../../Current Models/Platonic Solids/*.py', '../../Current Models/Topological/*.py', '../../Current Models/Two Space/*.py'],
              pathex=['/home/pharaohcola13/PycharmProjects/Research/GeoMetrics/GUI/compile'],
              binaries=[],
              datas=None,
@@ -23,7 +23,7 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='GeoMetrics',
+          name='GeoExpanse',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
