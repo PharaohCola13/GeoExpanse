@@ -13,7 +13,7 @@ from matplotlib.animation import *
 from PIL import ImageTk
 from PIL import Image
 import sys
-from inspect import signature
+#from inspect import signature
 from time import sleep
 
 try:
@@ -308,38 +308,6 @@ class Geometry(tk.Frame):
 			self.format_save = tk.StringVar()
 			self.transparency = tk.StringVar()
 
-			def vid():
-				plt.axis("off")
-				ax.set_facecolor('black')
-				ax.grid(False)
-				ax.axis('off')
-				ax.set_xticks([])
-				ax.set_yticks([])
-				ax.set_zticks([])
-
-				plt.axis('off')
-				plt.axis('equal')
-
-				def init():
-					return testing.test,
-
-				def animate(i):
-					ax.view_init(elev=i, azim=i)
-					return testing.test,
-
-			#            Animate
-				ani = FuncAnimation(self.fig, animate, init_func=init, interval=1, frames=500, repeat=True)
-
-				Writer = writers['ffmpeg']
-				writer = Writer(fps=15, bitrate=1800)
-				ani.save('{}.{}'.format(s[self.shape_set.get(), self.format_save.get()]),writer=writer)
-
-				plt.ion()
-				plt.show()
-				sleep(0)
-				plt.close()
-
-
 			png = tk.Radiobutton(top, text="png", variable=self.format_save, value="png", width=5)
 			png.grid(row=1, column=0)
 			png.config(bg=dim, fg=dimf, activebackground=dim,  highlightthickness=0, activeforeground=dimf,
@@ -350,17 +318,9 @@ class Geometry(tk.Frame):
 			jpg.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,
 					   selectcolor=dim)
 
-			mp4 = tk.Radiobutton(top, text="mp4", variable=self.format_save,    value="mp4", width=5)
-			mp4.grid(row=2, column=0)
-			mp4.config(bg=dim, 	fg=dimf, activebackground=dim,  highlightthickness=0, activeforeground=dimf, selectcolor=dim)
-
 			save_img = tk.Button(top, text="save img")
 			save_img.grid(row=0, column=1)
 			save_img.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
-
-			save_vid = tk.Button(top, text="save video")
-			save_vid.grid(row=0, column=2)
-			save_vid.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
 			self.format_save.set("png")
 
@@ -489,7 +449,7 @@ class Geometry(tk.Frame):
 
 		# Plotting,
 		self.plotting = tk.Button(root, text="Update", command=lambda: self.plot(canvas, ax), height=4)
-		self.plotting.grid(row=0, column=1, columnspan=2, sticky="new", pady=430)
+		self.plotting.grid(row=0, column=1, columnspan=2, sticky="new", pady=725)
 
 	# 	# Grid Functions (on/off)
 		self.grid_on = tk.Radiobutton(root, text="Grid On", variable=self.grid_axis, value='on', command=axi)
@@ -500,30 +460,22 @@ class Geometry(tk.Frame):
 		self.grid_axis.set('off')
 	#
 	# 	# 2D or 3D
-		self.two_space = tk.Radiobutton(root, text="2D", variable=self.two_three, value='2d', command=space)
-		self.two_space.grid(row=0, column=2, sticky='nw', pady=350)
+		self.two_space = tk.Radiobutton(root, text="2D Objects", variable=self.two_three, value='2d', command=space)
+		self.two_space.grid(row=0, column=3, sticky='nw')
 
-		self.three_space = tk.Radiobutton(root, text="3D", variable=self.two_three, value='3d', command=space)
-		self.three_space.grid(row=0, column=2, sticky='nw', pady=380)
+		self.three_space = tk.Radiobutton(root, text="3D Objects", variable=self.two_three, value='3d', command=space)
+		self.three_space.grid(row=0, column=4, sticky='nw')
 		self.two_three.set('3d')
-	#
-	# 	# Rotation
-		self.rot_on = tk.Radiobutton(root, text="Rot On", variable=self.rot, value='on')
-		self.rot_on.grid(row=0, column=3, sticky='new')
-
-		self.rot_off = tk.Radiobutton(root, text='Rot Off', variable=self.rot, value='off')
-		self.rot_off.grid(row=0, column=4, sticky='new')
-
 	# 	# Shape Popup
 		self.shapes = tk.Button(root, text="Shapes", command=popup_shape, height=4)
-		self.shapes.grid(row=0, column=3, columnspan=2, sticky='new', pady=430)
+		self.shapes.grid(row=0, column=3, columnspan=2, sticky='new', pady=725)
 
 		def dark(self):
 			scales = [self.a_entry, self.h_entry, self.si_entry, self.ed_entry, self.pi_entry, self.ew_entry,
 					  self.ram_entry, self.raa_entry]
 			labels = [self.a_label, self.h_label, self.si_label, self.ed_label, self.pi_label, self.ew_label,
 					  self.ram_label, self.raa_label]
-			radio = [self.grid_on, self.grid_off, self.two_space, self.three_space, self.rot_on, self.rot_off]
+			radio = [self.grid_on, self.grid_off, self.two_space, self.three_space]
 			button = [self.plotting, self.face, self.face2, self.face3, self.edge, self.shapes]
 			menus = [menu, filemenu]
 			root.config(background=dim)
@@ -572,8 +524,6 @@ class Geometry(tk.Frame):
 		multi_pi = self.pi_entry.get()
 		radiusa = self.raa_entry.get()
 		radiusm = self.ram_entry.get()
-		rot = self.rot.get()
-		save = self.format_save.get()
 		height = self.h_entry.get()
 
 		name = self.shape_set.get()
@@ -595,7 +545,7 @@ class Geometry(tk.Frame):
 			#print(sig.parameters.values())
 
 			#for n in sig.parameters.values():
-			testing.shape(self.fig, alpha,color, edge_c, edge_w, grid, sides, edges, multi_pi, rot)
+			testing.shape(self.fig, alpha,color, edge_c, edge_w, grid, sides, edges, multi_pi)
 
 			active = [self.a_entry, self.si_entry, self.ed_entry, self.pi_entry]
 			active_label = [self.a_label, self.si_label, self.ed_label, self.pi_label]
