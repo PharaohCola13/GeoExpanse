@@ -11,7 +11,7 @@ import time
 
 name = "Testing"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, radiusa, color2, color3, height):
+def shape(fig, alpha,color, edge_c, edge_w, grid, sides, edges, multi_pi):
 	def x_(u,v):
 		x = cos(u) * sin(v)
 		return x

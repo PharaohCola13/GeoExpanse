@@ -13,6 +13,7 @@ from matplotlib.animation import *
 from PIL import ImageTk
 from PIL import Image
 import sys
+from inspect import signature
 from time import sleep
 
 try:
@@ -582,16 +583,6 @@ class Geometry(tk.Frame):
 		plt.cla()
 		plt.clf()
 
-		args = ["self.fig", "alpha", color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, radiusa, color2, color3, height]
-
-
-		#for n in s[self.shape_set.get()].shape():
-			#try:
-		#	print(n)
-		#	s[self.shape_set.get()].shape(n)
-			#except TypeError:
-			#	print(n)
-
 
 		#
 		try:  # Count: 14
@@ -600,7 +591,13 @@ class Geometry(tk.Frame):
 		except KeyError:
 
 			root.title("GeoExpanse (Testing)")
-			testing.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm,radiusa, color2, color3, height)
+			sig = signature(testing.shape)
+
+			print(sig.parameters.values())
+
+			for n in sig.parameters.values():
+				testing.shape(n.KEYWORD_ONLY)
+
 			active = [self.a_entry, self.si_entry, self.ed_entry, self.pi_entry]
 			active_label = [self.a_label, self.si_label, self.ed_label, self.pi_label]
 			disable = [self.ram_entry, self.raa_entry, self.h_entry]
