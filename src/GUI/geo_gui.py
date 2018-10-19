@@ -126,9 +126,7 @@ pen		= ["Penrose Circle", "Penrose Triangle", "Penrose Square"]
 
 dim = "#303030"  #   Background
 dimf = "#00C0FF"  #   Font Color
-
 disa = "#d400ff" #   Disabled Text
-
 
 ## Start of Application
 class Geometry(tk.Frame):
@@ -541,7 +539,8 @@ class Geometry(tk.Frame):
 			for q in menus:
 				q.config(bg=dim, fg=dimf, activebackground=dim, activeforeground=dimf)
 		return dark(self)
-	#
+
+#
 	def plot(self, canvas, ax):
 		try:
 			edge_c = self.ec_entry[1]
@@ -583,13 +582,25 @@ class Geometry(tk.Frame):
 		plt.cla()
 		plt.clf()
 
+		args = ["self.fig", "alpha", color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, radiusa, color2, color3, height]
+
+
+		#for n in s[self.shape_set.get()].shape():
+			#try:
+		#	print(n)
+		#	s[self.shape_set.get()].shape(n)
+			#except TypeError:
+			#	print(n)
+
+
+		#
 		try:  # Count: 14
 			s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm,
-										  radiusa, color2, color3, height, rot, save)
+										  radiusa, color2, color3, height)
 		except KeyError:
 
 			root.title("GeoExpanse (Testing)")
-			testing.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, rot)
+			testing.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm,radiusa, color2, color3, height)
 			active = [self.a_entry, self.si_entry, self.ed_entry, self.pi_entry]
 			active_label = [self.a_label, self.si_label, self.ed_label, self.pi_label]
 			disable = [self.ram_entry, self.raa_entry, self.h_entry]

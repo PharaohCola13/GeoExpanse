@@ -48,7 +48,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid):
 	ax.set_zlim(-0.5, 0.5)
 
 	# Side Configuration for Cube
-	verts_cube = [[Z[1], Z[7], Z[5]],
+	verts_grico = [[Z[1], Z[7], Z[5]],
 				  [Z[6], Z[7], Z[1]],
 				  [Z[1], Z[5], Z[12]],
 				  [Z[11], Z[6], Z[1]],
@@ -71,12 +71,12 @@ def shape(fig, alpha, color, edge_c, edge_w, grid):
 				  ]
 	# Cube Properties
 
-	cube = Poly3DCollection(verts_cube)
+	grico = Poly3DCollection(verts_grico)
 
-	cube.set_edgecolor(edge_c)
-	cube.set_linewidth(edge_w)
-	cube.set_alpha(alpha)
-	cube.set_facecolor(color)
+	grico.set_edgecolor(edge_c)
+	grico.set_linewidth(edge_w)
+	grico.set_alpha(alpha)
+	grico.set_facecolor(color)
 
 	# Plot Surfaces
-	ax.add_collection3d(cube)
+	ax.add_collection3d(grico)
