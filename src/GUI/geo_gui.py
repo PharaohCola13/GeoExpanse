@@ -7,7 +7,7 @@ __author__ = "Spencer Riley"
 import matplotlib
 matplotlib.use('tkagg')
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg#, NavigationToolbar2TkAgg
 import mpl_toolkits.mplot3d.axes3d as p3
 from matplotlib.animation import *
 from PIL import ImageTk
@@ -556,7 +556,7 @@ class Geometry(tk.Frame):
 		try:
 			color2 = self.c_entry2[1]
 		except AttributeError:
-			color2 = "#000001"
+			color2 = "#000000"
 			self.f2.config(bg=color2, text=str(color2))
 		try:
 			color3 = self.c_entry3[1]
@@ -583,7 +583,6 @@ class Geometry(tk.Frame):
 		plt.cla()
 		plt.clf()
 
-
 		#
 		try:  # Count: 14
 			s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm,
@@ -591,12 +590,12 @@ class Geometry(tk.Frame):
 		except KeyError:
 
 			root.title("GeoExpanse (Testing)")
-			sig = signature(testing.shape)
+			#sig = signature(testing.shape)
 
-			print(sig.parameters.values())
+			#print(sig.parameters.values())
 
-			for n in sig.parameters.values():
-				testing.shape(n.KEYWORD_ONLY)
+			#for n in sig.parameters.values():
+			testing.shape(self.fig, alpha,color, edge_c, edge_w, grid, sides, edges, multi_pi, rot)
 
 			active = [self.a_entry, self.si_entry, self.ed_entry, self.pi_entry]
 			active_label = [self.a_label, self.si_label, self.ed_label, self.pi_label]

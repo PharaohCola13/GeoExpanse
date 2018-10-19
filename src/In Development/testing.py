@@ -11,7 +11,7 @@ import time
 
 name = "Testing"
 
-def shape(fig, alpha,color, edge_c, edge_w, grid, sides, edges, multi_pi):
+def shape(fig, alpha,color, edge_c, edge_w, grid, sides, edges, multi_pi, rot):
 	def x_(u,v):
 		x = cos(u) * sin(v)
 		return x
@@ -66,37 +66,37 @@ def shape(fig, alpha,color, edge_c, edge_w, grid, sides, edges, multi_pi):
 #	test1.set_linewidth(edge_w)
 #	test1.set_facecolor(color)
 
-# 	def rot_on():
-#
-# 		plt.axis("off")
-# 		ax.set_facecolor('black')
-# 		ax.grid(False)
-# 		ax.axis('off')
-# 		ax.set_xticks([])
-# 		ax.set_yticks([])
-# 		ax.set_zticks([])
-#
-# 		plt.axis('off')
-# 		plt.axis('equal')
-# 		def init():
-# 			return test,
-#
-# 		def animate(i):
-# 			ax.view_init(elev=45, azim=i)
-# 			return test
-#
-# 		# Animate
-# 		ani = FuncAnimation(fig, animate, init_func=init,
-# 							interval=1, frames=500, repeat=True)
-#
-# 		plt.ion()
-# 		plt.show()
-# 		time.sleep(0)
-# 		plt.close()
-# 		#ax.clear()
-# 		#plt.cla()
-# 		#plt.clf()
-#
+	def rot_on():
+		plt.axis(grid)
+		ax.set_facecolor('black')
+		ax.grid(False)
+		ax.axis('off')
+		ax.set_xticks([])
+		ax.set_yticks([])
+		ax.set_zticks([])
+
+		def init():
+			return test,
+
+		def animate(i):
+			ax.view_init(azim=4*i)
+			return test
+
+		# Animate
+		ani = FuncAnimation(fig, animate, init_func=init,
+							interval=1, frames=500, repeat=True)
+
+		plt.ion()
+		plt.show()
+		time.sleep(0)
+		plt.close()
+		ax.clear()
+	#	plt.cla()
+	#	plt.clf()
+
+
+	#	plt.cla()
+	#	plt.clf()
 # 	# def save_mp4():
 # 	# 	plt.axis("off")
 # 	# 	ax.set_facecolor('black')
@@ -131,32 +131,32 @@ def shape(fig, alpha,color, edge_c, edge_w, grid, sides, edges, multi_pi):
 # 	# 	plt.close()
 # 	#
 #
-# 	def rot_off():
-# 		ax.set_facecolor('black')
-# 		ax.grid(False)
-# 		ax.axis('off')
-# 		ax.set_xticks([])
-# 		ax.set_yticks([])
-# 		ax.set_zticks([])
-#
-# 		plt.axis('off')
-# 		plt.axis('equal')
-#
-# 		plt.ion()
-# 		plt.show()
-# 		time.sleep(0)
-# 		plt.close()
-# 		#plt.draw()
-#
-# 	if rot == "on":
-# 		rot_on()
+	def rot_off():
+		ax.set_facecolor('black')
+		ax.grid(False)
+		ax.axis('off')
+		ax.set_xticks([])
+		ax.set_yticks([])
+		ax.set_zticks([])
+
+		plt.axis('off')
+		plt.axis('equal')
+
+		plt.ion()
+		plt.show()
+		time.sleep(0)
+		plt.close()
+		#plt.draw()
+
+	if rot == "on":
+		rot_on()
 #
 # 	#if save == "mp4":
 # 		#save_mp4()
 #
-# 	if rot == "off":
-# 		rot_off()
-#
+	if rot == "off":
+		rot_off()
+
 # # # Definitions for animation
 # # def init():
 # #  	return test,
