@@ -1,3 +1,9 @@
+## General Information
+
+__author__ = "Spencer Riley"
+
+
+## Imports
 import matplotlib
 matplotlib.use('tkagg')
 import matplotlib.pyplot as plt
@@ -36,9 +42,9 @@ import cube, dodecahedron, icosahedron, octahedron
 import cross_cap, klein, mobius, torus
 import neat, testing, vase, something_strange, great_dodecahedron
 import cuboctahedron, great_rombicosidodecahedron, snub_cube, truncated_cube, hecatonicosihedron, great_icosahedron
-import deltoid, log_spiral, parabola, penrose_square, penrose_circle, line, penrose_triangle
+import deltoid, log_spiral, parabola, penrose_square, penrose_circle, line, penrose_triangle, polygon
 
-##
+## Geometry Dictionary
 s = {	 "Prism"					: prism,
 		 "Pyramid"					: pyramid,
 		 "Sphere"					: sphere,
@@ -103,6 +109,7 @@ s = {	 "Prism"					: prism,
 		 "Penrose Circle"			: penrose_circle,
 		 "Penrose Square"			: penrose_square,
 		 "Penrose Triangle"			: penrose_triangle,
+		 "Polygons"				 	: polygon
 
 }
 
@@ -114,7 +121,7 @@ topo 	= ["Cross Cap", "Klein Bottle", "Mobius Strip", "Torus"]
 deve 	= ["Neat", "Testing", "Great Dodecahedron", "Vase", "Something Strange"]
 arch 	= ["Cuboctahedron", "Hecatonicosihedron", "Great Rombicosidodecahedron", "Snub Cube", "Truncated Cube", "Great Icosahedron"]
 plat    = ["Cube", "Dodecahedron", "Octahedron", "Icosahedron"]
-two 	= ["Line", "Deltoid", "Log Spiral", "Parabola"]
+two 	= ["Line", "Deltoid", "Log Spiral", "Parabola", "Polygons"]
 pen		= ["Penrose Circle", "Penrose Triangle", "Penrose Square"]
 
 dim = "#303030"  #   Background
@@ -122,6 +129,8 @@ dimf = "#00C0FF"  #   Font Color
 
 disa = "#d400ff" #   Disabled Text
 
+
+## Start of Application
 class Geometry(tk.Frame):
 	def __init__(self, master=None):
 		tk.Frame.__init__(self,master)
@@ -903,6 +912,7 @@ class Geometry(tk.Frame):
 																	p.config(bg=dim, fg=dim, relief=tk.RIDGE)
 												except TypeError:
 													try:
+														#print("THis")
 														s[self.shape_set.get()].shape(self.fig, edge_c, edge_w, grid, radiusm)
 														active 		  = [self.ram_entry]
 														active_label  = [self.ram_label]
@@ -926,7 +936,31 @@ class Geometry(tk.Frame):
 																n.config(fg=dimf)
 
 													except TypeError:
-														print("Welp")
+														try:
+															#print(print("This")
+															s[self.shape_set.get()].shape(self.fig, edge_c, edge_w, grid, sides, edges, multi_pi)
+															active 		  = [self.si_entry, self.ed_entry, self.pi_entry]
+															active_label  = [self.si_label, self.ed_label, self.pi_label]
+															disable 	  = [self.raa_entry, self.h_entry,  self.a_entry, self.ram_entry]
+															disable_label = [self.raa_label, self.h_label,  self.a_label, self.ram_label]
+															color 		  = [self.face, self.face2, self.face3]
+															color_label   = [self.fck, self.f2, self.f3]
+
+															for m in disable:
+																m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
+																for n in disable_label:
+																	n.config(fg=disa)
+																	for o in color:
+																		o.config(state=tk.DISABLED, highlightbackground=disa)
+																		for p in color_label:
+																			p.config(bg=dim, fg=dim, relief=tk.RIDGE)
+
+															for m in active:
+																m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim,troughcolor=dimf)
+																for n in active_label:
+																	n.config(fg=dimf)
+														except TypeError:
+															print("Welp")
 
 
 
