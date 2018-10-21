@@ -3,8 +3,8 @@
 block_cipher = None
 
 
-a = Analysis(['../geo_gui.py'],
-             pathex=['/home/pharaohcola13/PycharmProjects/Research/GeoMetrics/GUI/compile'],
+a = Analysis(['./geo_gui.py'],
+             pathex=['/home/pharaohcola13/PycharmProjects/Research/GeoMetrics/GUI/compile_space'],
              binaries=[],
              datas=None,
              hiddenimports=['PIL._tkinter_finder', 'matplotlib'],
