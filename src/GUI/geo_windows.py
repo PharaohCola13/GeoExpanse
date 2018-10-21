@@ -357,7 +357,7 @@ class Geometry(tk.Frame):
 		filemenu.add_command(label="Quit", command=quit)
 
 		menu.add_command(label="Figure", command=adjust)
-		menu.add_command(label="Full", command=lambda: root.geometry("1232x801"))
+		menu.add_command(label="Full", command=lambda: root.geometry("935x501"))
 
 	# 	# # Transparency
 		self.a_label = tk.Label(root, text="Transparency")
@@ -449,7 +449,7 @@ class Geometry(tk.Frame):
 
 		# Plotting,
 		self.plotting = tk.Button(root, text="Update", command=lambda: self.plot(canvas, ax), height=4)
-		self.plotting.grid(row=0, column=1, columnspan=2, sticky="new", pady=725)
+		self.plotting.grid(row=0, column=1, columnspan=2, sticky="new", pady=425)
 
 	# 	# Grid Functions (on/off)
 		self.grid_on = tk.Radiobutton(root, text="Grid On", variable=self.grid_axis, value='on', command=axi)
@@ -468,7 +468,7 @@ class Geometry(tk.Frame):
 		self.two_three.set('3d')
 	# 	# Shape Popup
 		self.shapes = tk.Button(root, text="Shapes", command=popup_shape, height=4)
-		self.shapes.grid(row=0, column=3, columnspan=2, sticky='new', pady=725)
+		self.shapes.grid(row=0, column=3, columnspan=2, sticky='new', pady=425)
 
 		def dark(self):
 			scales = [self.a_entry, self.h_entry, self.si_entry, self.ed_entry, self.pi_entry, self.ew_entry,
@@ -928,7 +928,7 @@ if __name__ == '__main__':
 	root = tk.Tk()
 
 	root.title("GeoExpanse")
-	root.geometry("1232x501")
+	root.geometry("935x501")
 	icon = ImageTk.PhotoImage(file='icon.png')
 
 	def quit():

@@ -3,8 +3,9 @@
 block_cipher = None
 
 
-a = Analysis(['geo_gui.py'],
-             pathex=['C:\\tools\\cygwin\\home\\900335362\\GeoExpanse-master\\src\\GUI\\compile_space'],
+a = Analysis(['geo_windows.py'],
+           #pathex=['C:\\tools\\cygwin\\home\\900335362\\GeoExpanse-master\\src\\GUI\\compile_space'],
+           pathex=['~/PycharmProjects/Research/GeoExpanse/src/GUI/compile_space'],
              binaries=[],
              datas=[],
              hiddenimports=['PIL._tkinter_finder', 'matplotlib'],
