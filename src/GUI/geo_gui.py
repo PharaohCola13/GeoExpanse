@@ -23,7 +23,7 @@ except ImportError:
 	import Tkinter as tk
 	from tkColorChooser import askcolor
 
-## 
+##
 sys.path.append('../In Development/')
 
 sys.path.append('../Current Models/')
@@ -131,20 +131,20 @@ disa = "#d400ff" #   Disabled Text
 
 ## Start of Application
 class Geometry(tk.Frame):
-	def __init__(self, master=None):
-		tk.Frame.__init__(self,master)
-		self.createWidgets()
+	def __init__(self, master):
+		tk.Frame.__init__(self ,master)
+		self.createWidgets(master)
 
-	def createWidgets(self):
+	def createWidgets(self, master):
 		global icon
-		self.fig = plt.figure(figsize=(8, 8), facecolor="black", edgecolor="white")
+		self.fig = plt.figure(figsize=(8 ,8), facecolor="black", edgecolor="white")
 		ax = p3.Axes3D(self.fig)
 		ax.set_facecolor('black')
 		plt.axis("off")
 
-		canvas = FigureCanvasTkAgg(self.fig,root)
-		canvas.get_tk_widget().grid(row=0,column=0, sticky='new')	
-		root.update_idletasks()
+		canvas = FigureCanvasTkAgg(self.fig ,master)
+		canvas.get_tk_widget().grid(row=0 ,column=0, sticky='new')
+		master.update_idletasks()
 		canvas.draw()
 
 # 		# Vars
@@ -208,6 +208,24 @@ class Geometry(tk.Frame):
 				self.eck.config(bg=self.ec_entry[1], text=str(self.ec_entry[1]), fg='#fff')
 			return self.ec_entry[1]
 #
+		def popup_about():
+			top = tk.Toplevel(self)
+			top.title("About")
+			top.config(background=dim)
+
+			pop = tk.Button(top, text="POP!", command=top.destroy)
+			pop.grid(row=0, column=0, sticky='new')
+			pop.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
+
+			about = tk.Message(top, width=20000000000, text="This software was programed by Spencer Alexander Riley,\n "
+													"a undergraduate Physics major and math minor at New Mexico Tech.\n"
+													"-----------------------------------------------------------------\n"
+													"This is an open-source educational application to allow students or\n"
+													" interested parties to examine and study a great variety of geometric\n"
+													"structures.\n")
+			about.grid(row=1, column=0, rowspan=3, columnspan=3)
+			about.config(bg=dim, fg=dimf)
+
 		def popup_shape():
 			top = tk.Toplevel(self)
 			top.title("Shapes")
@@ -269,7 +287,7 @@ class Geometry(tk.Frame):
 				archimedean.config(bg=dim, fg=dimf, activebackground=dim)
 				for n in range(len(arch)):
 					tk.Radiobutton(top, text=arch[n], variable=self.shape_set, value=arch[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+2, column=5, sticky='w')
-			
+
 				##
 				platonic = tk.Label(top, text="--- Platonic Solids ---", font=('Times', 12, 'bold'))
 				platonic.grid(row=9, column=5, sticky='nsew')
@@ -290,7 +308,6 @@ class Geometry(tk.Frame):
 				penrose.config(bg=dim, fg=dimf, activebackground=dim)
 				for n in range(len(pen)):
 					tk.Radiobutton(top, text=pen[n], variable=self.shape_set, value=pen[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+2, column=2, sticky='w')
-
 	#
 		def popup_save():
 			top = tk.Toplevel(self)
@@ -346,78 +363,79 @@ class Geometry(tk.Frame):
 			top.update_idletasks()
 			top.mainloop()
 
-		menu = tk.Menu(root)
-		root.config(menu=menu)
+		menu = tk.Menu(master)
+		master.config(menu=menu)
 
 		filemenu = tk.Menu(menu)
 		menu.add_cascade(label="File", menu=filemenu)
 
 		filemenu.add_command(label="Save", command=popup_save)
 		filemenu.add_separator()
+		filemenu.add_command(label="About", command=popup_about)
 		filemenu.add_command(label="Quit", command=quit)
 
 		menu.add_command(label="Figure", command=adjust)
 		menu.add_command(label="Full", command=lambda: root.geometry("1232x801"))
 
 	# 	# # Transparency
-		self.a_label = tk.Label(root, text="Transparency")
+		self.a_label = tk.Label(master, text="Transparency")
 		self.a_label.grid(row=0, column=1, sticky='new', pady=110)
-		self.a_entry = tk.Scale(root, from_=0, to=1, resolution=0.1, orient=tk.HORIZONTAL)
+		self.a_entry = tk.Scale(master, from_=0, to=1, resolution=0.1, orient=tk.HORIZONTAL)
 		self.a_entry.grid(row=0, column=2, sticky='new', pady=90)
 		self.a_entry.set(0.4)
 	#
 	# 	# # Height
-		self.h_label = tk.Label(root, text="Height")
+		self.h_label = tk.Label(master, text="Height")
 		self.h_label.grid(row=0, column=3, sticky='new', pady=110, padx=10)
-		self.h_entry = tk.Scale(root, from_=1, to=10, resolution=0.1, orient=tk.HORIZONTAL)
+		self.h_entry = tk.Scale(master, from_=1, to=10, resolution=0.1, orient=tk.HORIZONTAL)
 		self.h_entry.grid(row=0, column=4, sticky='new', pady=90)
 		self.h_entry.set(1)
 	#
 	# 	# Entry of the number of sides
-		self.si_label = tk.Label(root, text="Number of Sides")
+		self.si_label = tk.Label(master, text="Number of Sides")
 		self.si_label.grid(row=0, column=1, sticky='new', pady=150)
-		self.si_entry = tk.Scale(root, from_=1, to=100, resolution=1, orient=tk.HORIZONTAL)
+		self.si_entry = tk.Scale(master, from_=1, to=100, resolution=1, orient=tk.HORIZONTAL)
 		self.si_entry.grid(row=0, column=2, sticky='new', pady=130)
 		self.si_entry.set(20)
 	#
 	# 	# Entry of the number of edges
-		self.ed_label = tk.Label(root, text="Number of Edges")
+		self.ed_label = tk.Label(master, text="Number of Edges")
 		self.ed_label.grid(row=0, column=1, sticky='new', pady=190)
-		self.ed_entry = tk.Scale(root, from_=1, to=100, resolution=1, orient=tk.HORIZONTAL)
+		self.ed_entry = tk.Scale(master, from_=1, to=100, resolution=1, orient=tk.HORIZONTAL)
 		self.ed_entry.grid(row=0, column=2, sticky='new', pady=170)
 		self.ed_entry.set(2)
 
 	# 	# Multiple of Pi
-		self.pi_label = tk.Label(root, text=r"Multiple of " u'\u03C0')
+		self.pi_label = tk.Label(master, text=r"Multiple of " u'\u03C0')
 		self.pi_label.grid(row=0, column=1, sticky='new', pady=230)
-		self.pi_entry = tk.Scale(root, from_=1, to=100, resolution=1, orient=tk.HORIZONTAL)
+		self.pi_entry = tk.Scale(master, from_=1, to=100, resolution=1, orient=tk.HORIZONTAL)
 		self.pi_entry.grid(row=0, column=2, sticky='new', pady=210)
 		self.pi_entry.set(2)
 	#
 	# 	# Edge Width
-		self.ew_label = tk.Label(root, text="Edge Width")
+		self.ew_label = tk.Label(master, text="Edge Width")
 		self.ew_label.grid(row=0, column=1, sticky='new', pady=270)
-		self.ew_entry = tk.Scale(root, from_=0, to=10, resolution=0.5, orient=tk.HORIZONTAL)
+		self.ew_entry = tk.Scale(master, from_=0, to=10, resolution=0.5, orient=tk.HORIZONTAL)
 		self.ew_entry.grid(row=0, column=2, sticky='new', pady=250)
 		self.ew_entry.set(1)
 	#
 	# 	# Radius
-		self.ram_label = tk.Label(root, text="Radius (Main)")
+		self.ram_label = tk.Label(master, text="Radius (Main)")
 		self.ram_label.grid(row=0, column=3, sticky='new', pady=150, padx=10)
-		self.ram_entry = tk.Scale(root, from_=1, to=100, resolution=1, orient=tk.HORIZONTAL)
+		self.ram_entry = tk.Scale(master, from_=1, to=100, resolution=1, orient=tk.HORIZONTAL)
 		self.ram_entry.grid(row=0, column=4, sticky='new', pady=130)
 	#
 	# 	# Radius
-		self.raa_label = tk.Label(root, text="Radius (Alt)")
+		self.raa_label = tk.Label(master, text="Radius (Alt)")
 		self.raa_label.grid(row=0, column=3, sticky='new', pady=190, padx=10)
-		self.raa_entry = tk.Scale(root, from_=1, to=100, resolution=1, orient=tk.HORIZONTAL)
+		self.raa_entry = tk.Scale(master, from_=1, to=100, resolution=1, orient=tk.HORIZONTAL)
 		self.raa_entry.grid(row=0, column=4, sticky='new', pady=170)
 
 		# Edge Color
 		self.edge = tk.Button(text="Edge Color", command=lambda: EdgeColor(self), state=tk.NORMAL)
 		self.edge.grid(row=0, column=1, sticky='new', pady=30, padx=0)
 
-		self.eck = tk.Message(root, width=200000000,
+		self.eck = tk.Message(master, width=200000000,
 							  text=" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ", borderwidth=5,
 							  relief=tk.GROOVE)
 		self.eck.grid(row=0, column=1, sticky='new', pady=60)
@@ -426,7 +444,7 @@ class Geometry(tk.Frame):
 		self.face = tk.Button(text="Face Color", command=lambda: FaceColor(self), state=tk.NORMAL)
 		self.face.grid(row=0, column=2, sticky='new', pady=30, padx=0)
 
-		self.fck = tk.Message(root, width=200000000,
+		self.fck = tk.Message(master, width=200000000,
 							  text=" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ", borderwidth=5,
 							  relief=tk.GROOVE)
 		self.fck.grid(row=0, column=2, sticky='new', pady=60, padx=0)
@@ -435,7 +453,7 @@ class Geometry(tk.Frame):
 		self.face2 = tk.Button(text="Face Color 2", command=lambda: FaceColor2(self), state=tk.NORMAL)
 		self.face2.grid(row=0, column=3, sticky='new', pady=30, padx=0)
 
-		self.f2 = tk.Message(root, width=200000000, text="" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "",
+		self.f2 = tk.Message(master, width=200000000, text="" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "",
 							 borderwidth=5, relief=tk.GROOVE)
 		self.f2.grid(row=0, column=3, sticky='new', pady=60, padx=0)
 
@@ -443,31 +461,31 @@ class Geometry(tk.Frame):
 		self.face3 = tk.Button(text="Face Color 3", command=lambda: FaceColor3(self), state=tk.NORMAL)
 		self.face3.grid(row=0, column=4, sticky='new', pady=30, padx=0)
 
-		self.f3 = tk.Message(root, width=200000000, text=" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ",
+		self.f3 = tk.Message(master, width=200000000, text=" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ",
 							 borderwidth=5, relief=tk.GROOVE)
 		self.f3.grid(row=0, column=4, sticky='new', pady=60, padx=0)
 
 		# Plotting,
-		self.plotting = tk.Button(root, text="Update", command=lambda: self.plot(canvas, ax), height=4)
+		self.plotting = tk.Button(master, text="Update", command=lambda: self.plot(self.canvas, ax), height=4)
 		self.plotting.grid(row=0, column=1, columnspan=2, sticky="new", pady=725)
 
 	# 	# Grid Functions (on/off)
-		self.grid_on = tk.Radiobutton(root, text="Grid On", variable=self.grid_axis, value='on', command=axi)
+		self.grid_on = tk.Radiobutton(master, text="Grid On", variable=self.grid_axis, value='on', command=axi)
 		self.grid_on.grid(row=0, column=1, sticky='new')
 
-		self.grid_off = tk.Radiobutton(root, text='Grid Off', variable=self.grid_axis, value='off', command=axi)
+		self.grid_off = tk.Radiobutton(master, text='Grid Off', variable=self.grid_axis, value='off', command=axi)
 		self.grid_off.grid(row=0, column=2, sticky='new')
 		self.grid_axis.set('off')
 	#
 	# 	# 2D or 3D
-		self.two_space = tk.Radiobutton(root, text="2D Objects", variable=self.two_three, value='2d', command=space)
+		self.two_space = tk.Radiobutton(master, text="2D Objects", variable=self.two_three, value='2d', command=space)
 		self.two_space.grid(row=0, column=3, sticky='new')
 
-		self.three_space = tk.Radiobutton(root, text="3D Objects", variable=self.two_three, value='3d', command=space)
+		self.three_space = tk.Radiobutton(master, text="3D Objects", variable=self.two_three, value='3d', command=space)
 		self.three_space.grid(row=0, column=4, sticky='new')
 		self.two_three.set('3d')
 	# 	# Shape Popup
-		self.shapes = tk.Button(root, text="Shapes", command=popup_shape, height=4)
+		self.shapes = tk.Button(master, text="Shapes", command=popup_shape, height=4)
 		self.shapes.grid(row=0, column=3, columnspan=2, sticky='new', pady=725)
 
 		def dark(self):
@@ -478,7 +496,7 @@ class Geometry(tk.Frame):
 			radio = [self.grid_on, self.grid_off, self.two_space, self.three_space]
 			button = [self.plotting, self.face, self.face2, self.face3, self.edge, self.shapes]
 			menus = [menu, filemenu]
-			root.config(background=dim)
+			master.config(background=dim)
 
 			for m in scales:
 				m.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimf)
@@ -492,7 +510,6 @@ class Geometry(tk.Frame):
 			for q in menus:
 				q.config(bg=dim, fg=dimf, activebackground=dim, activeforeground=dimf)
 		return dark(self)
-
 #
 	def plot(self, canvas, ax):
 		try:
@@ -540,11 +557,6 @@ class Geometry(tk.Frame):
 		except KeyError:
 
 			root.title("GeoExpanse (Testing)")
-			#sig = signature(testing.shape)
-
-			#print(sig.parameters.values())
-
-			#for n in sig.parameters.values():
 			testing.shape(self.fig, alpha,color, edge_c, edge_w, grid, sides, edges, multi_pi)
 
 			active = [self.a_entry, self.si_entry, self.ed_entry, self.pi_entry]
@@ -926,6 +938,7 @@ class Geometry(tk.Frame):
 
 if __name__ == '__main__':
 	root = tk.Tk()
+	Geometry(root)
 
 	root.title("GeoExpanse")
 	root.geometry("1265x801")
@@ -947,5 +960,4 @@ if __name__ == '__main__':
 		root.quit()
 		root.destroy()
 
-	geo = Geometry(master=root)
-	geo.mainloop()
+	root.mainloop()
