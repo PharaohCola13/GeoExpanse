@@ -218,7 +218,7 @@ class Geometry(tk.Frame):
 			pop.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
 			about = tk.Message(top, width=20000000000, text="This software was programed by Spencer Alexander Riley,\n "
-													"a undergraduate Physics major and math minor at New Mexico Tech.\n"
+													"a undergraduate Physics major and Math minor at New Mexico Tech.\n"
 													"-----------------------------------------------------------------\n"
 													"This is an open-source educational application to allow students or\n"
 													" interested parties to examine and study a great variety of geometric\n"
@@ -466,7 +466,7 @@ class Geometry(tk.Frame):
 		self.f3.grid(row=0, column=4, sticky='new', pady=60, padx=0)
 
 		# Plotting,
-		self.plotting = tk.Button(master, text="Update", command=lambda: self.plot(self.canvas, ax), height=4)
+		self.plotting = tk.Button(master, text="Update", command=lambda: self.plot(canvas, ax), height=4)
 		self.plotting.grid(row=0, column=1, columnspan=2, sticky="new", pady=725)
 
 	# 	# Grid Functions (on/off)
