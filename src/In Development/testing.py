@@ -11,7 +11,7 @@ import time
 
 name = "Testing"
 
-def shape(fig, alpha,color, edge_c, edge_w, grid, sides, edges, multi_pi):
+def shape(fig, alpha,color, edge_c, edge_w, grid, sides, edges, multi_pi, multi_pi2):
 	def x_(u,v):
 		x = cos(u) * sin(v)
 		return x
@@ -24,7 +24,7 @@ def shape(fig, alpha,color, edge_c, edge_w, grid, sides, edges, multi_pi):
 		z = cos(v) + log1p(tan(2+v)**2)
 		return z
 
-	u = linspace(0.001, 2 * pi, 1 + sides)
+	u = linspace(0.001, multi_pi2 * pi, 1 + sides)
 	v = linspace(0, multi_pi * pi, edges)
 
 	u, v = meshgrid(u, v)
