@@ -7,7 +7,7 @@ __author__ = "Spencer Riley"
 import matplotlib
 matplotlib.use('tkagg')
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg#, NavigationToolbar2TkAgg
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import mpl_toolkits.mplot3d.axes3d as p3
 from matplotlib.animation import *
 from PIL import ImageTk
@@ -141,6 +141,7 @@ class Geometry(tk.Frame):
 		ax = p3.Axes3D(self.fig)
 		ax.set_facecolor('black')
 		plt.axis("off")
+
 
 		canvas = FigureCanvasTkAgg(self.fig ,master)
 		canvas.get_tk_widget().grid(row=0 ,column=0, sticky='new')
@@ -406,17 +407,24 @@ class Geometry(tk.Frame):
 		self.ed_entry.set(2)
 
 	# 	# Multiple of Pi
-		self.pi_label = tk.Label(master, text=r"Multiple of " u'\u03C0')
-		self.pi_label.grid(row=0, column=1, sticky='new', pady=230)
+		self.pi_label = tk.Label(master, text=r"Multiple of " u'\u03C0' + " ("u'\u03C6'")")
+		self.pi_label.grid(row=0, column=1, sticky='new', pady=270)
 		self.pi_entry = tk.Scale(master, from_=1, to=100, resolution=1, orient=tk.HORIZONTAL)
-		self.pi_entry.grid(row=0, column=2, sticky='new', pady=210)
+		self.pi_entry.grid(row=0, column=2, sticky='new', pady=250)
 		self.pi_entry.set(2)
+
+	# 	# Multiple of Pi
+		self.pi_label2 = tk.Label(master, text=r"Multiple of " u'\u03C0' + " ("u'\u03B8'")")
+		self.pi_label2.grid(row=0, column=3, sticky='new', pady=270)
+		self.pi_entry2 = tk.Scale(master, from_=1, to=100, resolution=1, orient=tk.HORIZONTAL)
+		self.pi_entry2.grid(row=0, column=4, sticky='new', pady=250)
+		self.pi_entry2.set(2)
 	#
 	# 	# Edge Width
 		self.ew_label = tk.Label(master, text="Edge Width")
-		self.ew_label.grid(row=0, column=1, sticky='new', pady=270)
+		self.ew_label.grid(row=0, column=1, sticky='new', pady=230)
 		self.ew_entry = tk.Scale(master, from_=0, to=10, resolution=0.5, orient=tk.HORIZONTAL)
-		self.ew_entry.grid(row=0, column=2, sticky='new', pady=250)
+		self.ew_entry.grid(row=0, column=2, sticky='new', pady=210)
 		self.ew_entry.set(1)
 	#
 	# 	# Radius
@@ -466,7 +474,7 @@ class Geometry(tk.Frame):
 		self.f3.grid(row=0, column=4, sticky='new', pady=60, padx=0)
 
 		# Plotting,
-		self.plotting = tk.Button(master, text="Update", command=lambda: self.plot(self.canvas, ax), height=4)
+		self.plotting = tk.Button(master, text="Update", command=lambda: self.plot(canvas, ax), height=4)
 		self.plotting.grid(row=0, column=1, columnspan=2, sticky="new", pady=725)
 
 	# 	# Grid Functions (on/off)
@@ -490,9 +498,9 @@ class Geometry(tk.Frame):
 
 		def dark(self):
 			scales = [self.a_entry, self.h_entry, self.si_entry, self.ed_entry, self.pi_entry, self.ew_entry,
-					  self.ram_entry, self.raa_entry]
+					  self.ram_entry, self.raa_entry, self.pi_entry2]
 			labels = [self.a_label, self.h_label, self.si_label, self.ed_label, self.pi_label, self.ew_label,
-					  self.ram_label, self.raa_label]
+					  self.ram_label, self.raa_label, self.pi_label2]
 			radio = [self.grid_on, self.grid_off, self.two_space, self.three_space]
 			button = [self.plotting, self.face, self.face2, self.face3, self.edge, self.shapes]
 			menus = [menu, filemenu]
@@ -542,6 +550,7 @@ class Geometry(tk.Frame):
 		radiusa = self.raa_entry.get()
 		radiusm = self.ram_entry.get()
 		height = self.h_entry.get()
+		multi_pi2 = self.pi_entry2.get()
 
 		name = self.shape_set.get()
 		root.title("GeoExpanse ({})".format(name))
@@ -557,10 +566,10 @@ class Geometry(tk.Frame):
 		except KeyError:
 
 			root.title("GeoExpanse (Testing)")
-			testing.shape(self.fig, alpha,color, edge_c, edge_w, grid, sides, edges, multi_pi)
+			testing.shape(self.fig, alpha,color, edge_c, edge_w, grid, sides, edges, multi_pi,  multi_pi2)
 
-			active = [self.a_entry, self.si_entry, self.ed_entry, self.pi_entry]
-			active_label = [self.a_label, self.si_label, self.ed_label, self.pi_label]
+			active = [self.a_entry, self.si_entry, self.ed_entry, self.pi_entry,  self.pi_entry2]
+			active_label = [self.a_label, self.si_label, self.ed_label, self.pi_label, self.pi_label2]
 			disable = [self.ram_entry, self.raa_entry, self.h_entry]
 			disable_label = [self.ram_label, self.raa_label, self.h_label]
 			color = [self.face2, self.face3]
