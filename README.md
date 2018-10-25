@@ -3,8 +3,10 @@
 [![Windows](https://img.shields.io/badge/Compatiablity-Windows%207%2B-blue.svg?longCache=true&style=for-the-badge)]()
 [![Ubuntu](https://img.shields.io/badge/Compatiability-Ubuntu%2016.04%2B-blue.svg?longCache=true&style=for-the-badge)]()
 
-[![MIT license](http://img.shields.io/badge/license-MIT-blue.svg?longCache=true&style=for-the-badge)](http://opensource.org/licenses/MIT)
+[![Progress](https://img.shields.io/badge/Progress-Late%20Alpha%20Stages-%23f442b0.svg?longCache=true&style=for-the-badge)](https://github.com/PharaohCola13/GeoExpanse/projects/2)
 [![Issues](https://img.shields.io/github/issues/pharaohcola13/GeoExpanse.svg?branch=master?longCache=true&style=for-the-badge)](https://img.shields.io/github/issues/pharaohcola13/GeoExpanse)
+
+[![MIT license](http://img.shields.io/badge/license-MIT-blue.svg?longCache=true&style=for-the-badge)](http://opensource.org/licenses/MIT)
 [![Stars](https://img.shields.io/github/stars/pharaohcola13/GeoExpanse.svg?branch=master?longCache=true&style=for-the-badge)](https://img.shields.io/github/stars/pharaohcola13/GeoExpanse)
 
 [![3D Models](https://img.shields.io/badge/3D%20Models-47-lightgrey.svg?branch=master?longCache=true&style=for-the-badge)](https://github.com/PharaohCola13/GeoExpanse/tree/master/src/Current%20Models)
@@ -13,7 +15,6 @@
 [![Science](https://img.shields.io/badge/Built%20With-Mathematics-7200ff.svg?longCache=true&style=for-the-badge&colorB=7200ff)]()
 
 Models of Geometric Figures
-(*Kinda late Alpha Stages*)
 
 (*Its a work in progress*)
 
