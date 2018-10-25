@@ -1,11 +1,11 @@
 # GeoExpanse
 
-[![MIT license](http://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
-[![Issues](https://img.shields.io/github/issues/pharaohcola13/GeoExpanse.svg?branch=master)](https://img.shields.io/github/issues/pharaohcola13/GeoExpanse)
-[![Stars](https://img.shields.io/github/stars/pharaohcola13/GeoExpanse.svg?branch=master)](https://img.shields.io/github/stars/pharaohcola13/GeoExpanse)
+[![MIT license](http://img.shields.io/badge/license-MIT-blue.svg?longCache=true&style=for-the-badge)](http://opensource.org/licenses/MIT)
+[![Issues](https://img.shields.io/github/issues/pharaohcola13/GeoExpanse.svg?branch=master?longCache=true&style=for-the-badge)](https://img.shields.io/github/issues/pharaohcola13/GeoExpanse)
+[![Stars](https://img.shields.io/github/stars/pharaohcola13/GeoExpanse.svg?branch=master?longCache=true&style=for-the-badge)](https://img.shields.io/github/stars/pharaohcola13/GeoExpanse)
 
-[![3D Models](https://img.shields.io/badge/3D%20Models-47-lightgrey.svg?branch=master)](https://github.com/PharaohCola13/GeoExpanse/tree/master/src/Current%20Models)
-[![2D Models](https://img.shields.io/badge/2d%20Models-7-lightgrey.svg)](https://github.com/PharaohCola13/GeoExpanse/tree/master/src/Current%20Models/Two%20Space/)
+[![3D Models](https://img.shields.io/badge/3D%20Models-47-lightgrey.svg?branch=master?longCache=true&style=for-the-badge)](https://github.com/PharaohCola13/GeoExpanse/tree/master/src/Current%20Models)
+[![2D Models](https://img.shields.io/badge/2d%20Models-7-lightgrey.svg?longCache=true&style=for-the-badge)](https://github.com/PharaohCola13/GeoExpanse/tree/master/src/Current%20Models/Two%20Space/)
 
 
 Models of Geometric Figures
