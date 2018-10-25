@@ -10,8 +10,7 @@
 [![3D Models](https://img.shields.io/badge/3D%20Models-47-lightgrey.svg?branch=master?longCache=true&style=for-the-badge)](https://github.com/PharaohCola13/GeoExpanse/tree/master/src/Current%20Models)
 [![2D Models](https://img.shields.io/badge/2d%20Models-7-lightgrey.svg?longCache=true&style=for-the-badge)](https://github.com/PharaohCola13/GeoExpanse/tree/master/src/Current%20Models/Two%20Space/)
 
-[![forthebadge](https://forthebadge.com/images/badges/built-with-science.svg)](https://forthebadge.com)
-
+[![Science](https://img.shields.io/badge/Built%20With-Science-7200ff.svg?longCache=true&style=for-the-badge&colorB=7200ff)]()
 
 Models of Geometric Figures
 (*Kinda late Alpha Stages*)
