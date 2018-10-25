@@ -1,6 +1,6 @@
 # GeoExpanse
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?branch=master)](https://opensource.org/licenses/MIT)
+[![MIT license](http://img.shields.io/badge/license-MIT-blue.svg)](http://opensource.org/licenses/MIT)
 [![Issues](https://img.shields.io/github/issues/pharaohcola13/GeoExpanse.svg?branch=master)](https://img.shields.io/github/issues/pharaohcola13/GeoExpanse)
 [![Stars](https://img.shields.io/github/stars/pharaohcola13/GeoExpanse.svg?branch=master)](https://img.shields.io/github/stars/pharaohcola13/GeoExpanse)
 
