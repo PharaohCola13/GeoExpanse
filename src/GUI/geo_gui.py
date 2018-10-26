@@ -1,7 +1,7 @@
 ## General Information
 
-__author__ = "Spencer Riley"
-
+__author__ 	= "Spencer Riley"
+__title__	= "GeoExpanse"
 
 ## Imports
 import matplotlib
@@ -218,12 +218,12 @@ class Geometry(tk.Frame):
 			pop.grid(row=0, column=0, sticky='new')
 			pop.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
-			about = tk.Message(top, width=20000000000, text="This software was programed by Spencer Alexander Riley,\n "
-													"a undergraduate Physics major and Math minor at New Mexico Tech.\n"
+			about = tk.Message(top, width=20000000000, text="This software was developed by Spencer Alexander\n"
+													"Riley,a undergraduate Physics major and Math minor at New Mexico Tech.\n"
 													"-----------------------------------------------------------------\n"
-													"This is an open-source educational application to allow students or\n"
-													" interested parties to examine and study a great variety of geometric\n"
-													"structures.\n")
+													"This is an open-source educational application to allow students or "
+													"interested parties to examine and study a\n"
+													"great variety of geometric structures.")
 			about.grid(row=1, column=0, rowspan=3, columnspan=3)
 			about.config(bg=dim, fg=dimf)
 
@@ -319,47 +319,29 @@ class Geometry(tk.Frame):
 			top.update_idletasks()
 			top.update()
 
-			pop = tk.Button(top, text="POP!", command=top.destroy)
-			pop.grid(row=0, column=0)
+			wid = ["PNG", "JPG", "SVG", "EPS"]
+
+			pop = tk.Button(top, text="POP!", command=top.destroy, width=20)
+			pop.grid(row=0, column=0, columnspan=2,sticky='nsew')
 			pop.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
 			self.format_save = tk.StringVar()
-			self.transparency = tk.StringVar()
 
-			png = tk.Radiobutton(top, text="png", variable=self.format_save, value="png", width=5)
-			png.grid(row=1, column=0)
-			png.config(bg=dim, fg=dimf, activebackground=dim,  highlightthickness=0, activeforeground=dimf,
-					   selectcolor=dim)
 
-			jpg = tk.Radiobutton(top, text="jpg", variable=self.format_save, value="jpg", width=5)
-			jpg.grid(row=1, column=1)
-			jpg.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,
-					   selectcolor=dim)
+			for n in range(len(wid)):
+				tk.Radiobutton(top, text=str(wid[n]), variable=self.format_save, value=str(wid[n]), width=5,bg=dim, fg=dimf, activebackground=dim,  highlightthickness=0, activeforeground=dimf,
+					   selectcolor=dim).grid(row=int(((n+1)/2)+1), column=int(n/2), sticky='nw')
 
-			save_img = tk.Button(top, text="save img")
-			save_img.grid(row=0, column=1)
-			save_img.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
+			
 
-			self.format_save.set("png")
+			save_img = tk.Button(top, text="Save (Opaque)", width=15)
+			save_img.grid(row=0, column=3, rowspan=2,sticky='nsew')
+			save_img.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf, command=lambda: plt.savefig("{}.{}".format(s[self.shape_set.get()].name, self.format_save.get()), transparent=False))
 
-			def trans_on():
-				save_img.config(
-					command=lambda: plt.savefig("{}.{}".format(s[self.shape_set.get()].name, self.format_save.get()),
-												transparent=True))
-			def trans_off():
-				save_img.config(
-					command=lambda: plt.savefig("{}.{}".format(s[self.shape_set.get()].name, self.format_save.get()),
-												transparent=False, facecolor="black"))
+			save_img1 = tk.Button(top, text="Save (Transparent)", width=15)
+			save_img1.grid(row=2, column=3, rowspan=2,sticky='nsew')
+			save_img1.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf, command=lambda: plt.savefig("{}.{}".format(s[self.shape_set.get()].name, self.format_save.get()), transparent=True))
 
-			clt = tk.Radiobutton(top, text="Transparent On", command=trans_on(), variable=self.transparent)
-			clt.grid(row=1, column=2)
-			clt.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,
-					   selectcolor=dim)
-
-			clf = tk.Radiobutton(top, text="Transparent Off", command=trans_off(), variable=self.transparent)
-			clf.grid(row=2, column=2)
-			clf.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0,  activeforeground=dimf,
-					   selectcolor=dim)
 			top.update()
 			top.update_idletasks()
 			top.mainloop()
@@ -915,7 +897,6 @@ class Geometry(tk.Frame):
 
 													except TypeError:
 														try:
-															#print(print("This")
 															s[self.shape_set.get()].shape(self.fig, edge_c, edge_w, grid, sides, edges, multi_pi)
 															active 		  = [self.si_entry, self.ed_entry, self.pi_entry]
 															active_label  = [self.si_label, self.ed_label, self.pi_label]
@@ -937,7 +918,7 @@ class Geometry(tk.Frame):
 																m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim,troughcolor=dimf)
 																for n in active_label:
 																	n.config(fg=dimf)
-														except TypeError:
+														except IndentationError:
 															print("Welp")
 
 
