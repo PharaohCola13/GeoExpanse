@@ -3,12 +3,12 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
 
 @font-face {
-                font-family: 'Slice';
-                src: url("../fonts/Quantum.ttf");
-                format("TTF");
-                font-style: normal;
-                font-weight: normal
-                }
+				font-family: 'Slice';
+				src: url("../fonts/Quantum.ttf");
+				format("TTF");
+				font-style: normal;
+				font-weight: normal
+				}
 
 
 /** Remove default margin. */
@@ -46,13 +46,13 @@ dfn { font-style: italic; }
 
 /** Address variable `h1` font-size and margin within `section` and `article` contexts in Firefox 4+, Safari, and Chrome. */
 h1 {
-    font-family: 'Slice';
-    font-size: 52px;
-    font-weight: normal;
-    text-shadow: 0px 2px 0px #235796;
-    margin: 0px;
-    letter-spacing: 10px;
-    }
+	font-family: 'Slice';
+	font-size: 52px;
+	font-weight: normal;
+	text-shadow: 0px 2px 0px #235796;
+	margin: 0px;
+	letter-spacing: 10px;
+	}
 
 /** Address styling not present in IE 8/9. */
 mark { background: #ff0; color: #000; }
@@ -277,8 +277,8 @@ a:hover { text-decoration: underline; }
 .btn:hover { color: rgba(255, 255, 255, 0.8); text-decoration: none; background-color: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.3); }
 .btn + .btn { margin-left: 1rem; }
 @media screen and (min-width: 64em) { .btn { padding: 0.75rem 1rem; } }
-@media screen and (min-width: 42em) and (max-width: 64em) { .btn { padding: 0.6rem 0.9rem; font-size: 0.9rem; } }
-@media screen and (max-width: 42em) { .btn { display: block; width: 100%; padding: 0.75rem; font-size: 0.9rem; }
+@media screen and (min-width: 42em) and (max-width: 64em) { .btn { padding: 0.6rem 0.9rem; } }
+@media screen and (max-width: 42em) { .btn { display: block; width: 100%; padding: 0.75rem; }
   .btn + .btn { margin-top: 1rem; margin-left: 0; } }
 
 .page-header {height: 900px; color: #fff; text-align: center; background-image: url("../images/573976.jpg"); background-position: 50% 80%}
@@ -287,76 +287,73 @@ a:hover { text-decoration: underline; }
 @media screen and (max-width: 42em) { .page-header { padding: 2rem 1rem; } }
 
 .overhead {
-            position: absolute;
-            width:500px;
-            height:150px;
-            background-color: #000000;
-            color: #00bfff;
-            top: 10%;
-            bottom: 0%;
-            left: 25%;
-            right: 0%;
-            border-radius: 25px;
-            padding-top: 15px;
+			position: absolute;
+			display: block;
+			width:60%;
+			height:20%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 10%;
+			bottom: 0%;
+			left: 20%;
+			right: auto;
+			border-radius: 40px;
+			padding-top: 15px;
+			text-align: center;
 }
 
 .overhead-badges {
-            position: absolute;
-            width:600px;
-            height:300px;
-            background-color: #000000;
-            color: #00bfff;
-            top: 50%;
-            bottom: 0%;
-            left: 20%;
-            right: 0%;
-            border-radius: 25px;
-            padding-top: 15px;
+			position: absolute;
+			display: block;
+			width:60%;
+			height:33%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 50%;
+			bottom: 0%;
+			left: 20%;
+			right: auto;
+			border-radius: 40px;
+			padding-top: 1%;
+			text-align: center;
+			alignment: center;
 }
 
 .overhead-btn1 {
-            position: absolute;
-            width:175px;
-            height:75px;
-            background-color: #000000;
-            color: #00bfff;
-            top: 35%;
-            bottom: 0%;
-            left: 23%;
-            right: 0%;
-            border-radius: 25px;
-            padding-top: 15px;
+			position: absolute;
+			display:block;
+			width:20%;
+			height:10%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 35%;
+			bottom: 0%;
+			left: 20%;
+			right: auto;
+			border-radius: 40px;
+			padding-top: 20px;
+			text-align: center;
 }
 .overhead-btn2 {
-            position: absolute;
-            width:175px;
-            height:75px;
-            background-color: #000000;
-            color: #00bfff;
-            top: 35%;
-            bottom: 0%;
-            left: 43%;
-            right: 0%;
-            border-radius: 25px;
-            padding-top: 15px;
+			position: absolute;
+			display: block;
+			width:20%;
+			height:10%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 35%;
+			bottom: 0%;
+			left: 60%;
+			right: auto;
+			border-radius: 40px;
+			padding-top: 20px;
+			text-align: center;
 }
-.overhead-btn3 {
-            position: absolute;
-            width:175px;
-            height:75px;
-            background-color: #000000;
-            color: #00bfff;
-            top: 35%;
-            bottom: 0%;
-            left: 63%;
-            right: 0%;
-            border-radius: 25px;
-            padding-top: 15px;
-}
+
 .project-name { margin-top: 0; margin-bottom: 0.1rem;}
 
 .project-tagline { margin-bottom: 2rem; font-weight: normal; opacity: 0.7; }
-@media screen and (min-width: 64em) { .project-tagline { font-size: 1.25rem; } }
+@media screen and (min-width: 42em) { .project-tagline { font-size: 1.25rem; } }
 @media screen and (min-width: 42em) and (max-width: 64em) { .project-tagline { font-size: 1.15rem; } }
 @media screen and (max-width: 42em) { .project-tagline { font-size: 1rem; } }
 
