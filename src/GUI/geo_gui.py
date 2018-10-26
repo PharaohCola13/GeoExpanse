@@ -425,39 +425,33 @@ class Geometry(tk.Frame):
 		self.edge = tk.Button(text="Edge Color", command=lambda: EdgeColor(self), state=tk.NORMAL)
 		self.edge.grid(row=0, column=1, sticky='new', pady=30, padx=0)
 
-		self.eck = tk.Message(master, width=200000000,
-							  text=" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ", borderwidth=5,
-							  relief=tk.GROOVE)
+		self.eck = tk.Message(master,borderwidth=5, relief=tk.GROOVE)
 		self.eck.grid(row=0, column=1, sticky='new', pady=60)
 
 		# Face Color
 		self.face = tk.Button(text="Face Color", command=lambda: FaceColor(self), state=tk.NORMAL)
 		self.face.grid(row=0, column=2, sticky='new', pady=30, padx=0)
 
-		self.fck = tk.Message(master, width=200000000,
-							  text=" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ", borderwidth=5,
-							  relief=tk.GROOVE)
+		self.fck = tk.Message(master, borderwidth=5, relief=tk.GROOVE)
 		self.fck.grid(row=0, column=2, sticky='new', pady=60, padx=0)
 
 		# Edge Color
 		self.face2 = tk.Button(text="Face Color 2", command=lambda: FaceColor2(self), state=tk.NORMAL)
 		self.face2.grid(row=0, column=3, sticky='new', pady=30, padx=0)
 
-		self.f2 = tk.Message(master, width=200000000, text="" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "",
-							 borderwidth=5, relief=tk.GROOVE)
+		self.f2 = tk.Message(master,borderwidth=5, relief=tk.GROOVE)
 		self.f2.grid(row=0, column=3, sticky='new', pady=60, padx=0)
 
 		# Face Color
 		self.face3 = tk.Button(text="Face Color 3", command=lambda: FaceColor3(self), state=tk.NORMAL)
 		self.face3.grid(row=0, column=4, sticky='new', pady=30, padx=0)
 
-		self.f3 = tk.Message(master, width=200000000, text=" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ",
-							 borderwidth=5, relief=tk.GROOVE)
+		self.f3 = tk.Message(master, borderwidth=5, relief=tk.GROOVE)
 		self.f3.grid(row=0, column=4, sticky='new', pady=60, padx=0)
 
 		# Plotting,
 		self.plotting = tk.Button(master, text="Update", command=lambda: self.plot(canvas, ax), height=4)
-		self.plotting.grid(row=0, column=1, columnspan=2, sticky="new", pady=725)
+		self.plotting.grid(row=0, column=1, columnspan=2, sticky="new", pady=730)
 
 	# 	# Grid Functions (on/off)
 		self.grid_on = tk.Radiobutton(master, text="Grid On", variable=self.grid_axis, value='on', command=axi)
@@ -476,7 +470,7 @@ class Geometry(tk.Frame):
 		self.two_three.set('3d')
 	# 	# Shape Popup
 		self.shapes = tk.Button(master, text="Shapes", command=popup_shape, height=4)
-		self.shapes.grid(row=0, column=3, columnspan=2, sticky='new', pady=725)
+		self.shapes.grid(row=0, column=3, columnspan=2, sticky='new', pady=730)
 
 		def dark(self):
 			scales = [self.a_entry, self.h_entry, self.si_entry, self.ed_entry, self.pi_entry, self.ew_entry,
@@ -931,7 +925,7 @@ if __name__ == '__main__':
 	Geometry(root)
 
 	root.title("GeoExpanse")
-	root.geometry("1265x801")
+	root.geometry("1220x801")
 #	icon = ImageTk.PhotoImage(file='icon.png')
 
 	def quit():
