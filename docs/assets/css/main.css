@@ -284,18 +284,35 @@ body { padding: 0; margin: 0; font-family: "Open Sans", "Helvetica Neue", Helvet
 a { color: #1e6bb8; text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-.btn { display: inline-block; margin-bottom: 1rem; color: rgba(25, 255, 255, 0.7); border-color: rgba(255, 255, 255, 0.2); border-style: solid; border-width: 1px; border-radius: 0.3rem; transition: color 0.2s, background-color 0.2s, border-color 0.2s; }
+.lgbtq img{
+        height: 60px;
+}
+
+.btn {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        display: inline-block;
+        color: rgba(25, 255, 255, 0.7);
+        border-color: rgba(255, 255, 255, 0.2);
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 50px;
+        transition: color 0.2s,
+        background-color 0.2s,
+        border-color 0.2s;
+        font-size: 20px;
+        padding-top: 25px;
+        padding-bottom: 10px;
+        top: 0%;
+        left: 0%;
+        text-align: center;
+        alignment: center;
+        }
 .btn:hover { color: rgba(255, 255, 255, 0.8); text-decoration: none; background-color: rgba(255, 255, 255, 0.2); border-color: rgba(255, 255, 255, 0.3); }
 .btn + .btn { margin-left: 1rem; }
-@media screen and (min-width: 64em) { .btn { padding: 0.75rem 1rem; } }
-@media screen and (min-width: 42em) and (max-width: 64em) { .btn { padding: 0.6rem 0.9rem; } }
-@media screen and (max-width: 42em) { .btn { display: block; width: 100%; padding: 0.75rem; }
-  .btn + .btn { margin-top: 1rem; margin-left: 0; } }
 
 .page-header {height: 930px; color: #fff; text-align: center; background-image: url("../images/573976.jpg"); background-position: 50% 80%}
-@media screen and (min-width: 64em) { .page-header { padding: 5rem 6rem; } }
-@media screen and (min-width: 42em) and (max-width: 64em) { .page-header { padding: 3rem 4rem; } }
-@media screen and (max-width: 42em) { .page-header { padding: 2rem 1rem; } }
 
 .overhead {
 			position: absolute;
@@ -497,13 +514,13 @@ h2.project-tagline span::before{
 }
 .overheadbody{
 			position: absolute;
-			width:80%;
-			height:302%;
+			width:100%;
+			height:570%;
 			background-color: #000000;
 			color: #00bfff;
 			top: 175%;
 			bottom: 0%;
-			left: 10%;
+			left: 0%;
 			right: auto;
 			border-radius: 25px;
 			padding-top: 15px;
@@ -564,7 +581,7 @@ h2.project-tagline span::before{
         border-color: rgba(255, 255, 255, 0.2);
         border-style: solid;
         border-width: 1px;
-        border-radius: 25px;
+        border-radius: 50px;
         transition: color 0.2s,
         background-color 0.2s,
         border-color 0.2s;
@@ -588,11 +605,14 @@ p a img{
                 height: 25px;
                 width: 60%;
 }
+.lgbtq img{
+        height: 60px;
+}
 .overhead-badges {
 			position: absolute;
 			display: block;
 			width:85%;
-			height: 95%;
+			height: 105%;
 			background-color: #000000;
 			color: #00bfff;
 			top: 50%;
@@ -606,11 +626,19 @@ p a img{
 }
 .page-header {
                 height: 750px;
+                width: auto;
                 color: #fff;
                 text-align: center;
                 background-image: url("../images/573976.jpg");
-                background-position: 50% 80%}
+                background-position: 50% 80%
+                }
 
+.current a {
+    font-size: 11px;
+    }
+.current p {
+    font-size: 11px;
+}
 }
 
 .main-content { word-wrap: break-word; }
@@ -623,7 +651,7 @@ p a img{
 .main-content p { margin-bottom: 1em; }
 .main-content code { padding: 2px 4px; font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace; font-size: 0.9rem; color: #567482; background-color: #f3f6fa; border-radius: 0.3rem; }
 .main-content pre { padding: 0.8rem; margin-top: 0; margin-bottom: 1rem; font: 1rem Consolas, "Liberation Mono", Menlo, Courier, monospace; color: #567482; word-wrap: normal; background-color: #f3f6fa; border: solid 1px #dce6f0; border-radius: 0.3rem; }
-.main-content pre > code { padding: 0; margin: 0; font-size: 0.9rem; color: #567482; word-break: normal; white-space: pre; background: transparent; border: 0; }
+.main-content pre > code { padding: 0; margin: 0; font-size: 0.9rem; color: #ffffff; word-break: normal; white-space: pre; background: transparent; border: 0; }
 .main-content .highlight { margin-bottom: 1rem; }
 .main-content .highlight pre { margin-bottom: 0; word-break: normal; }
 .main-content .highlight pre, .main-content pre { padding: 0.8rem; overflow: auto; font-size: 0.9rem; line-height: 1.45; border-radius: 0.3rem; -webkit-overflow-scrolling: touch; background-color:#000447; color=#000000}
