@@ -401,6 +401,7 @@ a:hover { text-decoration: underline; }
 			padding-top: 20px;
 			text-align: center;
 }
+
 @media only screen and (min-width: 1000px){
 .overhead {
 			position: absolute;
@@ -495,7 +496,8 @@ a:hover { text-decoration: underline; }
                     font-size: 1.15rem;
                     color: #ffffff;
                     }
-@media screen and (max-width: 42em) {
+
+@media screen and (max-height: 500px) {
 .project-tagline {
                     font-size: 10px;
                     color: #ffffff;
