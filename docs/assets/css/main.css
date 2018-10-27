@@ -12,7 +12,7 @@
 
 
 /** Remove default margin. */
-body { margin: 0; background-color: #000000}
+body { margin: 0; background-color: #00003a}
 
 /* HTML5 display definitions ========================================================================== */
 /** Correct `block` display not defined for any HTML5 element in IE 8/9. Correct `block` display not defined for `details` or `summary` in IE 10/11 and Firefox. Correct `block` display not defined for `main` in IE 11. */
@@ -281,7 +281,7 @@ a:hover { text-decoration: underline; }
 @media screen and (max-width: 42em) { .btn { display: block; width: 100%; padding: 0.75rem; }
   .btn + .btn { margin-top: 1rem; margin-left: 0; } }
 
-.page-header {height: 900px; color: #fff; text-align: center; background-image: url("../images/573976.jpg"); background-position: 50% 80%}
+.page-header {height: 930px; color: #fff; text-align: center; background-image: url("../images/573976.jpg"); background-position: 50% 80%}
 @media screen and (min-width: 64em) { .page-header { padding: 5rem 6rem; } }
 @media screen and (min-width: 42em) and (max-width: 64em) { .page-header { padding: 3rem 4rem; } }
 @media screen and (max-width: 42em) { .page-header { padding: 2rem 1rem; } }
@@ -302,6 +302,59 @@ a:hover { text-decoration: underline; }
 			text-align: center;
 }
 
+@media only screen and (min-width: 1000px){
+.overhead {
+			position: absolute;
+			display: block;
+			width:30%;
+			height:20%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 10%;
+			bottom: 0%;
+			left: 35%;
+			right: auto;
+			border-radius: 40px;
+			padding-top: 15px;
+			text-align: center;
+}
+}
+
+.overheadbody{
+			position: absolute;
+			width:80%;
+			height:302%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 105%;
+			bottom: 0%;
+			left: 10%;
+			right: auto;
+			border-radius: 25px;
+			padding-top: 15px;
+			padding-bottom: 15px;
+			padding-left: 15px;
+			text-align: left;
+}
+
+@media only screen and (min-width: 1000px){
+.overheadbody{
+			position: absolute;
+			width:60%;
+			height:270%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 105%;
+			bottom: 0%;
+			left: 20%;
+			right: auto;
+			border-radius: 25px;
+			padding-top: 15px;
+			padding-bottom: 15px;
+			padding-left: 15px;
+			text-align: left;
+}
+}
 .overhead-badges {
 			position: absolute;
 			display: block;
@@ -318,7 +371,24 @@ a:hover { text-decoration: underline; }
 			text-align: center;
 			alignment: center;
 }
-
+@media only screen and (min-width: 1000px){
+.overhead-badges {
+			position: absolute;
+			display: block;
+			width:30%;
+			height:33%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 50%;
+			bottom: 0%;
+			left: 35%;
+			right: auto;
+			border-radius: 40px;
+			padding-top: 1%;
+			text-align: center;
+			alignment: center;
+}
+}
 .overhead-btn1 {
 			position: absolute;
 			display:block;
@@ -334,6 +404,22 @@ a:hover { text-decoration: underline; }
 			padding-top: 20px;
 			text-align: center;
 }
+@media only screen and (min-width: 1000px){
+.overhead-btn1 {
+			position: absolute;
+			display:block;
+			width:10%;
+			height:10%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 35%;
+			bottom: 0%;
+			left: 30%;
+			right: auto;
+			border-radius: 40px;
+			padding-top: 20px;
+			text-align: center;
+}}
 .overhead-btn2 {
 			position: absolute;
 			display: block;
@@ -349,7 +435,28 @@ a:hover { text-decoration: underline; }
 			padding-top: 20px;
 			text-align: center;
 }
+@media only screen and (min-width: 1000px){
+.overhead-btn2 {
+			position: absolute;
+			display: block;
+			width:10%;
+			height:10%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 35%;
+			bottom: 0%;
+			left: 60%;
+			right: auto;
+			border-radius: 40px;
+			padding-top: 20px;
+			text-align: center;
+}}
 
+.current {
+            column-count: 3;
+            text-align: center;
+            padding-right: 5px;
+}
 .project-name { margin-top: 0; margin-bottom: 0.1rem;}
 
 .project-tagline { margin-bottom: 2rem; font-weight: normal; opacity: 0.7; }
