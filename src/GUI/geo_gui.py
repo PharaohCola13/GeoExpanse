@@ -42,7 +42,7 @@ import breather_surface, kuen_surface, steiner_surface, boys_surface, roman_surf
 import cube, dodecahedron, icosahedron, octahedron
 import cross_cap, klein, mobius, torus
 import neat, testing, vase, something_strange, great_dodecahedron
-import cuboctahedron, great_rombicosidodecahedron, snub_cube, truncated_cube, hecatonicosihedron, great_icosahedron
+import cuboctahedron, great_rombicosidodecahedron, snub_cube, truncated_cube, disdyakis_triacontahedron, great_icosahedron
 import deltoid, log_spiral, parabola, penrose_square, penrose_circle, line, penrose_triangle, polygon
 
 ## Geometry Dictionary
@@ -97,7 +97,7 @@ s = {	 "Prism"					: prism,
 		 "Something Strange"		: something_strange,
 
 		 "Cuboctahedron"			: cuboctahedron,
-		 "Hecatonicosihedron"		: hecatonicosihedron,
+		 "Disdyakis Triacontahedron": disdyakis_triacontahedron,
 		 "Great Rombicosidodecahedron": great_rombicosidodecahedron,
 		 "Snub Cube"				: snub_cube,
 		 "Truncated Cube"			: truncated_cube,
@@ -120,7 +120,7 @@ misc 	= ["Three Dodecahedron", "Crescent", "Funnel", "Gabriel's Horn", "Rose Spi
 surf 	= ["Breather's Surface", "Kuen's Surface", "Steiner's Surface", "Boy's Surface", "Roman Surface", "Sine Surface", "Henneberg's Surface", "Dini's Surface", "Enneper's Surface", "Corkscrew Surface", "Shoe Surface", "Unk Surface"]
 topo 	= ["Cross Cap", "Klein Bottle", "Mobius Strip", "Torus"]
 deve 	= ["Neat", "Testing", "Great Dodecahedron", "Vase", "Something Strange"]
-arch 	= ["Cuboctahedron", "Hecatonicosihedron", "Great Rombicosidodecahedron", "Snub Cube", "Truncated Cube", "Great Icosahedron"]
+arch 	= ["Cuboctahedron", "Disdyakis Triacontahedron", "Great Rombicosidodecahedron", "Snub Cube", "Truncated Cube", "Great Icosahedron"]
 plat    = ["Cube", "Dodecahedron", "Octahedron", "Icosahedron"]
 two 	= ["Line", "Deltoid", "Log Spiral", "Parabola", "Polygons"]
 pen		= ["Penrose Circle", "Penrose Triangle", "Penrose Square"]

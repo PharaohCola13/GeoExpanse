@@ -45,6 +45,7 @@ b, strong { font-weight: bold; }
 dfn { font-style: italic; }
 
 /** Address variable `h1` font-size and margin within `section` and `article` contexts in Firefox 4+, Safari, and Chrome. */
+
 h1 {
 	font-family: 'Slice';
 	font-size: 52px;
@@ -53,6 +54,16 @@ h1 {
 	margin: 0px;
 	letter-spacing: 10px;
 	}
+
+@media screen and (max-width: 42em) {
+h1 {
+	font-family: 'Slice';
+	font-size: 26px;
+	font-weight: normal;
+	text-shadow: 0px 2px 0px #235796;
+	margin: 0px;
+	letter-spacing: 2px;
+	}}
 
 /** Address styling not present in IE 8/9. */
 mark { background: #ff0; color: #000; }
@@ -459,10 +470,148 @@ a:hover { text-decoration: underline; }
 }
 .project-name { margin-top: 0; margin-bottom: 0.1rem;}
 
-.project-tagline { margin-bottom: 2rem; font-weight: normal; opacity: 0.7; }
-@media screen and (min-width: 42em) { .project-tagline { font-size: 1.25rem; } }
-@media screen and (min-width: 42em) and (max-width: 64em) { .project-tagline { font-size: 1.15rem; } }
-@media screen and (max-width: 42em) { .project-tagline { font-size: 1rem; } }
+.project-tagline {
+                    margin-bottom: 2rem;
+                    font-weight: normal;
+                    opacity: 0.7;
+                    }
+
+@media screen and (min-width: 42em) {
+.project-tagline {
+                    font-size: 1.25rem;
+                    } }
+
+@media screen and (min-width: 42em) and (max-width: 64em) {
+.project-tagline {
+                    font-size: 1.15rem;
+                    } }
+
+@media screen and (max-width: 42em) {
+.project-tagline {
+                    font-size: 10px;
+
+                }
+h2.project-tagline span::before{
+                    content: "\A";
+                    white-space: pre;
+}
+.overheadbody{
+			position: absolute;
+			width:80%;
+			height:302%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 175%;
+			bottom: 0%;
+			left: 10%;
+			right: auto;
+			border-radius: 25px;
+			padding-top: 15px;
+			padding-bottom: 15px;
+			padding-left: 15px;
+			text-align: left;
+}
+.overhead {
+			position: absolute;
+			display: block;
+			width:85%;
+			height:22%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 10%;
+			bottom: 0%;
+			left: 8%;
+			right: auto;
+			border-radius: 40px;
+			padding-top: 5px;
+			text-align: center;
+}
+.overhead-btn1 {
+			position: absolute;
+			display:block;
+			width:25%;
+			height:11%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 35%;
+			bottom: 0%;
+			left: 15%;
+			right: auto;
+			border-radius: 40px;
+			text-align: center;
+}
+.overhead-btn2 {
+			position: absolute;
+			display: block;
+			width:25%;
+			height:11%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 35%;
+			bottom: 0%;
+			left: 60%;
+			right: auto;
+			border-radius: 40px;
+			padding-top: 20px;
+			text-align: center;
+}
+.btn {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        display: inline-block;
+        color: rgba(25, 255, 255, 0.7);
+        border-color: rgba(255, 255, 255, 0.2);
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 25px;
+        transition: color 0.2s,
+        background-color 0.2s,
+        border-color 0.2s;
+        font-size: 10px;
+        padding-top: 15px;
+        padding-bottom: 10px;
+        top: 0%;
+        left: 0%;
+        text-align: center;
+        alignment: center;
+        }
+.btn:hover {
+                color: rgba(255, 255, 255, 0.8);
+                text-decoration: none;
+                background-color: rgba(255, 255, 255, 0.2);
+                border-color: rgba(255, 255, 255, 0.3);
+                }
+.btn + .btn {
+                }
+p a img{
+                height: 25px;
+                width: 60%;
+}
+.overhead-badges {
+			position: absolute;
+			display: block;
+			width:85%;
+			height: 95%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 50%;
+			bottom: 0%;
+			left: 8%;
+			right: auto;
+			border-radius: 40px;
+			padding-top: 1%;
+			text-align: center;
+			alignment: center;
+}
+.page-header {
+                height: 750px;
+                color: #fff;
+                text-align: center;
+                background-image: url("../images/573976.jpg");
+                background-position: 50% 80%}
+
+}
 
 .main-content { word-wrap: break-word; }
 .main-content :first-child { margin-top: 0; }
