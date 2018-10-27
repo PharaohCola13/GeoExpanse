@@ -338,24 +338,6 @@ a:hover { text-decoration: underline; }
 			text-align: center;
 }
 
-@media only screen and (min-width: 1000px){
-.overhead {
-			position: absolute;
-			display: block;
-			width:30%;
-			height:20%;
-			background-color: #000000;
-			color: #00bfff;
-			top: 10%;
-			bottom: 0%;
-			left: 35%;
-			right: auto;
-			border-radius: 40px;
-			padding-top: 15px;
-			text-align: center;
-}
-}
-
 .overheadbody{
 			position: absolute;
 			width:80%;
@@ -373,24 +355,6 @@ a:hover { text-decoration: underline; }
 			text-align: left;
 }
 
-@media only screen and (min-width: 1000px){
-.overheadbody{
-			position: absolute;
-			width:60%;
-			height:280%;
-			background-color: #000000;
-			color: #00bfff;
-			top: 105%;
-			bottom: 0%;
-			left: 20%;
-			right: auto;
-			border-radius: 25px;
-			padding-top: 15px;
-			padding-bottom: 15px;
-			padding-left: 15px;
-			text-align: left;
-}
-}
 .overhead-badges {
 			position: absolute;
 			display: block;
@@ -407,7 +371,98 @@ a:hover { text-decoration: underline; }
 			text-align: center;
 			alignment: center;
 }
+.overhead-btn1 {
+			position: absolute;
+			display:block;
+			width:20%;
+			height:10%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 35%;
+			bottom: 0%;
+			left: 20%;
+			right: auto;
+			border-radius: 40px;
+			padding-top: 20px;
+			text-align: center;
+}
+.overhead-btn2 {
+			position: absolute;
+			display: block;
+			width:20%;
+			height:10%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 35%;
+			bottom: 0%;
+			left: 60%;
+			right: auto;
+			border-radius: 40px;
+			padding-top: 20px;
+			text-align: center;
+}
 @media only screen and (min-width: 1000px){
+.overhead {
+			position: absolute;
+			display: block;
+			width:30%;
+			height:20%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 10%;
+			bottom: 0%;
+			left: 35%;
+			right: auto;
+			border-radius: 40px;
+			padding-top: 15px;
+			text-align: center;
+}
+.overheadbody{
+			position: absolute;
+			width:60%;
+			height:280%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 105%;
+			bottom: 0%;
+			left: 20%;
+			right: auto;
+			border-radius: 25px;
+			padding-top: 15px;
+			padding-bottom: 15px;
+			padding-left: 15px;
+			text-align: left;
+}
+.overhead-btn2 {
+			position: absolute;
+			display: block;
+			width:10%;
+			height:10%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 35%;
+			bottom: 0%;
+			left: 60%;
+			right: auto;
+			border-radius: 40px;
+			padding-top: 20px;
+			text-align: center;
+}
+.overhead-btn1 {
+			position: absolute;
+			display:block;
+			width:10%;
+			height:10%;
+			background-color: #000000;
+			color: #00bfff;
+			top: 35%;
+			bottom: 0%;
+			left: 30%;
+			right: auto;
+			border-radius: 40px;
+			padding-top: 20px;
+			text-align: center;
+}
 .overhead-badges {
 			position: absolute;
 			display: block;
@@ -425,68 +480,6 @@ a:hover { text-decoration: underline; }
 			alignment: center;
 }
 }
-.overhead-btn1 {
-			position: absolute;
-			display:block;
-			width:20%;
-			height:10%;
-			background-color: #000000;
-			color: #00bfff;
-			top: 35%;
-			bottom: 0%;
-			left: 20%;
-			right: auto;
-			border-radius: 40px;
-			padding-top: 20px;
-			text-align: center;
-}
-@media only screen and (min-width: 1000px){
-.overhead-btn1 {
-			position: absolute;
-			display:block;
-			width:10%;
-			height:10%;
-			background-color: #000000;
-			color: #00bfff;
-			top: 35%;
-			bottom: 0%;
-			left: 30%;
-			right: auto;
-			border-radius: 40px;
-			padding-top: 20px;
-			text-align: center;
-}}
-.overhead-btn2 {
-			position: absolute;
-			display: block;
-			width:20%;
-			height:10%;
-			background-color: #000000;
-			color: #00bfff;
-			top: 35%;
-			bottom: 0%;
-			left: 60%;
-			right: auto;
-			border-radius: 40px;
-			padding-top: 20px;
-			text-align: center;
-}
-@media only screen and (min-width: 1000px){
-.overhead-btn2 {
-			position: absolute;
-			display: block;
-			width:10%;
-			height:10%;
-			background-color: #000000;
-			color: #00bfff;
-			top: 35%;
-			bottom: 0%;
-			left: 60%;
-			right: auto;
-			border-radius: 40px;
-			padding-top: 20px;
-			text-align: center;
-}}
 
 .current {
             column-count: 3;
@@ -506,7 +499,6 @@ a:hover { text-decoration: underline; }
 .project-tagline {
                     font-size: 10px;
                     color: #ffffff;
-
                 }
 h1 {
 	font-family: 'Slice';
@@ -611,8 +603,6 @@ h2 {
                 text-decoration: none;
                 background-color: rgba(255, 255, 255, 0.2);
                 border-color: rgba(255, 255, 255, 0.3);
-                }
-.btn + .btn {
                 }
 p a img{
                 height: 25px;
