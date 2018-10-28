@@ -1,5 +1,5 @@
 ## Future Works
-[Home](cover.html) || [Current Models](https://github.com/PharaohCola13/GeoExpanse/blob/master/docs/CURRENT.md) || [In Development](https://github.com/PharaohCola13/GeoExpanse/blob/master/docs/DEV.md) || [Contact](https://github.com/PharaohCola13/GeoExpanse/blob/master/docs/CONTACT.md)
+[Home](index.html) || [Current Models](https://github.com/PharaohCola13/GeoExpanse/blob/master/docs/CURRENT.md) || [In Development](https://github.com/PharaohCola13/GeoExpanse/blob/master/docs/DEV.md) || [Contact](https://github.com/PharaohCola13/GeoExpanse/blob/master/docs/CONTACT.md)
 
 I intend to have models of a great variety of geometric and topological objects.
 
