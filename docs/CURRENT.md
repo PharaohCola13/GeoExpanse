@@ -1,5 +1,5 @@
 ## Current Models
-[Home](index.html) || [In Development](https://github.com/PharaohCola13/GeoExpanse/blob/master/docs/DEV.md) || [Future Work](https://github.com/PharaohCola13/GeoExpanse/blob/master/docs/FUTURE.md) || [Contact](https://github.com/PharaohCola13/GeoExpanse/blob/master/docs/CONTACT.md)</nav>
+[Home](https://pharaohcola13.github.io/GeoExpanse/) || [In Development](https://github.com/PharaohCola13/GeoExpanse/blob/master/docs/DEV.md) || [Future Work](https://github.com/PharaohCola13/GeoExpanse/blob/master/docs/FUTURE.md) || [Contact](https://github.com/PharaohCola13/GeoExpanse/blob/master/docs/CONTACT.md)</nav>
 
 </div>
 <h1>A B</h1>
