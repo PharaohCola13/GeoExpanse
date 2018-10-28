@@ -212,19 +212,17 @@ class Geometry(tk.Frame):
 		def popup_about():
 			top = tk.Toplevel(self)
 			top.title("About")
+			top.geometry("220x175")
 			top.config(background=dim)
 
 			pop = tk.Button(top, text="POP!", command=top.destroy)
 			pop.grid(row=0, column=0, sticky='new')
 			pop.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
-			about = tk.Message(top, width=20000000000, text="This software was developed by Spencer Alexander\n"
-													"Riley,a undergraduate Physics major and Math minor at New Mexico Tech.\n"
-													"-----------------------------------------------------------------\n"
-													"This is an open-source educational application to allow students or "
-													"interested parties to examine and study a\n"
-													"great variety of geometric structures.")
-			about.grid(row=1, column=0, rowspan=3, columnspan=3)
+			about = tk.Message(top, text="This software was developed by Spencer Alexander Riley, a undergraduate Physics major and Math minor at New Mexico Tech.\n"
+															"--------------------------------------------------\n"
+															"This is an open-source educational application to allow students or interested parties to examine and study a great variety of geometric structures.")
+			about.grid(row=1, column=0, rowspan=3, columnspan=1)
 			about.config(bg=dim, fg=dimf)
 
 		def popup_shape():
