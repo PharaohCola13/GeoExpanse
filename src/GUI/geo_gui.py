@@ -13,7 +13,7 @@ from matplotlib.animation import *
 from PIL import ImageTk
 from PIL import Image
 import sys
-#from inspect import signature
+from inspect import signature
 from time import sleep
 
 try:
@@ -56,7 +56,7 @@ s = {	 "Prism"					: prism,
 		 "Hyperbolic Cylinder"		: hyperbolic_cylinder,
 		 "Hyperbolic Helicoid"		: hyperbolic_helicoid,
 
-		 "Three Dodecahedon"		: three_dodecahedron,
+		 "Three Dodecahedron"		: three_dodecahedron,
 		 "Crescent"					: crescent,
 		 "Funnel"					: funnel,
 		 "Gabriel's Horn"			: gabriel_horn,
@@ -149,7 +149,6 @@ class Geometry(tk.Frame):
 		canvas.draw()
 
 # 		# Vars
-
 		self.grid_axis 		= tk.StringVar()
 		self.axis_limits 	= tk.StringVar()
 		self.scroll			= tk.DoubleVar()
@@ -470,16 +469,16 @@ class Geometry(tk.Frame):
 		self.shapes = tk.Button(master, text="Shapes", command=popup_shape, height=4)
 		self.shapes.grid(row=0, column=3, columnspan=2, sticky='new', pady=730)
 
-		def dark(self):
-			scales = [self.a_entry, self.h_entry, self.si_entry, self.ed_entry, self.pi_entry, self.ew_entry,
-					  self.ram_entry, self.raa_entry, self.pi_entry2]
-			labels = [self.a_label, self.h_label, self.si_label, self.ed_label, self.pi_label, self.ew_label,
-					  self.ram_label, self.raa_label, self.pi_label2]
-			radio = [self.grid_on, self.grid_off, self.two_space, self.three_space]
-			button = [self.plotting, self.face, self.face2, self.face3, self.edge, self.shapes]
-			menus = [menu, filemenu]
-			master.config(background=dim)
+		scales = [self.a_entry, self.h_entry, self.si_entry, self.ed_entry, self.pi_entry, self.ew_entry,
+				  self.ram_entry, self.raa_entry, self.pi_entry2]
+		labels = [self.a_label, self.h_label, self.si_label, self.ed_label, self.pi_label, self.ew_label,
+				  self.ram_label, self.raa_label, self.pi_label2]
+		radio = [self.grid_on, self.grid_off, self.two_space, self.three_space]
+		button = [self.plotting, self.face, self.face2, self.face3, self.edge, self.shapes]
+		menus = [menu, filemenu]
 
+		def dark(self):
+			master.config(background=dim)
 			for m in scales:
 				m.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimf)
 			for n in labels:
@@ -492,8 +491,15 @@ class Geometry(tk.Frame):
 			for q in menus:
 				q.config(bg=dim, fg=dimf, activebackground=dim, activeforeground=dimf)
 		return dark(self)
-#
 	def plot(self, canvas, ax):
+		scales = [self.a_entry, self.h_entry, self.si_entry, self.ed_entry, self.pi_entry, self.ew_entry,
+				  self.ram_entry, self.raa_entry, self.pi_entry2]
+		labels = [self.a_label, self.h_label, self.si_label, self.ed_label, self.pi_label, self.ew_label,
+				  self.ram_label, self.raa_label, self.pi_label2]
+		radio = [self.grid_on, self.grid_off, self.two_space, self.three_space]
+		button = [self.plotting, self.face, self.face2, self.face3, self.edge, self.shapes]
+		col_lab = [self.fck, self.f2, self.f3]
+
 		try:
 			edge_c = self.ec_entry[1]
 		except AttributeError:
@@ -533,390 +539,180 @@ class Geometry(tk.Frame):
 		plt.cla()
 		plt.clf()
 
-		#
-		try:  # Count: 14
-			s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm,
-										  radiusa, color2, color3, height)
-		except KeyError:
+		def disable(*off):
+			disable = [*off]
+			for m in disable:
+				if m in scales:
+					m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
+				elif m in labels:
+					m.config(fg=disa)
+				elif m in button:
+					m.config(state=tk.DISABLED, highlightbackground=disa)
+				elif m in col_lab:
+					m.config(bg=dim, fg=dim, relief=tk.RIDGE)
 
+		def activate(*on):
+			active = [*on]
+			for m in active:
+				if m in scales:
+					m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
+				elif m in labels:
+					m.config(fg=dimf)
+				elif m in button:
+					m.config(state=tk.ACTIVE, highlightbackground=dimf)
+				elif m in col_lab:
+					m.config(relief=tk.GROOVE)
+
+		args = s[self.shape_set.get()].shape.__code__.co_varnames
+
+		try:
+			if args[1:14] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'multi_pi', 'radiusm', 'radiusa', 'color2', 'color3', 'height'):
+				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm,
+											  radiusa, color2, color3, height)
+			elif args[1:12] == (
+			'alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'multi_pi', 'radiusm', 'radiusa', 'height'):
+				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi,
+											  radiusm, radiusa, height)
+				activate(self.face, self.fck,
+						 self.a_entry, self.si_entry, self.ed_entry, self.pi_entry, self.raa_entry, self.ram_entry,
+						 self.h_entry,
+						 self.a_label, self.si_label, self.ed_label, self.pi_label, self.raa_label, self.ram_label,
+						 self.h_label)
+				disable(self.face2, self.face3, self.f2, self.f3,
+						self.pi_entry2, self.pi_label2)
+
+			elif args[1:11] == (
+			'alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'multi_pi', 'radiusm', 'height'):
+				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm,
+											  height)
+
+				activate(self.face, self.fck,
+						 self.a_entry, self.si_entry, self.ed_entry, self.pi_entry, self.ram_entry, self.h_entry,
+						 self.a_label, self.si_label, self.ed_label, self.pi_label, self.ram_label, self.h_label)
+
+				disable(self.face2, self.face3, self.f2, self.f3,
+						self.raa_entry, self.raa_label, self.pi_entry2, self.pi_label2)
+
+			elif args[1:10] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'multi_pi', 'radiusm'):
+				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm)
+				activate(self.face, self.fck,
+						 self.a_entry, self.si_entry, self.ed_entry, self.pi_entry, self.ram_entry,
+						 self.a_label, self.si_label, self.ed_label, self.pi_label, self.ram_label)
+
+				disable(self.face2, self.face3, self.f2, self.f3,
+						self.raa_entry, self.h_entry, self.raa_label, self.h_label, self.pi_entry2, self.pi_label2)
+			elif args[1:9] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'multi_pi'):
+				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi)
+
+				activate(self.face, self.fck,
+						 self.a_entry, self.si_entry, self.ed_entry, self.pi_entry,
+						 self.a_label, self.si_label, self.ed_label, self.pi_label)
+
+				disable(self.face2, self.face3, self.f2, self.f3,
+						self.raa_entry, self.h_entry, self.ram_entry, self.pi_entry2,
+						self.raa_label, self.h_label, self.ram_label, self.pi_label2)
+			elif args[1:8] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'radiusm', 'color2'):
+				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, radiusm, color2)
+
+				activate(self.face, self.fck,
+						 self.a_entry, self.ram_entry, self.a_label, self.ram_label)
+
+				disable(self.face2, self.f2, self.face3, self.f3,
+						self.si_entry, self.ed_entry, self.pi_entry, self.raa_entry, self.h_entry, self.pi_entry2,
+						self.si_label, self.ed_label, self.pi_label, self.raa_label, self.h_label, self.pi_label2)
+			elif args[1:8] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges'):
+				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges)
+
+				activate(self.face, self.fck,
+						 self.a_entry, self.si_entry, self.ed_entry,
+						 self.a_label, self.si_label, self.ed_label)
+
+				disable(self.face2, self.face3, self.f2, self.f3,
+						self.pi_entry, self.raa_entry, self.h_entry, self.ram_entry, self.pi_entry2,
+						self.pi_label, self.raa_label, self.h_label, self.ram_label, self.pi_label2)
+			elif args[1:8] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'color2', 'color3'):
+				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, color2, color3)
+
+				activate(self.face, self.fck, self.face2, self.f2, self.face3, self.f3,
+						 self.a_entry, self.a_label)
+
+				disable(self.pi_entry, self.raa_entry, self.h_entry, self.ram_entry, self.si_entry, self.ed_entry, self.pi_entry2,
+						self.pi_label, self.raa_label, self.h_label, self.ram_label, self.si_label, self.ed_label, self.pi_label2)
+			elif args[1:7] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'radiusm'):
+				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, radiusm)
+
+				activate(self.face, self.fck,
+						 self.ram_entry, self.a_entry, self.ram_label, self.a_label)
+
+				disable(self.face2, self.face3, self.f2, self.f3,
+						self.pi_entry, self.raa_entry, self.h_entry, self.si_entry, self.ed_entry, self.pi_entry2,
+						self.pi_label, self.raa_label, self.h_label, self.si_label, self.ed_label, self.pi_label2)
+			elif args[1:7] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'color2'):
+				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, color2)
+
+				activate(self.face, self.fck, self.face2, self.f2,
+						 self.a_entry, self.a_label)
+
+				disable(self.face3, self.f3,
+						self.pi_entry, self.raa_entry, self.h_entry, self.si_entry, self.ed_entry, self.ram_entry, self.pi_entry2,
+						self.pi_label, self.raa_label, self.h_label, self.si_label, self.ed_label, self.ram_label, self.pi_label2)
+			elif args[1:6] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid'):
+				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid)
+
+				activate(self.face, self.fck,
+						 self.a_entry, self.a_label)
+
+				disable(self.face2, self.face3, self.f2, self.f3,
+						self.pi_entry, self.raa_entry, self.h_entry, self.si_entry, self.ed_entry, self.ram_entry, self.pi_entry2,
+						self.pi_label, self.raa_label, self.h_label, self.si_label, self.ed_label, self.ram_label, self.pi_label2)
+			elif args[1:4] == ('edge_c', 'edge_w', 'grid'):
+				s[self.shape_set.get()].shape(self.fig, edge_c, edge_w, grid)
+
+				disable(self.face, self.face2, self.face3, self.fck, self.f2, self.f3,
+						self.pi_entry, self.raa_entry, self.h_entry, self.si_entry, self.ed_entry, self.a_entry,
+						self.ram_entry, self.pi_entry2,
+						self.pi_label, self.raa_label, self.h_label, self.si_label, self.ed_label, self.a_label,
+						self.ram_label, self.pi_label2)
+			elif args[1:6] == ('edge_c', 'edge_w', 'grid', 'radiusm', 'radiusa'):
+				s[self.shape_set.get()].shape(self.fig, edge_c, edge_w, grid, radiusm, radiusa)
+
+				activate(self.ram_entry, self.ram_label)
+				disable(self.face, self.face2, self.face3, self.fck, self.f2, self.f3,
+						self.pi_entry, self.raa_entry, self.h_entry, self.si_entry, self.ed_entry, self.a_entry, self.pi_entry2,
+						self.pi_label, self.raa_label, self.h_label, self.si_label, self.ed_label, self.a_label,  self.pi_label2)
+			elif args[1:7] == ('edge_c', 'edge_w', 'grid', 'sides', 'edges', 'multi_pi'):
+				s[self.shape_set.get()].shape(self.fig, edge_c, edge_w, grid, sides, edges, multi_pi)
+
+				activate(self.si_entry, self.ed_entry, self.pi_entry,
+						 self.si_label, self.ed_label, self.pi_label)
+
+				disable(self.face, self.face2, self.face3, self.fck, self.f2, self.f3,
+						self.raa_entry, self.h_entry, self.a_entry, self.ram_entry, self.pi_entry2,
+						self.raa_label, self.h_label, self.a_label, self.ram_label, self.pi_label2)
+			elif args[1:6] == ('edge_c', 'edge_w', 'grid', 'sides', 'sides'):
+				s[self.shape_set.get()].shape(self.fig, edge_c, edge_w, grid, sides)
+
+				activate(self.si_entry, self.si_label)
+
+				disable(self.face, self.face2, self.face3, self.fck, self.f2, self.f3,
+						self.raa_entry, self.h_entry, self.a_entry, self.ram_entry, self.ed_entry, self.pi_entry,
+						self.pi_entry2,
+						self.raa_label, self.h_label, self.a_label, self.ram_label, self.ed_label, self.pi_label,
+						self.pi_label2)
+
+		except KeyError:
 			root.title("GeoExpanse (Testing)")
 			testing.shape(self.fig, alpha,color, edge_c, edge_w, grid, sides, edges, multi_pi,  multi_pi2)
 
-			active = [self.a_entry, self.si_entry, self.ed_entry, self.pi_entry,  self.pi_entry2]
-			active_label = [self.a_label, self.si_label, self.ed_label, self.pi_label, self.pi_label2]
-			disable = [self.ram_entry, self.raa_entry, self.h_entry]
-			disable_label = [self.ram_label, self.raa_label, self.h_label]
-			color = [self.face2, self.face3]
-			color_label = [self.f2, self.f3]
+			activate(self.face, self.fck,
+					 self.a_entry, self.si_entry, self.ed_entry, self.pi_entry, self.pi_entry2,
+					 self.a_label, self.si_label, self.ed_label, self.pi_label, self.pi_label2)
 
-			for m in disable:
-				m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-				for n in disable_label:
-					n.config(fg=disa)
-					for o in color:
-						o.config(state=tk.DISABLED, highlightbackground=disa)
-						for p in color_label:
-							p.config(bg=dim, fg=dim, relief=tk.RIDGE)
-			for m in active:
-				m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
-				self.face.config(state=tk.ACTIVE, highlightbackground=dimf)
-				for n in active_label:
-					n.config(fg=dimf)
-					self.fck.config(relief=tk.GROOVE)
-		except TypeError:
-			try:  # Count: 12
-				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi,
-											  radiusm, radiusa, height)
-
-				active 			= [self.a_entry, self.si_entry, self.ed_entry, self.pi_entry, self.raa_entry, self.ram_entry, self.h_entry]
-				active_label 	= [self.a_label, self.si_label, self.ed_label, self.pi_label, self.raa_label, self.ram_label,
-									self.h_label]
-				color 			= [self.face2, self.face3]
-				color_label 	= [self.f2, self.f3]
-
-				for n in color:
-					n.config(state=tk.DISABLED, highlightbackground=disa)
-					for m in color_label:
-						m.config(bg=dim, fg=dim, relief=tk.RIDGE)
-
-				for n in active:
-					n.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
-					self.face.config(state=tk.ACTIVE, highlightbackground=dimf)
-					for m in active_label:
-						m.config(fg=dimf)
-						self.fck.config(relief=tk.GROOVE)
-			except TypeError:
-				try:  # Count: 11
-					s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi,
-												  radiusm, height)
-					active = [self.a_entry, self.si_entry, self.ed_entry, self.pi_entry, self.ram_entry, self.h_entry]
-					active_label = [self.a_label, self.si_label, self.ed_label, self.pi_label, self.ram_label, self.h_label]
-					disable = [self.raa_entry]
-					disable_label = [self.raa_label]
-					color = [self.face2, self.face3]
-					color_label = [self.f2, self.f3]
-
-					for m in disable:
-						m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-						for n in disable_label:
-							n.config(fg=disa)
-							for o in color:
-								o.config(state=tk.DISABLED, highlightbackground=disa)
-								for p in color_label:
-									p.config(bg=dim, fg=dim, relief=tk.RIDGE)
-
-					for m in active:
-						m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
-						self.face.config(state=tk.ACTIVE, highlightbackground=dimf)
-						for n in active_label:
-							n.config(fg=dimf)
-							self.fck.config(relief=tk.GROOVE)
-
-				except TypeError:
-					try:  # Count: 10
-						s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges,
-													  multi_pi, radiusm)
-						active = [self.a_entry, self.si_entry, self.ed_entry, self.pi_entry, self.ram_entry]
-						active_label = [self.a_label, self.si_label, self.ed_label, self.pi_label, self.ram_label]
-						disable = [self.raa_entry, self.h_entry]
-						disable_label = [self.raa_label, self.h_label]
-						color = [self.face2, self.face3]
-						color_label = [self.f2, self.f3]
-
-						for m in disable:
-							m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-							for n in disable_label:
-								n.config(fg=disa)
-								for o in color:
-									o.config(state=tk.DISABLED, highlightbackground=disa)
-									for p in color_label:
-										p.config(bg=dim, fg=dim, relief=tk.RIDGE)
-
-						for m in active:
-							m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
-							self.face.config(state=tk.ACTIVE, highlightbackground=dimf)
-							for n in active_label:
-								n.config(fg=dimf)
-								self.fck.config(relief=tk.GROOVE)
-
-					except TypeError:
-						try:  # Count: 9
-							s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges,
-														  multi_pi)
-							active = [self.a_entry, self.si_entry, self.ed_entry, self.pi_entry]
-							active_label = [self.a_label, self.si_label, self.ed_label, self.pi_label]
-							disable = [self.raa_entry, self.h_entry, self.ram_entry]
-							disable_label = [self.raa_label, self.h_label, self.ram_label]
-							color = [self.face2, self.face3]
-							color_label = [self.f2, self.f3]
-
-							for m in disable:
-								m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-								for n in disable_label:
-									n.config(fg=disa)
-									for o in color:
-										o.config(state=tk.DISABLED, highlightbackground=disa)
-										for p in color_label:
-											p.config(bg=dim, fg=dim, relief=tk.RIDGE)
-
-							for m in active:
-								m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
-								self.face.config(state=tk.ACTIVE, highlightbackground=dimf)
-								for n in active_label:
-									n.config(fg=dimf)
-									self.fck.config(relief=tk.GROOVE)
-
-						except TypeError:
-							try:  # Count: 8
-								s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, radiusm,
-															  color2)
-								active = [self.a_entry, self.ram_entry]
-								active_label = [self.a_label, self.ram_label]
-								disable = [self.si_entry, self.ed_entry, self.pi_entry, self.raa_entry, self.h_entry]
-								disable_label = [self.si_label, self.ed_label, self.pi_label, self.raa_label,
-												 self.h_label]
-								color = [self.face2, self.face3]
-								color_label = [self.f2, self.f3]
-
-								for m in disable:
-									m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-									for n in disable_label:
-										n.config(fg=disa)
-										for o in color:
-											self.face3.config(state=tk.DISABLED, highlightbackground=disa)
-											for p in color_label:
-												self.f3.config(bg=dim, fg=dim, relief=tk.RIDGE)
-
-								for m in active:
-									m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
-									for n in active_label:
-										n.config(fg=dimf)
-										for o in color:
-											self.face2.config(state=tk.ACTIVE, highlightbackground=dimf)
-											self.face.config(state=tk.ACTIVE, highlightbackground=dimf)
-											for p in color_label:
-												self.f2.config(relief=tk.GROOVE)
-												self.fck.config(relief=tk.GROOVE)
-
-							except ValueError:
-								s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides,
-															  edges)
-								active = [self.a_entry, self.si_entry, self.ed_entry]
-								active_label = [self.a_label, self.si_label, self.ed_label]
-								disable = [self.pi_entry, self.raa_entry, self.h_entry, self.ram_entry]
-								disable_label = [self.pi_label, self.raa_label, self.h_label, self.ram_label]
-								color = [self.face2, self.face3]
-								color_label = [self.f2, self.f3]
-
-								for m in disable:
-									m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-									for n in disable_label:
-										n.config(fg=disa)
-										for o in color:
-											o.config(state=tk.DISABLED, highlightbackground=disa)
-											for p in color_label:
-												p.config(bg=dim, fg=dim, relief=tk.RIDGE)
-
-								for m in active:
-									m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
-									self.face.config(state=tk.ACTIVE, highlightbackground=dimf)
-									for n in active_label:
-										n.config(fg=dimf)
-										self.fck.config(relief=tk.GROOVE)
-
-							except TypeError:
-								try:  # Count: 8
-									s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, color2,
-																  color3)
-									active  = [self.a_entry]
-									active_label = [self.a_label]
-									disable = [self.pi_entry, self.raa_entry, self.h_entry, self.ram_entry,
-											   self.si_entry, self.ed_entry]
-									disable_label = [self.pi_label, self.raa_label, self.h_label, self.ram_label,
-													 self.si_label, self.ed_label]
-									color = [self.face2, self.face3]
-									color_label = [self.f2, self.f3]
-
-									for m in disable:
-										m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim,
-												 troughcolor=dim)
-										for n in disable_label:
-											n.config(fg=disa)
-											for o in color:
-												o.config(state=tk.ACTIVE, highlightbackground=dimf)
-												for p in color_label:
-													p.config(relief=tk.GROOVE)
-									for m in active:
-										m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
-										self.face.config(state=tk.ACTIVE, highlightbackground=dimf)
-										for n in active_label:
-											n.config(fg=dimf)
-											self.fck.config(relief=tk.GROOVE)
-
-								except TypeError:
-									try:  # Count:7
-										s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, radiusm)
-										active = [self.ram_entry, self.a_entry]
-										active_label = [self.ram_label, self.a_label]
-										disable = [self.pi_entry, self.raa_entry, self.h_entry, self.si_entry,
-												   self.ed_entry]
-										disable_label = [self.pi_label, self.raa_label, self.h_label, self.si_label,
-														 self.ed_label]
-										color = [self.face2, self.face3]
-										color_label = [self.f2, self.f3]
-
-										for m in disable:
-											m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim,
-													 troughcolor=dim)
-											for n in disable_label:
-												n.config(fg=disa)
-												for o in color:
-													o.config(state=tk.DISABLED, highlightbackground=disa)
-													for p in color_label:
-														p.config(bg=dim, fg=dim, relief=tk.RIDGE)
-
-										for m in active:
-											m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim,
-													 troughcolor=dimf)
-											self.face.config(state=tk.ACTIVE, highlightbackground=dimf)
-											for n in active_label:
-												n.config(fg=dimf)
-												self.fck.config(relief=tk.GROOVE)
-
-									except TypeError:
-										try:  # Count: 7
-											s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid,
-																		  color2)
-											active  = [self.a_entry]
-											active_label = [self.a_label]
-											disable = [self.pi_entry, self.raa_entry, self.h_entry, self.si_entry,
-													   self.ed_entry, self.ram_entry]
-											disable_label = [self.pi_label, self.raa_label, self.h_label, self.si_label,
-															 self.ed_label, self.ram_label]
-											color = [self.face2, self.face3]
-											color_label = [self.f2, self.f3]
-
-											for m in disable:
-												m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim,
-														 troughcolor=dim)
-												for n in disable_label:
-													n.config(fg=disa)
-													for o in color:
-														self.face3.config(state=tk.DISABLED, highlightbackground=disa)
-														for p in color_label:
-															self.f3.config(bg=dim, fg=dim, relief=tk.RIDGE)
-
-											for m in active:
-												m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim,
-														 troughcolor=dimf)
-												for n in active_label:
-													n.config(fg=dimf)
-													for o in color:
-														self.face2.config(state=tk.ACTIVE, highlightbackground=dimf)
-														self.face.config(state=tk.ACTIVE, highlightbackground=dimf)
-														for p in color_label:
-															self.f2.config(relief=tk.GROOVE)
-															self.fck.config(relief=tk.GROOVE)
-
-										except TypeError:
-											try:  # Count: 6
-												s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w,
-																			  grid)
-												active  = [self.a_entry]
-												active_label = [self.a_label]
-												disable = [self.pi_entry, self.raa_entry, self.h_entry, self.si_entry,self.ed_entry, self.ram_entry]
-												disable_label = [self.pi_label, self.raa_label, self.h_label, self.si_label, self.ed_label, self.ram_label]
-												color = [self.face2, self.face3]
-												color_label = [self.f2, self.f3]
-
-												for m in disable:
-													m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim,
-															 troughcolor=dim)
-													for n in disable_label:
-														n.config(fg=disa)
-														for o in color:
-															o.config(state=tk.DISABLED, highlightbackground=disa)
-															for p in color_label:
-																p.config(bg=dim, fg=dim, relief=tk.RIDGE)
-												for m in active:
-													m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim,
-														 troughcolor=dimf)
-													self.face.config(state=tk.ACTIVE, highlightbackground=dimf)
-													for n in active_label:
-														n.config(fg=dimf)
-														self.fck.config(relief=tk.GROOVE)
-
-											except TypeError:
-												try:
-													s[self.shape_set.get()].shape(self.fig, edge_c, edge_w, grid)
-													disable 	  = [self.pi_entry, self.raa_entry, self.h_entry, self.si_entry, self.ed_entry,  self.a_entry, self.ram_entry]
-													disable_label = [self.pi_label, self.raa_label, self.h_label, self.si_label, self.ed_label, self.a_label, self.ram_label]
-													color 		  = [self.face, self.face2, self.face3]
-													color_label   = [self.fck, self.f2, self.f3]
-
-													for m in disable:
-														m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-														for n in disable_label:
-															n.config(fg=disa)
-															for o in color:
-																o.config(state=tk.DISABLED, highlightbackground=disa)
-																for p in color_label:
-																	p.config(bg=dim, fg=dim, relief=tk.RIDGE)
-												except TypeError:
-													try:
-														#print("THis")
-														s[self.shape_set.get()].shape(self.fig, edge_c, edge_w, grid, radiusm)
-														active 		  = [self.ram_entry]
-														active_label  = [self.ram_label]
-														disable 	  = [self.pi_entry, self.raa_entry, self.h_entry, self.si_entry, self.ed_entry,  self.a_entry]
-														disable_label = [self.pi_label, self.raa_label, self.h_label, self.si_label, self.ed_label, self.a_label]
-														color 		  = [self.face, self.face2, self.face3]
-														color_label   = [self.fck, self.f2, self.f3]
-
-														for m in disable:
-															m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-															for n in disable_label:
-																n.config(fg=disa)
-																for o in color:
-																	o.config(state=tk.DISABLED, highlightbackground=disa)
-																	for p in color_label:
-																		p.config(bg=dim, fg=dim, relief=tk.RIDGE)
-
-														for m in active:
-															m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim,troughcolor=dimf)
-															for n in active_label:
-																n.config(fg=dimf)
-
-													except TypeError:
-														try:
-															s[self.shape_set.get()].shape(self.fig, edge_c, edge_w, grid, sides, edges, multi_pi)
-															active 		  = [self.si_entry, self.ed_entry, self.pi_entry]
-															active_label  = [self.si_label, self.ed_label, self.pi_label]
-															disable 	  = [self.raa_entry, self.h_entry,  self.a_entry, self.ram_entry]
-															disable_label = [self.raa_label, self.h_label,  self.a_label, self.ram_label]
-															color 		  = [self.face, self.face2, self.face3]
-															color_label   = [self.fck, self.f2, self.f3]
-
-															for m in disable:
-																m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-																for n in disable_label:
-																	n.config(fg=disa)
-																	for o in color:
-																		o.config(state=tk.DISABLED, highlightbackground=disa)
-																		for p in color_label:
-																			p.config(bg=dim, fg=dim, relief=tk.RIDGE)
-
-															for m in active:
-																m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim,troughcolor=dimf)
-																for n in active_label:
-																	n.config(fg=dimf)
-														except IndentationError:
-															print("Welp")
-
-
+			disable(self.face2, self.face3, self.f2, self.f3,
+					self.ram_entry, self.raa_entry, self.h_entry,
+					self.ram_label, self.raa_label, self.h_label)
 
 		canvas.draw()
-
 
 if __name__ == '__main__':
 	root = tk.Tk()
@@ -931,15 +727,9 @@ if __name__ == '__main__':
 		root.quit()
 		root.destroy()
 
-
 #	root.tk.call('wm', 'iconphoto', root._w, icon)
 	root.protocol("WM_DELETE_WINDOW", quit)
 	root.update()
 	root.update_idletasks()
-
-	def quit():
-		global root
-		root.quit()
-		root.destroy()
 
 	root.mainloop()

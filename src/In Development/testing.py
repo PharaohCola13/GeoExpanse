@@ -36,7 +36,7 @@ def shape(fig, alpha,color, edge_c, edge_w, grid, sides, edges, multi_pi, multi_
 	ax = p3.Axes3D(fig)
 	ax.set_facecolor('black')
 
-	plt.axis("off")
+	plt.axis(grid)
 	plt.axis('equal')
 
 

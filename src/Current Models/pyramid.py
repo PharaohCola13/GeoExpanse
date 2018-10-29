@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Pyramid"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radius, height):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, height):
 
 # Definition of x
 	def x_(u,v):
@@ -30,7 +30,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiu
 	h = height
 
 # Radius
-	r = radius
+	r = radiusm
 
 # Number of edges on the base
 	s = sides

@@ -5,19 +5,19 @@ from matplotlib.animation import *
 
 
 name = "Polygons"
-def shape(fig, edge_c, edge_w, grid, sides, edges, multi_pi):
+def shape(fig, edge_c, edge_w, grid, sides):
 	
 	def r_(u):
 		r = 1/(cos((m/n) *arcsin(sin((n/o)*u+p))))
 		return r
 
 	n = sides
-	m = edges
-	o = edge_w
+	m = 2
+	o = 2
 	p = 0.79
 
 
-	u = linspace(0,2 * pi, multi_pi+1)
+	u = linspace(0,2 * pi, sides+1)
 
 	r = r_(u)
 
@@ -29,4 +29,4 @@ def shape(fig, edge_c, edge_w, grid, sides, edges, multi_pi):
 	plt.axis(grid)
 
 
-	delt = plt.plot(u, r, color=edge_c, linewidth=2)
+	delt = plt.plot(u, r, color=edge_c, linewidth=edge_w)
