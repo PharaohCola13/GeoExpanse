@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Sine Surface"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm):
 
 	# Definition of x
 	def x_(u,v):
@@ -26,7 +26,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiu
 		    z  = a * sin(u + v)
 		    return z
 
-	a = radius #
+	a = radiusm #
 	# Values of the angles
 	s = sides
 	u = linspace(0, 2 * pi, edges)
