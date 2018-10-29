@@ -13,7 +13,6 @@ from matplotlib.animation import *
 from PIL import ImageTk
 from PIL import Image
 import sys
-from inspect import signature
 from time import sleep
 
 try:
@@ -537,8 +536,7 @@ class Geometry(tk.Frame):
 		plt.clf()
 
 		def disable(*off):
-			disable = [*off]
-			for m in disable:
+			for m in off:
 				if m in self.scales:
 					m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
 				elif m in self.labels:
@@ -549,8 +547,7 @@ class Geometry(tk.Frame):
 					m.config(bg=dim, fg=dim, relief=tk.RIDGE)
 
 		def activate(*on):
-			active = [*on]
-			for m in active:
+			for m in on:
 				if m in self.scales:
 					m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
 				elif m in self.labels:
@@ -711,6 +708,8 @@ class Geometry(tk.Frame):
 
 		except KeyError:
 			args = testing.shape.__code__.co_varnames[1:10]
+			dode = three_dodecahedron.shape.__code__.co_varnames
+			print(dode)
 			root.title("GeoExpanse (Testing)")
 			testing.shape(self.fig, alpha,color, edge_c, edge_w, grid, sides, edges, multi_pi,  multi_pi2)
 
