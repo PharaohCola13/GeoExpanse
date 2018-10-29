@@ -69,49 +69,43 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3):
 		N[i,:] = dot(points[i,:],R)
 
 	# Figure Properties
-	fig = plt.figure(figsize=(8,8))
 	ax = p3.Axes3D(fig)
 	ax.set_facecolor('black')
 
-	plt.axis("off")
+	plt.axis(grid)
 	plt.axis('equal')
 
 	ax.set_xlim(-4,4)
 	ax.set_ylim(-4,4)
 	ax.set_zlim(-4,4)
 
-	# Radius
-	r = [-1,1]
-
-	X, Y = np.meshgrid(r, r)
-
 
 	# magenta, thistle | gold, lemonchiffon | deepskyblue, skyblue
-
-	# Outside Region
+	verts = ['verts0', 'verts1', 'verts2']
 	for n in Z,M,N:
-		verts = [[n[0], n[1], n[2], n[3], n[4]],
-			 [n[0], n[5], n[10], n[6], n[1]],
-			 [n[1], n[6], n[11], n[7], n[2]],
-			 [n[2], n[7], n[12], n[8], n[3]],
-			 [n[3], n[8], n[13], n[9], n[4]],
-			 [n[4], n[9], n[14], n[5], n[0]],
-			 [n[15], n[10], n[5], n[14], n[19]],
-			 [n[16], n[11], n[6], n[10], n[15]],
-			 [n[17], n[12], n[7], n[11], n[16]],
-			 [n[18], n[13], n[8], n[12], n[17]],
-			 [n[19], n[14], n[9], n[13], n[18]],
-			 [n[19], n[18], n[17], n[16], n[15]]
-			]
+		for m in range(len(verts)):
+			verts[m] = [[n[0], n[1], n[2], n[3], n[4]],
+				 [n[0], n[5], n[10], n[6], n[1]],
+				 [n[1], n[6], n[11], n[7], n[2]],
+				 [n[2], n[7], n[12], n[8], n[3]],
+				 [n[3], n[8], n[13], n[9], n[4]],
+				 [n[4], n[9], n[14], n[5], n[0]],
+				 [n[15], n[10], n[5], n[14], n[19]],
+				 [n[16], n[11], n[6], n[10], n[15]],
+				 [n[17], n[12], n[7], n[11], n[16]],
+				 [n[18], n[13], n[8], n[12], n[17]],
+				 [n[19], n[14], n[9], n[13], n[18]],
+				 [n[19], n[18], n[17], n[16], n[15]]
+				]
 
-		dodeca = Poly3DCollection(verts)
+			dodeca = Poly3DCollection(verts[m])
 
-		dodeca.set_edgecolor('white')
-		dodeca.set_linewidth(1)
-		dodeca.set_alpha(0.5)
-		dodeca.set_facecolor('deepskyblue')
+			dodeca.set_edgecolor(edge_c)
+			dodeca.set_linewidth(edge_w)
+			dodeca.set_alpha(alpha)
+			dodeca.set_facecolor(color)
 
-		hedron = ax.add_collection3d(dodeca)
+			hedron = ax.add_collection3d(dodeca)
 
 
 #plt.show()
