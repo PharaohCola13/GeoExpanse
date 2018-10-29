@@ -135,6 +135,7 @@ class Geometry(tk.Frame):
 		tk.Frame.__init__(self ,master)
 		self.createWidgets(master)
 
+
 	def createWidgets(self, master):
 		global icon
 		self.fig = plt.figure(figsize=(8 ,8), facecolor="black", edgecolor="white")
@@ -239,73 +240,73 @@ class Geometry(tk.Frame):
 			plotter.config(bg=dim,fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
 			if self.two_three.get() == "3d":
+				self.shape_set.set("Unk Surface")
+
 				for n in range(len(gen)):
 					tk.Radiobutton(top, text=gen[n], variable=self.shape_set, value=gen[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+1, column=0, sticky='w')
 
 				##
-				hyperbolic = tk.Label(top, text="--- Hyperbolic Objects ---", font=('Times', 12, 'bold'))
-				hyperbolic.grid(row=4, column=0, sticky="nsew")
-				hyperbolic.config(bg=dim, fg=dimf, activebackground=dim)
+				hyperbolic = tk.Label(top, text="--- Hyperbolic Objects ---", font=('Times', 12, 'bold'), bg=dim, fg=dimf, activebackground=dim)\
+					.grid(row=4, column=0, sticky="nsew")
 
 				for n in range(len(hyper)):
-					tk.Radiobutton(top, text=hyper[n], variable=self.shape_set, value=hyper[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+5, column=0, sticky='w')
+					tk.Radiobutton(top, text=hyper[n], variable=self.shape_set, value=hyper[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
+						.grid(row=n+5, column=0, sticky='w')
 
 				##
-				miscellaneous = tk.Label(top, text="--- Miscellaneous ---", font=('Times', 12, 'bold'))
-				miscellaneous.grid(row=10, column=0, sticky='nsew')
-				miscellaneous.config(bg=dim, fg=dimf, activebackground=dim)
+				miscellaneous = tk.Label(top, text="--- Miscellaneous ---", font=('Times', 12, 'bold'), bg=dim, fg=dimf, activebackground=dim)\
+					.grid(row=10, column=0, sticky='nsew')
 
 				for n in range(len(misc)):
-					tk.Radiobutton(top, text=misc[n], variable=self.shape_set, value=misc[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+11, column=0, sticky='w')
+					tk.Radiobutton(top, text=misc[n], variable=self.shape_set, value=misc[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
+						.grid(row=n+11, column=0, sticky='w')
 
 				##
-				surface = tk.Label(top, text="--- Surfaces ---", font=('Times', 12, 'bold'))
-				surface.grid(row=1, column=2, sticky='new')
-				surface.config(bg=dim, fg=dimf, activebackground=dim)
+				surface = tk.Label(top, text="--- Surfaces ---", font=('Times', 12, 'bold'), bg=dim, fg=dimf, activebackground=dim)\
+					.grid(row=1, column=2, sticky='new')
 				for n in range(len(surf)):
-					tk.Radiobutton(top, text=surf[n], variable=self.shape_set, value=surf[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+2, column=2, sticky='w')
+					tk.Radiobutton(top, text=surf[n], variable=self.shape_set, value=surf[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
+						.grid(row=n+2, column=2, sticky='w')
 
 				##
-				topological = tk.Label(top, text="--- Topological ---", font=('Times', 12, 'bold'))
-				topological.grid(row=14, column=2, sticky='nsew')
-				topological.config(bg=dim, fg=dimf, activebackground=dim)
+				topological = tk.Label(top, text="--- Topological ---", font=('Times', 12, 'bold'), bg=dim, fg=dimf, activebackground=dim)\
+					.grid(row=14, column=2, sticky='nsew')
 				for n in range(len(topo)):
-					tk.Radiobutton(top, text=topo[n], variable=self.shape_set, value=topo[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+15, column=2, sticky='w')
+					tk.Radiobutton(top, text=topo[n], variable=self.shape_set, value=topo[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
+						.grid(row=n+15, column=2, sticky='w')
 
 				##
-				development = tk.Label(top, text="--- In Development ---", font=('Times', 12, 'bold'))
-				development.grid(row=1, column=4, sticky='nsew')
-				development.config(bg=dim, fg=dimf, activebackground=dim)
+				development = tk.Label(top, text="--- In Development ---", font=('Times', 12, 'bold'), bg=dim, fg=dimf, activebackground=dim)\
+					.grid(row=1, column=4, sticky='nsew')
 				for n in range(len(deve)):
-					tk.Radiobutton(top, text=deve[n], variable=self.shape_set, value=deve[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+2, column=4, sticky='w')
+					tk.Radiobutton(top, text=deve[n], variable=self.shape_set, value=deve[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
+						.grid(row=n+2, column=4, sticky='w')
 
 				##
-				archimedean = tk.Label(top, text="--- Archimedean Solids ---", font=('Times', 12, 'bold'))
-				archimedean.grid(row=1, column=5, sticky='nsew')
-				archimedean.config(bg=dim, fg=dimf, activebackground=dim)
+				archimedean = tk.Label(top, text="--- Archimedean Solids ---", font=('Times', 12, 'bold'), bg=dim, fg=dimf, activebackground=dim)\
+					.grid(row=1, column=5, sticky='nsew')
 				for n in range(len(arch)):
-					tk.Radiobutton(top, text=arch[n], variable=self.shape_set, value=arch[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+2, column=5, sticky='w')
+					tk.Radiobutton(top, text=arch[n], variable=self.shape_set, value=arch[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
+						.grid(row=n+2, column=5, sticky='w')
 
 				##
-				platonic = tk.Label(top, text="--- Platonic Solids ---", font=('Times', 12, 'bold'))
-				platonic.grid(row=9, column=5, sticky='nsew')
-				platonic.config(bg=dim, fg=dimf, activebackground=dim)
+				platonic = tk.Label(top, text="--- Platonic Solids ---", font=('Times', 12, 'bold'), bg=dim, fg=dimf, activebackground=dim)\
+					.grid(row=9, column=5, sticky='nsew')
 				for n in range(len(plat)):
-					tk.Radiobutton(top, text=plat[n], variable=self.shape_set, value=plat[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+10, column=5, sticky='w')
-
-				# cube_hover = CreateToolTip(cube, ImageTk.PhotoImage(file="./Visual/Cube.png"),"test")
-
-				self.shape_set.set("Unk Surface")
+					tk.Radiobutton(top, text=plat[n], variable=self.shape_set, value=plat[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
+						.grid(row=n+10, column=5, sticky='w')
 
 			elif self.two_three.get() == "2d":
+				self.shape_set.set("Penrose Circle")
 				for n in range(len(two)):
-					tk.Radiobutton(top, text=two[n], variable=self.shape_set, value=two[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+1, column=0, sticky='w')
+					tk.Radiobutton(top, text=two[n], variable=self.shape_set, value=two[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
+						.grid(row=n+1, column=0, sticky='w')
 
-				penrose = tk.Label(top, text="--- Penrose Projections ---", font=('Times', 12, 'bold'))
-				penrose.grid(row=1, column=2, sticky='nsew')
-				penrose.config(bg=dim, fg=dimf, activebackground=dim)
+				penrose = tk.Label(top, text="--- Penrose Projections ---", font=('Times', 12, 'bold'), bg=dim, fg=dimf, activebackground=dim)\
+					.grid(row=1, column=2, sticky='nsew')
 				for n in range(len(pen)):
-					tk.Radiobutton(top, text=pen[n], variable=self.shape_set, value=pen[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+2, column=2, sticky='w')
+					tk.Radiobutton(top, text=pen[n], variable=self.shape_set, value=pen[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
+						.grid(row=n+2, column=2, sticky='w')
 	#
 		def popup_save():
 			top = tk.Toplevel(self)
@@ -469,35 +470,31 @@ class Geometry(tk.Frame):
 		self.shapes = tk.Button(master, text="Shapes", command=popup_shape, height=4)
 		self.shapes.grid(row=0, column=3, columnspan=2, sticky='new', pady=730)
 
-		scales = [self.a_entry, self.h_entry, self.si_entry, self.ed_entry, self.pi_entry, self.ew_entry,
+		#
+		self.scales = [self.a_entry, self.h_entry, self.si_entry, self.ed_entry, self.pi_entry, self.ew_entry,
 				  self.ram_entry, self.raa_entry, self.pi_entry2]
-		labels = [self.a_label, self.h_label, self.si_label, self.ed_label, self.pi_label, self.ew_label,
+		self.labels = [self.a_label, self.h_label, self.si_label, self.ed_label, self.pi_label, self.ew_label,
 				  self.ram_label, self.raa_label, self.pi_label2]
-		radio = [self.grid_on, self.grid_off, self.two_space, self.three_space]
-		button = [self.plotting, self.face, self.face2, self.face3, self.edge, self.shapes]
-		menus = [menu, filemenu]
+		self.radio = [self.grid_on, self.grid_off, self.two_space, self.three_space]
+		self.button = [self.plotting, self.face, self.face2, self.face3, self.edge, self.shapes]
+		self.menus = [menu, filemenu]
 
 		def dark(self):
 			master.config(background=dim)
-			for m in scales:
+			for m in self.scales:
 				m.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, troughcolor=dimf)
-			for n in labels:
+			for n in self.labels:
 				n.config(bg=dim, fg=dimf, activebackground=dim)
-			for o in radio:
+			for o in self.radio:
 				o.config(bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,
 						 selectcolor=dim)
-			for p in button:
+			for p in self.button:
 				p.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
-			for q in menus:
+			for q in self.menus:
 				q.config(bg=dim, fg=dimf, activebackground=dim, activeforeground=dimf)
 		return dark(self)
+
 	def plot(self, canvas, ax):
-		scales = [self.a_entry, self.h_entry, self.si_entry, self.ed_entry, self.pi_entry, self.ew_entry,
-				  self.ram_entry, self.raa_entry, self.pi_entry2]
-		labels = [self.a_label, self.h_label, self.si_label, self.ed_label, self.pi_label, self.ew_label,
-				  self.ram_label, self.raa_label, self.pi_label2]
-		radio = [self.grid_on, self.grid_off, self.two_space, self.three_space]
-		button = [self.plotting, self.face, self.face2, self.face3, self.edge, self.shapes]
 		col_lab = [self.fck, self.f2, self.f3]
 
 		try:
@@ -542,11 +539,11 @@ class Geometry(tk.Frame):
 		def disable(*off):
 			disable = [*off]
 			for m in disable:
-				if m in scales:
+				if m in self.scales:
 					m.config(state=tk.DISABLED, bg=dim, fg=dim, activebackground=dim, troughcolor=dim)
-				elif m in labels:
+				elif m in self.labels:
 					m.config(fg=disa)
-				elif m in button:
+				elif m in self.button:
 					m.config(state=tk.DISABLED, highlightbackground=disa)
 				elif m in col_lab:
 					m.config(bg=dim, fg=dim, relief=tk.RIDGE)
@@ -554,11 +551,11 @@ class Geometry(tk.Frame):
 		def activate(*on):
 			active = [*on]
 			for m in active:
-				if m in scales:
+				if m in self.scales:
 					m.config(state=tk.ACTIVE, bg=dim, fg=dimf, activebackground=dim, troughcolor=dimf)
-				elif m in labels:
+				elif m in self.labels:
 					m.config(fg=dimf)
-				elif m in button:
+				elif m in self.button:
 					m.config(state=tk.ACTIVE, highlightbackground=dimf)
 				elif m in col_lab:
 					m.config(relief=tk.GROOVE)
@@ -578,6 +575,7 @@ class Geometry(tk.Frame):
 						 self.h_entry,
 						 self.a_label, self.si_label, self.ed_label, self.pi_label, self.raa_label, self.ram_label,
 						 self.h_label)
+
 				disable(self.face2, self.face3, self.f2, self.f3,
 						self.pi_entry2, self.pi_label2)
 
@@ -601,6 +599,7 @@ class Geometry(tk.Frame):
 
 				disable(self.face2, self.face3, self.f2, self.f3,
 						self.raa_entry, self.h_entry, self.raa_label, self.h_label, self.pi_entry2, self.pi_label2)
+
 			elif args[1:9] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'multi_pi'):
 				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi)
 
@@ -611,6 +610,7 @@ class Geometry(tk.Frame):
 				disable(self.face2, self.face3, self.f2, self.f3,
 						self.raa_entry, self.h_entry, self.ram_entry, self.pi_entry2,
 						self.raa_label, self.h_label, self.ram_label, self.pi_label2)
+
 			elif args[1:8] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'radiusm', 'color2'):
 				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, radiusm, color2)
 
@@ -620,6 +620,7 @@ class Geometry(tk.Frame):
 				disable(self.face2, self.f2, self.face3, self.f3,
 						self.si_entry, self.ed_entry, self.pi_entry, self.raa_entry, self.h_entry, self.pi_entry2,
 						self.si_label, self.ed_label, self.pi_label, self.raa_label, self.h_label, self.pi_label2)
+
 			elif args[1:8] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges'):
 				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges)
 
@@ -630,6 +631,7 @@ class Geometry(tk.Frame):
 				disable(self.face2, self.face3, self.f2, self.f3,
 						self.pi_entry, self.raa_entry, self.h_entry, self.ram_entry, self.pi_entry2,
 						self.pi_label, self.raa_label, self.h_label, self.ram_label, self.pi_label2)
+
 			elif args[1:8] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'color2', 'color3'):
 				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, color2, color3)
 
@@ -638,6 +640,7 @@ class Geometry(tk.Frame):
 
 				disable(self.pi_entry, self.raa_entry, self.h_entry, self.ram_entry, self.si_entry, self.ed_entry, self.pi_entry2,
 						self.pi_label, self.raa_label, self.h_label, self.ram_label, self.si_label, self.ed_label, self.pi_label2)
+
 			elif args[1:7] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'radiusm'):
 				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, radiusm)
 
@@ -647,6 +650,7 @@ class Geometry(tk.Frame):
 				disable(self.face2, self.face3, self.f2, self.f3,
 						self.pi_entry, self.raa_entry, self.h_entry, self.si_entry, self.ed_entry, self.pi_entry2,
 						self.pi_label, self.raa_label, self.h_label, self.si_label, self.ed_label, self.pi_label2)
+
 			elif args[1:7] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'color2'):
 				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, color2)
 
@@ -656,6 +660,7 @@ class Geometry(tk.Frame):
 				disable(self.face3, self.f3,
 						self.pi_entry, self.raa_entry, self.h_entry, self.si_entry, self.ed_entry, self.ram_entry, self.pi_entry2,
 						self.pi_label, self.raa_label, self.h_label, self.si_label, self.ed_label, self.ram_label, self.pi_label2)
+
 			elif args[1:6] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid'):
 				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid)
 
@@ -665,6 +670,7 @@ class Geometry(tk.Frame):
 				disable(self.face2, self.face3, self.f2, self.f3,
 						self.pi_entry, self.raa_entry, self.h_entry, self.si_entry, self.ed_entry, self.ram_entry, self.pi_entry2,
 						self.pi_label, self.raa_label, self.h_label, self.si_label, self.ed_label, self.ram_label, self.pi_label2)
+
 			elif args[1:4] == ('edge_c', 'edge_w', 'grid'):
 				s[self.shape_set.get()].shape(self.fig, edge_c, edge_w, grid)
 
@@ -673,13 +679,16 @@ class Geometry(tk.Frame):
 						self.ram_entry, self.pi_entry2,
 						self.pi_label, self.raa_label, self.h_label, self.si_label, self.ed_label, self.a_label,
 						self.ram_label, self.pi_label2)
+
 			elif args[1:6] == ('edge_c', 'edge_w', 'grid', 'radiusm', 'radiusa'):
 				s[self.shape_set.get()].shape(self.fig, edge_c, edge_w, grid, radiusm, radiusa)
 
 				activate(self.ram_entry, self.ram_label)
+
 				disable(self.face, self.face2, self.face3, self.fck, self.f2, self.f3,
 						self.pi_entry, self.raa_entry, self.h_entry, self.si_entry, self.ed_entry, self.a_entry, self.pi_entry2,
 						self.pi_label, self.raa_label, self.h_label, self.si_label, self.ed_label, self.a_label,  self.pi_label2)
+
 			elif args[1:7] == ('edge_c', 'edge_w', 'grid', 'sides', 'edges', 'multi_pi'):
 				s[self.shape_set.get()].shape(self.fig, edge_c, edge_w, grid, sides, edges, multi_pi)
 
@@ -701,6 +710,7 @@ class Geometry(tk.Frame):
 						self.pi_label2)
 
 		except KeyError:
+			args = testing.shape.__code__.co_varnames[1:10]
 			root.title("GeoExpanse (Testing)")
 			testing.shape(self.fig, alpha,color, edge_c, edge_w, grid, sides, edges, multi_pi,  multi_pi2)
 
