@@ -563,9 +563,9 @@ class Geometry(tk.Frame):
 				elif m in col_lab:
 					m.config(relief=tk.GROOVE)
 
-		args = s[self.shape_set.get()].shape.__code__.co_varnames
-
 		try:
+			args = s[self.shape_set.get()].shape.__code__.co_varnames
+
 			if args[1:14] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'multi_pi', 'radiusm', 'radiusa', 'color2', 'color3', 'height'):
 				s[self.shape_set.get()].shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm,
 											  radiusa, color2, color3, height)
