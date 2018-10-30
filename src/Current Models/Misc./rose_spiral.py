@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Rose Spiral"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges):
     # Definition of x
     def x_(u, v):
         x = r * cos(u) * sin(v)

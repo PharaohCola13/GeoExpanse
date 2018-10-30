@@ -10,7 +10,7 @@ from numpy import *
 
 name = "Curve"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges):
 	def x_(u,v):
 		x = u * cos(u) * (4 + cos(v + u))
 		return x

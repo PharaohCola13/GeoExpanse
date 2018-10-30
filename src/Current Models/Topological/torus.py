@@ -10,7 +10,7 @@ from matplotlib.animation import *
 name = "Torus"
 
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radius):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm):
 
     # Definition of x
     def x_(u, v):
@@ -28,7 +28,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiu
         return z
 
     # Radius
-    c = radius
+    c = radiusm
 
     # Radius of the tube
     a = edges

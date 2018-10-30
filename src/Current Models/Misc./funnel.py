@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Funnel"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radius, height):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, height):
     # Definition of x
 	def x_(u, v):
 		x = u * cos(v)
@@ -30,7 +30,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiu
 	h = height
 
 	# Defines the radius of the hole
-	r = radius
+	r = radiusm
 
 	# Value of the angles
 	s = sides

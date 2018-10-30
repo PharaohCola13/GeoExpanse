@@ -42,7 +42,7 @@ import cube, dodecahedron, icosahedron, octahedron
 import cross_cap, klein, mobius, torus
 import neat, testing, vase, something_strange, great_dodecahedron
 import cuboctahedron, great_rombicosidodecahedron, snub_cube, truncated_cube, disdyakis_triacontahedron, great_icosahedron
-import deltoid, log_spiral, parabola, penrose_square, penrose_circle, line, penrose_triangle, polygon
+import deltoid, log_spiral, parabola, penrose_square, penrose_circle, line, penrose_triangle, polygon, ellipse
 
 ## Geometry Dictionary
 s = {	 "Prism"					: prism,
@@ -109,7 +109,8 @@ s = {	 "Prism"					: prism,
 		 "Penrose Circle"			: penrose_circle,
 		 "Penrose Square"			: penrose_square,
 		 "Penrose Triangle"			: penrose_triangle,
-		 "Polygons"				 	: polygon
+		 "Polygons"				 	: polygon,
+		 "Ellipse"					: ellipse,
 
 }
 
@@ -121,7 +122,7 @@ topo 	= ["Cross Cap", "Klein Bottle", "Mobius Strip", "Torus"]
 deve 	= ["Neat", "Testing", "Great Dodecahedron", "Vase", "Something Strange"]
 arch 	= ["Cuboctahedron", "Disdyakis Triacontahedron", "Great Rombicosidodecahedron", "Snub Cube", "Truncated Cube", "Great Icosahedron"]
 plat    = ["Cube", "Dodecahedron", "Octahedron", "Icosahedron"]
-two 	= ["Line", "Deltoid", "Log Spiral", "Parabola", "Polygons"]
+two 	= ["Line", "Deltoid", "Log Spiral", "Parabola", "Polygons", "Ellipse"]
 pen		= ["Penrose Circle", "Penrose Triangle", "Penrose Square"]
 
 dim = "#303030"  #   Background
@@ -133,7 +134,6 @@ class Geometry(tk.Frame):
 	def __init__(self, master):
 		tk.Frame.__init__(self ,master)
 		self.createWidgets(master)
-
 
 	def createWidgets(self, master):
 		global icon
@@ -242,14 +242,14 @@ class Geometry(tk.Frame):
 				self.shape_set.set("Unk Surface")
 
 				for n in range(len(gen)):
-					tk.Radiobutton(top, text=gen[n], variable=self.shape_set, value=gen[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+1, column=0, sticky='w')
+					gen[n] = tk.Radiobutton(top, text=gen[n], variable=self.shape_set, value=gen[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim).grid(row=n+1, column=0, sticky='w')
 
 				##
 				hyperbolic = tk.Label(top, text="--- Hyperbolic Objects ---", font=('Times', 12, 'bold'), bg=dim, fg=dimf, activebackground=dim)\
 					.grid(row=4, column=0, sticky="nsew")
 
 				for n in range(len(hyper)):
-					tk.Radiobutton(top, text=hyper[n], variable=self.shape_set, value=hyper[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
+					hyper[n] = tk.Radiobutton(top, text=hyper[n], variable=self.shape_set, value=hyper[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
 						.grid(row=n+5, column=0, sticky='w')
 
 				##
@@ -257,54 +257,54 @@ class Geometry(tk.Frame):
 					.grid(row=10, column=0, sticky='nsew')
 
 				for n in range(len(misc)):
-					tk.Radiobutton(top, text=misc[n], variable=self.shape_set, value=misc[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
+					misc[n] = tk.Radiobutton(top, text=misc[n], variable=self.shape_set, value=misc[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
 						.grid(row=n+11, column=0, sticky='w')
 
 				##
 				surface = tk.Label(top, text="--- Surfaces ---", font=('Times', 12, 'bold'), bg=dim, fg=dimf, activebackground=dim)\
 					.grid(row=1, column=2, sticky='new')
 				for n in range(len(surf)):
-					tk.Radiobutton(top, text=surf[n], variable=self.shape_set, value=surf[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
+					surf[n] = tk.Radiobutton(top, text=surf[n], variable=self.shape_set, value=surf[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
 						.grid(row=n+2, column=2, sticky='w')
 
 				##
 				topological = tk.Label(top, text="--- Topological ---", font=('Times', 12, 'bold'), bg=dim, fg=dimf, activebackground=dim)\
 					.grid(row=14, column=2, sticky='nsew')
 				for n in range(len(topo)):
-					tk.Radiobutton(top, text=topo[n], variable=self.shape_set, value=topo[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
+					topo[n] = tk.Radiobutton(top, text=topo[n], variable=self.shape_set, value=topo[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
 						.grid(row=n+15, column=2, sticky='w')
 
 				##
 				development = tk.Label(top, text="--- In Development ---", font=('Times', 12, 'bold'), bg=dim, fg=dimf, activebackground=dim)\
 					.grid(row=1, column=4, sticky='nsew')
 				for n in range(len(deve)):
-					tk.Radiobutton(top, text=deve[n], variable=self.shape_set, value=deve[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
+					deve[n] = tk.Radiobutton(top, text=deve[n], variable=self.shape_set, value=deve[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
 						.grid(row=n+2, column=4, sticky='w')
 
 				##
 				archimedean = tk.Label(top, text="--- Archimedean Solids ---", font=('Times', 12, 'bold'), bg=dim, fg=dimf, activebackground=dim)\
 					.grid(row=1, column=5, sticky='nsew')
 				for n in range(len(arch)):
-					tk.Radiobutton(top, text=arch[n], variable=self.shape_set, value=arch[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
+					arch[n] = tk.Radiobutton(top, text=arch[n], variable=self.shape_set, value=arch[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
 						.grid(row=n+2, column=5, sticky='w')
 
 				##
 				platonic = tk.Label(top, text="--- Platonic Solids ---", font=('Times', 12, 'bold'), bg=dim, fg=dimf, activebackground=dim)\
 					.grid(row=9, column=5, sticky='nsew')
 				for n in range(len(plat)):
-					tk.Radiobutton(top, text=plat[n], variable=self.shape_set, value=plat[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
+					plat[n] = tk.Radiobutton(top, text=plat[n], variable=self.shape_set, value=plat[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
 						.grid(row=n+10, column=5, sticky='w')
 
 			elif self.two_three.get() == "2d":
 				self.shape_set.set("Penrose Circle")
 				for n in range(len(two)):
-					tk.Radiobutton(top, text=two[n], variable=self.shape_set, value=two[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
+					two[n] = tk.Radiobutton(top, text=two[n], variable=self.shape_set, value=two[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
 						.grid(row=n+1, column=0, sticky='w')
 
 				penrose = tk.Label(top, text="--- Penrose Projections ---", font=('Times', 12, 'bold'), bg=dim, fg=dimf, activebackground=dim)\
 					.grid(row=1, column=2, sticky='nsew')
 				for n in range(len(pen)):
-					tk.Radiobutton(top, text=pen[n], variable=self.shape_set, value=pen[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
+					pen[n] = tk.Radiobutton(top, text=pen[n], variable=self.shape_set, value=pen[n], bg=dim, fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,selectcolor=dim)\
 						.grid(row=n+2, column=2, sticky='w')
 	#
 		def popup_save():
@@ -419,28 +419,28 @@ class Geometry(tk.Frame):
 		self.raa_entry.grid(row=0, column=4, sticky='new', pady=170)
 
 		# Edge Color
-		self.edge = tk.Button(text="Edge Color", command=lambda: EdgeColor(self), state=tk.NORMAL)
+		self.edge = tk.Button(master, text="Edge Color", command=lambda: EdgeColor(self), state=tk.NORMAL)
 		self.edge.grid(row=0, column=1, sticky='new', pady=30, padx=0)
 
 		self.eck = tk.Message(master,borderwidth=5, relief=tk.GROOVE)
 		self.eck.grid(row=0, column=1, sticky='new', pady=60)
 
 		# Face Color
-		self.face = tk.Button(text="Face Color", command=lambda: FaceColor(self), state=tk.NORMAL)
+		self.face = tk.Button(master, text="Face Color", command=lambda: FaceColor(self), state=tk.NORMAL)
 		self.face.grid(row=0, column=2, sticky='new', pady=30, padx=0)
 
 		self.fck = tk.Message(master, borderwidth=5, relief=tk.GROOVE)
 		self.fck.grid(row=0, column=2, sticky='new', pady=60, padx=0)
 
 		# Edge Color
-		self.face2 = tk.Button(text="Face Color 2", command=lambda: FaceColor2(self), state=tk.NORMAL)
+		self.face2 = tk.Button(master, text="Face Color 2", command=lambda: FaceColor2(self), state=tk.NORMAL)
 		self.face2.grid(row=0, column=3, sticky='new', pady=30, padx=0)
 
 		self.f2 = tk.Message(master,borderwidth=5, relief=tk.GROOVE)
 		self.f2.grid(row=0, column=3, sticky='new', pady=60, padx=0)
 
 		# Face Color
-		self.face3 = tk.Button(text="Face Color 3", command=lambda: FaceColor3(self), state=tk.NORMAL)
+		self.face3 = tk.Button(master, text="Face Color 3", command=lambda: FaceColor3(self), state=tk.NORMAL)
 		self.face3.grid(row=0, column=4, sticky='new', pady=30, padx=0)
 
 		self.f3 = tk.Message(master, borderwidth=5, relief=tk.GROOVE)

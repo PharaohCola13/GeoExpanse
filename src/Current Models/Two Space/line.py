@@ -6,20 +6,24 @@ from matplotlib.animation import *
 
 name = "Line"
 
-def shape(fig, slope, a, b):
+def shape(fig, edge_c, edge_w, grid, slope, a, b):
+	plt.clf()
+	def x_(y, slope):
+		x = slope*y
+		return x
 
-		def x_(y):
-			x = 2*y
-			return x
+	y = linspace(a, b, 100)
 
-		y = linspace(a, b, 100)
-		#y = meshgrid(y)
+	x = x_(y, slope)
 
-		x = x_(y)
-		plt.axis(grid)
-		plt.axis('equal')
+	ax = plt.subplot(111)
+	ax.patch.set_facecolor("black")
+	ax.xaxis.set_tick_params(color="white", labelcolor="white")
+	ax.yaxis.set_tick_params(color="white", labelcolor="white")
 
-		line = plt.plot(x,y)
-	
-		#line.set_edgecolor(edge_c) # Edge color of the lines on the figure
-		#line.set_linewidth(edge_w) # Line width of the edges
+	plt.axis(grid)
+	plt.axis('equal')
+
+
+
+	line = plt.plot(x,y,  color=edge_c, linewidth=edge_w)

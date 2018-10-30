@@ -4,7 +4,8 @@ from numpy import *
 from matplotlib.animation import *
 
 name = "Deltiod"
-def shape(fig, edge_c, edge_w, grid, radius):
+def shape(fig, edge_c, edge_w, grid, radiusm):
+	plt.clf()
 	def x_(t):
 		x = 2 * a *cos(t) *(1 + cos(t)) - a
 		return x
@@ -12,7 +13,7 @@ def shape(fig, edge_c, edge_w, grid, radius):
 		y = 2 * a *sin(t) *(1 - cos(t))
 		return y
 
-	a = radius
+	a = radiusm
 	t = linspace(0, 2 *pi, 100)
 
 	x = x_(t)
@@ -26,4 +27,4 @@ def shape(fig, edge_c, edge_w, grid, radius):
 	plt.axis(grid)
 	plt.axis('equal')
 
-	delt = plt.plot(x, y, color=edge_c, linewidth=edge_w)
+	plt.plot(x, y, color=edge_c, linewidth=edge_w)

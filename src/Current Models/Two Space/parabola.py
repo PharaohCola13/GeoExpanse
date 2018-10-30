@@ -4,7 +4,8 @@ from numpy import *
 from matplotlib.animation import *
 
 name = "Parabola"
-def shape(fig, edge_c, edge_w, grid, radius):
+def shape(fig, edge_c, edge_w, grid, radiusm):
+	plt.clf()
 	def x_(t):
 		x = a * t**2
 		return x
@@ -14,7 +15,7 @@ def shape(fig, edge_c, edge_w, grid, radius):
 		return y
 
 
-	a = radius
+	a = radiusm
 	t = linspace(-5,5, 100)
 	x = x_(t)
 	y = y_(t)

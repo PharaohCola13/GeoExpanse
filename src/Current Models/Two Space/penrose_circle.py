@@ -7,6 +7,7 @@ from matplotlib.patches import Arc
 name = "Penrose Circle"
 
 def shape(fig, edge_c, edge_w, grid):
+	plt.clf()
 
 	circle  = plt.Circle((0,0), sqrt(0.75), fill=False, color=edge_c, linewidth=edge_w)
 	circle1 = plt.Circle((0,0), 2, fill=False, color=edge_c, linewidth=edge_w)

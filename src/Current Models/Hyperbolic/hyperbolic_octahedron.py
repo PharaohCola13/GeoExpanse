@@ -8,7 +8,7 @@ from matplotlib.animation import *
 
 name = "Hyperbolic-Octahedron"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges):
 	global name
 	# Definition of x
 	def x_(u,v):

@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Shell"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges):
 # Definition of x
 	def x_(u,v):
 		x = power(1.2, v) * (sin(u)**2 * sin(v))
