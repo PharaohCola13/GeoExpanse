@@ -3,7 +3,7 @@
 block_cipher = None
 
 
-a = Analysis(['geo_gui.py'],
+a = Analysis(['geo_linux.py'],
              pathex=['/home/pharaohcola13/PycharmProjects/Research/GeoExpanse/src/GUI/compile_space'],
              binaries=[],
              datas=None,

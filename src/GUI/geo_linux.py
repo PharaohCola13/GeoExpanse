@@ -366,7 +366,7 @@ class Geometry(tk.Frame):
 		filemenu.add_command(label="Save", command=popup_save)
 		filemenu.add_separator()
 		filemenu.add_command(label="About", command=popup_about)
-		filemenu.add_command(label="Quit <Esc>", command=quit)
+		filemenu.add_command(label="Quit <Esc>", command=master.destroy)
 
 		figmenu.add_radiobutton(label="Figure", command=lambda:master.geometry(str(root_height) + "x" + str(root_height)), selectcolor=dimf)
 		figmenu.add_radiobutton(label="Full", command=lambda: master.geometry(str(root_width) + "x" + str(root_height)), selectcolor=dimf)

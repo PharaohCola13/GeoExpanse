@@ -22,9 +22,9 @@ def shape(fig, edge_c, edge_w, grid, sides):
 	r = r_(u)
 
 	ax = plt.subplot(111, projection='polar')
-	#ax.patch.set_facecolor("black")
-	#ax.xaxis.set_tick_params(color="white", labelcolor="white")
-	#ax.yaxis.set_tick_params(color="white", labelcolor="white")
+	ax.patch.set_facecolor("black")
+	ax.xaxis.set_tick_params(color="white", labelcolor="white")
+	ax.yaxis.set_tick_params(color="white", labelcolor="white")
 
 	plt.axis(grid)
 
