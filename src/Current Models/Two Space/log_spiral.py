@@ -4,24 +4,24 @@ from numpy import *
 from matplotlib.animation import *
 
 name = "Log Spiral"
-def shape(fig, edge_c, edge_w, grid, radiusm):
+def shape(fig, edge_c, edge_w, grid, radiusm, radiusa):
 	plt.clf()
 	def r_(u):
-		r = exp(a *u)
+		r = a * exp(b * u)
 		return r
 
-	a = radiusm
-	u = linspace(-5 *pi, pi,1000)
+	a = float(radiusm)
+	b = float(radiusa)
+
+	u = linspace(0, 4 * pi,1000)
 	r = r_(u)
 
-	ax = plt.subplot(111)
-	ax.projection='polar'
+	ax = plt.subplot(111, projection='polar')
 
 	ax.patch.set_facecolor("black")
 	ax.xaxis.set_tick_params(color="white", labelcolor="white")
 	ax.yaxis.set_tick_params(color="white", labelcolor="white")
 
 	plt.axis(grid)
-	plt.axis('equal')
 
 	plt.plot(u, r, color=edge_c, linewidth=edge_w)

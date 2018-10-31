@@ -5,7 +5,9 @@ import matplotlib
 import matplotlib.pyplot as plt
 import unittest
 import atexit
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import warnings
+import mpl_toolkits.mplot3d.axes3d as p3
 import sys
 
 try:
@@ -54,6 +56,7 @@ two1	= [ellipse]
 two2	= [log_spiral, parabola, deltoid]
 two3	= [line]
 two4	= [penrose_circle, penrose_square, penrose_triangle]
+
 fig = plt.figure(figsize=(8, 8), facecolor="black", edgecolor="white")
 class TestObject(unittest.TestCase):
 	def test_general(self):

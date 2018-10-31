@@ -10,7 +10,7 @@ from numpy import *
 
 name = "Dini's Surface"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radius, height):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, height):
     # Definition of x
     def x_(u, v):
         x = a * cos(u) * sin(v)
@@ -27,7 +27,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiu
         z = -1 * (a * (cos(v) + log1p(tan(v/2))) + (b * u))
         return z
 
-    a = radius # Radius
+    a = radiusm # Radius
     b = height # Height
 
     # Value of the angles
