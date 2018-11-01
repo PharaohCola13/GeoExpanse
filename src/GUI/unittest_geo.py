@@ -1,7 +1,7 @@
-import geo_gui
+import geo_develop
 import geo_linux
 import geo_windows
-from geo_gui import s as s_dev
+from geo_develop import s as s_dev
 from geo_linux import s as s_linu
 from geo_windows import s as s_wind
 import matplotlib
@@ -30,7 +30,7 @@ fig = plt.figure(figsize=(8, 8), facecolor="black", edgecolor="white")
 canvas = FigureCanvasTkAgg(fig ,root)
 ax = p3.Axes3D(fig)
 
-app_dev = geo_gui.Geometry(root)
+app_dev = geo_develop.Geometry(root)
 #app_lin = geo_linux.Geometry(root)
 #app_win = geo_windows.Geometry(root)
 
