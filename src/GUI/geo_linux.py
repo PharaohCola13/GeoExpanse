@@ -543,7 +543,7 @@ class Geometry(tk.Frame):
 		multi_pi2 = self.pi_entry2.get()
 
 		name = self.shape_set.get()
-		root.title("GeoExpanse ({})".format(name))
+		master.title("GeoExpanse ({})".format(name))
 
 		ax.clear()
 		plt.cla()
@@ -876,7 +876,6 @@ class Geometry(tk.Frame):
 if __name__ == '__main__':
 	root = tk.Tk()
 	Geometry(root)
-
 	root.title("GeoExpanse")
 	root.geometry(str(root_width) + "x" + str(root_height))
 	root.maxsize(str(root_width), str(root_height))
