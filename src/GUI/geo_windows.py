@@ -138,8 +138,6 @@ class Geometry(tk.Frame):
 	def __init__(self, master):
 		tk.Frame.__init__(self ,master)
 		self.createWidgets(master)
-		master.bind("<Escape>", master.destroy)
-
 
 	def createWidgets(self, master):
 		self.fig = plt.figure(figsize=(root_height/100, root_height/100), facecolor="black", edgecolor="white")
@@ -368,7 +366,7 @@ class Geometry(tk.Frame):
 		filemenu.add_command(label="Save", command=popup_save)
 		filemenu.add_separator()
 		filemenu.add_command(label="About", command=popup_about)
-		filemenu.add_command(label="Quit <Esc>", command=root.destroy)
+		filemenu.add_command(label="Quit <Esc>", command=master.destroy)
 
 		figmenu.add_radiobutton(label="Figure", command=lambda:master.geometry(str(root_height) + "x" + str(root_height)), selectcolor=dimf)
 		figmenu.add_radiobutton(label="Full", command=lambda: master.geometry(str(root_width) + "x" + str(root_height)), selectcolor=dimf)
