@@ -106,24 +106,20 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2):
 			        [Z[15], Z[23], Z[19]],
 			       ]
 
-	verts =verts_scube + verts_tri
-	scube = Poly3DCollection(verts)
+	#verts =verts_scube + verts_tri
+	scube = Poly3DCollection(verts_scube)
 
 	scube.set_edgecolor(edge_c)
 	scube.set_linewidth(edge_w)
 	scube.set_alpha(alpha)
 	scube.set_facecolor(color)
 
-	#scube1 = Poly3DCollection(verts_tri)
+	scube1 = Poly3DCollection(verts_tri)
 
-	#scube1.set_edgecolor(edge_c)#
-	#scube1.set_linewidth(edge_w)
-	#scube1.set_alpha(alpha)
-	#scube1.set_facecolor(color2)
-
-	#all_cube = scube + scube1
-
-	#for c in all_cube:
-	#ax.add_collection3d(scube1)
+	scube1.set_edgecolor(edge_c)#
+	scube1.set_linewidth(edge_w)
+	scube1.set_alpha(alpha)
+	scube1.set_facecolor(color2)
 
 	ax.add_collection3d(scube)
+	ax.add_collection3d(scube1)
