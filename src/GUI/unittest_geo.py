@@ -1,10 +1,12 @@
 import geo_gui
-from geo_gui import s
+import geo_linux
 import geo_windows
+from geo_gui import s as s_dev
+from geo_linux import s as s_linu
+from geo_windows import s as s_wind
 import matplotlib
 import matplotlib.pyplot as plt
 import unittest
-import atexit
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import warnings
 import mpl_toolkits.mplot3d.axes3d as p3
@@ -17,85 +19,55 @@ except ImportError:
 	import Tkinter as tk
 	from tkColorChooser import askcolor
 
-##
-sys.path.append('../In Development/')
-
-sys.path.append('../Current Models/')
-sys.path.append('../Current Models/Hyperbolic/')
-sys.path.append('../Current Models/Misc./')
-sys.path.append('../Current Models/Platonic Solids/')
-sys.path.append('../Current Models/Surfaces/')
-sys.path.append('../Current Models/Topological/')
-sys.path.append('../Current Models/Two Space/')
-sys.path.append('../Current Models/Archimedean/')
-
-import prism, pyramid, sphere
-import hyperbolic_octahedron, hyperbolic_paraboloid, one_sheet_hyperboloid, hyperbolic_helicoid, hyperbolic_cylinder
-import three_dodecahedron, crescent, funnel, gabriel_horn, rose_spiral, shell, tesseract, spiral, seashell, steinbach_screw
-import breather_surface, kuen_surface, steiner_surface, boys_surface, roman_surface, sine_surface, henneberg_surface, unk_surface, dini_surface, enneper_surface, corkscrew_surface, shoe_surface
-import cube, dodecahedron, icosahedron, octahedron
-import cross_cap, klein, mobius, torus
-import neat, testing, vase, something_strange, great_dodecahedron
-import cuboctahedron, great_rombicosidodecahedron, snub_cube, truncated_cube, disdyakis_triacontahedron, great_icosahedron
-import deltoid, log_spiral, parabola, penrose_square, penrose_circle, line, penrose_triangle, polygon, ellipse
-
-gen1 	= [prism, sphere]
-gen2 	= [pyramid, funnel, gabriel_horn, dini_surface]
-arc1	= [cuboctahedron, snub_cube, truncated_cube, tesseract]
-arc2 	= [disdyakis_triacontahedron, cube, dodecahedron, icosahedron, octahedron, mobius]
-arc3	= [great_rombicosidodecahedron, three_dodecahedron]
-hyp1 	= [hyperbolic_helicoid, hyperbolic_octahedron, hyperbolic_paraboloid, one_sheet_hyperboloid,
-		   crescent, rose_spiral, seashell, shell, spiral, steinbach_screw, breather_surface,
-		   corkscrew_surface, kuen_surface, shoe_surface]
-hyp2 	= [hyperbolic_cylinder]
-mis1	= [boys_surface, enneper_surface, henneberg_surface, roman_surface, steiner_surface,
-		   unk_surface, cross_cap, klein]
-sur1	= [sine_surface, torus]
-
-two1	= [ellipse]
-two2	= [log_spiral, parabola, deltoid]
-two3	= [line]
-two4	= [penrose_circle, penrose_square, penrose_triangle]
+root = tk.Tk()
+root_width = 920
+root_height = 530	
+root.geometry(str(root_width) + "x" + str(root_height))
+root.maxsize(str(root_width), str(root_height))
+root.minsize(str(500), str(root_height))
 
 fig = plt.figure(figsize=(8, 8), facecolor="black", edgecolor="white")
-class TestObject(unittest.TestCase):
-	def test_general(self):
-		geo_gui.Geometry(tk.Tk())
+canvas = FigureCanvasTkAgg(fig ,root)
+ax = p3.Axes3D(fig)
 
-class TestShapes(unittest.TestCase):
-	def test_shape3d(self):
-		def general(*args):
-			for m in range(len(gen1)):
-				gen1[m].shape(*args, 10, 10, 2, 1, 1, 1)
-			for m in range(len(gen2)):
-				gen2[m].shape(*args, 10, 10, 2, 1, 1)
-			for m in range(len(arc1)):
-				arc1[m].shape(*args, 'gold')
-			for m in range(len(arc2)):
-				arc2[m].shape(*args)
-			for m in range(len(arc3)):
-				arc3[m].shape(*args, 'gold', 'red')
-			for m in range(len(hyp1)):
-				hyp1[m].shape(*args, 10, 10)
-			for m in range(len(hyp2)):
-				hyp2[m].shape(*args, 10, 10, 1, 1)
-			for m in range(len(mis1)):
-				mis1[m].shape(*args, 10, 10, 2)
-			for m in range(len(sur1)):
-				sur1[m].shape(*args, 10, 10, 2, 1)
-		return general(fig, 0.5, 'deepskyblue', 'white', 1, 'off')
-	def test_shape2d(self):
-		def twospace(*args):
-			for m in range(len(two1)):
-				two1[m].shape(*args, 1, 1)
-			for m in range(len(two2)):
-				two2[m].shape(*args, 1)
-			for m in range(len(two3)):
-				two3[m].shape(*args, 1, 1, 1)
-			for m in range(len(two4)):
-				two4[m].shape(*args)
-		return twospace(fig, 'white', 1, 'off')
+app_dev = geo_gui.Geometry(root)
+#app_lin = geo_linux.Geometry(root)
+#app_win = geo_windows.Geometry(root)
+
+class Superfical(unittest.TestCase):
+	def test_widget(self):
+		try:	
+			app_dev.createWidgets(root)
+			print("\033[32m" + "Superfical Test: Passed")
+			print("\033[0m")
+		except:
+			print("\033[91m" + "Superfical Test: Failed")
+			print("\033[0m")
+
+class TestObject(unittest.TestCase):
+	def test_shape(self):
+		passed = []
+		failed = []
+		if not sys.warnoptions:
+			warnings.simplefilter("ignore")
+		print("---" * 3 + " Individual Shape Test: Start " + "---" * 3)
+		for k,v in sorted(s_dev.iteritems()):	
+			try:		
+				app_dev.plot(canvas, ax, s_dev[k])
+				print("\033[32m{0:30}: ".ljust(20).format(k) + "\033[32m Cleared")
+				passed.append(k)
+				#print("\033[0m")
+			except TypeError:
+				print("\033[91m{0:30}: ".ljust(10).format(k) + "\033[91m Failed")
+				failed.append(k)
+		net = len(passed) - 1
+		tot = len(passed) + len(failed) - 1
+		#print("{} out of {} Models Have Passed ".format(net, tot))
+		print("\033[0m" + "--" * 5 + " Individual Shape Test: End " + "--" * 5)
+		print("Model Count: {}".format(tot))
+		print("{:f}% Pass".format(float(net)/tot * 100.))
+		print("\033[0m")
+
 
 if __name__ == "__main__":
-
 	unittest.main(verbosity=0)
