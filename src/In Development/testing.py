@@ -11,7 +11,7 @@ import time
 
 name = "Testing"
 
-def shape(fig, alpha,color, edge_c, edge_w, grid, sides, edges, multi_pi):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figcolor):
 	def x_(u,v):
 		x = cos(u) * sin(v)
 		return x
@@ -34,7 +34,7 @@ def shape(fig, alpha,color, edge_c, edge_w, grid, sides, edges, multi_pi):
 	z = z_(u,v)
 
 	ax = p3.Axes3D(fig)
-	ax.set_facecolor('black')
+	ax.set_facecolor(figcolor)
 
 	plt.axis(grid)
 	plt.axis('equal')
