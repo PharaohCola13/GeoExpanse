@@ -53,7 +53,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiu
 	# Axis Limits
 	ax.set_xlim(-2 * a, 2 * a)
 	ax.set_ylim(-2 * a, 2 * a)
-	ax.set_zlim(-h, h)
+	ax.set_zlim(-a, a)
 
 	# Surface Plot
 	horn = ax.plot_surface(x, y, z)

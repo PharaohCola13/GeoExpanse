@@ -131,8 +131,8 @@ dim = "#303030"  #   Background
 dimf = "#00C0FF"  #   Font Color
 disa = "#d400ff" #   Disabled Text
 
-root_width = 950
-root_height = 530
+root_width = 900
+root_height = 501
 ## Start of Application
 class Geometry(tk.Frame):
 	def __init__(self, master):

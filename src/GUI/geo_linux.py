@@ -882,7 +882,6 @@ if __name__ == '__main__':
 	root.maxsize(str(root_width), str(root_height))
 	root.minsize(str(root_height), str(root_height))
 
-
 	def quit():
 		global root
 		root.quit()
@@ -900,7 +899,6 @@ if __name__ == '__main__':
 	root.bind("<Escape>", quit)
 
 	#icon = ImageTk.PhotoImage(file='icon.png')
-
 
 	#root.tk.call('wm', 'iconphoto', root._w, icon)
 	root.mainloop()
