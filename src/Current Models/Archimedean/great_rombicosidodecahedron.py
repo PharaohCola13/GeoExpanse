@@ -178,7 +178,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3):
 	ax.set_ylim(-4, 4)
 	ax.set_zlim(-4, 4)
 
-	verts_ten = [ [Z[2],  Z[6],	Z[8],	Z[4],	Z[44],	Z[56],	Z[68],	Z[66],	Z[54],	Z[42]], 
+	verts = [ [Z[2],  Z[6],	Z[8],	Z[4],	Z[44],	Z[56],	Z[68],	Z[66],	Z[54],	Z[42]], 
 				  [Z[109], Z[29],	Z[17],	Z[19],	Z[31],	Z[111],	Z[103],	Z[107],	Z[105],	Z[101]], 
 				  [Z[58],  Z[57],	Z[33],	Z[37],	Z[73],	Z[69],	Z[70],	Z[74],	Z[38],	Z[34]], 
 				  [Z[84],  Z[116],	Z[120],	Z[88],	Z[87],	Z[119],	Z[115],	Z[83],	Z[91],	Z[92]], 
@@ -190,8 +190,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3):
 				  [Z[50],  Z[16],	Z[28],	Z[98],	Z[80],	Z[100],	Z[26],	Z[14],	Z[52],	Z[64]],
 				  [Z[63],  Z[51],	Z[13],	Z[25],	Z[99],	Z[79],	Z[97],	Z[27],	Z[15],	Z[49]],
 				  [Z[46],  Z[10],	Z[22],	Z[94],	Z[78],	Z[96],	Z[24],	Z[12],	Z[48],	Z[62]],
-				]
-	verts_six = [
+
 				  [Z[5],   Z[17],	Z[29],	Z[23],	Z[11],	Z[1]],
 				  [Z[44],  Z[50],	Z[64],	Z[76],	Z[40],	Z[56]],
 				  [Z[77],  Z[95],	Z[109],	Z[101],	Z[113],	Z[81]],
@@ -212,9 +211,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3):
 				  [Z[105], Z[107],	Z[119],	Z[87],	Z[85],	Z[117]],
 				  [Z[7],   Z[3],	Z[15],	Z[27],	Z[31],	Z[19]], 
 				  [Z[106], Z[118],	Z[86],	Z[88],	Z[120],	Z[108]],
-				]
 
-	verts_four = [
 				  [Z[4],   Z[16],	Z[50],	Z[44]],
 				  [Z[23],  Z[29],	Z[109],	Z[95]],
 				  [Z[96],  Z[110],	Z[30],	Z[24]],
@@ -247,29 +244,21 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3):
 				  [Z[85],  Z[87],	Z[88],	Z[86]]
 	]
 
-	cube = Poly3DCollection(verts_six)
+	fc = []
+	for i in range(len(verts)):
+		if i in range(0,12):
+			fc.append(color)
+		elif i in range(12,32):
+			fc.append(color2)
+		else:
+			fc.append(color3)
+
+	cube = Poly3DCollection(verts)
 
 	cube.set_edgecolor(edge_c)
 	cube.set_linewidth(edge_w)
 	cube.set_alpha(alpha)
-	cube.set_facecolor(color)
-
-	cube1 = Poly3DCollection(verts_four)
-
-	cube1.set_edgecolor(edge_c)
-	cube1.set_linewidth(edge_w)
-	cube1.set_alpha(alpha)
-	cube1.set_facecolor(color2)
-
-	cube2 = Poly3DCollection(verts_ten)
-
-	cube2.set_edgecolor(edge_c)
-	cube2.set_linewidth(edge_w)
-	cube2.set_alpha(alpha)
-	cube2.set_facecolor(color3)
-
+	cube.set_facecolor(fc)
 
 	# Plot Surfaces
 	ax.add_collection3d(cube)
-	ax.add_collection3d(cube1)
-	ax.add_collection3d(cube2)
