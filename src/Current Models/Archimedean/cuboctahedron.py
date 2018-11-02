@@ -13,7 +13,6 @@ name = "Cuboctahedron"
 
 def shape(fig, alpha, color, edge_c, edge_w, grid, color2):
 
-
 	points = array([[0,0,0],
 					[-1, 0, 0],
 					[-0.5, -0.5, -1/sqrt(2)],
@@ -40,7 +39,6 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2):
 		Z[i, :] = dot(points[i, :], P)
 
 	# Figure Properties
-	#fig = plt.figure(figsize=(8,8))
 	ax = p3.Axes3D(fig)
 	ax.set_facecolor('black')
 
@@ -57,8 +55,8 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2):
 				  [Z[3],  Z[1],  Z[2],  Z[6]],
 				  [Z[5],  Z[7],  Z[4],  Z[1]],
 				  [Z[11], Z[12], Z[10], Z[7]],
-				]
-	cuboc_three = [
+	#				]
+	#	cuboc_three = [
 				  [Z[12], Z[11], Z[9]],
 				  [Z[3],  Z[5],  Z[1]],
 				  [Z[6],  Z[9],  Z[3]],
@@ -69,25 +67,18 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2):
 				  [Z[7],  Z[10], Z[4]]
 				  ]
 
-	cuboc = Poly3DCollection(verts_cuboc)
+	verts = verts_cuboc	
+	cuboc = Poly3DCollection(verts)
+	fc = [color if i in range(0,6) else color2 for i in range(len(verts_cuboc))]
 
 	cuboc.set_edgecolor(edge_c)
 	cuboc.set_linewidth(edge_w)
 	cuboc.set_alpha(alpha)
-	cuboc.set_facecolor(color)
+	cuboc.set_facecolor(fc)
 
-	cuboc1 = Poly3DCollection(cuboc_three)
-
-	cuboc1.set_edgecolor(edge_c)
-	cuboc1.set_linewidth(edge_w)
-	cuboc1.set_alpha(alpha)
-	cuboc1.set_facecolor(color2)
-
-	# Plot Surfaces
 	ax.add_collection3d(cuboc)
-	ax.add_collection3d(cuboc1)
 
-#	if grid == "on":
+	#	if grid == "on":
 		# Produces the labels and arrows of the Hexagonal Face
 		# for j, xyz_ in enumerate(points):
 		#    hex = annotate3D(ax,
