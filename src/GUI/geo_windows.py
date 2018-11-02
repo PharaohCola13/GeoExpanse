@@ -140,6 +140,16 @@ class Geometry(tk.Frame):
 		self.createWidgets(master)
 
 	def createWidgets(self, master):
+		# 		# Vars
+		self.grid_axis = tk.StringVar()
+		self.axis_limits = tk.StringVar()
+		self.scroll = tk.DoubleVar()
+		self.shape_set = tk.StringVar()
+		self.alpha = tk.StringVar()
+		self.two_three = tk.StringVar()
+		self.rot = tk.StringVar()
+		self.format_save = tk.StringVar()
+
 		self.fig = plt.figure(figsize=(root_height/100, root_height/100), facecolor="black", edgecolor="white")
 		ax = p3.Axes3D(self.fig)
 		ax.set_facecolor('black')
@@ -149,15 +159,10 @@ class Geometry(tk.Frame):
 		canvas.get_tk_widget().grid(row=0 ,column=0, sticky='new')
 		master.update_idletasks()
 		canvas.draw()
-# 		# Vars
-		self.grid_axis 		= tk.StringVar()
-		self.axis_limits 	= tk.StringVar()
-		self.scroll			= tk.DoubleVar()
-		self.shape_set 		= tk.StringVar()
-		self.alpha 			= tk.StringVar()
-		self.two_three 		= tk.StringVar()
-		self.rot 			= tk.StringVar()
-		self.format_save 	= tk.StringVar()
+
+		name = self.shape_set.get()
+		master.title("GeoExpanse ({})".format(name))
+
 
 # 		# Functions
 		def axi():
@@ -542,8 +547,6 @@ class Geometry(tk.Frame):
 		height = self.h_entry.get()
 		multi_pi2 = self.pi_entry2.get()
 
-		name = self.shape_set.get()
-		root.title("GeoExpanse ({})".format(name))
 
 		ax.clear()
 		plt.cla()
