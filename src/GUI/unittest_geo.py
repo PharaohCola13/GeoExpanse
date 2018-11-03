@@ -39,7 +39,8 @@ elif option == "linux":
 elif option == "windows":
 	app = geo_windows.Geometry(root)
 	title = "Windows"
-
+three = geo_develop.gen + geo_develop.hyper + geo_develop.misc + geo_develop.surf + geo_develop.topo + geo_develop.arch + geo_develop.plat + geo_develop.kepl
+two = geo_develop.two + geo_develop.pen
 class Superfical(unittest.TestCase):
 	def test_widget(self):
 		try:
@@ -68,9 +69,9 @@ class TestObject(unittest.TestCase):
 				failed.append(k)
 		net = len(passed) - 1
 		tot = len(passed) + len(failed) - 1
-		#print("{} out of {} Models Have Passed ".format(net, tot))
 		print("\033[0m" + "--" * 5 + " Individual Shape Test: End " + "--" * 5)
-		print("Model Count: {}".format(tot))
+		print("Model Count: {}".format(tot))		
+		print("3D Models: {}\n2D Models: {}".format(len(three), len(two)))
 		print("{:f}% Pass".format(float(net)/tot * 100.))
 		print("\033[0m")
 
