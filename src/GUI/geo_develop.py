@@ -37,10 +37,10 @@ import prism, pyramid, sphere
 import hyperbolic_octahedron, hyperbolic_paraboloid, one_sheet_hyperboloid, hyperbolic_helicoid, hyperbolic_cylinder
 import three_dodecahedron, crescent, funnel, gabriel_horn, rose_spiral, shell, tesseract, spiral, seashell, steinbach_screw
 import breather_surface, kuen_surface, steiner_surface, boys_surface, roman_surface, sine_surface, henneberg_surface, unk_surface, dini_surface, enneper_surface, corkscrew_surface, shoe_surface
-import cube, dodecahedron, icosahedron, octahedron
+import cube, dodecahedron, icosahedron, octahedron, tetrahemihexahedron, truncated_tetrahedron
 import cross_cap, klein, mobius, torus
-import neat, testing, vase, something_strange, great_dodecahedron
-import cuboctahedron, great_rombicosidodecahedron, snub_cube, truncated_cube, disdyakis_triacontahedron, great_icosahedron
+import neat, testing, vase, something_strange, great_dodecahedron, great_stellated_dodecahedron
+import cuboctahedron, great_rombicosidodecahedron, snub_cube, truncated_cube, disdyakis_triacontahedron, great_icosahedron, small_stellated_dodecahedron
 import deltoid, log_spiral, parabola, penrose_square, penrose_circle, line, penrose_triangle, polygon, ellipse, fermat_sprial
 
 ## Geometry Dictionary
@@ -103,6 +103,10 @@ s = {	 "Prism"					: prism,
 		 "Ellipse"					: ellipse,
 		 "Fermat Spiral"			: fermat_sprial,
 		  ""						: testing,
+		 "Small Stellated Dodecahedron" : small_stellated_dodecahedron,
+		 "Great Stellated Dodecahedron" : great_stellated_dodecahedron,
+		 "Tetrahemihexahedron"		: tetrahemihexahedron,
+		 "Truncated Tetrahedron"	: truncated_tetrahedron
 }
 
 gen 	= ["Prism", "Pyramid", "Sphere"]
@@ -111,11 +115,11 @@ misc 	= ["Three Dodecahedron", "Crescent", "Funnel", "Gabriel's Horn", "Rose Spi
 surf 	= ["Breather's Surface", "Kuen's Surface", "Steiner's Surface", "Boy's Surface", "Roman Surface", "Sine Surface", "Henneberg's Surface", "Dini's Surface", "Enneper's Surface", "Corkscrew Surface", "Shoe Surface", "Unk Surface"]
 topo 	= ["Cross Cap", "Klein Bottle", "Mobius Strip", "Torus"]
 deve 	= ["Neat", "", "Great Dodecahedron", "Vase", "Something Strange"]
-arch 	= ["Cuboctahedron", "Disdyakis Triacontahedron", "Great Rombicosidodecahedron", "Snub Cube", "Truncated Cube", "Great Icosahedron"]
+arch 	= ["Cuboctahedron", "Disdyakis Triacontahedron", "Great Rombicosidodecahedron", "Snub Cube", "Truncated Cube", "Tetrahemihexahedron", "Truncated Tetrahedron"]
 plat    = ["Cube", "Dodecahedron", "Octahedron", "Icosahedron"]
 two 	= ["Line", "Deltoid", "Log Spiral", "Parabola", "Polygons", "Ellipse", "Fermat Spiral"]
 pen		= ["Penrose Circle", "Penrose Triangle", "Penrose Square"]
-
+kepl	= ["Great Icosahedron","Small Stellated Dodecahedron", "Great Stellated Dodecahedron"]
 dim = "#303030"  #   Background
 dimf = "#00C0FF"  #   Font Color
 disa = "#d400ff" #   Disabled Text
@@ -155,9 +159,6 @@ class Geometry(tk.Frame):
 		canvas.get_tk_widget().grid(row=0 ,column=0, sticky='new')
 		master.update_idletasks()
 		canvas.draw()
-
-		name = self.shape_set.get()
-		master.title("GeoExpanse ({})".format(name))
 
 ## Functions
 		def axi():
@@ -521,6 +522,8 @@ class Geometry(tk.Frame):
 #	#
 	def plot(self, canvas, ax, shape_obj):
 		col_lab = [self.fck, self.f2, self.f3]
+		#name = self.shape_set.get()
+		#master.title("GeoExpanse ({})".format(name))
 
 		try:
 			edge_c = self.ec_entry[1]
