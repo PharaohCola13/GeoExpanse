@@ -10,7 +10,7 @@ from matplotlib.animation import *
 name = "Klein Bottle"
 
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figcolor):
     # Definition of x
     def x_(u, v):
         x = -2 + 2 * cos(v) - cos(u)
@@ -45,7 +45,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
 
     # Figure Properties
     ax = p3.Axes3D(fig)
-    ax.set_facecolor('black')  # Figure background turns black
+    ax.set_facecolor(figcolor)  # Figure background turns black
 
     # Axis Properties
     plt.axis(grid)  # Turns off the axis grid

@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Cube"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid):
+def shape(fig, alpha, color, edge_c, edge_w, grid, figcolor):
 
 	points = array([[-1, -1, -1],
 	               [1, -1, -1 ],
@@ -33,7 +33,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid):
 
 # Figure Properties
 	ax = p3.Axes3D(fig)
-	ax.set_facecolor('black')
+	ax.set_facecolor(figcolor)
 	
 	plt.axis(grid)
 	plt.axis('equal')

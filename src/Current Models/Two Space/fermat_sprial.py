@@ -4,7 +4,7 @@ from numpy import *
 from matplotlib.animation import *
 
 name = "Fermat Spiral"
-def shape(fig, edge_c, edge_w, grid, radiusm):
+def shape(fig, edge_c, edge_w, grid, radiusm, figcolor):
 	plt.clf()
 
 	def r_(u):
@@ -18,7 +18,7 @@ def shape(fig, edge_c, edge_w, grid, radiusm):
 	r = r_(u)
 
 	ax = plt.subplot(111, projection='polar')
-	ax.patch.set_facecolor("black")
+#	ax.patch.set_facecolor(figcolor)
 	ax.xaxis.set_tick_params(color="white", labelcolor="white")
 	ax.yaxis.set_tick_params(color="white", labelcolor="white")
 

@@ -8,9 +8,9 @@ from matplotlib.animation import *
 from matplotlib import *
 from numpy import *
 
-name = "Curve"
+name = "Spiral"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, figcolor):
 	def x_(u,v):
 		x = u * cos(u) * (4 + cos(v + u))
 		return x
@@ -34,7 +34,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges):
 
 	# Figure Properties
 	ax = p3.Axes3D(fig)
-	ax.set_facecolor('black')
+	ax.set_facecolor(figcolor)
 
 	plt.axis(grid)
 	plt.axis('equal')

@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Snub Cube"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, color2):
+def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor):
 
 
 	C0 = sqrt(3 * (4 - cbrt(17  + 3 * sqrt(33)) - cbrt(17  - 3 * sqrt(33)))) / 6
@@ -53,7 +53,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2):
 
 	# Figure Properties
 	ax = p3.Axes3D(fig)
-	ax.set_facecolor('black')
+	ax.set_facecolor(figcolor)
 
 	plt.axis(grid)
 	plt.axis('equal')

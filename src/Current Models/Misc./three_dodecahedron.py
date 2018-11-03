@@ -7,10 +7,10 @@ from numpy import *
 from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 
-name = "Embedded-Dodecahedron"
+name = "Three Dodecahedron"
 
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3):
+def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3, figcolor):
 
 	# Points on the object
 	points = array([
@@ -70,7 +70,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3):
 
 	# Figure Properties
 	ax = p3.Axes3D(fig)
-	ax.set_facecolor('black')
+	ax.set_facecolor(figcolor)
 
 	plt.axis(grid)
 	plt.axis('equal')

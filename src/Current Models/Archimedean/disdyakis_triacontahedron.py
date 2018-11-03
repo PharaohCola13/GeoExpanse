@@ -1,4 +1,4 @@
-# A Hecatonicosihedron, brought to you by PharaohCola13
+# A Disdyakis Triacontahedron, brought to you by PharaohCola13
 import matplotlib
 from matplotlib import *
 
@@ -8,9 +8,9 @@ from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 from numpy import *
 
-name = "Hecatonicosihedron"
+name = "Disdyakis Triacontahedron"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid):
+def shape(fig, alpha, color, edge_c, edge_w, grid, figcolor):
 
 
 # Points on the object
@@ -116,7 +116,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid):
 		J[i,:] = dot(points[i,:],P)
 
 	ax = p3.Axes3D(fig)
-	ax.set_facecolor('black')
+	ax.set_facecolor(figcolor)
 
 	plt.axis(grid)
 	#plt.axis('equal')

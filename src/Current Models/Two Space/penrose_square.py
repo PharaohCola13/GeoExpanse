@@ -11,7 +11,7 @@ from matplotlib.text import Annotation
 name = "Penrose Square"
 
 
-def shape(fig, edge_c, edge_w, grid):
+def shape(fig, edge_c, edge_w, grid, figcolor):
 	plt.clf()
 
 	points_x = [-1.56,  -10,  -10.024,  -1.524, 	  1.225,	10, 	10.02, 1.2,	 1.544, 	-5.3, 	-6.9, 0, -1.78, 5.3, 6.9, 0 ]
@@ -24,10 +24,10 @@ def shape(fig, edge_c, edge_w, grid):
 
 	# Figure Properties
 	ax = plt.subplot(111)
-	ax.patch.set_facecolor("black")
+	ax.patch.set_facecolor("white")
+	ax.set_facecolor(figcolor) # Figure background turns black
 	ax.xaxis.set_tick_params(color="white", labelcolor="white")
 	ax.yaxis.set_tick_params(color="white", labelcolor="white")
-	ax.set_facecolor('black')
 
 	plt.axis(grid)
 	plt.axis('equal')

@@ -5,7 +5,7 @@ from matplotlib.animation import *
 
 
 name = "Polygons"
-def shape(fig, edge_c, edge_w, grid, sides):
+def shape(fig, edge_c, edge_w, grid, sides, figcolor):
 	
 	def r_(u):
 		r = 1/(cos((m/n) *arcsin(sin((n/o)*u+p))))
@@ -22,7 +22,7 @@ def shape(fig, edge_c, edge_w, grid, sides):
 	r = r_(u)
 
 	ax = plt.subplot(111, projection='polar')
-	ax.patch.set_facecolor("black")
+	ax.patch.set_facecolor(figcolor)
 	ax.xaxis.set_tick_params(color="white", labelcolor="white")
 	ax.yaxis.set_tick_params(color="white", labelcolor="white")
 

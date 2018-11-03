@@ -10,7 +10,7 @@ from matplotlib.animation import *
 name = "Penrose Triangle"
 
 
-def shape(fig, edge_c, edge_w, grid):
+def shape(fig, edge_c, edge_w, grid, figcolor):
 	plt.clf()
 	points_x = [0.09, -2.66, 3.284, 6.315, -1.505, -8.328, 9.254, 10.685, 1.227, -1.563, -9.804, -3.916]
 	points_y = [2.761, -2.19, -2.19, -2.189, 5.229, -6.883, -6.89, -4.45, 10.022, 10.022, -4.602, -4.449]
@@ -23,7 +23,9 @@ def shape(fig, edge_c, edge_w, grid):
 
 	# Figure Properties
 	ax = plt.subplot(111)
-	ax.patch.set_facecolor("black")
+	ax.patch.set_facecolor(figcolor)
+	ax.set_facecolor(figcolor) # Figure background turns black
+
 	ax.xaxis.set_tick_params(color="white", labelcolor="white")
 	ax.yaxis.set_tick_params(color="white", labelcolor="white")
 

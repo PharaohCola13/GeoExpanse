@@ -43,7 +43,7 @@ y = y_(u,v)
 # Figure Properties
 fig = plt.figure(figsize=(8,8))
 ax = p3.Axes3D(fig)
-ax.set_facecolor('black') # Figure background turns black
+ax.set_facecolor(figcolor) # Figure background turns black
 
 # Axis Properties
 plt.axis("off") # Turns off the axis grid

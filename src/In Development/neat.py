@@ -9,7 +9,7 @@ from numpy import *
 
 name = "Neat"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figcolor):
     def x_(u,v):
         x = 0.5 * (v * cos(u))
         return x
@@ -33,7 +33,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
 
     # Figure Properties
     ax = p3.Axes3D(fig)
-    ax.set_facecolor('black')
+    ax.set_facecolor(figcolor)
 
     plt.axis(grid)
     plt.axis('equal')

@@ -11,7 +11,7 @@ from mpl_toolkits.mplot3d.proj3d import proj_transform
 
 name = "Cuboctahedron"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, color2):
+def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor):
 
 	points = array([[0,0,0],
 					[-1, 0, 0],
@@ -40,7 +40,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2):
 
 	# Figure Properties
 	ax = p3.Axes3D(fig)
-	ax.set_facecolor('black')
+	ax.set_facecolor(figcolor)
 
 	plt.axis(grid)
 	plt.axis('equal')

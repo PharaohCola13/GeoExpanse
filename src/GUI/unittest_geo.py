@@ -28,7 +28,7 @@ fig = plt.figure(figsize=(8, 8), facecolor="black", edgecolor="white")
 canvas = FigureCanvasTkAgg(fig ,root)
 ax = p3.Axes3D(fig)
 
-option = raw_input("Platform:\n>> ")
+option = input("Platform:\n>> ")
 
 if option == "develop":
 	app = geo_develop.Geometry(root)
@@ -39,6 +39,7 @@ elif option == "linux":
 elif option == "windows":
 	app = geo_windows.Geometry(root)
 	title = "Windows"
+
 three = geo_develop.gen + geo_develop.hyper + geo_develop.misc + geo_develop.surf + geo_develop.topo + geo_develop.arch + geo_develop.plat + geo_develop.kepl
 two = geo_develop.two + geo_develop.pen
 class Superfical(unittest.TestCase):
@@ -61,11 +62,12 @@ class TestObject(unittest.TestCase):
 		for k,v in sorted(s.items()):
 			try:
 				app.plot(canvas, ax, s[k])
-				print("\033[32m{0:30}: ".ljust(20).format(k) + "\033[32m Cleared")
+				self.assertEqual(s[k].name,k)
+				print("\033[32m{0:35}: ".ljust(20).format(k) + "\033[32m Cleared")
 				passed.append(k)
 				#print("\033[0m")
 			except TypeError:
-				print("\033[91m{0:30}: ".ljust(10).format(k) + "\033[91m Failed")
+				print("\033[91m{0:35}: ".ljust(10).format(k) + "\033[91m Failed")
 				failed.append(k)
 		net = len(passed) - 1
 		tot = len(passed) + len(failed) - 1

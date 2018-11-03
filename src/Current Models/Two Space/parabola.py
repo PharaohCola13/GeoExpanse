@@ -4,7 +4,7 @@ from numpy import *
 from matplotlib.animation import *
 
 name = "Parabola"
-def shape(fig, edge_c, edge_w, grid, radiusm):
+def shape(fig, edge_c, edge_w, grid, radiusm, figcolor):
 	plt.clf()
 	def x_(t):
 		x = a * t**2
@@ -22,7 +22,7 @@ def shape(fig, edge_c, edge_w, grid, radiusm):
 
 	ax = plt.subplot(111)
 
-	ax.patch.set_facecolor("black")
+	ax.patch.set_facecolor(figcolor)
 	ax.xaxis.set_tick_params(color="white", labelcolor="white")
 	ax.yaxis.set_tick_params(color="white", labelcolor="white")
 

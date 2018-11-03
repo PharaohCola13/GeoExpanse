@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Shell"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, figcolor):
 # Definition of x
 	def x_(u,v):
 		x = power(1.2, v) * (sin(u)**2 * sin(v))
@@ -39,7 +39,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges):
 
 # Figure Properties
 	ax = p3.Axes3D(fig)
-	ax.set_facecolor('black') # Figure background turns black
+	ax.set_facecolor(figcolor) # Figure background turns black
 
 # Axis Properties
 	plt.axis(grid) # Turns off the axis grid

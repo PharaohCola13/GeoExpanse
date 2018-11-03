@@ -11,7 +11,7 @@ from matplotlib.animation import writers
 from matplotlib import cm
 
 name = "Mobius Strip"
-def shape(fig, alpha, color, edge_c, edge_w, grid):
+def shape(fig, alpha, color, edge_c, edge_w, grid, figcolor):
 
     # Mobius Band components
     theta = np.linspace(0, 2 * np.pi, 30)
@@ -32,7 +32,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid):
 
     # Figure Properties
     ax = p3.Axes3D(fig)
-    ax.set_facecolor('black')
+    ax.set_facecolor(figcolor)
 
     plt.axis(grid)
     plt.axis('equal')

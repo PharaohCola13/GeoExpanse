@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Octahedron"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid):
+def shape(fig, alpha, color, edge_c, edge_w, grid, figcolor):
 
 # Points on the object
 	points = array([
@@ -37,7 +37,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid):
 
 # Figure Properties
 	ax = p3.Axes3D(fig)
-	ax.set_facecolor('black') # Figure background turns black
+	ax.set_facecolor(figcolor) # Figure background turns black
 	
 # Axis Properties
 	plt.axis(grid) # Turns off the axis grid

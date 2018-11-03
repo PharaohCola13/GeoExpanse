@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Great Rombicosidodecahedron"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3):
+def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3, figcolor):
 
 	points = array([[0,0,0],
 					[-1, 	0.25 * (-3 - sqrt(5)), 0.25 * (-7 - (3 * sqrt(5)))],
@@ -169,7 +169,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3):
 
 	# Figure Properties
 	ax = p3.Axes3D(fig)
-	ax.set_facecolor('black')
+	ax.set_facecolor(figcolor)
 
 	plt.axis(grid)
 	plt.axis('equal')

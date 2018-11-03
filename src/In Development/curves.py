@@ -18,7 +18,7 @@ Z = x**2 + y**2 - 2*x - 2*y
 fig = plt.figure(figsize=(8,8))
 
 ax = p3.Axes3D(fig)
-ax.set_facecolor('black') # Figure background turns black
+ax.set_facecolor(figcolor) # Figure background turns black
 
 #plt.plot([0, 0], 'r-', lw=3)
 

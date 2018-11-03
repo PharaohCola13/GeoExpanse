@@ -10,7 +10,7 @@ from numpy import *
 
 name = "Something Strange"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figcolor):
 # x: t*s*cos(u) * cos(v)
 # y: t*s*cos(u) * sin(v)
 # z: t * s * sin(v)
@@ -41,7 +41,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
 
 	# Figure Properties
 	ax = p3.Axes3D(fig)
-	ax.set_facecolor('black')
+	ax.set_facecolor(figcolor)
 
 	plt.axis(grid)
 	plt.axis('equal')

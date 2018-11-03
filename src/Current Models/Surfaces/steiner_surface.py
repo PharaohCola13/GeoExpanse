@@ -7,7 +7,9 @@ from numpy import *
 from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
+name = "Steiner's Surface"
+
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figcolor):
 # Definition of x
     def x_(u, v):
         x = sqrt(2) * cos(2 * u) * cos(v)**2 + cos(u) * sin(2 * v) / (2 - (b * sqrt(2) * sin(3 * u) * sin(2 * v)))
@@ -39,7 +41,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
 
 # Figure Properties
     ax = p3.Axes3D(fig)
-    ax.set_facecolor('black')  # Figure background turns black
+    ax.set_facecolor(figcolor)  # Figure background turns black
 
 # Axis Properties
     plt.axis('off')  # Turns off the axis grid

@@ -9,7 +9,7 @@ from matplotlib import *
 from numpy import *
 import time
 
-name = "Testing"
+name = ""
 
 def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figcolor):
 	def x_(u,v):
@@ -48,7 +48,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figco
 	test.set_linewidth(edge_w)
 	test.set_facecolor(color)
 
-#	ax.set_facecolor('black')
+#	ax.set_facecolor(figcolor)
 #	ax.grid(False)
 #	ax.axis('off')
 #	ax.set_xticks([])
@@ -72,7 +72,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figco
 
 #	def rot_on():
 #		plt.axis(grid)
-#		ax.set_facecolor('black')
+#		ax.set_facecolor(figcolor)
 #		ax.grid(False)
 #		ax.axis('off')
 #		ax.set_xticks([])
@@ -97,7 +97,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figco
 
 
 #	def save_mp4():
-#		ax.set_facecolor('black')
+#		ax.set_facecolor(figcolor)
 #		ax.grid(False)
 #		ax.axis('off')
 #		ax.set_xticks([])
@@ -123,7 +123,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figco
 #
 #	def rot_off():
 #		plt.axis(grid)
-#		ax.set_facecolor('black')
+#		ax.set_facecolor(figcolor)
 #		ax.grid(False)
 #		#ax.axis('off')
 #		ax.set_xticks([])

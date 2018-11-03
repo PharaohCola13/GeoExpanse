@@ -6,7 +6,7 @@ from matplotlib.patches import Arc
 
 name = "Penrose Circle"
 
-def shape(fig, edge_c, edge_w, grid):
+def shape(fig, edge_c, edge_w, grid, figcolor):
 	plt.clf()
 
 	circle  = plt.Circle((0,0), sqrt(0.75), fill=False, color=edge_c, linewidth=edge_w)
@@ -25,10 +25,11 @@ def shape(fig, edge_c, edge_w, grid):
 	
 	plt.axis(grid)
 	ax.set_aspect("equal")
-	ax.patch.set_facecolor("black")
-	ax.xaxis.set_tick_params(color="white", labelcolor="white")
-	ax.yaxis.set_tick_params(color="white", labelcolor="white")
-	ax.set_facecolor('black')
+	ax.patch.set_facecolor(figcolor)
+	ax.set_facecolor(figcolor) # Figure background turns black
+
+	#ax.xaxis.set_tick_params(color="white", labelcolor="white")
+	#ax.yaxis.set_tick_params(color="white", labelcolor="white")
 
 	ax.add_artist(circle)
 	ax.add_artist(circle1)

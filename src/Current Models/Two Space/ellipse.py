@@ -4,7 +4,7 @@ from numpy import *
 from matplotlib.animation import *
 
 name = "Ellipse"
-def shape(fig, edge_c, edge_w, grid, radiusm, radiusa):
+def shape(fig, edge_c, edge_w, grid, radiusm, radiusa, figcolor):
 	plt.clf()
 	def x_(t):
 		x = a * cos(t)
@@ -24,7 +24,7 @@ def shape(fig, edge_c, edge_w, grid, radiusm, radiusa):
 	y = y_(t)
 
 	ax = plt.subplot(111)
-	ax.patch.set_facecolor("black")
+	ax.patch.set_facecolor(figcolor)
 	ax.xaxis.set_tick_params(color="white", labelcolor="white")
 	ax.yaxis.set_tick_params(color="white", labelcolor="white")
 

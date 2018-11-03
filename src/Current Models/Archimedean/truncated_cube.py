@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Truncated Cube"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, color2):
+def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor):
 
 	points = array([[0,0,0],
 					[-0.5, 0.5 + 1/(sqrt(2)), 0.5 +1/(sqrt(2))],
@@ -53,7 +53,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2):
 
 	# Figure Properties
 	ax = p3.Axes3D(fig)
-	ax.set_facecolor('black')
+	ax.set_facecolor(figcolor)
 
 	plt.axis(grid)
 	plt.axis('equal')

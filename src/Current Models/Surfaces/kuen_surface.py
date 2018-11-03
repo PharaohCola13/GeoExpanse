@@ -10,7 +10,7 @@ from numpy import *
 
 name = "Kuen Surface"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges):    
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, figcolor):
 # Definition of x
     def x_(u, v):
         x = 2 * cosh(v) * (cos(u) + u* sin(u)) / (cosh(v)**2 + u**2)
@@ -41,7 +41,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges):
     # Figure Properties
 
     ax = p3.Axes3D(fig)
-    ax.set_facecolor('black')  # Figure background turns black
+    ax.set_facecolor(figcolor)  # Figure background turns black
 
     # Axis Properties
     plt.axis(grid)  # Turns off the axis grid

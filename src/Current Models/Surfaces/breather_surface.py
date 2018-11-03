@@ -7,7 +7,7 @@ from numpy import *
 from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 
-name = "Breather's-Surface"
+name = "Breather's Surface"
 
 def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges):
 	# Definition of x
@@ -42,7 +42,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges):
 
 	# Figure Properties
 	ax = p3.Axes3D(fig)
-	ax.set_facecolor('black')  # Figure background turns black
+	ax.set_facecolor(figcolor)  # Figure background turns black
 
 	# Axis Properties
 	plt.axis(grid)  # Turns off the axis grid

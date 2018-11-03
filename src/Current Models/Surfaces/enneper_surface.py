@@ -7,9 +7,9 @@ from numpy import *
 from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 
-name = "Enneper Surface"
+name = "Enneper's Surface"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figcolor):
 
     def x_(u,v):
         x = u - (u**3/3) + (u * v**2)
@@ -34,7 +34,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi):
 
     # Figure Properties
     ax = p3.Axes3D(fig)
-    ax.set_facecolor('black')
+    ax.set_facecolor(figcolor)
 
     plt.axis(grid)
     plt.axis('equal')

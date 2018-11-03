@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Pyramid"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, height):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, height, figcolor):
 
 # Definition of x
 	def x_(u,v):
@@ -49,7 +49,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiu
 # Figure Properties
 
 	ax = p3.Axes3D(fig)
-	ax.set_facecolor('black') # Figure background turns black
+	ax.set_facecolor(figcolor) # Figure background turns black
 
 # Axis Properties
 	plt.axis(grid) # Turns off the axis grid

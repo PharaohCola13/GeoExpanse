@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Tesseract"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, color2):
+def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor):
 # Points on the object
 	points = array([
 				   [-1,	-1,	-1],
@@ -49,7 +49,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2):
 
 # Figure Properties
 	ax = p3.Axes3D(fig)
-	ax.set_facecolor('black')
+	ax.set_facecolor(figcolor)
 
 	plt.axis(grid)
 	plt.axis('equal')
