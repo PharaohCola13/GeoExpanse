@@ -1,9 +1,7 @@
 import geo_develop
 import geo_linux
 import geo_windows
-from geo_develop import s as s_dev
-from geo_linux import s as s_linu
-from geo_windows import s as s_wind
+from geo_develop import s
 import matplotlib
 import matplotlib.pyplot as plt
 import unittest
@@ -30,19 +28,16 @@ fig = plt.figure(figsize=(8, 8), facecolor="black", edgecolor="white")
 canvas = FigureCanvasTkAgg(fig ,root)
 ax = p3.Axes3D(fig)
 
-option = input("Platform:\n>> ")
+option = raw_input("Platform:\n>> ")
 
 if option == "develop":
 	app = geo_develop.Geometry(root)
-	s 	= s_dev
 	title = "Development"
 elif option == "linux":
 	app = geo_linux.Geometry(root)
-	s	= s_linu
 	title = "Linux"
 elif option == "windows":
 	app = geo_windows.Geometry(root)
-	s	= s_wind
 	title = "Windows"
 
 class Superfical(unittest.TestCase):
