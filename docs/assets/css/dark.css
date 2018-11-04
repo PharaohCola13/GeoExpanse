@@ -573,7 +573,6 @@ a:hover {
   padding: 6px 12px;
   display: inline-block;
   text-align: center;
-  transition: all 150ms ease;
 }
 .btn:hover {
   color: #fff;
@@ -582,13 +581,13 @@ a:hover {
   box-shadow: 0;
 }
 .masthead {
-    position: absolute;
-    left: 25%
-  margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 .masthead-brand {
-  margin-bottom: 0;
+  margin-bottom: 1rem;
+	position: fixed;
+	left: 25%;
 }
 
 .nav-link a{
@@ -797,16 +796,13 @@ section #title .credits.right {
   }
 }
 @media print, screen and (max-width: 480px) {
-
-  .masthead {
-  float: right;
-  position: absolute;
-  left: 0%
-  margin-bottom: 2rem;
+.masthead {
+	position: absolute;
+	left: 25%
+	margin-bottom: 2rem;
 }
 
 .masthead-brand {
-    float: right;
   margin-bottom: 0;
 }
 
@@ -834,6 +830,7 @@ section #title .credits.right {
   color: #fff;
   border-bottom-color: #fff;
 }
+
 }
 
 .highlight .hll { background-color: #404040 }
