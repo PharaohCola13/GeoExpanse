@@ -10,7 +10,8 @@ from matplotlib.animation import *
 
 name = "Sphere"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, radiusa, height, figcolor):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, radiusa, height, figcolor, rotation, rotmagt, rotmagp):
+	plt.clf()
 # Definition of x
 	def x_(u,v):
 			x = a * cos(u) * sin(v)
@@ -64,3 +65,23 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiu
 	sphere.set_edgecolor(edge_c) # Edge color of the lines on the figure
 	sphere.set_linewidth(edge_w) # Line width of the edges
 	sphere.set_facecolor(color) # General color of the figure
+
+
+	def rot_on():
+		def animate(i):
+			ax.view_init(azim=rotmagt * i, elev=rotmagp * i)
+
+		# Animate
+		ani = FuncAnimation(fig, animate,
+							interval=1, save_count=50)
+
+		plt.ion()
+		plt.show()
+		time.sleep(0)
+		plt.close()
+
+
+	if rotation == "On":
+		rot_on()
+	elif rotation == "Off":
+		pass

@@ -9,8 +9,8 @@ from matplotlib.animation import *
 
 name = "Crescent"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, figcolor):
-
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, figcolor, rotation, rotmagt, rotmagp):
+	plt.clf()
 # Definition of x
 	def x_(u,v):
 		x = (2 + sin(2 * pi * v) * sin(2 * pi * u)) * sin(3 * pi * v)
@@ -53,3 +53,24 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, figcolor):
 	cressant.set_edgecolor(edge_c) # Edge color of the lines on the figure
 	cressant.set_linewidth(edge_w) # Line width of the edges
 	cressant.set_facecolor(color) # General color of the figure
+
+
+	def rot_on():
+		def animate(i):
+			ax.view_init(azim=rotmagt * i, elev=rotmagp * i)
+
+		# Animate
+		ani = FuncAnimation(fig, animate,
+							interval=1, save_count=50)  # frames=100)#, repeat=True)
+
+		plt.ion()
+		plt.show()
+		time.sleep(0)
+		plt.close()
+
+
+	if rotation == "On":
+		rot_on()
+	elif rotation == "Off":
+		pass
+

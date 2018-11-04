@@ -11,7 +11,8 @@ from mpl_toolkits.mplot3d.proj3d import proj_transform
 
 name = "Great Stellated Dodecahedron"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, figcolor):
+def shape(fig, alpha, color, edge_c, edge_w, grid, figcolor, rotation, rotmagt, rotmagp):
+	plt.clf()
 	P1 = (3-sqrt(5))/4
 	P2 = (sqrt(5)-1)/4
 
@@ -83,3 +84,22 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, figcolor):
 
 	# Plot Surfaces
 	ax.add_collection3d(gsdod)
+
+	def rot_on():
+		def animate(i):
+			ax.view_init(azim=rotmagt * i, elev=rotmagp * i)
+
+		# Animate
+		ani = FuncAnimation(fig, animate,
+							interval=1, save_count=50)  # frames=100)#, repeat=True)
+
+		plt.ion()
+		plt.show()
+		time.sleep(0)
+		plt.close()
+
+	if rotation == "On":
+		rot_on()
+	elif rotation == "Off":
+		pass
+

@@ -3,13 +3,6 @@
  */
 
 @font-face {
-				font-family: 'Quantum';
-				src: url("../fonts/Quantum.ttf");
-				format("TTF");
-				font-style: normal;
-				font-weight: normal
-				}
-@font-face {
 				font-family: 'Potra';
 				src: url("../fonts/Potra.ttf");
 				format("TTF");
@@ -23,38 +16,48 @@ a:hover {
   color: #fffff;
 }
 a {
-    color: #00ffff
+	color: #00ffff
 }
 p {
-    color: #00aaff
+	color: #00aaff
 }
 
 /* Custom default button */
 .btn-secondary,
 .btn-secondary:focus {
-        color: rgba(25, 255, 255, 0.7);
-        border-color: rgba(255, 255, 255, 0.2);
-        border-style: solid;
-        border-width: 1px;
-        border-radius: 50px;
-        transition: color 0.2s;
-        background-color: #000000;
-        border-color 0.2s;
-        text-alignment: center;
-        alignment: center;
-        padding-top: 10px;
+		color: rgba(25, 255, 255, 0.7);
+		border-color: rgba(255, 255, 255, 0.2);
+		border-style: solid;
+		border-width: 1px;
+		border-radius: 50px;
+		transition: color 0.2s;
+		background-color: #000000;
+		border-color 0.2s;
+		text-alignment: center;
+		alignment: center;
+		padding-top: 10px;
 }
 .btn-secondary:hover {
-                        color: rgba(255, 255, 255, 0.8);
-                        text-decoration: none;
-                        background-color: rgba(0, 0, 255, 0.5);
-                        border-color: rgba(255, 255, 255, 0.3);
+						color: rgba(255, 255, 255, 0.8);
+						text-decoration: none;
+						background-color: rgba(0, 0, 255, 0.5);
+						border-color: rgba(255, 255, 255, 0.3);
 }
 
 .lgbtq img{
-        height: 60px;
+		height: 70px;
 }
+@media screen and (max-width: 54em) {
+.badge-alt p a img{
+            width:  50%;
+            height: 35px;
 
+}
+p a img{
+                 height: 35px;
+                 width: 70%;
+}
+}
 /*
  * Base structure
  */
@@ -77,20 +80,10 @@ body {
   max-width: 42em;
 }
 
-.current {
-            width: 900px;
-            column-count: 4;
-            text-align: center;
-            background-color: #000000;
-            column-gap: 1px;
-            column-width: 100px;
-            border-radius: 25px;
-            margin-left: -150px;
-        }
 
 h2 {
-	font-family: 'Potra';
-	font-size: 30px;
+	font-family: 'Open Sans';
+	font-size: 25px;
 	font-weight: normal;
 	margin: 0px;
 	text-align: center
@@ -98,10 +91,9 @@ h2 {
 
 
 h1 {
-	font-family: 'Quantum';
+	font-family: 'Potra';
 	font-size: 52px;
 	font-weight: normal;
-	text-shadow: 0px 2px 0px #ffffff;
 	margin: 0px;
 	color: #00bfff;
 	letter-spacing: 10px;
@@ -112,7 +104,9 @@ h1 {
  * Header
  */
 .masthead {
-  margin-bottom: 2rem;
+    position: absolute;
+    left: 25%
+    margin-bottom: 2rem;
 }
 
 .masthead-brand {
@@ -120,7 +114,7 @@ h1 {
 }
 
 .nav-link a{
-            background-color: #000000;
+			background-color: #000000;
 }
 .nav-masthead .nav-link {
   padding: .25rem 0;
@@ -146,10 +140,10 @@ h1 {
 
 @media (min-width: 48em) {
   .masthead-brand {
-    float: right;
+	float: right;
   }
   .nav-masthead {
-    float: right;
+	float: right;
   }
 }
 

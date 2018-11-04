@@ -3,13 +3,6 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
 
 @font-face {
-				font-family: 'Slice';
-				src: url("../fonts/Quantum.ttf");
-				format("TTF");
-				font-style: normal;
-				font-weight: normal
-				}
-@font-face {
 				font-family: 'Potra';
 				src: url("../fonts/Potra.ttf");
 				format("TTF");
@@ -54,7 +47,7 @@ dfn { font-style: italic; }
 /** Address variable `h1` font-size and margin within `section` and `article` contexts in Firefox 4+, Safari, and Chrome. */
 
 h2 {
-	font-family: 'Potra';
+	font-family: 'Open Sans';
 	font-size: 30px;
 	font-weight: normal;
 	margin: 0px;
@@ -63,7 +56,7 @@ h2 {
 
 
 h1 {
-	font-family: 'Slice';
+	font-family: 'Potra';
 	font-size: 52px;
 	font-weight: normal;
 	text-shadow: 0px 2px 0px #ffffff;
@@ -338,23 +331,6 @@ a:hover { text-decoration: underline; }
 			text-align: center;
 }
 
-.overheadbody{
-			position: absolute;
-			width:80%;
-			height:300%;
-			background-color: #000000;
-			color: #00bfff;
-			top: 105%;
-			bottom: 0%;
-			left: 10%;
-			right: auto;
-			border-radius: 25px;
-			padding-top: 15px;
-			padding-bottom: 15px;
-			padding-left: 15px;
-			text-align: left;
-}
-
 .overhead-badges {
 			position: absolute;
 			display: block;
@@ -503,8 +479,8 @@ a:hover { text-decoration: underline; }
                     color: #ffffff;
                 }
 h1 {
-	font-family: 'Slice';
-	font-size: 30px;
+	font-family: 'Potra';
+	font-size: 10%;
 	font-weight: normal;
 	text-shadow: 0px 2px 0px #ffffff;
 	margin: 0px;
@@ -512,29 +488,13 @@ h1 {
 	}
 
 h2 {
-	font-family: 'Potra';
+	font-family: 'Open Sans';
 	font-size: 20px;
 	font-weight: normal;
 	margin: 0px;
 	text-align: center;
 	}
 
-.overheadbody{
-			position: absolute;
-			width:100%;
-			height:600%;
-			background-color: #000000;
-			color: #00bfff;
-			top: 175%;
-			bottom: 0%;
-			left: 0%;
-			right: auto;
-			border-radius: 25px;
-			padding-top: 15px;
-			padding-bottom: 15px;
-			padding-left: 15px;
-			text-align: left;
-}
 .overhead {
 			position: absolute;
 			display: block;
@@ -542,9 +502,9 @@ h2 {
 			height:22%;
 			background-color: #000000;
 			color: #00bfff;
-			top: 10%;
+			top: 20%;
 			bottom: 0%;
-			left: 8%;
+			left: 0%;
 			right: auto;
 			border-radius: 40px;
 			padding-top: 5px;
@@ -607,8 +567,8 @@ h2 {
                 border-color: rgba(255, 255, 255, 0.3);
                 }
 p a img{
-                height: 25px;
-                width: 60%;
+                height: 10px;
+                width: 10px;
 }
 .lgbtq img{
         height: 60px;
@@ -635,7 +595,7 @@ p a img{
                 color: #fff;
                 text-align: center;
                 background-image: url("../images/573976.jpg");
-                background-position: 50% 80%
+                background-position: 70% 80%
                 }
 
 .current a {
@@ -649,22 +609,6 @@ body { margin: 0; background-color: #000000}
 }
 @media screen and (min-width: 42em) and (max-width: 82em) {
 
-.overheadbody{
-			position: absolute;
-			width:80%;
-			height:373%;
-			background-color: #000000;
-			color: #00bfff;
-			top: 137%;
-			bottom: 0%;
-			left: 10%;
-			right: auto;
-			border-radius: 25px;
-			padding-top: 15px;
-			padding-bottom: 15px;
-			padding-left: 15px;
-			text-align: left;
-}
 .overhead {
 			position: absolute;
 			display: block;
@@ -672,7 +616,7 @@ body { margin: 0; background-color: #000000}
 			height:22%;
 			background-color: #000000;
 			color: #00bfff;
-			top: 10%;
+			top: 20%;
 			bottom: 0%;
 			left: 18%;
 			right: auto;
@@ -725,6 +669,7 @@ body { margin: 0; background-color: #000000}
 			padding-top: 20px;
 			text-align: center;
 }
+
 .btn {
         position: absolute;
         height: 100%;
@@ -781,7 +726,13 @@ body { margin: 0; background-color: #000000}
 .main-content dl dd { padding: 0; margin-bottom: 1rem; }
 .main-content hr { height: 2px; padding: 0; margin: 1rem 0; background-color: #eff0f1; border: 0; }
 
-.site-footer { padding-top: 2rem; margin-top: 2rem; border-top: solid 1px #eff0f1; }
+.site-footer {  position: fixed;
+                padding-top: 2rem;
+                margin-top: 2rem;
+                border-top: solid 1px #eff0f1;
+                top: 120%;}
+
+
 @media screen and (min-width: 64em) { .site-footer { font-size: 1rem; } }
 @media screen and (min-width: 42em) and (max-width: 64em) { .site-footer { font-size: 1rem; } }
 @media screen and (max-width: 42em) { .site-footer { font-size: 0.9rem; } }

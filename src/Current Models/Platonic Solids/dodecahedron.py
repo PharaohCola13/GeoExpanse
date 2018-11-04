@@ -9,8 +9,8 @@ from matplotlib.animation import *
 
 name = "Dodecahedron"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, figcolor):
-
+def shape(fig, alpha, color, edge_c, edge_w, grid, figcolor, rotation, rotmagt, rotmagp):
+	plt.clf()
 # Points on the object
 	points = array([
 			       [1.21412, 	0, 			1.58931],		#0
@@ -87,3 +87,24 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, figcolor):
 	dodeca.set_facecolor(color)
 
 	dodecahedron = ax.add_collection3d(dodeca)
+
+
+	def rot_on():
+		def animate(i):
+			ax.view_init(azim=rotmagt * i, elev=rotmagp * i)
+
+		# Animate
+		ani = FuncAnimation(fig, animate,
+							interval=1, save_count=50)  # frames=100)#, repeat=True)
+
+		plt.ion()
+		plt.show()
+		time.sleep(0)
+		plt.close()
+
+
+	if rotation == "On":
+		rot_on()
+	elif rotation == "Off":
+		pass
+

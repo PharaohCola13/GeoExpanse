@@ -2,16 +2,20 @@
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
-
 from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
 from matplotlib import *
 from numpy import *
+import warnings
 import time
+import sys
 
-name = ""
+name = " "
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figcolor):
+
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges,
+		  multi_pi, figcolor, rotation, rotmagt, rotmagp, save):
+	plt.clf()
 	def x_(u,v):
 		x = cos(u) * sin(v)
 		return x
@@ -24,7 +28,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figco
 		z = cos(v) + log1p(tan(2+v)**2)
 		return z
 
-	u = linspace(0.001, multi_pi * pi, 1 + sides)
+	u = linspace(0.001,multi_pi * pi, 1 + sides)
 	v = linspace(0, multi_pi * pi, edges)
 
 	u, v = meshgrid(u, v)
@@ -33,12 +37,12 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figco
 	y = y_(u,v)
 	z = z_(u,v)
 
+	#fig = plt.figure(figsize=(8, 8), facecolor="black", edgecolor="white")
 	ax = p3.Axes3D(fig)
 	ax.set_facecolor(figcolor)
 
 	plt.axis(grid)
 	plt.axis('equal')
-
 
 	# Surface Plot
 	test = ax.plot_surface(x, y, z)
@@ -48,120 +52,57 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figco
 	test.set_linewidth(edge_w)
 	test.set_facecolor(color)
 
-#	ax.set_facecolor(figcolor)
-#	ax.grid(False)
-#	ax.axis('off')
-#	ax.set_xticks([])
-#	ax.set_yticks([])
-#	ax.set_zticks([])
+	def rot_on():
+		def animate(i):
+			ax.view_init(azim=rotmagt * i, elev=rotmagp * i)
 
-	#def init():
-	#	return test,
-	#def animate(i):
-	#	ax.view_init(azim=4*i)
-	#	return test
+		if save == "MP4":
+			# Animate
+			ani = FuncAnimation(fig, animate, frames=500,
+								interval=100, save_count=50)  # frames=100)#, repeat=True)
 
-	# Animate
-	#ani = FuncAnimation(fig, animate, init_func=init,
-#						interval=1, frames=500, repeat=True)
+			Writer = writers['ffmpeg']
+			writer = Writer(fps=30, bitrate=1800)
+			ani.save('Test.mp4', writer=writer)
+		else:
+			#save = None
+			# Animate
+			ani = FuncAnimation(fig, animate,
+								interval=1, save_count=50)  # frames=100)#, repeat=True)
+			pass
 
-#	plt.ion()
-#	plt.show()
-#	time.sleep(0)
-#	plt.close()
 
-#	def rot_on():
-#		plt.axis(grid)
-#		ax.set_facecolor(figcolor)
-#		ax.grid(False)
-#		ax.axis('off')
-#		ax.set_xticks([])
-#		ax.set_yticks([])
-	#	ax.set_zticks([])
-##
-	#	def init():
-	#		return test,
+		plt.ion()
+		plt.show()
+		time.sleep(0)
+		plt.close()
 
-	#	def animate(i):
-	#		ax.view_init(azim=4*i)
-	#		return test
+	if rotation == "On":
+		rot_on()
+	elif rotation == "Off":
+		pass
 
-		# Animate
-	#	ani = FuncAnimation(fig, animate, init_func=init,
-	#						interval=1, frames=500, repeat=True)
-
-	#	plt.ion()
-	#	plt.show()
-	#	time.sleep(0)
-	#	plt.close()
 
 
 #	def save_mp4():
-#		ax.set_facecolor(figcolor)
-#		ax.grid(False)
-#		ax.axis('off')
-#		ax.set_xticks([])
-#		ax.set_yticks([])
-#		ax.set_zticks([])
-
-#		def init():
-#			return test,
-
 #		def animate(i):
 #			ax.view_init(elev=i, azim=i)
-#			return test
+
 # 	# 	# Animate
 #		ani = FuncAnimation(fig, animate, init_func=init,
 #					interval=1, frames=500, repeat=True)
 
-#		Writer = writers['ffmpeg']
-#		writer = Writer(fps=15, bitrate=1800)
-#		ani.save('{}.mp4'.format(name),writer=writer)
+
 #		plt.ion()
 #		time.sleep(0)
 #		plt.close()
 #
-#	def rot_off():
-#		plt.axis(grid)
-#		ax.set_facecolor(figcolor)
-#		ax.grid(False)
-#		#ax.axis('off')
-#		ax.set_xticks([])
-#		ax.set_yticks([])
-#		ax.set_zticks([])
-		
-		
-#		plt.ion()
-#		plt.show()
-#		time.sleep(0)
-#		plt.close()
-
-	#if rot == "on":
-#		rot_on()#
 #	if save == "mp4":
 #		print("Welp")	
-	#	save_mp4()
+#	save_mp4()
 #	if rot == "off":
 #		rot_off()
 
-# # # Definitions for animation
-# # def init():
-# #  	return test,
-# # #
-# # def animate(i):
-# # #     # azimuth angle : 0 deg to 360 deg
-# # #     # elev = i * n --> rotates object about the xy-plane with a magnitude of n
-# # #     # azim = i * n --> rotates object around the z axis with a magnitude of n
-# # #     # For top view elev = 90
-# # #     # For side view elev = 0
-# # #
-# #     ax.view_init(elev=20, azim=i*4)
-# #     return test
-# #
-# # # Animate
-# # #ani = FuncAnimation(fig, animate, init_func=init,
-# # #                  frames=200, interval=50, blit=False, repeat=True)
-# #
 # # # Saving to testing.mp4
 # #
 # # #Writer = writers['ffmpeg']
@@ -169,4 +110,4 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figco
 # #
 # # #ani.save('testing.mp4', writer=writer)
 # #
-# # plt.show()
+#plt.show()

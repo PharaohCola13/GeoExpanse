@@ -9,9 +9,9 @@ from matplotlib.animation import *
 
 name = "Snub Cube"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor):
+def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor, rotation, rotmagt, rotmagp):
 
-
+	plt.clf()
 	C0 = sqrt(3 * (4 - cbrt(17  + 3 * sqrt(33)) - cbrt(17  - 3 * sqrt(33)))) / 6
 	C1 = sqrt(3 * (2 + cbrt(17  + 3 * sqrt(33)) + cbrt(17  - 3 * sqrt(33)))) / 6
 	C2 = sqrt(3 * (4 + cbrt(199 + 3 * sqrt(33)) + cbrt(199 - 3 * sqrt(33)))) / 6
@@ -114,3 +114,22 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor):
 
 
 	ax.add_collection3d(scube)
+
+	def rot_on():
+		def animate(i):
+			ax.view_init(azim=rotmagt * i, elev=rotmagp * i)
+
+		# Animate
+		ani = FuncAnimation(fig, animate,
+							interval=1, save_count=50)  # frames=100)#, repeat=True)
+
+		plt.ion()
+		plt.show()
+		time.sleep(0)
+		plt.close()
+
+	if rotation == "On":
+		rot_on()
+	elif rotation == "Off":
+		pass
+

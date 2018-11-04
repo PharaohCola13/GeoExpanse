@@ -9,7 +9,8 @@ from matplotlib.animation import *
 
 name = "Breather's Surface"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, figcolor, rotation, rotmagt, rotmagp):
+	plt.clf()
 	# Definition of x
 	def x_(u, v):
 		x = (-u + (2. * w * cosh(b*u) * sinh(b*u) / (b * ((w * cosh(b * u))**2 + (b * sin(w * v))**2))))
@@ -60,3 +61,21 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges):
 	breath_surf.set_edgecolor(edge_c)  # Edge color of the lines on the figure
 	breath_surf.set_linewidth(edge_w)  # Line width of the edges
 	breath_surf.set_facecolor(color)  # General color of the figure
+	def rot_on():
+		def animate(i):
+			ax.view_init(azim=rotmagt * i, elev=rotmagp * i)
+
+		# Animate
+		ani = FuncAnimation(fig, animate,
+							interval=1, save_count=50)
+
+		plt.ion()
+		plt.show()
+		time.sleep(0)
+		plt.close()
+
+	if rotation == "On":
+		rot_on()
+	elif rotation == "Off":
+		pass
+

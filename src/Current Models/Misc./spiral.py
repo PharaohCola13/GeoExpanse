@@ -10,7 +10,8 @@ from numpy import *
 
 name = "Spiral"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, figcolor):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, figcolor, rotation, rotmagt, rotmagp):
+	plt.clf()
 	def x_(u,v):
 		x = u * cos(u) * (4 + cos(v + u))
 		return x
@@ -50,3 +51,21 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, figcolor):
 	curve.set_edgecolor(edge_c)
 	curve.set_linewidth(edge_w)
 	curve.set_facecolor(color)
+	def rot_on():
+		def animate(i):
+			ax.view_init(azim=rotmagt * i, elev=rotmagp * i)
+
+		# Animate
+		ani = FuncAnimation(fig, animate,
+							interval=1, save_count=50)  # frames=100)#, repeat=True)
+
+		plt.ion()
+		plt.show()
+		time.sleep(0)
+		plt.close()
+
+	if rotation == "On":
+		rot_on()
+	elif rotation == "Off":
+		pass
+

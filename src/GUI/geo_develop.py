@@ -35,7 +35,7 @@ sys.path.append('../Current Models/Topological/')
 sys.path.append('../Current Models/Two Space/')
 sys.path.append('../Current Models/Archimedean/')
 
-import prism, pyramid, sphere, billion
+import prism, pyramid, sphere, billion, general_3d
 import hyperbolic_octahedron, hyperbolic_paraboloid, one_sheet_hyperboloid, hyperbolic_helicoid, hyperbolic_cylinder
 import three_dodecahedron, crescent, funnel, gabriel_horn, rose_spiral, shell, tesseract, spiral, seashell, steinbach_screw
 import breather_surface, kuen_surface, steiner_surface, boys_surface, roman_surface, sine_surface, henneberg_surface, unk_surface, dini_surface, enneper_surface, corkscrew_surface, shoe_surface
@@ -105,6 +105,7 @@ s = {	 "Prism"					: prism,
 		 "Ellipse"					: ellipse,
 		 "Fermat Spiral"			: fermat_sprial,
 		  ""						: testing,
+		  "General"					: general_3d,
 		 "Small Stellated Dodecahedron" : small_stellated_dodecahedron,
 		 "Great Stellated Dodecahedron" : great_stellated_dodecahedron,
 		 "Tetrahemihexahedron"		: tetrahemihexahedron,
@@ -117,7 +118,7 @@ hyper	= ["Hyperbolic Octahedron", "Hyperbolic Paraboloid", "One Sheet Hyperboloi
 misc 	= ["Three Dodecahedron", "Crescent", "Funnel", "Gabriel's Horn", "Rose Spiral", "Shell", "Tesseract", "Spiral", "Seashell", "Steinbach Screw"]
 surf 	= ["Breather's Surface", "Kuen Surface", "Steiner's Surface", "Boy's Surface", "Roman Surface", "Sine Surface", "Henneberg's Surface", "Dini's Surface", "Enneper's Surface", "Corkscrew Surface", "Shoe Surface", "Unk Surface"]
 topo 	= ["Cross Cap", "Klein Bottle", "Mobius Strip", "Torus"]
-deve 	= ["Neat", "", "Great Dodecahedron", "Vase", "Something Strange",  "Geodesic Icosahedron Pattern 222"]
+deve 	= ["Neat", "", "Great Dodecahedron", "Vase", "Something Strange",  "Geodesic Icosahedron Pattern 222",  "General"]
 arch 	= ["Cuboctahedron", "Disdyakis Triacontahedron", "Great Rombicosidodecahedron", "Snub Cube", "Truncated Cube", "Tetrahemihexahedron", "Truncated Tetrahedron"]
 plat    = ["Cube", "Dodecahedron", "Octahedron", "Icosahedron"]
 two 	= ["Line", "Deltoid", "Log Spiral", "Parabola", "Polygons", "Ellipse", "Fermat Spiral"]
@@ -130,6 +131,7 @@ disa = "#d400ff" #   Disabled Text
 day = '#c6dcff'
 dayf = '#008721'
 days = '#e500ff'
+
 
 root_width = 920
 root_height = 530
@@ -148,10 +150,16 @@ class Geometry(tk.Frame):
 		self.shape_set 		= tk.StringVar()
 		self.alpha 			= tk.StringVar()
 		self.two_three 		= tk.StringVar()
-		self.rot 			= tk.StringVar()
+		self.rotation 		= tk.StringVar()
 		self.format_save 	= tk.StringVar()
 		self.figcolor		= tk.StringVar()
 		self.size			= tk.StringVar()
+		self.x 				= tk.StringVar()
+		self.y				= tk.StringVar()
+		self.z				= tk.StringVar()
+
+
+		self.rotation.set("Off")
 
 
 ## Fig Props
@@ -180,37 +188,44 @@ class Geometry(tk.Frame):
 #			ax.set_facecolor(self.figcolor)
 			plt.axis('on')
 	#	#
+		self.fck = tk.Message(master, borderwidth=5, relief=tk.GROOVE)
+		self.fck.grid(row=0, column=2, sticky='new', pady=60, padx=0)
+
 		def FaceColor(self):
 			self.c_entry = askcolor(title="Face Color")
-			if self.c_entry[0] > (128,128,128):
+			if self.c_entry[0] > (128, 128, 128):
 				self.fck.config(bg=self.c_entry[1], text=str(self.c_entry[1]), width=200000000, fg='#000')
-			elif self.c_entry[0] < (128,128,128):
+			elif self.c_entry[0] < (128, 128, 128):
 				self.fck.config(bg=self.c_entry[1], text=str(self.c_entry[1]), width=200000000, fg='#fff')
 			return self.c_entry[1]
-	#	#
+
+		#	#
 		def FaceColor2(self):
 			self.c_entry2 = askcolor(title="Face Color 2")
-			if self.c_entry2[0] > (128,128,128):
+			if self.c_entry2[0] > (128, 128, 128):
 				self.f2.config(bg=self.c_entry2[1], text=str(self.c_entry2[1]), width=200000000, fg='#000')
-			elif self.c_entry2[0] < (128,128,128):
+			elif self.c_entry2[0] < (128, 128, 128):
 				self.f2.config(bg=self.c_entry2[1], text=str(self.c_entry2[1]), width=200000000, fg='#fff')
 			return self.c_entry2[1]
-	#	#
+
+		#	#
 		def FaceColor3(self):
 			self.c_entry3 = askcolor(title="Face Color 3")
-			if self.c_entry3[0] > (128,128,128):
+			if self.c_entry3[0] > (128, 128, 128):
 				self.f3.config(bg=self.c_entry3[1], text=str(self.c_entry3[1]), width=200000000, fg='#000')
-			elif self.c_entry3[0] < (128,128,128):
+			elif self.c_entry3[0] < (128, 128, 128):
 				self.f3.config(bg=self.c_entry3[1], text=str(self.c_entry3[1]), width=200000000, fg='#fff')
 			return self.c_entry3[1]
-	#	#
+
+		#	#
 		def EdgeColor(self):
 			self.ec_entry = askcolor(title="Edge Color")
-			if self.ec_entry[0] > (128,128,128):
+			if self.ec_entry[0] > (128, 128, 128):
 				self.eck.config(bg=self.ec_entry[1], text=str(self.ec_entry[1]), width=200000000, fg='#000')
-			elif self.ec_entry[0] < (128,128,128):
+			elif self.ec_entry[0] < (128, 128, 128):
 				self.eck.config(bg=self.ec_entry[1], text=str(self.ec_entry[1]), width=200000000, fg='#fff')
 			return self.ec_entry[1]
+
 ## Popups
 	#	#
 		def popup_save():
@@ -219,38 +234,45 @@ class Geometry(tk.Frame):
 
 			#top.tk.call('wm', 'iconphoto', top._w, icon)
 			top.config(background=dim)
-			top_width = 337
-			top_height = 83
-			top.geometry(str(top_width) + "x" + str(top_height))
-			top.maxsize(str(top_width), str(top_height))
-			top.minsize(str(top_width), str(top_height))
-
-			wid = ["PNG", "JPG", "SVG", "EPS"]
-
-			pop = tk.Button(top, text="POP!", command=top.destroy, width=20)
-			pop.grid(row=0, column=0, columnspan=2, sticky='nsew')
-			pop.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
-
+			#top_width = 337
+			#top_height = 83
+			#top.geometry(str(top_width) + "x" + str(top_height))
+			#top.maxsize(str(top_width), str(top_height))
+			#top.minsize(str(top_width), str(top_height))
 			self.format_save = tk.StringVar()
 
-			for n in range(len(wid)):
+			def pop():
+				top.destroy()
+				self.format_save.set(None)
+				self.plot(canvas, ax, s[self.shape_set.get()])
+
+			wid = ["PNG", "JPG", "SVG", "EPS", "MP4"]
+
+			pop = tk.Button(top, text="POP!", command=pop)
+			pop.grid(row=0, column=0, columnspan=1, sticky='nsew')
+			pop.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
+
+			for n in range(0,5):
 				tk.Radiobutton(top, text=str(wid[n]), variable=self.format_save, value=str(wid[n]), width=5, bg=dim,
 							   fg=dimf, activebackground=dim, highlightthickness=0, activeforeground=dimf,
-							   selectcolor=dim).grid(row=int(((n + 1) / 2) + 1), column=int(n / 2), sticky='nw')
+							   selectcolor=dim).grid(row=n+1, column=0, sticky='nw')
+
 
 			save_img = tk.Button(top, text="Save (Opaque)", width=15)
-			save_img.grid(row=0, column=3, rowspan=2, sticky='nsew')
+			save_img.grid(row=0, column=2, rowspan=2, sticky='nsew')
 			save_img.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf,
-							command=lambda: plt.savefig(
-								"{}.{}".format(s[self.shape_set.get()].name, self.format_save.get()),
+							command=lambda: plt.savefig("{}.{}".format(str(s[self.shape_set.get()].name), str(self.format_save.get())),
 								transparent=False))
 
 			save_img1 = tk.Button(top, text="Save (Transparent)", width=15)
-			save_img1.grid(row=2, column=3, rowspan=2, sticky='nsew')
+			save_img1.grid(row=2, column=2, rowspan=2, sticky='nsew')
 			save_img1.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf,
-							 command=lambda: plt.savefig(
-								 "{}.{}".format(s[self.shape_set.get()].name, self.format_save.get()),
+							 command=lambda: plt.savefig("{}.{}".format(str(s[self.shape_set.get()].name), str(self.format_save.get())),
 								 transparent=True))
+
+			save_vid = tk.Button(top, text="Save Video", width=15, command=lambda: self.plot(canvas, ax, s[self.shape_set.get()]))
+			save_vid.grid(row=4, column=2, rowspan=2, sticky='nsew')
+			save_vid.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 	#	#	
 		def popup_about():
 			top = tk.Toplevel(self)
@@ -275,6 +297,8 @@ class Geometry(tk.Frame):
 			about.config(bg=dim, fg=dimf)
 	#	#
 		def popup_shape():
+			self.rotation.set("Off")
+			self.format_save.set(None)
 			top = tk.Toplevel(self)
 			#top.tk.call('wm', 'iconphoto', top._w, icon)
 			top.focus_set()
@@ -376,7 +400,7 @@ class Geometry(tk.Frame):
 		filemenu.add_command(label="About", command=popup_about)
 		filemenu.add_command(label="Quit <Esc>", command=quit)
 		
-		figmenu.add_radiobutton(label="Figure",variable=self.size, value="Figure", command=lambda:master.geometry(str(root_height) + "x" + str(root_height)), selectcolor=dimf)
+		figmenu.add_radiobutton(label="Figure",variable=self.size, value="Figure", command=lambda:master.geometry(str(500) + "x" + str(500)), selectcolor=dimf)
 		figmenu.add_radiobutton(label="Full", variable= self.size, value="All", command=lambda: master.geometry(str(root_width) + "x" + str(root_height)), selectcolor=dimf)
 		self.size.set("All")
 
@@ -384,6 +408,9 @@ class Geometry(tk.Frame):
 
 		figmenu.add_radiobutton(label="Light", value='#ffffff', selectcolor=dimf, variable=self.figcolor)
 		self.figcolor.set('#000000')
+
+		figmenu.add_radiobutton(label="Rotation On", variable=self.rotation, value="On", selectcolor=dimf)
+		figmenu.add_radiobutton(label="Rotation Off", variable=self.rotation, value="Off", selectcolor=dimf)
 
 ## Widgets
 	# 	# Transparency
@@ -458,8 +485,6 @@ class Geometry(tk.Frame):
 		self.face = tk.Button(master, text="Face Color", command=lambda: FaceColor(self), state=tk.NORMAL)
 		self.face.grid(row=0, column=2, sticky='new', pady=30, padx=0)
 
-		self.fck = tk.Message(master, borderwidth=5, relief=tk.GROOVE)
-		self.fck.grid(row=0, column=2, sticky='new', pady=60, padx=0)
 
 	#	# Edge Color
 		self.face2 = tk.Button(master, text="Face Color 2", command=lambda: FaceColor2(self), state=tk.NORMAL)
@@ -495,17 +520,51 @@ class Geometry(tk.Frame):
 		self.three_space.grid(row=0, column=4, sticky='new')
 		self.two_three.set('3d')
 
-	# 	# Shape Popup
+
+		self.romt_label = tk.Label(master, text="Rotation\n Magnitude"+ " ("u'\u03B8'")")
+		self.romt_label.grid(row=0, column=1, sticky='new', pady=301, padx=0)
+		self.romt_entry = tk.Scale(master, from_=0, to=10, resolution=1, orient=tk.HORIZONTAL)
+		self.romt_entry.grid(row=0, column=2, sticky='new', pady=300)
+
+
+		self.romp_label = tk.Label(master, text="Rotation\n Magnitude" + " ("u'\u03C6'")")
+		self.romp_label.grid(row=0, column=3, sticky='new', pady=301, padx=0)
+		self.romp_entry = tk.Scale(master, from_=0, to=10, resolution=1, orient=tk.HORIZONTAL)
+		self.romp_entry.grid(row=0, column=4, sticky='new', pady=300)
+
+# self.x_label = tk.Label(master, text="X = ")
+		# self.x_label.grid(row=0, column=1, sticky='new', pady=301)
+		# self.x_entry = tk.Entry(master, text="X = ", width=2, textvariable=self.x)
+		# self.x_entry.grid(row=0, column=2, sticky='new', pady=300)
+		# self.x.set("u**2")
+		#
+		# self.y_label = tk.Label(master, text="Y = ")
+		# self.y_label.grid(row=0, column=1, sticky='new', pady=326)
+		# self.y_entry = tk.Entry(master, text="Y = ", width=2, textvariable=self.y)
+		# self.y_entry.grid(row=0, column=2, sticky='new', pady=325)
+		# self.y.set("v**2")
+		#
+		# self.z_label = tk.Label(master, text="Z = ")
+		# self.z_label.grid(row=0, column=1, sticky='new', pady=351)
+		# self.z_entry = tk.Entry(master, text="Z = ", width=2, textvariable=self.z)
+		# self.z_entry.grid(row=0, column=2, sticky='new', pady=350)
+		#
+
+# 	# Shape Popup
 		self.shapes = tk.Button(master, text="Shapes", command=popup_shape, height=4)
 		self.shapes.grid(row=0, column=3, columnspan=2, sticky='new', pady=430)#pady=730)
 
-	#	#
+
 		self.scales = [self.a_entry, self.h_entry, self.si_entry, self.ed_entry, self.pi_entry, self.ew_entry,
-				  self.ram_entry, self.raa_entry, self.pi_entry2]
+				  self.ram_entry, self.raa_entry, self.pi_entry2, self.romt_entry, self.romp_entry]
+
 		self.labels = [self.a_label, self.h_label, self.si_label, self.ed_label, self.pi_label, self.ew_label,
-				  self.ram_label, self.raa_label, self.pi_label2]
+				  self.ram_label, self.raa_label, self.pi_label2, self.romt_label, self.romp_label]
+
 		self.radio = [self.grid_on, self.grid_off, self.two_space, self.three_space]
+
 		self.button = [self.plotting, self.face, self.face2, self.face3, self.edge, self.shapes]
+
 		self.menus = [menu, filemenu, figmenu]
 
 
@@ -525,7 +584,6 @@ class Geometry(tk.Frame):
 		return dark(self)
 
 	## PlOt ThE pLoTs
-#	#
 	def plot(self, canvas, ax, shape_obj):
 		col_lab = [self.fck, self.f2, self.f3]
 		try:
@@ -536,34 +594,42 @@ class Geometry(tk.Frame):
 			edge_c = self.ec_entry[1]
 		except AttributeError:
 			edge_c = "#f608ff"
-			self.eck.config(bg=edge_c, text=str(edge_c)+" "" "" ", width=200000000)
+			self.eck.config(bg=edge_c, text=str(edge_c) + " "" "" ", width=200000000)
 		try:
 			color = self.c_entry[1]
 		except AttributeError:
 			color = "#00c4ff"
-			self.fck.config(bg=color,text=str(color)+" "" "" ", width=200000000)
+			self.fck.config(bg=color, text=str(color) + " "" "" ", width=200000000)
 		try:
 			color2 = self.c_entry2[1]
 		except AttributeError:
-			color2 = "#000000"
-			self.f2.config(bg=color2, text=str(color2)+" "" "" ", width=200000000)
+			color2 = dim
+			self.f2.config(bg=color2, text=str(color2) + " "" "" ", width=200000000)
 		try:
 			color3 = self.c_entry3[1]
 		except AttributeError:
-			color3 = "#000000"
-			self.f3.config(bg=color3, text=str(color3)+" "" "" ", width=200000000)
+			color3 = dim
+			self.f3.config(bg=color3, text=str(color3) + " "" "" ", width=200000000)
 
-		alpha = self.a_entry.get()
-		grid = self.grid_axis.get()
-		edge_w = self.ew_entry.get()
-		edges = self.ed_entry.get()
-		sides = self.si_entry.get()
-		multi_pi = self.pi_entry.get()
-		radiusa = self.raa_entry.get()
-		radiusm = self.ram_entry.get()
-		height = self.h_entry.get()
-		multi_pi2 = self.pi_entry2.get()
+		#	#
+		alpha 		= self.a_entry.get()
+		grid 		= self.grid_axis.get()
+		edge_w 		= self.ew_entry.get()
+		edges 		= self.ed_entry.get()
+		sides 		= self.si_entry.get()
+		multi_pi 	= self.pi_entry.get()
+		radiusa 	= self.raa_entry.get()
+		radiusm 	= self.ram_entry.get()
+		height 		= self.h_entry.get()
+		multi_pi2 	= self.pi_entry2.get()
 		figcolor	= self.figcolor.get()
+		x_entry		= self.x.get()
+		y_entry 	= self.y.get()
+		z_entry		= self.z.get()
+		rotation 	= self.rotation.get()
+		rotmagt		= self.romt_entry.get()
+		rotmagp		= self.romp_entry.get()
+		save		= self.format_save.get()
 
 		ax.clear()
 		plt.cla()
@@ -593,8 +659,8 @@ class Geometry(tk.Frame):
 
 		args = shape_obj.shape.__code__.co_varnames
 
-		if args[1:13] == (
-			'alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'multi_pi', 'radiusm', 'radiusa', 'height', 'figcolor'):
+		if args[1:16] == (
+			'alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'multi_pi', 'radiusm', 'radiusa', 'height', 'figcolor', 'rotation', 'rotmagt', 'rotmagp'):
 
 			self.raa_label.config(text="Radius (Alt)")
 			self.raa_entry.config(from_=1, to=50, resolution=1)
@@ -603,7 +669,7 @@ class Geometry(tk.Frame):
 			self.ram_label.config(text="Radius (Main)")
 			self.ram_entry.config(from_=1)
 			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, radiusa,
-							height, figcolor)
+							height, figcolor, rotation, rotmagt, rotmagp)
 
 			activate(self.face, self.fck,
 					 self.a_entry, self.h_entry, self.si_entry, self.ed_entry, self.pi_entry, self.ram_entry,
@@ -613,15 +679,33 @@ class Geometry(tk.Frame):
 
 			disable(self.face2, self.face3, self.f2, self.f3, self.pi_label2, self.pi_entry2)
 
-		elif args[1:12] == (
-			'alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'multi_pi', 'radiusm', 'height', 'figcolor'):
+		elif args[1:15] == (
+			'alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges',  'x_entry', 'y_entry', 'z_entry', 'figcolor', 'rotation', 'rotmagt', 'rotmagp'):
 			self.raa_label.config(text="Radius (Alt)")
 			self.raa_entry.config(from_=1, to=50, resolution=1)
 			self.pi_label.config(text=r"Multiple of " u'\u03C0' + " ("u'\u03C6'")")
 			self.pi_entry.config(from_=1)
 			self.ram_label.config(text="Radius (Main)")
 			self.ram_entry.config(from_=1)
-			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, height, figcolor)
+			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, x_entry, y_entry, z_entry, figcolor, rotation, rotmagt, rotmagp)
+
+			activate(self.face, self.fck,
+					 self.a_entry, self.si_entry, self.ed_entry,
+					 self.a_label, self.si_label, self.ed_label)
+
+			disable(self.face2, self.face3, self.f2, self.f3,
+					self.raa_entry, self.raa_label, self.pi_entry2, self.pi_label2, self.pi_label, self.ram_label, self.pi_entry, self.ram_entry, self.h_label, self.h_entry)
+
+
+		elif args[1:15] == (
+			'alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'multi_pi', 'radiusm', 'height', 'figcolor', 'rotation', 'rotmagt', 'rotmagp'):
+			self.raa_label.config(text="Radius (Alt)")
+			self.raa_entry.config(from_=1, to=50, resolution=1)
+			self.pi_label.config(text=r"Multiple of " u'\u03C0' + " ("u'\u03C6'")")
+			self.pi_entry.config(from_=1)
+			self.ram_label.config(text="Radius (Main)")
+			self.ram_entry.config(from_=1)
+			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, height, figcolor, rotation, rotmagt, rotmagp)
 
 			activate(self.face, self.fck,
 					 self.a_entry, self.h_entry, self.si_entry, self.ed_entry, self.pi_entry, self.ram_entry,
@@ -630,15 +714,15 @@ class Geometry(tk.Frame):
 			disable(self.face2, self.face3, self.f2, self.f3,
 					self.raa_entry, self.raa_label, self.pi_entry2, self.pi_label2)
 
-		elif args[1:11] == (
-			'alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'radiusm', 'height', 'figcolor'):
+		elif args[1:14] == (
+			'alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'radiusm', 'height', 'figcolor', 'rotation', 'rotmagt', 'rotmagp'):
 			self.raa_label.config(text="Radius (Alt)")
 			self.raa_entry.config(from_=1, to=50, resolution=1)
 			self.pi_label.config(text=r"Multiple of " u'\u03C0' + " ("u'\u03C6'")")
 			self.pi_entry.config(from_=1)
 			self.ram_label.config(text="Radius (Main)")
 			self.ram_entry.config(from_=1)
-			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, radiusm, height, figcolor)
+			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, radiusm, height, figcolor, rotation, rotmagt, rotmagp)
 
 			activate(self.face, self.fck,
 					 self.a_entry, self.si_entry, self.ed_entry, self.ram_entry, self.h_entry,
@@ -647,14 +731,14 @@ class Geometry(tk.Frame):
 			disable(self.face2, self.face3, self.f2, self.f3,
 					self.raa_entry, self.raa_label, self.pi_entry2, self.pi_label2, self.pi_entry, self.pi_label)
 
-		elif args[1:11] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'multi_pi', 'radiusm', 'figcolor'):
+		elif args[1:14] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'multi_pi', 'radiusm', 'figcolor', 'rotation', 'rotmagt', 'rotmagp'):
 			self.raa_label.config(text="Radius (Alt)")
 			self.raa_entry.config(from_=1, to=50, resolution=1)
 			self.pi_label.config(text=r"Multiple of " u'\u03C0' + " ("u'\u03C6'")")
 			self.pi_entry.config(from_=1)
 			self.ram_label.config(text="Radius (Main)")
 			self.ram_entry.config(from_=1)
-			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, figcolor)
+			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, figcolor, rotation, rotmagt, rotmagp)
 			activate(self.face, self.fck,
 					 self.a_entry, self.si_entry, self.ed_entry, self.pi_entry, self.ram_entry,
 					 self.a_label, self.si_label, self.ed_label, self.pi_label, self.ram_label)
@@ -662,14 +746,14 @@ class Geometry(tk.Frame):
 			disable(self.face2, self.face3, self.f2, self.f3,
 					self.raa_entry, self.h_entry, self.raa_label, self.h_label, self.pi_entry2, self.pi_label2)
 
-		elif args[1:11] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'multi_pi', 'figcolor'):
+		elif args[1:14] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'multi_pi', 'figcolor', 'rotation', 'rotmagt', 'rotmagp', 'save'):
 			self.raa_label.config(text="Radius (Alt)")
 			self.raa_entry.config(from_=1, to=50, resolution=1)
 			self.pi_label.config(text=r"Multiple of " u'\u03C0' + " ("u'\u03C6'")")
 			self.pi_entry.config(from_=1)
 			self.ram_label.config(text="Radius (Main)")
 			self.ram_entry.config(from_=1)
-			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figcolor)
+			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figcolor, rotation, rotmagt, rotmagp, save)
 
 			activate(self.face, self.fck,
 					 self.a_entry, self.si_entry, self.ed_entry, self.pi_entry,
@@ -679,15 +763,14 @@ class Geometry(tk.Frame):
 					self.raa_entry, self.h_entry, self.ram_entry, self.pi_entry2,
 					self.raa_label, self.h_label, self.ram_label, self.pi_label2)
 
-
-		elif args[1:10] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'multi_pi', 'figcolor'):
+		elif args[1:13] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'multi_pi', 'figcolor', 'rotation', 'rotmagt', 'rotmagp'):
 			self.raa_label.config(text="Radius (Alt)")
 			self.raa_entry.config(from_=1, to=50, resolution=1)
 			self.pi_label.config(text=r"Multiple of " u'\u03C0' + " ("u'\u03C6'")")
 			self.pi_entry.config(from_=1)
 			self.ram_label.config(text="Radius (Main)")
 			self.ram_entry.config(from_=1)
-			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figcolor)
+			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figcolor, rotation, rotmagt, rotmagp)
 
 			activate(self.face, self.fck,
 					 self.a_entry, self.si_entry, self.ed_entry, self.pi_entry,
@@ -697,14 +780,14 @@ class Geometry(tk.Frame):
 					self.raa_entry, self.h_entry, self.ram_entry, self.pi_entry2,
 					self.raa_label, self.h_label, self.ram_label, self.pi_label2)
 
-		elif args[1:9] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'radiusm', 'color2', 'figcolor'):
+		elif args[1:12] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'radiusm', 'color2', 'figcolor', 'rotation', 'rotmagt', 'rotmagp'):
 			self.raa_label.config(text="Radius (Alt)")
 			self.raa_entry.config(from_=1, to=50, resolution=1)
 			self.pi_label.config(text=r"Multiple of " u'\u03C0' + " ("u'\u03C6'")")
 			self.pi_entry.config(from_=1)
 			self.ram_label.config(text="Radius (Main)")
 			self.ram_entry.config(from_=1)
-			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, radiusm, color2, figcolor)
+			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, radiusm, color2, figcolor, rotation, rotmagt, rotmagp)
 
 			activate(self.face, self.fck,
 					 self.a_entry, self.ram_entry, self.a_label, self.ram_label)
@@ -713,7 +796,7 @@ class Geometry(tk.Frame):
 					self.si_entry, self.ed_entry, self.pi_entry, self.raa_entry, self.h_entry, self.pi_entry2,
 					self.si_label, self.ed_label, self.pi_label, self.raa_label, self.h_label, self.pi_label2)
 
-		elif args[1:9] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'figcolor'):
+		elif args[1:12] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'sides', 'edges', 'figcolor', 'rotation', 'rotmagt', 'rotmagp'):
 			self.raa_label.config(text="Radius (Alt)")
 			self.raa_entry.config(from_=1, to=50, resolution=1)
 			self.pi_label.config(text=r"Multiple of " u'\u03C0' + " ("u'\u03C6'")")
@@ -721,7 +804,7 @@ class Geometry(tk.Frame):
 			self.ram_label.config(text="Radius (Main)")
 			self.ram_entry.config(from_=1)
 
-			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, figcolor)
+			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, sides, edges, figcolor, rotation, rotmagt, rotmagp)
 
 			activate(self.face, self.fck,
 					 self.a_entry, self.si_entry, self.ed_entry,
@@ -731,14 +814,14 @@ class Geometry(tk.Frame):
 					self.pi_entry, self.raa_entry, self.h_entry, self.ram_entry, self.pi_entry2,
 					self.pi_label, self.raa_label, self.h_label, self.ram_label, self.pi_label2)
 
-		elif args[1:9] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'color2', 'color3', 'figcolor'):
+		elif args[1:12] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'color2', 'color3', 'figcolor','rotation', 'rotmagt', 'rotmagp'):
 			self.raa_label.config(text="Radius (Alt)")
 			self.raa_entry.config(from_=1, to=50, resolution=1)
 			self.pi_label.config(text=r"Multiple of " u'\u03C0' + " ("u'\u03C6'")")
 			self.pi_entry.config(from_=1)
 			self.ram_label.config(text="Radius (Main)")
 			self.ram_entry.config(from_=1)
-			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, color2, color3, figcolor)
+			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, color2, color3, figcolor, rotation, rotmagt, rotmagp)
 
 			activate(self.face, self.fck, self.face2, self.f2, self.face3, self.f3,
 					 self.a_entry, self.a_label)
@@ -748,14 +831,14 @@ class Geometry(tk.Frame):
 					self.pi_label, self.raa_label, self.h_label, self.ram_label, self.si_label, self.ed_label,
 					self.pi_label2)
 
-		elif args[1:8] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'radiusm', 'figcolor'):
+		elif args[1:11] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'radiusm', 'figcolor', 'rotation', 'rotmagt', 'rotmagp'):
 			self.raa_label.config(text="Radius (Alt)")
 			self.raa_entry.config(from_=1, to=50, resolution=1)
 			self.pi_label.config(text=r"Multiple of " u'\u03C0' + " ("u'\u03C6'")")
 			self.pi_entry.config(from_=1)
 			self.ram_label.config(text="Radius (Main)")
 			self.ram_entry.config(from_=1)
-			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, radiusm, figcolor)
+			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, radiusm, figcolor, rotation, rotmagt, rotmagp)
 
 			activate(self.face, self.fck,
 					 self.ram_entry, self.a_entry, self.ram_label, self.a_label)
@@ -764,14 +847,14 @@ class Geometry(tk.Frame):
 					self.pi_entry, self.raa_entry, self.h_entry, self.si_entry, self.ed_entry, self.pi_entry2,
 					self.pi_label, self.raa_label, self.h_label, self.si_label, self.ed_label, self.pi_label2)
 
-		elif args[1:8] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'color2', 'figcolor'):
+		elif args[1:11] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'color2', 'figcolor', 'rotation', 'rotmagt', 'rotmagp'):
 			self.raa_label.config(text="Radius (Alt)")
 			self.raa_entry.config(from_=1, to=50, resolution=1)
 			self.pi_label.config(text=r"Multiple of " u'\u03C0' + " ("u'\u03C6'")")
 			self.pi_entry.config(from_=1)
 			self.ram_label.config(text="Radius (Main)")
 			self.ram_entry.config(from_=1)
-			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, color2, figcolor)
+			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, color2, figcolor, rotation, rotmagt, rotmagp)
 
 			activate(self.face, self.fck, self.face2, self.f2,
 					 self.a_entry, self.a_label)
@@ -799,14 +882,14 @@ class Geometry(tk.Frame):
 					self.h_label, self.a_label, self.ed_label,
 					self.pi_label2)
 
-		elif args[1:7] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'figcolor'):
+		elif args[1:10] == ('alpha', 'color', 'edge_c', 'edge_w', 'grid', 'figcolor', 'rotation', 'rotmagt', 'rotmagp'):
 			self.raa_label.config(text="Radius (Alt)")
 			self.raa_entry.config(from_=1, to=50, resolution=1)
 			self.pi_label.config(text=r"Multiple of " u'\u03C0' + " ("u'\u03C6'")")
 			self.pi_entry.config(from_=1)
 			self.ram_label.config(text="Radius (Main)")
 			self.ram_entry.config(from_=1)
-			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, figcolor)
+			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, figcolor, rotation, rotmagt, rotmagp)
 
 			activate(self.face, self.fck,
 					 self.a_entry, self.a_label)
@@ -883,6 +966,8 @@ class Geometry(tk.Frame):
 					self.pi_label, self.raa_label, self.h_label, self.si_label, self.ed_label, self.a_label,
 					self.ram_label, self.pi_label2)
 
+		#canvas.update()
+		canvas.draw_idle()
 		canvas.draw()
 
 if __name__ == '__main__':

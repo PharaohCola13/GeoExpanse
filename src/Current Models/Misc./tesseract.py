@@ -9,7 +9,8 @@ from matplotlib.animation import *
 
 name = "Tesseract"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor):
+def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor, rotation, rotmagt, rotmagp):
+	plt.clf()
 # Points on the object
 	points = array([
 				   [-1,	-1,	-1],
@@ -59,7 +60,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor):
 	ax.set_zlim(-4,4)
 
 # Outer Region Configuration
-	verts_outer = [
+	verts = [
 				  [Z[0], V[0], V[1], Z[1]],
 				  [Z[1], V[1], V[5], Z[5]], 
 				  [Z[0], V[0], V[4], Z[4]], 
@@ -71,11 +72,8 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor):
 				  [Z[6], V[6], V[7], Z[7]],
 				  [Z[7], V[7], V[3], Z[3]],
 				  [Z[0], V[0], V[3], Z[3]],
-				  [Z[4], V[4], V[7], Z[7]]
-				  ]
+				  [Z[4], V[4], V[7], Z[7]],
 
-# Inner Cube Configuration	
-	verts_inner = [
 			 	  [V[0],V[1],V[2],V[3]],
 				  [V[4],V[5],V[6],V[7]],
 				  [V[0],V[4],V[5],V[1]],
@@ -85,22 +83,35 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor):
 				  ]
 
 # Outside Region
-	outer_region = Poly3DCollection(verts_outer)
+	fc = [color if i in range(0, 12) else color2 for i in range(len(verts))]
 
-	outer_region.set_edgecolor(edge_c)
-	outer_region.set_linewidth(edge_w)
-	outer_region.set_alpha(alpha)	
-	outer_region.set_facecolor(color)
+	region = Poly3DCollection(verts)
 
-# Inside Region
-	inner_region = Poly3DCollection(verts_inner)
-
-	inner_region.set_edgecolor(edge_c)
-	inner_region.set_linewidth(edge_w)
-	inner_region.set_alpha(alpha)
-	inner_region.set_facecolor(color2)
-
+	region.set_edgecolor(edge_c)
+	region.set_linewidth(edge_w)
+	region.set_alpha(alpha)
+	region.set_facecolor(fc)
 
 # Plot Surfaces
-	out = ax.add_collection3d(outer_region)
-	inn = ax.add_collection3d(inner_region)
+	ax.add_collection3d(region)
+
+
+	def rot_on():
+		def animate(i):
+			ax.view_init(azim=rotmagt * i, elev=rotmagp * i)
+
+		# Animate
+		ani = FuncAnimation(fig, animate,
+							interval=1, save_count=50)  # frames=100)#, repeat=True)
+
+		plt.ion()
+		plt.show()
+		time.sleep(0)
+		plt.close()
+
+
+	if rotation == "On":
+		rot_on()
+	elif rotation == "Off":
+		pass
+

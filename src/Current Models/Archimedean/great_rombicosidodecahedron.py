@@ -9,8 +9,8 @@ from matplotlib.animation import *
 
 name = "Great Rombicosidodecahedron"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3, figcolor):
-
+def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3, figcolor, rotation, rotmagt, rotmagp):
+	plt.clf()
 	points = array([[0,0,0],
 					[-1, 	0.25 * (-3 - sqrt(5)), 0.25 * (-7 - (3 * sqrt(5)))],
 					[-1, 	0.25 * (-3 - sqrt(5)), 0.25 * (7 + (3 * sqrt(5)))],
@@ -262,3 +262,22 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3, figcolor):
 
 	# Plot Surfaces
 	ax.add_collection3d(cube)
+
+
+	def rot_on():
+		def animate(i):
+			ax.view_init(azim=rotmagt * i, elev=rotmagp * i)
+
+		# Animate
+		ani = FuncAnimation(fig, animate,
+							interval=1, save_count=50)
+
+		plt.ion()
+		plt.show()
+		time.sleep(0)
+		plt.close()
+
+	if rotation == "On":
+		rot_on()
+	elif rotation == "Off":
+		pass

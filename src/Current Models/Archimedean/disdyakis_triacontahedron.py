@@ -10,8 +10,8 @@ from numpy import *
 
 name = "Disdyakis Triacontahedron"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, figcolor):
-
+def shape(fig, alpha, color, edge_c, edge_w, grid, figcolor, rotation, rotmagt, rotmagp):
+	plt.clf()
 
 # Points on the object
 	p = (1 + sqrt(5))/2
@@ -196,3 +196,24 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, figcolor):
 	hedron.set_facecolor(color)
 
 	hedron = ax.add_collection3d(hedron)
+
+
+	def rot_on():
+		def animate(i):
+			ax.view_init(azim=rotmagt * i, elev=rotmagp * i)
+
+		# Animate
+		ani = FuncAnimation(fig, animate,
+							interval=1, save_count=50)  # frames=100)#, repeat=True)
+
+		plt.ion()
+		plt.show()
+		time.sleep(0)
+		plt.close()
+
+
+	if rotation == "On":
+		rot_on()
+	elif rotation == "Off":
+		pass
+

@@ -11,8 +11,8 @@ from mpl_toolkits.mplot3d.proj3d import proj_transform
 
 name = "Cuboctahedron"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor):
-
+def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor, rotation, rotmagt, rotmagp):
+	plt.clf()
 	points = array([[0,0,0],
 					[-1, 0, 0],
 					[-0.5, -0.5, -1/sqrt(2)],
@@ -93,3 +93,22 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor):
 		# 		            )
 		# if grid == "off":
 		# 	ax.clear()
+	def rot_on():
+		def animate(i):
+			ax.view_init(azim=rotmagt * i, elev=rotmagp * i)
+
+		# Animate
+		ani = FuncAnimation(fig, animate,
+							interval=1, save_count=50)  # frames=100)#, repeat=True)
+
+		plt.ion()
+		plt.show()
+		time.sleep(0)
+		plt.close()
+
+	if rotation == "On":
+		rot_on()
+	elif rotation == "Off":
+		pass
+
+

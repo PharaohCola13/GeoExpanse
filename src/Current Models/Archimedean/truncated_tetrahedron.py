@@ -11,8 +11,8 @@ from mpl_toolkits.mplot3d.proj3d import proj_transform
 
 name = "Truncated Tetrahedron"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor):
-
+def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor, rotation, rotmagt, rotmagp):
+	plt.clf()
 	P1 = sqrt(2)/4
 	P2 = 3 * sqrt(2)/4
 
@@ -70,3 +70,21 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor):
 
 	# Plot Surfaces
 	ax.add_collection3d(trtet)
+	def rot_on():
+		def animate(i):
+			ax.view_init(azim=rotmagt * i, elev=rotmagp * i)
+
+		# Animate
+		ani = FuncAnimation(fig, animate,
+							interval=1, save_count=50)  # frames=100)#, repeat=True)
+
+		plt.ion()
+		plt.show()
+		time.sleep(0)
+		plt.close()
+
+	if rotation == "On":
+		rot_on()
+	elif rotation == "Off":
+		pass
+

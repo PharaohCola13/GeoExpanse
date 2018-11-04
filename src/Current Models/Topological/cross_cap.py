@@ -10,7 +10,8 @@ from numpy import *
 
 name = "Cross Cap"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figcolor):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figcolor, rotation, rotmagt, rotmagp):
+	plt.clf()
 # Definition of x
 	def x_(u,v):
 			x = cos(u) * sin(2 * v)
@@ -54,3 +55,23 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figco
 	cross_cap.set_edgecolor(edge_c) # Edge color of the lines on the figure
 	cross_cap.set_linewidth(edge_w) # Line width of the edges
 	cross_cap.set_facecolor(color) # General color of the figure
+
+
+	def rot_on():
+		def animate(i):
+			ax.view_init(azim=rotmagt * i, elev=rotmagp * i)
+
+		# Animate
+		ani = FuncAnimation(fig, animate,
+							interval=1, save_count=50)
+
+		plt.ion()
+		plt.show()
+		time.sleep(0)
+		plt.close()
+
+
+	if rotation == "On":
+		rot_on()
+	elif rotation == "Off":
+		pass
