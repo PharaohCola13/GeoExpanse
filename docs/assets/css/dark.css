@@ -797,8 +797,6 @@ section #title .credits.right {
 }
 @media print, screen and (max-width: 480px) {
 .masthead {
-	position: absolute;
-	left: 25%
 	margin-bottom: 2rem;
 }
 
