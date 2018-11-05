@@ -18,7 +18,7 @@ Models of Geometric Figures
 
 (*Its a work in progress*)
 
-## Table of Contents
+## Project Contents in a Table
 - [Installation and Setup](#installation-and-setup)
 - [Current models](https://pharaohcola13.github.io/GeoExpanse/current.html)
 - [Models in development](https://pharaohcola13.github.io/GeoExpanse/dev.html)
