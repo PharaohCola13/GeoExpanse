@@ -4,34 +4,36 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>In Development | GeoExpanse</title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/dark.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="./assets/js/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
   </head>
-  <body>
+  <body class="text-center">
   <br><br>
+  	<div class="cover-container d-flex w-150 h-100 p-3 mx-auto flex-column">
 	  <header class="masthead mb-auto">
 		<div class="inner">
 		  <nav class="nav nav-masthead justify-content-center">
 			<a class="nav-link" href="index.html" style="background-color: #000000; padding-left: 10px; padding-right: 10px; border-radius: 25px">Home</a>
 			<a class="nav-link" href="current.html" style="background-color: #000000; padding-left: 10px; padding-right: 10px; border-radius: 25px">Models</a>
-			<a class="nav-link active" href="dev.html" style="background-color: #000000; padding-left: 10px; padding-right: 10px; border-radius: 25px">In Dev</a>
+			<a class="nav-link active" href="dev.html" style="border-bottom-color: #ffff00; background-color: #000000; padding-left: 10px; padding-right: 10px; border-radius: 25px">In Dev</a>
 			<a class="nav-link" href="contact.html" style="background-color: #000000; padding-left: 10px; padding-right: 10px; border-radius: 25px">Contact</a>
 		  </nav>
 		</div>
 	  </header>
+    </div>
 <div class="wrapper">
     <div id="title">
       <h1 style="text-align: center">In Development</h1>
     </div>
     <div class="current" style="text-align: justify">
         <p>I intend to have models of a great variety of geometric and topological objects. If you would like to see a particular shape
-    that is not listed anywhere above feel free to fill out an <a href="https://github.com/PharaohCola13/geometric-models/issues">issue</a> and
+    that is not listed anywhere above feel free to fill out an <a title="If you have an issue with this link....I'm so sorry" data-toggle="tooltip" href="https://github.com/PharaohCola13/geometric-models/issues">issue</a> and
 label it request. I am currently working on a geometric paper describing the physical geometry of a Scutoid.
 On the development side, I am working towards a multi-OS application that can be installed and uninstalled (<i>if desired</i>) with ease.
 For Linux users, I am making an attempt to have the software installable from a PPA repository to use with the APT packaging manager.
@@ -39,37 +41,40 @@ I am new to this so it might be a while.
 </p>
         <br>
         <p> Models that are under development are listed below.</p>
-        <div style="text-align: center">
-		<p><a href="http://mathworld.wolfram.com/GreatDodecahedron.html">Great Dodecaheron</a>
-		<br>
-		Scutoid
-		<br>
-		Vase 
-		<br> 
-		Penrose Pentagon
-		<br>
-		Penrose Hexagon 
-		<br>
-		<a href="http://mathworld.wolfram.com/Polygon.html">Polygon Family</a> 
-		<br>
-		<a href="http://mathworld.wolfram.com/ArchimedeanSolid.html">Archimedean Solids</a></p>
+        <div>
+        <ul text-align="center">
+            <li><a href="http://mathworld.wolfram.com/GreatDodecahedron.html" title="Great Dodecahedron" data-toggle="tooltip">Great Dodecaheron</a></li>
+		    <li>Scutoid</li>
+		    <li>Vase</li>
+            <li>Penrose Pentagon</li>
+            <li>Penrose Hexagon</li>
+		    <li><a href="http://mathworld.wolfram.com/Polygon.html" title="Tons and Tons of Polygons" data-toggle="tooltip">Polygon Family</a></li>
+		    <li><a href="http://mathworld.wolfram.com/ArchimedeanSolid.html" title="Tons and Tons of weird Polyhedron" data-toggle="tooltip">Archimedean Solids</a></li>
+                </ul>
             </div>
     </div>
 
-      <footer class="mastfoot mt-auto">
+          <footer class="mastfoot mt-auto">
         <div class="inner">
-          <a href="http://github.com/pharaohcola13/GeoExpanse">GeoExpanse</a> is maintained by <a href="http://github.com/pharaohcola13">pharaohcola13</a>.
+          <a href="http://github.com/pharaohcola13/GeoExpanse">GeoExpanse</a> is maintained by <a title="Good Morning fellow traveller." data-toggle="tooltip" href="http://github.com/pharaohcola13">pharaohcola13</a>.
         </div>
       </footer>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    </script>
 
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="./assets/js/popper.min.js"></script>
-    <script src="./assets/js/bootstrap.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-125273633-1', 'auto');
+      ga('send', 'pageview');
+    </script>
   </body>
 </html>

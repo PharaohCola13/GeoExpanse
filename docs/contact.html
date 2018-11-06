@@ -1,86 +1,105 @@
 <!doctype html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Contact | GeoExpanse</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<title>Contact | GeoExpanse</title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="./assets/css/dark.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="./assets/js/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
   </head>
-  <body>
+  <body class="text-center">
   <br><br>
+		<div class="cover-container d-flex w-150 h-100 p-3 mx-auto flex-column">
 	  <header class="masthead mb-auto">
 		<div class="inner">
 		  <nav class="nav nav-masthead justify-content-center">
 			<a class="nav-link" href="index.html" style="background-color: #000000; padding-left: 10px; padding-right: 10px; border-radius: 25px">Home</a>
 			<a class="nav-link" href="current.html" style="background-color: #000000; padding-left: 10px; padding-right: 10px; border-radius: 25px">Models</a>
 			<a class="nav-link" href="dev.html" style="background-color: #000000; padding-left: 10px; padding-right: 10px; border-radius: 25px">In Dev</a>
-			<a class="nav-link active" href="contact.html" style="background-color: #000000; padding-left: 10px; padding-right: 10px; border-radius: 25px">Contact</a>
+			<a class="nav-link active" href="contact.html" style="border-bottom-color: #00ff00; background-color: #000000; padding-left: 10px; padding-right: 10px; border-radius: 25px">Contact</a>
 		  </nav>
 		</div>
 	  </header>
+		</div>
 <div class="wrapper">
-        <div id="title">
-          <h1 style="text-align: center">Contact</h1>
-        </div>
-<form action="mailto:spencer.riley@student.nmt.edu" method="post" enctype="text/plain" onsubmit="return mailMe( this.form )">
+		<div id="title">
+		  <h1 style="text-align: center">Contact</h1>
+		</div>
+<form action="https://formspree.io/spencer.riley@student.nmt.edu" method="post">
 	<table BORDER="0" CELLSPACING="0" CELLPADDING="4" WIDTH="90%">
-	<TR>
-		<TD width="30%">
+	<tr>
+		<td width="30%" style="border: 0px">
 			<DIV align="right">
-				<B>Name:</B>
+				<p style="line-height: 0em">Name:</p>
 			</DIV>
-		</TD>
-		<TD width="70%">
-			<input type="text" name="name" size="20">
-		</TD>
-	</TR>
-	<TR>
-		<TD>
+		</td>
+		<td width="70%" style="border: 0px">
+			<input style="color: black" type="text" name="Name" size="31">
+		</td>
+	</tr>
+	<tr>
+		<td style="border: 0px">
 			<DIV align="right">
-				<B>Email:</B>
+				<p style="line-height: 0em">Email:</p>
 			</DIV>
-		</TD>
-		<TD>
-			<input type="text" name="email" size="20">
-		</TD>
-	</TR>
-	<TR>
-		<TD>
+		</td>
+		<td style="border: 0px">
+			<input style="color: black" type="text" name="Email" size="31">
+		</td>
+	</tr>
+	<tr>
+		<td style="border: 0px">
 			<DIV align="right">
-				<B>Comment:</B>
+				<p style="line-height: 0em">Subject:</p>
 			</DIV>
-		</TD>
-		<TD>
-			<TEXTAREA name="comment" cols="30" wrap="virtual" rows="4"></TEXTAREA>
-		</TD>
-	</TR>
-	<input type="submit" name="email me" value="Submit">
-	<input type="reset" name="clear" vlaue="Clear Form">
+		</td>
+		<td style="border: 0px">
+			<input style="color: black" type="text" name="Subject" size="31">
+		</td>
+	</tr>
+	<tr>
+		<td style="border: 0px">
+			<DIV align="right">
+				<p style="line-height: 0em">Comment:</p>
+			</DIV>
+		</td>
+		<td style="border: 0px">
+			<TEXTAREA style="color: black" name="Comment" cols="30" wrap="virtual" rows="4"></TEXTAREA>
+		</td>
 	</table>
+        <div>
+            <input class="btn" type="submit" value="Submit">
+            <input class="btn" type="reset"  value="Clear Form">
+        </div>
 </form>
-
-<footer class="mastfoot mt-auto">
+<br>
+          <footer class="mastfoot mt-auto">
         <div class="inner">
-          <a href="http://github.com/pharaohcola13/GeoExpanse">GeoExpanse</a> is maintained by <a href="http://github.com/pharaohcola13">pharaohcola13</a>.
+          <a href="http://github.com/pharaohcola13/GeoExpanse">GeoExpanse</a> is maintained by <a title="Good Morning fellow traveller." data-toggle="tooltip" href="http://github.com/pharaohcola13">pharaohcola13</a>.
         </div>
       </footer>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+    <script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+    </script>
 
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="./assets/js/popper.min.js"></script>
-    <script src="./assets/js/bootstrap.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-125273633-1', 'auto');
+      ga('send', 'pageview');
+    </script>
   </body>
 </html>

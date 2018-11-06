@@ -45,19 +45,41 @@ p {
 }
 
 .lgbtq img{
-		height: 70px;
+		height: 90px;
 }
+
+
 @media screen and (max-width: 54em) {
 .badge-alt p a img{
             width:  50%;
-            height: 35px;
+            height: 40px;
 
 }
 p a img{
                  height: 35px;
                  width: 70%;
 }
+.lgbtq img{
+		height: 70px;
 }
+
+}
+@media screen and (max-width: 80em) {
+.badge-alt p a img{
+            width:  50%;
+            height: 50px;
+
+}
+p a img{
+                 height: 45px;
+                 width: 70%;
+}
+.lgbtq img{
+		height: 90px;
+}
+
+}
+
 /*
  * Base structure
  */
@@ -134,8 +156,7 @@ h1 {
 }
 
 .nav-masthead .active {
-  color: #fff;
-  border-bottom-color: #fff;
+  color: #ffffff;
 }
 
 @media (min-width: 48em) {
