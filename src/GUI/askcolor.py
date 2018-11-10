@@ -57,30 +57,21 @@ def askcolor(color = None, **options):
 if __name__ == "__main__":
 	root = tk.Tk()
 
-	color = None
-
-	def colorpick(var):
-		#initcolor = []
-		#initcolor.append("#000000")
-		#for i in initcolor:
-		#	print("Thi is for index {}".format(i))
-		#	color = askcolor(initialcolor=i)
-		#	if len(initcolor) < 2:
-		#		initcolor.append(color[1])
-		#		break
-		#print(initcolor)
-		#color = askcolor(initialcolor=initcolor[-1])
-		#return initcolor
-		if(var==None):
-			var="#000000"
-		var=askcolor(initialcolor=var)[1]
-
-	color = colorpick(color)
-	print(color)
+	def colorpick():
+		initcolor = []
+		initcolor.append("#000000")
+		for i in initcolor:
+		   print("Thi is for index {}".format(i))
+		   color = askcolor(initialcolor=i)
+		   if len(initcolor) < 2:
+				initcolor.append(color[1])
+				break
+		print(initcolor)
+		color = askcolor(initialcolor=initcolor[-1])
+		return initcolor
 
 	button = tk.Button(text='Select Color')
-	button.config(command=colorpick(color))
-
+	button.config(command=colorpick())
 	button.pack()
 	
 
