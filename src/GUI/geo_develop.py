@@ -407,6 +407,8 @@ class Geometry(tk.Frame):
 		figmenu.add_radiobutton(label="Dark", value='#000000', selectcolor=dimf, variable=self.figcolor)
 
 		figmenu.add_radiobutton(label="Light", value='#ffffff', selectcolor=dimf, variable=self.figcolor)
+		# For website display
+		#self.figcolor.set('#252525')
 		self.figcolor.set('#000000')
 
 		figmenu.add_radiobutton(label="Rotation On", variable=self.rotation, value="On", selectcolor=dimf)
@@ -821,7 +823,7 @@ class Geometry(tk.Frame):
 			self.pi_entry.config(from_=1)
 			self.ram_label.config(text="Radius (Main)")
 			self.ram_entry.config(from_=1)
-			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, color2, color3, figcolor, rotation, rotmagt, rotmagp)
+			shape_obj.shape(self.fig, alpha, color, edge_c, edge_w, grid, color2, color3, figcolor, rotation, rotmagt, rotmagp, save)
 
 			activate(self.face, self.fck, self.face2, self.f2, self.face3, self.f3,
 					 self.a_entry, self.a_label)
