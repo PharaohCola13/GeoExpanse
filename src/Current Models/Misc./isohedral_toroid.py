@@ -1,4 +1,4 @@
-# A Icsohedral Toroid, brought to you by PharaohCola13
+# A Isohedral Toroid, brought to you by PharaohCola13
 
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
@@ -9,9 +9,9 @@ from matplotlib.animation import *
 from matplotlib.text import Annotation
 from mpl_toolkits.mplot3d.proj3d import proj_transform
 
-name = "Icosohedral Toroid"
+name = "Isohedral Toroid"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor, rotation, rotmagt, rotmagp):
+def shape(fig, alpha, color, edge_c, edge_w, grid, figcolor, rotation, rotmagt, rotmagp, save):
 	plt.clf()
 	C0 = (sqrt(2) - 1) / 4
 	C1 = sqrt(3) / 2
@@ -91,28 +91,25 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor, rotation, r
 
 	ax.add_collection3d(cuboc)
 
-	#	if grid == "on":
-		# Produces the labels and arrows of the Hexagonal Face
-		# for j, xyz_ in enumerate(points):
-		#    hex = annotate3D(ax,
-		# 		       s                    =   (j),
-		# 		       xyz                  =   xyz_,
-		# 		       fontsize             =   13,
-		# 		       xytext               =   (-3,3),
-		# 		       textcoords           =   'offset points',
-		# 		       horizontalalignment  =   'right',
-		# 		       verticalalignment    =   'bottom',
-		# 		       arrowprops           =   dict(arrowstyle='<-', connectionstyle="arc3, rad=0.5")
-		# 		            )
-		# if grid == "off":
-		# 	ax.clear()
 	def rot_on():
 		def animate(i):
 			ax.view_init(azim=rotmagt * i, elev=rotmagp * i)
 
-		# Animate
-		ani = FuncAnimation(fig, animate,
-							interval=1, save_count=50)  # frames=100)#, repeat=True)
+		if save == "MP4":
+			# Animate
+			ani = FuncAnimation(fig, animate, frames=500,
+								interval=100, save_count=50)  # frames=100)#, repeat=True)
+
+			Writer = writers['ffmpeg']
+			writer = Writer(fps=30, bitrate=1800)
+			ani.save('{}.mp4'.format(name), writer=writer)
+		else:
+			#save = None
+			# Animate
+			ani = FuncAnimation(fig, animate,
+								interval=1, save_count=50)  # frames=100)#, repeat=True)
+			pass
+
 
 		plt.ion()
 		plt.show()
@@ -123,5 +120,3 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor, rotation, r
 		rot_on()
 	elif rotation == "Off":
 		pass
-
-

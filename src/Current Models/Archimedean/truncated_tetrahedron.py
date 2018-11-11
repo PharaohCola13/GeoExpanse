@@ -11,7 +11,7 @@ from mpl_toolkits.mplot3d.proj3d import proj_transform
 
 name = "Truncated Tetrahedron"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor, rotation, rotmagt, rotmagp):
+def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor, rotation, rotmagt, rotmagp, save):
 	plt.clf()
 	P1 = sqrt(2)/4
 	P2 = 3 * sqrt(2)/4
@@ -74,9 +74,21 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, figcolor, rotation, r
 		def animate(i):
 			ax.view_init(azim=rotmagt * i, elev=rotmagp * i)
 
-		# Animate
-		ani = FuncAnimation(fig, animate,
-							interval=1, save_count=50)  # frames=100)#, repeat=True)
+		if save == "MP4":
+			# Animate
+			ani = FuncAnimation(fig, animate, frames=500,
+								interval=100, save_count=50)  # frames=100)#, repeat=True)
+
+			Writer = writers['ffmpeg']
+			writer = Writer(fps=30, bitrate=1800)
+			ani.save('{}.mp4'.format(name), writer=writer)
+		else:
+			#save = None
+			# Animate
+			ani = FuncAnimation(fig, animate,
+								interval=1, save_count=50)  # frames=100)#, repeat=True)
+			pass
+
 
 		plt.ion()
 		plt.show()

@@ -10,7 +10,7 @@ import warnings
 import time
 import sys
 
-name = " "
+name = ""
 
 
 def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges,

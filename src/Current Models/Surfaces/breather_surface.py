@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Breather's Surface"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, figcolor, rotation, rotmagt, rotmagp):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, figcolor, rotation, rotmagt, rotmagp, save):
 	plt.clf()
 	# Definition of x
 	def x_(u, v):
@@ -65,9 +65,21 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, figcolor, rotat
 		def animate(i):
 			ax.view_init(azim=rotmagt * i, elev=rotmagp * i)
 
-		# Animate
-		ani = FuncAnimation(fig, animate,
-							interval=1, save_count=50)
+		if save == "MP4":
+			# Animate
+			ani = FuncAnimation(fig, animate, frames=500,
+								interval=100, save_count=50)  # frames=100)#, repeat=True)
+
+			Writer = writers['ffmpeg']
+			writer = Writer(fps=30, bitrate=1800)
+			ani.save('{}.mp4'.format(name), writer=writer)
+		else:
+			#save = None
+			# Animate
+			ani = FuncAnimation(fig, animate,
+								interval=1, save_count=50)  # frames=100)#, repeat=True)
+			pass
+
 
 		plt.ion()
 		plt.show()
@@ -78,4 +90,3 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, figcolor, rotat
 		rot_on()
 	elif rotation == "Off":
 		pass
-

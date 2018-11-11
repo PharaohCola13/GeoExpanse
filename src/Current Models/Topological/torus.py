@@ -10,7 +10,7 @@ from matplotlib.animation import *
 name = "Torus"
 
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, figcolor, rotation, rotmagt, rotmagp):
+def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiusm, figcolor, rotation, rotmagt, rotmagp, save):
 	plt.clf()
 
 	# Definition of x
@@ -67,20 +67,25 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiu
 	torus.set_linewidth(edge_w)  # Line width of the edges
 	torus.set_facecolor(color)  # General color of the figure
 
-# if c > a:
-#	name = 'Ring-Torus'
-# elif c == a:
-#	name = 'Horn-Torus'
-# elif c < a:
-#	name = 'Spindle-Torus'
 
 	def rot_on():
 		def animate(i):
 			ax.view_init(azim=rotmagt * i, elev=rotmagp * i)
 
-		# Animate
-		ani = FuncAnimation(fig, animate,
-							interval=1, save_count=50)
+		if save == "MP4":
+			# Animate
+			ani = FuncAnimation(fig, animate, frames=500,
+								interval=100, save_count=50)  # frames=100)#, repeat=True)
+
+			Writer = writers['ffmpeg']
+			writer = Writer(fps=30, bitrate=1800)
+			ani.save('{}.mp4'.format(name), writer=writer)
+		else:
+			# save = None
+			# Animate
+			ani = FuncAnimation(fig, animate,
+								interval=1, save_count=50)  # frames=100)#, repeat=True)
+			pass
 
 		plt.ion()
 		plt.show()

@@ -9,7 +9,7 @@ from matplotlib.animation import *
 
 name = "Great Rombicosidodecahedron"
 
-def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3, figcolor, rotation, rotmagt, rotmagp):
+def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3, figcolor, rotation, rotmagt, rotmagp, save):
 	plt.clf()
 	points = array([[0,0,0],
 					[-1, 	0.25 * (-3 - sqrt(5)), 0.25 * (-7 - (3 * sqrt(5)))],
@@ -268,9 +268,21 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, color2, color3, figcolor, rot
 		def animate(i):
 			ax.view_init(azim=rotmagt * i, elev=rotmagp * i)
 
-		# Animate
-		ani = FuncAnimation(fig, animate,
-							interval=1, save_count=50)
+		if save == "MP4":
+			# Animate
+			ani = FuncAnimation(fig, animate, frames=500,
+								interval=100, save_count=50)  # frames=100)#, repeat=True)
+
+			Writer = writers['ffmpeg']
+			writer = Writer(fps=30, bitrate=1800)
+			ani.save('Test.mp4', writer=writer)
+		else:
+			#save = None
+			# Animate
+			ani = FuncAnimation(fig, animate,
+								interval=1, save_count=50)  # frames=100)#, repeat=True)
+			pass
+
 
 		plt.ion()
 		plt.show()
