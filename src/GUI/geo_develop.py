@@ -157,10 +157,6 @@ class Geometry(tk.Frame):
 		self.format_save 	= tk.StringVar()
 		self.figcolor		= tk.StringVar()
 		self.size			= tk.StringVar()
-		self.x 				= tk.StringVar()
-		self.y				= tk.StringVar()
-		self.z				= tk.StringVar()
-
 
 		self.rotation.set("Off")
 
@@ -190,10 +186,7 @@ class Geometry(tk.Frame):
 			plt.gca()
 #			ax.set_facecolor(self.figcolor)
 			plt.axis('on')
-	#	#
-		self.fck = tk.Message(master, borderwidth=5, relief=tk.GROOVE)
-		self.fck.grid(row=0, column=2, sticky='new', pady=60, padx=0)
-
+	#
 
 		initcolor 	= []
 		initcolor2 	= []
@@ -511,9 +504,11 @@ class Geometry(tk.Frame):
 	#	# Face Color
 		self.face = tk.Button(master, text="Face Color", command=lambda: FaceColor(self), state=tk.NORMAL)
 		self.face.grid(row=0, column=2, sticky='new', pady=30, padx=0)
+		self.fck = tk.Message(master, borderwidth=5, relief=tk.GROOVE)
+		self.fck.grid(row=0, column=2, sticky='new', pady=60, padx=0)
 
 
-	#	# Edge Color
+#	# Edge Color
 		self.face2 = tk.Button(master, text="Face Color 2", command=lambda: FaceColor2(self), state=tk.NORMAL)
 		self.face2.grid(row=0, column=3, sticky='new', pady=30, padx=0)
 
@@ -650,9 +645,6 @@ class Geometry(tk.Frame):
 		height 		= self.h_entry.get()
 		multi_pi2 	= self.pi_entry2.get()
 		figcolor	= self.figcolor.get()
-		x_entry		= self.x.get()
-		y_entry 	= self.y.get()
-		z_entry		= self.z.get()
 		rotation 	= self.rotation.get()
 		rotmagt		= self.romt_entry.get()
 		rotmagp		= self.romp_entry.get()
