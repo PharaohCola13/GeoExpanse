@@ -77,7 +77,7 @@ class Geometry(tk.Frame):
 			plt.gca()
 			ax.set_facecolor('white')
 			plt.axis('on')
-
+		
 		initcolor = []
 		initcolor2 = []
 		initcolor3 = []
@@ -92,7 +92,7 @@ class Geometry(tk.Frame):
 			for i in initcolor:
 				self.c_entry = askcolor(initialcolor=i, title="Face Color")
 				if len(initcolor) < 2:
-					initcolor.clear()
+					initcolor[:] = []
 					initcolor.append(self.c_entry[1])
 					break
 			self.fck.config(bg=self.c_entry[1], width=200000000)
@@ -103,7 +103,7 @@ class Geometry(tk.Frame):
 			for i in initcolor2:
 				self.c_entry2 = askcolor(initialcolor=i, title="Secondary Face Color")
 				if len(initcolor2) < 2:
-					initcolor2.clear()
+					initcolor2[:] = []
 					initcolor2.append(self.c_entry2[1])
 					break
 			self.f2.config(bg=self.c_entry2[1], width=200000000)
@@ -114,7 +114,7 @@ class Geometry(tk.Frame):
 			for i in initcolor3:
 				self.c_entry3 = askcolor(initialcolor=i, title="Tertiary Face Color")
 				if len(initcolor3) < 2:
-					initcolor3.clear()
+					initcolor3[:] = []
 					initcolor3.append(self.c_entry3[1])
 					break
 			self.f3.config(bg=self.c_entry3[1], width=200000000)
@@ -125,7 +125,7 @@ class Geometry(tk.Frame):
 			for i in initcolore:
 				self.ec_entry = askcolor(initialcolor=i, title="Edge Color")
 				if len(initcolore) < 2:
-					initcolore.clear()
+					initcolore[:] = []
 					initcolore.append(self.ec_entry[1])
 					break
 			self.eck.config(bg=self.ec_entry[1], width=200000000)
@@ -195,7 +195,7 @@ class Geometry(tk.Frame):
 
 			about = tk.Message(top,
 							   text="This software was developed by Spencer Alexander Riley, a undergraduate Physics major and Math minor at New Mexico Tech.\n"
-									"--------------------------------------------------\n"
+									"------------------------------------------\n"
 									"This is an open-source educational application to allow students or interested parties to examine and study a great variety of geometric structures.")
 			about.grid(row=1, column=0, rowspan=3, columnspan=1)
 			about.config(bg=dim, fg=dimf)
@@ -303,7 +303,7 @@ class Geometry(tk.Frame):
 		filemenu.add_command(label="Save", command=popup_save)
 		filemenu.add_separator()
 		filemenu.add_command(label="About", command=popup_about)
-		filemenu.add_command(label="Quit <Esc>", command=quit)
+		filemenu.add_command(label="Quit <Esc>", command=master.destroy)
 
 		figmenu.add_radiobutton(label="Figure", variable=self.size, value="Figure",
 								command=lambda: master.geometry(str(500) + "x" + str(500)), selectcolor=dimf)
@@ -319,8 +319,8 @@ class Geometry(tk.Frame):
 		# self.figcolor.set('#252525')
 		self.figcolor.set('#000000')
 
-		figmenu.add_radiobutton(label="Rotation On", variable=self.rotation, value="On", selectcolor=dimf)
-		figmenu.add_radiobutton(label="Rotation Off", variable=self.rotation, value="Off", selectcolor=dimf)
+		#figmenu.add_radiobutton(label="Rotation On", variable=self.rotation, value="On", selectcolor=dimf)
+		#figmenu.add_radiobutton(label="Rotation Off", variable=self.rotation, value="Off", selectcolor=dimf)
 
 		# 	# # Transparency
 		self.a_label = tk.Label(master, text="Transparency")
@@ -534,7 +534,7 @@ class Geometry(tk.Frame):
 				elif m in self.labels:
 					m.config(fg=disa)
 				elif m in self.button:
-					m.config(state=tk.DISABLED, highlightbackground=disa)
+					m.config(state=tk.DISABLED,highlightbackground=disa)
 				elif m in col_lab:
 					m.config(bg=dim, fg=dim, relief=tk.RIDGE)
 
