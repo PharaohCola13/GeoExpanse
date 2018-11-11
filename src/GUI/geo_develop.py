@@ -203,7 +203,7 @@ class Geometry(tk.Frame):
 			for i in initcolor:
 				self.c_entry = askcolor(initialcolor=i, title="Face Color")
 				if len(initcolor) < 2:
-					initcolor.clear()
+					initcolor[:] = []
 					initcolor.append(self.c_entry[1])
 					break
 			self.fck.config(bg=self.c_entry[1], width=200000000)
@@ -214,7 +214,7 @@ class Geometry(tk.Frame):
 			for i in initcolor2:
 				self.c_entry2 = askcolor(initialcolor=i, title="Secondary Face Color")
 				if len(initcolor2) < 2:
-					initcolor2.clear()
+					initcolor2[:] = []
 					initcolor2.append(self.c_entry2[1])
 					break
 			self.f2.config(bg=self.c_entry2[1], width=200000000)
@@ -225,7 +225,7 @@ class Geometry(tk.Frame):
 			for i in initcolor3:
 				self.c_entry3 = askcolor(initialcolor=i, title="Tertiary Face Color")
 				if len(initcolor3) < 2:
-					initcolor3.clear()
+					initcolor3[:] = []
 					initcolor3.append(self.c_entry3[1])
 					break
 			self.f3.config(bg=self.c_entry3[1], width=200000000)
@@ -236,7 +236,7 @@ class Geometry(tk.Frame):
 			for i in initcolore:
 				self.ec_entry = askcolor(initialcolor=i, title="Edge Color")
 				if len(initcolore) < 2:
-					initcolore.clear()
+					initcolore[:] = []
 					initcolore.append(self.ec_entry[1])
 					break
 			self.eck.config(bg=self.ec_entry[1], width=200000000)
@@ -416,7 +416,7 @@ class Geometry(tk.Frame):
 		filemenu.add_command(label="Save", command=popup_save)
 		filemenu.add_separator()
 		filemenu.add_command(label="About", command=popup_about)
-		filemenu.add_command(label="Quit <Esc>", command=quit)
+		filemenu.add_command(label="Quit <Esc>", command=master.destroy)
 		
 		figmenu.add_radiobutton(label="Figure",variable=self.size, value="Figure", command=lambda:master.geometry(str(500) + "x" + str(500)), selectcolor=dimf)
 		figmenu.add_radiobutton(label="Full", variable= self.size, value="All", command=lambda: master.geometry(str(root_width) + "x" + str(root_height)), selectcolor=dimf)
@@ -504,10 +504,9 @@ class Geometry(tk.Frame):
 	#	# Face Color
 		self.face = tk.Button(master, text="Face Color", command=lambda: FaceColor(self), state=tk.NORMAL)
 		self.face.grid(row=0, column=2, sticky='new', pady=30, padx=0)
+		
 		self.fck = tk.Message(master, borderwidth=5, relief=tk.GROOVE)
 		self.fck.grid(row=0, column=2, sticky='new', pady=60, padx=0)
-
-
 #	# Edge Color
 		self.face2 = tk.Button(master, text="Face Color 2", command=lambda: FaceColor2(self), state=tk.NORMAL)
 		self.face2.grid(row=0, column=3, sticky='new', pady=30, padx=0)
