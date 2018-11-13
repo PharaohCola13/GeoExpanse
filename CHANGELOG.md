@@ -1,7 +1,7 @@
 # Changes in a Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased] - 2018-11-06
+## [Unreleased] - 2018-11-13
 ### Added
 - Configure Tab
   - Change window size
@@ -30,7 +30,7 @@ All notable changes to this project will be documented in this file.
 - Log Spiral
 - Polygon Family
 
-## [Archimedes.I] - 2018-12-01
+## [Archimedes.I] - 2019-01-01
 ### Added
 
 ### Changed
