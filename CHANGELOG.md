@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 - Save Rotating Models to MP4
 - Key bindings, Press Esc to quit the application
 - Different colors for different types of faces
+  - Can modify previous color option, rather than just the default.
 - A Functional Website to accompany the application
 - Save function supports transparency option
 
@@ -20,6 +21,9 @@ All notable changes to this project will be documented in this file.
 - Small Stellated Dodecahedron
 - Great Stellated Dodecahedron
 - Geodesic Icosahedron Pattern 222
+- Isohedral Toroid
+- Dodecahedron (Knotted)
+- Klein Map
 - Truncated Tetrahedron
 - Tetrahemihexahedron
 - Fermat Spiral
