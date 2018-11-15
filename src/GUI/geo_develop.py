@@ -248,7 +248,7 @@ class Geometry(tk.Frame):
 			top = tk.Toplevel(self)
 			top.title("Save Figure")
 
-			#top.tk.call('wm', 'iconphoto', top._w, icon)
+			top.tk.call('wm', 'iconphoto', top._w, icon)
 			top.config(background=dim)
 			#top_width = 337
 			#top_height = 83
@@ -293,7 +293,7 @@ class Geometry(tk.Frame):
 		def popup_about():
 			top = tk.Toplevel(self)
 			top.title("About")
-			#top.tk.call('wm', 'iconphoto', top._w, icon)
+			top.tk.call('wm', 'iconphoto', top._w, icon)
 
 			top_width = 220
 			top_height = 175
@@ -316,7 +316,7 @@ class Geometry(tk.Frame):
 			self.rotation.set("Off")
 			self.format_save.set(None)
 			top = tk.Toplevel(self)
-			#top.tk.call('wm', 'iconphoto', top._w, icon)
+			top.tk.call('wm', 'iconphoto', top._w, icon)
 			top.focus_set()
 			top.grab_set()
 
@@ -328,7 +328,7 @@ class Geometry(tk.Frame):
 			pop.config(bg=dim,fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
 			plotter = tk.Button(top, text="Plot", command=lambda: self.plot(canvas, ax, s[self.shape_set.get()]))
-			plotter.grid(row=0, column=2, sticky="new")
+			plotter.grid(row=0, column=1, sticky="new")
 			plotter.config(bg=dim,fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
 			if self.two_three.get() == "3d":
@@ -674,7 +674,6 @@ class Geometry(tk.Frame):
 					m.config(state=tk.ACTIVE, highlightbackground=dimf)
 				elif m in col_lab:
 					m.config(relief=tk.GROOVE)
-
 		args = shape_obj.shape.__code__.co_varnames
 
 		if args[1:17] == (
@@ -1013,7 +1012,7 @@ if __name__ == '__main__':
 
 	root.bind("<Escape>", quit)
 
-	#icon = ImageTk.PhotoImage(file='icon.png')
+	icon = ImageTk.PhotoImage(file='icon.png')
 
-	#root.tk.call('wm', 'iconphoto', root._w, icon)
+	root.tk.call('wm', 'iconphoto', root._w, icon)
 	root.mainloop()
