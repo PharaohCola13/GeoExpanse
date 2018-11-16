@@ -52,7 +52,7 @@ body {
   margin-left: -12px;
   color: #030005;
   text-transform: uppercase;
-  text-shadow: -1px -1px 0px #8400ff, 1px 1px 0px #ff005a;
+  text-shadow: -1px -1px 0px #8400ff, 1px 1px 0px #00c7ff;
   letter-spacing: -20px;
 }
 
@@ -76,7 +76,7 @@ body {
   font-family: 'Montserrat', sans-serif;
   display: inline-block;
   text-transform: uppercase;
-  color: #ff005a;
+  color: #00c7ff;
   text-decoration: none;
   border: 2px solid;
   background: transparent;
