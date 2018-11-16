@@ -33,7 +33,7 @@ body {
 .notfound .notfound-404 {
   position: relative;
   height: 1000px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   z-index: -1;
 }
 
@@ -49,7 +49,7 @@ body {
   font-weight: 900;
   margin-top: 0px;
   margin-bottom: 0px;
-  margin-left: -12px;
+  margin-left: 0px;
   color: #030005;
   text-transform: uppercase;
   text-shadow: -1px -1px 0px #8400ff, 1px 1px 0px #00c7ff;
