@@ -24,7 +24,7 @@ body {
 }
 
 .notfound {
-  max-width: 767px;
+  max-width: 1000px;
   width: 100%;
   line-height: 1.4;
   text-align: center;
@@ -32,7 +32,7 @@ body {
 
 .notfound .notfound-404 {
   position: relative;
-  height: 180px;
+  height: 400px;
   margin-bottom: 20px;
   z-index: -1;
 }
