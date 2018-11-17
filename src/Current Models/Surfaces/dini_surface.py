@@ -32,8 +32,9 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, radiu
 	b = height # Height
 
 	# Value of the angles
-	u = linspace(0, 3 * pi, 50)
-	v = linspace(0, pi, 50)
+
+	u = linspace(0, 3 * pi, sides + 1)
+	v = linspace(0, pi, edges)
 
 	u, v = meshgrid(u, v)
 
