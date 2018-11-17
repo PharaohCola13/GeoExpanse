@@ -11,7 +11,7 @@ body {
 #notfound {
   position: relative;
   height: 100vh;
-  background: #030005;
+  background-color: #000;
 }
 
 #notfound .notfound {
@@ -44,7 +44,7 @@ body {
   -webkit-transform: translate(-50% , -50%);
       -ms-transform: translate(-50% , -50%);
           transform: translate(-50% , -50%);
-  font-size: 12vw;
+  font-size: 15vw;
   font-weight: 900;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -52,33 +52,33 @@ body {
   margin-right: -25px;
   color: #030005;
   text-transform: uppercase;
-  text-shadow: -1px -1px 0px #c07cff, 1px 1px 0px #00c7ff;
+  text-shadow: -2px -2px 2px #c07cff, 2px 2px 2px #00c7ff;
   letter-spacing: -20px;
 }
 
 
 .notfound .notfound-404 h2 {
-  font-family: 'Megrim', sans-serif;
+  font-family: 'Limelight', sans-serif;
   position: absolute;
   left: 0;
   right: 0;
-  top: 110px;
+  top: 60px;
   font-size: 42px;
-  font-weight: 700;
+  font-weight: 900;
   color: #030005;
   text-transform: uppercase;
-  text-shadow: -1px -1px 0px #00c7ff, 1px 1px 0px #c07cff;
+  text-shadow: -2px -2px 2px #00c7ff, 2px 2px 2px #c07cff;
   margin: 0;
-  letter-spacing: 0px;
+  letter-spacing: 13px;
 }
 
 .notfound a {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Limelight', sans-serif;
   display: inline-block;
   text-transform: uppercase;
   color: #00c7ff;
   text-decoration: none;
-  border: 2px solid;
+  border: 5px outset #00c7ff;
   background: transparent;
   padding: 10px 40px;
   font-size: 14px;
@@ -89,20 +89,21 @@ body {
 
 .notfound a:hover {
   color: #c07cff;
+  border: 5px inset #c07cff;
 }
 
 @media only screen and (max-width: 767px) {
     .notfound .notfound-404 h2 {
         font-size: 9vw;
+		letter-spacing: 0px;
     }
   .notfound .notfound-404 h1 {
-      font-size: 15vw;
+      font-size: 20vw;
   }
 }
 
 @media only screen and (max-width: 480px) {
   .notfound .notfound-404 h1 {
-      font-size: 18vw;
-      letter-spacing: -10px;
+      font-size: 23vw;
   }
 }
