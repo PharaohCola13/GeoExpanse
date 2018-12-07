@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['geo_linux.py'],
-             pathex=['/home/pharaohcola13/PycharmProjects/Research/GeoExpanse/src/GUI/compile_space'],
+             pathex=['/home/spencerriley620/PycharmProjects/Research/GeoExpanse/src/GUI/compile_space'],
              binaries=[],
              datas=[],
              hiddenimports=['PIL._tkinter_finder', 'matplotlib'],
