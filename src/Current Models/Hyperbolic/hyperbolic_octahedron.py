@@ -18,7 +18,7 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, figcolor, rotat
 
 	# Definition of y
 	def y_(u,v):
-		y = (sin(u) * cos(v))**3
+		y = (sin(u) * cos(v)) ** 3
 		return y
 
 	# Definition of z

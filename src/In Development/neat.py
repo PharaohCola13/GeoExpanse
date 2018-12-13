@@ -22,7 +22,21 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figco
         z = u
         return z
 
-    u = linspace(-2 * pi, 2 * pi, 25)
+	# def x_(u, v):
+	# 	x = (cos(v) * cos(u) * sin(u)) ** 3
+	# 	return x
+	#
+	#
+	# def y_(u, v):
+	# 	y = (sin(u) * sin(v) * cos(u)) ** 3
+	# 	return y
+	#
+	#
+	# def z_(u, v):
+	# 	z = sin(u) ** 3
+	# 	return z
+
+	u = linspace(-2 * pi, 2 * pi, 25)
     v = linspace(-2 * pi, 2 * pi, 25)
 
     u,v = np.meshgrid(u,v)
