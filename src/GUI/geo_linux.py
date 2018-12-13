@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import mpl_toolkits.mplot3d.axes3d as p3
 from matplotlib.animation import *
-from PIL import ImageTk
+#from PIL import ImageTk
 from PIL import Image
 import sys
 from time import sleep
