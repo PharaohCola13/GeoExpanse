@@ -7,7 +7,6 @@ __platform__ = "Linux"
 
 ## Imports
 import matplotlib
-
 matplotlib.use('tkagg')
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -17,6 +16,7 @@ from matplotlib.animation import *
 from PIL import Image
 import sys
 from time import sleep
+import geo_develop
 
 try:
 	import tkinter as tk
@@ -25,109 +25,6 @@ except ImportError:
 	import Tkinter as tk
 	from tkColorChooser import askcolor
 
-sys.path.append('../In Development/')
-
-sys.path.append('../Current Models/')
-sys.path.append('../Current Models/Hyperbolic/')
-sys.path.append('../Current Models/Misc./')
-sys.path.append('../Current Models/Platonic Solids/')
-sys.path.append('../Current Models/Surfaces/')
-sys.path.append('../Current Models/Topological/')
-sys.path.append('../Current Models/Two Space/')
-sys.path.append('../Current Models/Archimedean/')
-
-import prism, pyramid, sphere, billion, general_3d, hyperbolic_octahedron, hyperbolic_paraboloid, one_sheet_hyperboloid, \
-	hyperbolic_helicoid, hyperbolic_cylinder, three_dodecahedron, crescent, funnel, gabriel_horn, rose_spiral, shell, \
-	tesseract, spiral, seashell, steinbach_screw, breather_surface, kuen_surface, steiner_surface, boys_surface, \
-	roman_surface, sine_surface, henneberg_surface, unk_surface, dini_surface, enneper_surface, corkscrew_surface, \
-	shoe_surface, cube, dodecahedron, icosahedron, octahedron, tetrahemihexahedron, truncated_tetrahedron, cross_cap, \
-	klein, mobius, torus, neat, testing, vase, something_strange, great_dodecahedron, great_stellated_dodecahedron, \
-	cuboctahedron, great_rombicosidodecahedron, snub_cube, truncated_cube, disdyakis_triacontahedron, great_icosahedron, \
-	small_stellated_dodecahedron, isohedral_toroid, knotted_dodecahedron, klein_map, deltoid, log_spiral, parabola, \
-	penrose_square, penrose_circle, line, penrose_triangle, polygon, ellipse, fermat_sprial
-
-## Geometry Dictionary
-s = {	"Prism"					: prism,
-		  "Pyramid"					: pyramid,
-		  "Sphere"					: sphere,
-		  "Hyperbolic Octahedron"	: hyperbolic_octahedron,
-		  "Hyperbolic Paraboloid"	: hyperbolic_paraboloid,
-		  "One Sheet Hyperboloid"	: one_sheet_hyperboloid,
-		  "Hyperbolic Cylinder"		: hyperbolic_cylinder,
-		  "Hyperbolic Helicoid"		: hyperbolic_helicoid,
-		  "Three Dodecahedron"		: three_dodecahedron,
-		  "Crescent"					: crescent,
-		  "Funnel"					: funnel,
-		  "Gabriel's Horn"			: gabriel_horn,
-		  "Rose Spiral"				: rose_spiral,
-		  "Shell"					: shell,
-		  "Tesseract"				: tesseract,
-		  "Spiral"					: spiral,
-		  "Seashell"					: seashell,
-		  "Steinbach Screw"			: steinbach_screw,
-		  "Breather's Surface"		: breather_surface,
-		  "Kuen Surface"				: kuen_surface,
-		  "Steiner's Surface"		: steiner_surface,
-		  "Boy's Surface"			: boys_surface,
-		  "Roman Surface"			: roman_surface,
-		  "Sine Surface"				: sine_surface,
-		  "Henneberg's Surface"		: henneberg_surface,
-		  "Dini's Surface"			: dini_surface,
-		  "Enneper's Surface"		: enneper_surface,
-		  "Corkscrew Surface"		: corkscrew_surface,
-		  "Shoe Surface"				: shoe_surface,
-		  "Unk Surface"				: unk_surface,
-		  "Cube"						: cube,
-		  "Dodecahedron"				: dodecahedron,
-		  "Icosahedron"				: icosahedron,
-		  "Octahedron"				: octahedron,
-		  "Cross Cap"				: cross_cap,
-		  "Klein Bottle"				: klein,
-		  "Mobius Strip"				: mobius,
-		  "Torus"					: torus,
-		  "Neat"						: neat,
-		  "Great Dodecahedron"		: great_dodecahedron,
-		  "Vase"						: vase,
-		  "Something Strange"		: something_strange,
-		  "Cuboctahedron"			: cuboctahedron,
-		  "Disdyakis Triacontahedron": disdyakis_triacontahedron,
-		  "Great Rombicosidodecahedron": great_rombicosidodecahedron,
-		  "Snub Cube"				: snub_cube,
-		  "Truncated Cube"			: truncated_cube,
-		  "Great Icosahedron"		: great_icosahedron,
-		  "Line"						: line,
-		  "Deltoid"					: deltoid,
-		  "Log Spiral"				: log_spiral,
-		  "Parabola"					: parabola,
-		  "Penrose Circle"			: penrose_circle,
-		  "Penrose Square"			: penrose_square,
-		  "Penrose Triangle"			: penrose_triangle,
-		  "Polygons"				 	: polygon,
-		  "Ellipse"					: ellipse,
-		  "Fermat Spiral"			: fermat_sprial,
-		  ""						: testing,
-		  #"General"					: general_3d,
-		  "Small Stellated Dodecahedron" : small_stellated_dodecahedron,
-		  "Great Stellated Dodecahedron" : great_stellated_dodecahedron,
-		  "Tetrahemihexahedron"		: tetrahemihexahedron,
-		  "Truncated Tetrahedron"	: truncated_tetrahedron,
-		  "Geodesic Icosahedron Pattern 222": billion,
-		  "Isohedral Toroid"			: isohedral_toroid,
-		  "Knotted Dodecahedron"		: knotted_dodecahedron,
-		  "Klein Map"				: klein_map,
-		  }
-
-gen 	= ["Prism", "Pyramid", "Sphere"]
-hyper	= ["Hyperbolic Octahedron", "Hyperbolic Paraboloid", "One Sheet Hyperboloid", "Hyperbolic Cylinder", "Hyperbolic Helicoid"]
-misc 	= ["Three Dodecahedron", "Crescent", "Funnel", "Gabriel's Horn", "Rose Spiral", "Shell", "Tesseract", "Spiral", "Seashell", "Steinbach Screw", "Isohedral Toroid", "Knotted Dodecahedron", "Klein Map"]
-surf 	= ["Breather's Surface", "Kuen Surface", "Steiner's Surface", "Boy's Surface", "Roman Surface", "Sine Surface", "Henneberg's Surface", "Dini's Surface", "Enneper's Surface", "Corkscrew Surface", "Shoe Surface", "Unk Surface"]
-topo 	= ["Cross Cap", "Klein Bottle", "Mobius Strip", "Torus"]
-deve 	= ["Neat", "", "Great Dodecahedron", "Vase", "Something Strange",  "Geodesic Icosahedron Pattern 222"]
-arch 	= ["Cuboctahedron", "Disdyakis Triacontahedron", "Great Rombicosidodecahedron", "Snub Cube", "Truncated Cube", "Tetrahemihexahedron", "Truncated Tetrahedron"]
-plat    = ["Cube", "Dodecahedron", "Octahedron", "Icosahedron"]
-two 	= ["Line", "Deltoid", "Log Spiral", "Parabola", "Polygons", "Ellipse", "Fermat Spiral"]
-pen		= ["Penrose Circle", "Penrose Triangle", "Penrose Square"]
-kepl	= ["Great Icosahedron" ,"Great Dodecahedron", "Small Stellated Dodecahedron", "Great Stellated Dodecahedron"]
 dim = "#303030"  # Background
 dimf = "#00C0FF"  # Font Color
 disa = "#d400ff"  # Disabled Text
@@ -266,7 +163,7 @@ class Geometry(tk.Frame):
 			def pop():
 				top.destroy()
 				self.format_save.set(None)
-				self.plot(canvas, ax, s[self.shape_set.get()])
+				self.plot(canvas, ax, geo_develop.s[self.shape_set.get()])
 
 			wid = ["PNG", "JPG", "SVG", "EPS", "MP4"]
 
@@ -283,18 +180,18 @@ class Geometry(tk.Frame):
 			save_img.grid(row=0, column=2, rowspan=2, sticky='nsew')
 			save_img.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf,
 							command=lambda: plt.savefig(
-								"{}.{}".format(str(s[self.shape_set.get()].name), str(self.format_save.get())),
+								"{}.{}".format(str(geo_develop.s[self.shape_set.get()].name), str(self.format_save.get())),
 								transparent=False))
 
 			save_img1 = tk.Button(top, text="Save (Transparent)", width=15)
 			save_img1.grid(row=2, column=2, rowspan=2, sticky='nsew')
 			save_img1.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf,
 							 command=lambda: plt.savefig(
-								 "{}.{}".format(str(s[self.shape_set.get()].name), str(self.format_save.get())),
+								 "{}.{}".format(str(geo_develop.s[self.shape_set.get()].name), str(self.format_save.get())),
 								 transparent=True))
 
 			save_vid = tk.Button(top, text="Save Video", width=15,
-								 command=lambda: self.plot(canvas, ax, s[self.shape_set.get()]))
+								 command=lambda: self.plot(canvas, ax, geo_develop.s[self.shape_set.get()]))
 			save_vid.grid(row=4, column=2, rowspan=2, sticky='nsew')
 			save_vid.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
@@ -338,7 +235,7 @@ class Geometry(tk.Frame):
 			pop.grid(row=0, column=0, sticky='new')
 			pop.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
-			plotter = tk.Button(top, text="Plot", command=lambda: self.plot(canvas, ax, s[self.shape_set.get()]))
+			plotter = tk.Button(top, text="Plot", command=lambda: self.plot(canvas, ax, geo_develop.s[self.shape_set.get()]))
 			plotter.grid(row=0, column=2, sticky="new")
 			plotter.config(bg=dim, fg=dimf, activebackground=dim, highlightbackground=dimf, activeforeground=dimf)
 
@@ -552,7 +449,7 @@ class Geometry(tk.Frame):
 		self.f3.grid(row=0, column=4, sticky='new', pady=60, padx=0)
 
 		#	# Plotting,
-		self.plotting = tk.Button(master, text="Update", command=lambda: self.plot(canvas, ax, s[self.shape_set.get()]),
+		self.plotting = tk.Button(master, text="Update", command=lambda: self.plot(canvas, ax, geo_develop.s[self.shape_set.get()]),
 								  height=4)
 		self.plotting.grid(row=0, column=1, columnspan=2, sticky="new", pady=430)  # pady=730)
 

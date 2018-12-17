@@ -10,7 +10,6 @@ name = "Hyperbolic Octahedron"
 
 def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, figcolor, rotation, rotmagt, rotmagp, save):
 	plt.clf()
-	global name
 	# Definition of x
 	def x_(u,v):
 		x = (cos(u) * cos(v))**3

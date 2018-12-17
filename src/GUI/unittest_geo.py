@@ -1,6 +1,7 @@
 import geo_develop
 import geo_linux
 import geo_windows
+import geo_chrome
 from geo_develop import s
 import matplotlib
 import matplotlib.pyplot as plt
@@ -19,11 +20,6 @@ except ImportError:
 	from tkColorChooser import askcolor
 
 root = tk.Tk()
-root_width = 920
-root_height = 530	
-root.geometry(str(root_width) + "x" + str(root_height) + "100")
-root.maxsize(str(root_width), str(root_height))
-root.minsize(str(500), str(root_height))
 
 fig = plt.figure(figsize=(8, 8), facecolor="black", edgecolor="white")
 canvas = FigureCanvasTkAgg(fig ,root)
@@ -34,12 +30,34 @@ option = input("Platform:\n>> ")
 if option == "develop":
 	app = geo_develop.Geometry(root)
 	title = "Development"
+
+	root_width = 920
+	root_height = 530
+	root.geometry(str(root_width) + "x" + str(root_height) + "100")
+	root.maxsize(str(root_width), str(root_height))
+	root.minsize(str(500), str(root_height))
+
 elif option == "linux":
 	app = geo_linux.Geometry(root)
 	title = "Linux"
+
+	root_width = 920
+	root_height = 530
+	root.geometry(str(root_width) + "x" + str(root_height) + "100")
+	root.maxsize(str(root_width), str(root_height))
+	root.minsize(str(500), str(root_height))
 elif option == "windows":
 	app = geo_windows.Geometry(root)
 	title = "Windows"
+elif option == "chrome":
+	app = geo_chrome.Geometry(root)
+	title = "Chrome (Linux)"
+
+	root_width = 1600
+	root_height = 801
+	root.geometry(str(root_width) + "x" + str(root_height) + "100")
+	root.maxsize(str(root_width), str(root_height))
+	root.minsize(str(800), str(root_height))
 
 three = geo_develop.gen + geo_develop.hyper + geo_develop.misc + geo_develop.surf + geo_develop.topo + geo_develop.arch + geo_develop.plat + geo_develop.kepl
 two = geo_develop.two + geo_develop.pen
@@ -54,49 +72,47 @@ class Superfical(unittest.TestCase):
 			print("\033[91m" + "{} Superfical Test: Failed".format(title))
 			print("\033[0m")
 
-class TestAngles(unittest.TestCase):
-	def test_angles(self):
-		param = []
+class TestName(unittest.TestCase):
+	def testname(self):
+		passed = []
+		failed = []
 		if not sys.warnoptions:
 			warnings.simplefilter("ignore")
-		print("---" * 3 + " Individual Angle Test: Start " + "---" * 3)
-		try:
-			for k,v in sorted(s.items()):
-				sig = s[k].shape.__code__.co_cellvars
-				#if "linspace" in sig:
-				print(k)
-				print(sig)
-			#	else:
-			#		continue
-		except:
-			print("It broke")
-		print("---" * 3 + " Individual Angle Test: End " + "---" * 3)
+		print("---" * 3 +  "Shape Name Match Test: Start " + "---" * 3)
+		for k,v in sorted(s.items()):
+			try:
+				self.assertEqual(s[k].name,k)
+				passed.append(k)
+			except:
+				print("\033[91m{0:35}: ".ljust(10).format(k) + "\033[91m Failed")
+				failed.append(k)
+		if len(failed) == 0:
+			print("\033[32m" + "All Cleared" + "\033[0m")
+		print("\033[0m" + "--" * 5 + " Shape Name Match Test: End " + "--" * 5)
 
-# class TestObject(unittest.TestCase):
-# 	def test_shape(self):
-# 		passed = []
-# 		failed = []
-# 		if not sys.warnoptions:
-# 			warnings.simplefilter("ignore")
-# 		print("---" * 3 + " Individual Shape Test: Start " + "---" * 3)
-# 		for k,v in sorted(s.items()):
-# 			try:
-# 				app.plot(canvas, ax, s[k])
-# 				self.assertEqual(s[k].name,k)
-# 				print("\033[32m{0:35}: ".ljust(20).format(k) + "\033[32m Cleared")
-# 				passed.append(k)
-# 				args = s[k].shape.__code__.co_filename
-# 				#print("\033[0m")
-# 			except IndentationError:
-# 				print("\033[91m{0:35}: ".ljust(10).format(k) + "\033[91m Failed")
-# 				failed.append(k)
-# 		net = len(passed) - 1
-# 		tot = len(passed) + len(failed) - 1
-# 		print("\033[0m" + "--" * 5 + " Individual Shape Test: End " + "--" * 5)
-# 		print("Model Count: {}".format(tot))
-# 		print("3D Models: {}\n2D Models: {}".format(len(three), len(two)))
-# 		print("{:f}% Pass".format(float(net)/tot * 100.))
-# 		print("\033[0m")
+class TestObject(unittest.TestCase):
+	def test_shape(self):
+		passed = []
+		failed = []
+		if not sys.warnoptions:
+			warnings.simplefilter("ignore")
+		print("---" * 3 + " Individual Shape Test: Start " + "---" * 3)
+		for k,v in sorted(s.items()):
+			try:
+				app.plot(canvas, ax, s[k])
+				print("\033[32m{0:35}: ".ljust(20).format(k) + "\033[32m Cleared")
+				passed.append(k)
+			except:
+				print("\033[91m{0:35}: ".ljust(10).format(k) + "\033[91m Failed")
+				failed.append(k)
+		net = len(passed) - 1
+		tot = len(passed) + len(failed) - 1
+
+		print("\033[0m" + "--" * 5 + " Individual Shape Test: End " + "--" * 5)
+		print("Model Count: {}".format(tot))
+		print("3D Models: {}\n2D Models: {}".format(len(three), len(two)))
+		print("{:f}% Pass".format(float(net)/tot * 100.))
+		print("\033[0m")
 
 if __name__ == "__main__":
 	unittest.main(verbosity=0)

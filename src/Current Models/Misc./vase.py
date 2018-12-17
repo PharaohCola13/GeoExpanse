@@ -1,41 +1,36 @@
-# A Klein Bottle, brought to you by PharaohCola13
+#{u, Sin[v]*(u^3+2u^2-2u+2)/5, Cos[v]*(u^3+2u^2-2u+2)/5}
 
+# A Vase, brought to you by PharaohCola13
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
-from matplotlib import *
-from numpy import *
+
 from mpl_toolkits.mplot3d.art3d import *
 from matplotlib.animation import *
+from matplotlib import *
+from numpy import *
 
-name = "Klein Bottle"
-
+name = "Vase"
 
 def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figcolor, rotation, rotmagt, rotmagp, save):
-	plt.clf()
 	# Definition of x
 	def x_(u, v):
-		x = -2 + 2 * cos(v) - cos(u)
-		x[v < 3 * pi] = -2 + (2 + cos(u[v < 3 * pi])) * cos(v[v < 3 * pi])
-		x[v < 2 * pi] = cos(u[v < 2 * pi]) * (2.5 - 1.5 * cos(v[v < 2 * pi]))
+		x = cos(v) * (u**3 + 2 * u**2 - 2 * u + 2)/5
 		return x
 
 	# Definition of y
 	def y_(u, v):
-		y = sin(u)
-		y[v < 2 * pi] = sin(u[v < 2 * pi]) * (2.5 - 1.5 * cos(v[v < 2 * pi]))
+		y = sin(v) * (u**3 + 2 * u**2 - 2 * u + 2)/5
 		return y
 
-	# Definition of
+
+	# Definition of z
 	def z_(u, v):
-		z = -3 * v + 12 * pi
-		z[v < 3 * pi] = (2 + cos(u[v < 3 * pi])) * sin(v[v < 3 * pi]) + 3 * pi
-		z[v < 2 * pi] = 3 * v[v < 2 * pi] - 3 * pi
-		z[v < pi] = -2.5 * sin(v[v < pi])
+		z = u
 		return z
 
-	# Values of the angles
-	u = linspace(0, 2 * pi, sides + 1)
-	v = linspace(0, 4 * pi, edges)
+	# Value of the angles
+	u = linspace(-2.3, 1.3, edges)
+	v = linspace(0, 2 * pi, sides + 1)
 
 	u, v = meshgrid(u, v)
 
@@ -50,20 +45,14 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figco
 
 	# Axis Properties
 	plt.axis(grid)  # Turns off the axis grid
-	plt.axis('equal')
-
-	# Axis Limits
-	ax.set_xlim(-5, 5)
-	ax.set_ylim(-5, 5)
-	ax.set_zlim(0, 10)
 
 	# Surface Plot
-	klein_bottle = ax.plot_surface(x, y, z)
+	vase = ax.plot_surface(x, y, z)
 
-	klein_bottle.set_alpha(alpha)  # Transparency of figure
-	klein_bottle.set_edgecolor(edge_c)  # Edge color of the lines on the figure
-	klein_bottle.set_linewidth(edge_w)  # Line width of the edges
-	klein_bottle.set_facecolor(color)  # General color of the figure
+	vase.set_alpha(alpha)  # Transparency of figure
+	vase.set_edgecolor(edge_c)  # Edge color of the lines on the figure
+	vase.set_linewidth(edge_w)  # Line width of the edges
+	vase.set_facecolor(color)  # General color of the figure
 
 	def rot_on():
 		def animate(i):
@@ -78,17 +67,17 @@ def shape(fig, alpha, color, edge_c, edge_w, grid, sides, edges, multi_pi, figco
 			writer = Writer(fps=30, bitrate=1800)
 			ani.save('{}.mp4'.format(name), writer=writer)
 		else:
-			#save = None
+			# save = None
 			# Animate
 			ani = FuncAnimation(fig, animate,
 								interval=1, save_count=50)  # frames=100)#, repeat=True)
 			pass
 
-
 		plt.ion()
 		plt.show()
 		time.sleep(0)
 		plt.close()
+
 
 	if rotation == "On":
 		rot_on()

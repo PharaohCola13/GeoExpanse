@@ -1,3 +1,4 @@
+# A Hyperbolic Tetrahedron, Brought to you by PharaohCola13
 import mpl_toolkits.mplot3d.axes3d as p3
 import matplotlib.pyplot as plt
 
@@ -10,24 +11,26 @@ name = "Hyperbolic Tetrahedron"
 
 
 def x_(u, v):
-	x = ((2 * cos(u) + 2 * cos(u)**2 - 1)  * (1 - v)**2)
+	x = ((2 * cos(u) + 2 * cos(u) ** 2 -1))
 	return x
 
 
 def y_(u, v):
-	y = (2*sin(u) - 2*sin(u)*cos(u)) * (1 - v)**2
+	y = (2 * sin(u) - 2 * sin(u) * cos(u))
 	return y
 
 
 # Definition of z
 def z_(u, v):
-	z = v
+	z = 0
 	return z
 
-u = linspace(-pi, pi, 30)
-v = linspace(0,1, 10)
 
-u, v = np.meshgrid(u, v)
+# Value of the angles
+u = linspace(-pi, pi, 30)
+v = linspace(0, 1, 30)
+
+u, v = meshgrid(u, v)
 
 x = x_(u, v)
 y = y_(u, v)
@@ -40,16 +43,12 @@ ax.set_facecolor("black")
 
 plt.axis("off")
 
-# Axis Limits
-ax.set_zlim(0,1)
-
-
 # Surface plot
-N = ax.plot_surface(x, y, z, rstride=1, cstride=1)
+hy_tetra = ax.plot_surface(x, y, z)
 
-N.set_linewidth(0.5)
-N.set_edgecolor("gold")
-N.set_alpha(0.5)
-N.set_facecolor("white")
+hy_tetra.set_linewidth(1)
+hy_tetra.set_edgecolor("gold")
+hy_tetra.set_alpha(0.5)
+hy_tetra.set_facecolor("fuchsia")
 
 plt.show()

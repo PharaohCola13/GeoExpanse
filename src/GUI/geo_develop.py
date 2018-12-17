@@ -43,7 +43,9 @@ import prism, pyramid, sphere, billion, general_3d,hyperbolic_octahedron, hyperb
 	klein, mobius, torus, neat, testing, vase, something_strange, great_dodecahedron, great_stellated_dodecahedron, \
 	cuboctahedron, great_rombicosidodecahedron, snub_cube, truncated_cube, disdyakis_triacontahedron, great_icosahedron,\
 	small_stellated_dodecahedron, isohedral_toroid, knotted_dodecahedron, klein_map, deltoid, log_spiral, parabola, \
-	penrose_square, penrose_circle, line, penrose_triangle, polygon, ellipse, fermat_sprial
+	penrose_square, penrose_circle, line, penrose_triangle, polygon, ellipse, fermat_sprial, borromean_rings, \
+	truncated_cuboctahedron, truncated_dodecahedron, truncated_icosahedron, truncated_octahedron, snub_dodecahedron,\
+	icosidodecahedron, poweroid, hyperbolic_tetrahedron
 
 ## Geometry Dictionary
 s = {	 "Prism"					: prism,
@@ -84,10 +86,10 @@ s = {	 "Prism"					: prism,
 		 "Klein Bottle"				: klein,
 		 "Mobius Strip"				: mobius,
 		 "Torus"					: torus,
-		 "Neat"						: neat,
-		 "Great Dodecahedron"		: great_dodecahedron,
+		 #"Neat"						: neat,
+		 #"Great Dodecahedron"		: great_dodecahedron,
 		 "Vase"						: vase,
-		 "Something Strange"		: something_strange,
+		 #"Something Strange"		: something_strange,
 		 "Cuboctahedron"			: cuboctahedron,
 		 "Disdyakis Triacontahedron": disdyakis_triacontahedron,
 		 "Great Rombicosidodecahedron": great_rombicosidodecahedron,
@@ -105,24 +107,40 @@ s = {	 "Prism"					: prism,
 		 "Ellipse"					: ellipse,
 		 "Fermat Spiral"			: fermat_sprial,
 		  ""						: testing,
-		  "General"					: general_3d,
+		 # "General"					: general_3d,
 		 "Small Stellated Dodecahedron" : small_stellated_dodecahedron,
 		 "Great Stellated Dodecahedron" : great_stellated_dodecahedron,
 		 "Tetrahemihexahedron"		: tetrahemihexahedron,
 		 "Truncated Tetrahedron"	: truncated_tetrahedron,
-		 "Geodesic Icosahedron Pattern 222": billion,
+		 #"Geodesic Icosahedron Pattern 222": billion,
 		 "Isohedral Toroid"			: isohedral_toroid,
  		 "Knotted Dodecahedron"		: knotted_dodecahedron,
 		 "Klein Map"				: klein_map,
+		 "Borromean Rings"			: borromean_rings,
+		 "Snub Dodecahedron"		: snub_dodecahedron,
+		 "Truncated Icosahedron"	: truncated_icosahedron,
+		 "Truncated Octahedron"		: truncated_octahedron,
+		 "Truncated Cuboctahedron"	: truncated_cuboctahedron,
+		 "Truncated Dodecahedron"	: truncated_dodecahedron,
+		 "Icosidodecahedron"		: icosidodecahedron,
+		 "Poweroid"					: poweroid,
+		 "Hyperbolic Tetrahedron"	: hyperbolic_tetrahedron,
 }
 
 gen 	= ["Prism", "Pyramid", "Sphere"]
-hyper	= ["Hyperbolic Octahedron", "Hyperbolic Paraboloid", "One Sheet Hyperboloid", "Hyperbolic Cylinder", "Hyperbolic Helicoid"]
-misc 	= ["Three Dodecahedron", "Crescent", "Funnel", "Gabriel's Horn", "Rose Spiral", "Shell", "Tesseract", "Spiral", "Seashell", "Steinbach Screw", "Isohedral Toroid", "Knotted Dodecahedron", "Klein Map"]
-surf 	= ["Breather's Surface", "Kuen Surface", "Steiner's Surface", "Boy's Surface", "Roman Surface", "Sine Surface", "Henneberg's Surface", "Dini's Surface", "Enneper's Surface", "Corkscrew Surface", "Shoe Surface", "Unk Surface"]
+hyper	= ["Hyperbolic Octahedron", "Hyperbolic Paraboloid", "One Sheet Hyperboloid", "Hyperbolic Cylinder",
+			"Hyperbolic Helicoid", "Hyperbolic Tetrahedron"]
+misc 	= ["Three Dodecahedron", "Crescent", "Funnel", "Gabriel's Horn",
+		   "Rose Spiral", "Shell", "Tesseract", "Spiral", "Seashell", "Steinbach Screw",
+		   "Isohedral Toroid", "Knotted Dodecahedron", "Klein Map", "Borromean Rings", "Vase"]
+surf 	= ["Breather's Surface", "Kuen Surface", "Steiner's Surface", "Boy's Surface",
+		   "Roman Surface", "Sine Surface", "Henneberg's Surface", "Dini's Surface",
+		   "Enneper's Surface", "Corkscrew Surface", "Shoe Surface", "Unk Surface", "Poweroid"]
 topo 	= ["Cross Cap", "Klein Bottle", "Mobius Strip", "Torus"]
-deve 	= ["Neat", "", "Great Dodecahedron", "Vase", "Something Strange",  "Geodesic Icosahedron Pattern 222",  "General"]
-arch 	= ["Cuboctahedron", "Disdyakis Triacontahedron", "Great Rombicosidodecahedron", "Snub Cube", "Truncated Cube", "Tetrahemihexahedron", "Truncated Tetrahedron"]
+#deve 	= ["Neat", "", "Great Dodecahedron", "Vase", "Something Strange",  "Geodesic Icosahedron Pattern 222",  "General"]
+arch 	= ["Cuboctahedron", "Disdyakis Triacontahedron", "Great Rombicosidodecahedron",
+		   "Snub Cube", "Truncated Cube", "Tetrahemihexahedron", "Truncated Tetrahedron", "Snub Dodecahedron", "Truncated Icosahedron",
+		   "Truncated Octahedron", "Truncated Cuboctahedron", "Truncated Dodecahedron", "Icosidodecahedron"]
 plat    = ["Cube", "Dodecahedron", "Octahedron", "Icosahedron"]
 two 	= ["Line", "Deltoid", "Log Spiral", "Parabola", "Polygons", "Ellipse", "Fermat Spiral"]
 pen		= ["Penrose Circle", "Penrose Triangle", "Penrose Square"]
